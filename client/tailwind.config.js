@@ -8,6 +8,12 @@ export default {
     extend: {},
     fontFamily: {
       hurricane:"'Hurricane', cursive",
+      poppins: "'Poppins', sans-serif",
+    },
+    fontWeight: {
+      thin: 100,
+      normal: 400,
+      bold: 700,
     }
 
   },

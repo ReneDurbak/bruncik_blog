@@ -17,7 +17,7 @@ return(
   <div className="p-6 md:flex md:items-center md:justify-between max-w-[1240px] mx-auto px-4">
     <div className="flex items-center justify-between w-full md:w-auto">
       <h1 className="text-white lg:text-3xl md:text-2xl sm:text-3xl  text-3xl font-hurricane cursor-pointer">Peter Bruncik</h1>
-      <div onClick={handleNav} className="md:hidden">
+      <div onClick={handleNav} className="block md:hidden">
         {!nav ? <AiOutlineMenu  size={20} /> : <AiOutlineClose size={20} />}
       </div>
     </div>
@@ -29,9 +29,7 @@ return(
       <li className="sm:mx-0 md:mx-5 lg:mx-5  md:text-base lg:text-xl hover:text-neutral-400 duration-300">Push-ups</li>
       <li className="sm:mx-0 md:mx-5 lg:mx-5  md:text-base lg:text-xl hover:text-neutral-400 duration-300">My course</li>
     </ul>
-  </div>
-
-  <div className={nav ? "w-full transition ease-in-out duration-300 md:hidden" : "hidden ease-out duration-300"}>
+    <div className={nav ? "fixed top-14 left-0 w-full ease-in-out duration-500 md:hidden  bg-cyan-700" : "fixed top-[-100%]"}>
     <ul className="flex flex-col pt-8">
       <li className="p-4 md:text-base text-2xl hover:text-neutral-400 duration-300 w-full border-b border-gray-400 text-center">Home</li>
       <li className="p-4 md:text-base text-2xl hover:text-neutral-400 duration-300 border-b border-gray-400 text-center">About</li>
@@ -40,6 +38,9 @@ return(
       <li className="p-4 pb-6 md:text-base text-2xl hover:text-neutral-400 duration-300 text-center">My course</li>
     </ul>
   </div>
+  </div>
+
+  
 </header>
 
     </>

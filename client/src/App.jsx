@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
 import Articles from './pages/Articles.jsx';
 import Mycourse from './pages/Mycourse.jsx';
 import Pushups from './pages/Pushups.jsx';

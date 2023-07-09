@@ -12,10 +12,10 @@ return(
   </h1>        
   
         <div className="my-2 ">
-        <input size="30" className="px-2 py-2 rounded si mb-10 mt-2"/>
+        <input size="30" className="px-2 py-2 rounded si mb-6 mt-2"/>
         </div>
      
-        <ul className="flex pb-6 pt-2">
+        <ul className="flex pb-8">
             <li className="mx-3 text-white text-4xl ease-in-out duration-300 hover:scale-125"><a><SiInstagram /></a></li>
             <li className="mx-3  text-white text-4xl ease-in-out duration-300 hover:scale-125"><a><SiGmail/></a></li>
             <li className="mx-3  text-white text-4xl ease-in-out duration-300 hover:scale-125"><a><SiFacebook/></a></li>

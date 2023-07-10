@@ -55,7 +55,7 @@ function Articles(){
     <div className="mb-[215px]">
         <div className="bg-amber-500  p-12">
             <div className="">
-            <div className="mx-auto max-w-[1240px] w-[800px] text-xl bg-white ">
+            <div className="mx-auto max-w-[1240px] lg:w-[800px] sm:w-[400px]  w-[300px] md:text-xl text-lg bg-white ">
             <Select 
                 placeholder="filter articles by section..."
                 options={articles}
@@ -78,29 +78,50 @@ function Articles(){
 
 
 
+
    {/* All Articles */}
-<div className="mx-auto max-w-[1240px] mb-[350px] ">
+<div className="mx-auto max-w-[1240px] mb-[350px]  xl:px-0 px-4">
 
 {/* Single Article */}
-<div className="mb-[215px] ">
-  <div className="border-solid border-6 p-7 w-[300px] h-[300px] float-left mr-8 bg-black"></div>
+<div className="mb-[215px] xl:h-[300px] sm:h-[250px] h-[200px] relative text-left ">
+  <div className="sm:visible invisible border-solid border-6 sm:p-7 xl:w-[300px] xl:h-[290px] sm:w-[250px] sm:h-[242px] float-left mr-8 bg-black"></div>
 
-  <div className="text-justify">
-    <h1 className="font-bold text-4xl">Article Name</h1>
-    <div className="mb-[60px]">Section Name</div>
-    <div className="text-lg  break-words">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales est augue, ut varius turpis ultricies eget. Curabitur scelerisque quam.</div>
+  <div className="sm:text-justify xl:mr-0 mr-4">
 
-    <div className="mt-[97px]">
-      <div className="flex">
+    <h1 className="font-bold xl:text-4xl text-3xl">Article Name</h1>
+    <div className="xl:mb-[60px] mb-[30px] xl:text-base text-sm">Section Name</div>
+
+    <div className="xl:text-lg md:text-sm text-xs  break-words">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales est augue, ut varius turpis ultricies eget. Curabitur scelerisque quam.</div>
+
+    <div className="xl:text-base text-sm">
+      <div className="flex justify-between">
+        <div className="sm:visible invisible absolute bottom-0">
       <Rating
+    size="medium"
   name="simple-controlled"
   value={value}
   precision={0.5}
   onChange={(event,selectedRating) => {
     setRatingValue(selectedRating)}}
 />
+</div>
 
-        <div className="ml-4">Reading time: xx min.</div>
+<div className="sm:invisible visible  absolute bottom-0">
+      <Rating
+    size="small"
+  name="simple-controlled"
+  value={value}
+  precision={0.5}
+  onChange={(event,selectedRating) => {
+    setRatingValue(selectedRating)}}
+/>
+</div>
+
+
+      <div>
+        <div className="sm:ml-[130px] ml-[100px] sm:text-base absolute bottom-0 mb-1 text-xs">Reading time: xx min.</div>
+        </div>
+
       </div>
     </div>
   </div>

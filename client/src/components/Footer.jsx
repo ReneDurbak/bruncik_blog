@@ -16,7 +16,7 @@ return(
         </div>
      
         <ul className="flex pb-8">
-            <li className="mx-3 text-white text-4xl ease-in-out duration-300 hover:scale-125"><a><SiInstagram /></a></li>
+            <li className="mx-3 text-white text-4xl ease-in-out duration-300 hover:scale-125"><a href="https://www.instagram.com/peterbruncik/" target="_blank"><SiInstagram /></a></li>
             <li className="mx-3  text-white text-4xl ease-in-out duration-300 hover:scale-125"><a><SiGmail/></a></li>
             <li className="mx-3  text-white text-4xl ease-in-out duration-300 hover:scale-125"><a><SiFacebook/></a></li>
             <li className="mx-3  text-white text-4xl ease-in-out duration-300 hover:scale-125"><a><SiSnapchat/></a></li>

@@ -45,17 +45,17 @@ function Articles(){
 
 
 
-        <div className="">
+        <div>
     <h2 className="mx-auto text-center md:text-8xl text-7xl font-thin py-[50px]">Articles</h2>
 
     </div>
 
 
-
+      {/*Filter section*/}
     <div className="mb-[215px]">
-        <div className="bg-amber-500  p-12">
-            <div className="">
-            <div className="mx-auto max-w-[1240px] lg:w-[800px] sm:w-[400px]  w-[300px] md:text-xl text-lg bg-white ">
+        <div className="bg-amber-500  sm:p-12 py-6">
+            <div>
+            <div className="mx-auto max-w-[1240px] lg:w-[800px] sm:w-[400px]  w-[275px] md:text-xl text-lg bg-white ">
             <Select 
                 placeholder="filter articles by section..."
                 options={articles}
@@ -83,7 +83,7 @@ function Articles(){
 <div className="mx-auto max-w-[1240px] mb-[350px]  xl:px-0 px-4">
 
 {/* Single Article */}
-<div className="mb-[215px] xl:h-[300px] sm:h-[250px] h-[200px] relative text-left ">
+<div className="mb-[215px] xl:h-[300px] sm:h-[250px] h-[200px] relative text-left px-4">
   <div className="sm:visible invisible border-solid border-6 sm:p-7 xl:w-[300px] xl:h-[290px] sm:w-[250px] sm:h-[242px] float-left mr-8 bg-black"></div>
 
   <div className="sm:text-justify xl:mr-0 mr-4">

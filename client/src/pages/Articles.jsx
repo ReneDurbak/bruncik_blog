@@ -80,11 +80,11 @@ function Articles(){
 
 
    {/* All Articles */}
-<div className="mx-auto max-w-[1240px] mb-[350px]  xl:px-0 px-4">
+<div className="mx-auto max-w-[1240px] mb-[350px] xl:px-0 px-4">
 
 {/* Single Article */}
-<div className="mb-[215px] xl:h-[300px] sm:h-[250px] h-[200px] relative text-left px-4">
-  <div className="sm:visible invisible border-solid border-6 sm:p-7 xl:w-[300px] xl:h-[290px] sm:w-[250px] sm:h-[242px] float-left mr-8 bg-black"></div>
+<div className="mb-[215px] xl:h-[300px] sm:h-[250px] h-[420px] sm:mt-0 mt-[-100px] relative text-left px-4">
+  <div className="border-solid border-6 sm:p-7 xl:w-[300px] xl:h-[290px] sm:w-[250px] sm:h-[242px] w-[200px] h-[200px] sm:float-left sm:mb-0 mb-6  mr-8 bg-black"></div>
 
   <div className="sm:text-justify xl:mr-0 mr-4">
 

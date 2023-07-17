@@ -35,7 +35,7 @@ function About(){
 
     {/*3rd picture - Food*/}
     const hash3 = "|DGHYi={K6W?OsofxCxaNG~Bj[Rjs:ofxaoLWBWq5;I;D$xYr=RkI;R*off9s:WoayWVR*WBoJo1D%s.kDNHo#oJxuoes:nNodogNGR*o0WCbbjZR5s:x^j[WBkCaJR+NGn#xGkDWXsSbHjtWXf6ofs.t7WVM_a#R*smxa";
-    const styling3 = "w-full rounded-lg mb-6 h-[355px]"
+    const styling3 = "w-full rounded-lg mb-6 2xl:h-[355px] xl:h-[320px] lg:h-[250px] md:h-[170px] sm:h-[140px] h-[140px]"
     const height3 = 350;
     const width3 = 325;
 
@@ -86,35 +86,38 @@ return(
 
 
     {/*Values*/}
-    <div className="max-w-[1650px] mx-auto py-[175px] px-4 sm:mb-[125px]">
-      <h1 className="text-center sm:text-7xl text-5xl font-bold">
-        My values
-      </h1>
 
-      <div className="grid grid-flow-col sm:gap-12 gap-4  text-center sm:mt-[125px] mt-[50px] md:text-xl text-xs px-4">
-        <div className="w-[325px]">
-        <ImageComponent src={food} useHash={hash3} styling={styling3} useWidth={width3} useHeight={height3} />
-        <div className="border-2 rounded-3xl  bg-stone-500 text-white p-2 duration-300 ease-in-out hover:scale-105"><Link to="/articles">Learn More</Link> </div>
-        </div>
+<div className="max-w-[1360px] mx-auto py-[175px] sm:px-4 sm:mb-[125px]">
+  <h1 className="text-center sm:text-7xl text-5xl font-bold">
+    My values
+  </h1>
 
-        <div className="w-[325px]">
-        <ImageComponent src={nature} useHash={hash4} styling={styling3} useWidth={width3} useHeight={height3} />
-        <div className="border-2 rounded-3xl  bg-stone-500 text-white p-2 duration-300 ease-in-out  hover:scale-105"><Link to="/articles">Learn More</Link> </div>
-        </div>
-
-        <div className="w-[325px]">
-        <ImageComponent src={book} useHash={hash5} styling={styling3} useWidth={width3} useHeight={height3} />
-        <div className="border-2 rounded-3xl  bg-stone-500 text-white p-2 duration-300 ease-in-out  hover:scale-105"><Link to="/articles">Learn More</Link> </div>
-        </div>
-
-        <div className="w-[325px]">
-        <ImageComponent src={gym} useHash={hash6} styling={styling3} useWidth={width3} useHeight={height3} />
-        <div className="border-2 rounded-3xl  bg-stone-500 text-white p-2 duration-300 ease-in-out  hover:scale-105"><Link to="/articles">Learn More</Link> </div>
-        </div>
-        
+  <div className="grid sm:grid-cols-3  lg:gap-20 sm:gap-8 gap-2  text-center sm:mt-[125px] mt-[50px] lg:text-xl sm:text-lg text-xs px-4">
+    
+    <div className="2xl:w-[325px] sm:w-full w-[150px]">
+      <ImageComponent src={food} useHash={hash3} styling={styling3} useWidth={width3} useHeight={height3} />
+      <div className="border-2 rounded-3xl bg-stone-500 text-white sm:p-2 p-1 duration-300 ease-in-out hover:scale-105">
+        <Link to="/articles">Learn More</Link>
       </div>
-
     </div>
+
+    
+
+    <div className="2xl:w-[325px] sm:w-full w-[150px]">
+      <ImageComponent src={book} useHash={hash5} styling={styling3} useWidth={width3} useHeight={height3} />
+      <div className="border-2 rounded-3xl bg-stone-500 text-white p-2 duration-300 ease-in-out hover:scale-105">
+        <Link to="/articles">Learn More</Link>
+      </div>
+    </div>
+
+    <div className="2xl:w-[325px] sm:w-full w-[150px]">
+      <ImageComponent src={gym} useHash={hash6} styling={styling3} useWidth={width3} useHeight={height3} />
+      <div className="border-2 rounded-3xl bg-stone-500 text-white p-2 duration-300 ease-in-out hover:scale-105">
+        <Link to="/articles">Learn More</Link>
+      </div>
+    </div>
+  </div>
+</div>
 
     
 

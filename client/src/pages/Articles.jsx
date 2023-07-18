@@ -35,7 +35,7 @@ function Articles(){
         <>
 
     <Navbar/>
-    <div className="text-white 2xl:pt-[315px] 2xl:pb-[325px]  px-4 md:pt-[250px] md:pb-[210px] xl:pt-[250px] xl:pb-[280px] lg:pt-[280px] lg:pb-[230px] md:tracking-normal  pt-[260px] pb-[240px]  bg-cyan-700">
+    <div className="text-white 2xl:pt-[315px] 2xl:pb-[325px]  px-4 md:pt-[250px] md:pb-[210px] xl:pt-[250px] xl:pb-[280px] lg:pt-[280px] lg:pb-[230px] md:tracking-normal  pt-[260px] pb-[240px]  bg-gray-900">
      <div className="max-w-[1240px] mx-auto px-4">   
     <h1 className="xl:text-7xl md:text-5xl font-bold mb-[90px] text-5xl" >Welcome to articles page</h1>
     <div className="xl:text-xl md:text-lg tracking-normal text-lg break-words">Here you can read about my thoughts, work and what I am currently working on. My blog is ntended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.</div>
@@ -53,7 +53,7 @@ function Articles(){
 
       {/*Filter section*/}
     <div className="mb-[215px]">
-        <div className="bg-amber-500  sm:p-12 py-6">
+        <div className="bg-yellow-500  sm:p-12 py-6">
             <div>
             <div className="mx-auto max-w-[1240px] lg:w-[800px] sm:w-[400px]  w-[275px] md:text-xl text-lg bg-white ">
             <Select 
@@ -83,8 +83,8 @@ function Articles(){
 <div className="mx-auto max-w-[1240px] mb-[350px] xl:px-0 px-4">
 
 {/* Single Article */}
-<div className="mb-[215px] xl:h-[300px] sm:h-[250px] h-[420px] sm:mt-0 mt-[-100px] relative text-left px-4">
-  <div className="border-solid border-6 sm:p-7 xl:w-[300px] xl:h-[290px] sm:w-[250px] sm:h-[242px] w-[200px] h-[200px] sm:float-left sm:mb-0 mb-6  mr-8 bg-black"></div>
+<div className="mb-[215px] xl:h-[300px] sm:h-[250px] h-[450px] sm:mt-0 mt-[-100px] relative text-left px-4">
+  <div className="border-solid border-6 sm:p-7 xl:w-[300px] xl:h-[290px] sm:w-[250px] sm:h-[242px] w-[250px] h-[242px] sm:float-left sm:mb-0 mb-6  mr-8 bg-black"></div>
 
   <div className="sm:text-justify xl:mr-0 mr-4">
 

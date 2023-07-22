@@ -35,7 +35,7 @@ return(
     </ul>
 
     {/* ----mobile version------ */}
-    <div className={nav ? "fixed top-14 left-0 w-full ease-in-out duration-500 md:hidden  bg-stone-950 " : "fixed top-[-100%]"}>
+    <div className={nav ? "fixed top-14 left-0 w-full ease-in-out duration-500 md:hidden  bg-gray-900 " : "fixed top-[-100%]"}>
     <ul className="flex flex-col pt-8 divide-y divide-gray-400">
       <li className="p-4 md:text-base text-xl hover:text-neutral-400 duration-300 w-full text-center"><NavLink to="/">Home</NavLink></li>
       <li className="p-4 md:text-base text-xl hover:text-neutral-400 duration-300 text-center"><NavLink to="/about">About</NavLink></li>

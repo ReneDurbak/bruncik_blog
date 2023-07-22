@@ -12,13 +12,13 @@ function Home(){
         <>
     <Navbar/>
     {/*Intro*/ }
-    <div className="2xl:pt-[400px] 2xl:pb-[350px] 2xl:px-[450px] 2xl:text-[160px] px-8 text-center mx-auto  xl:text-8xl lg:text-8xl text-5xl md:text-8xl md:pt-[380px] md:pb-[330px] xl:pt-[420px] xl:pb-[370px] lg:pt-[430px] lg:pb-[380px] pt-[450px] pb-[400px]  bg-white md:font-thin font-bold align-middle md:tracking-normal tracking-tight">
-      "Breath in, breath out."
+    <div className=" 2xl:text-[160px] px-20 text-center mx-auto w-full  xl:text-8xl lg:text-8xl text-5xl md:text-8xl md:pt-[490px] md:pb-[440px] xl:pt-[520px] xl:pb-[470px] 3xl:pt-[480px] 3xl:pb-[440px] 2xl:pt-[410px] 2xl:pb-[360px] 2xl:px-[200px] lg:pt-[520px] lg:pb-[470px] pt-[540px] pb-[490px]  bg-[url('/src/assets/bgImg.jpg')] bg-cover font-bold align-middle md:tracking-normal tracking-tight text-white leading-normal">
+      Breath in<br/> Breath out
     </div>
 
     {/*Explore*/ }
     <div className="max-w-[1240px] mx-auto py-[175px] px-4 sm:mb-[125px]">
-      <h1 className="sm:float-left text-center xl:text-5xl md:text-3xl sm:text-2xl text-base font-bold underline underline-offset-[20px] decoration-2  sm:px-10 sm:mx-0 mx-8">
+      <h1 className="sm:float-left text-center xl:text-5xl md:text-3xl sm:text-2xl text-lg font-bold underline sm:underline-offset-[20px] decoration-2  sm:px-10 sm:mx-0 mx-8">
         What you can see on my site...
       </h1>
 

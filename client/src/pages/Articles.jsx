@@ -3,6 +3,9 @@ import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import Select from "react-dropdown-select"
 import Rating from '@mui/material/Rating';
+import { AiOutlineArrowDown } from 'react-icons/ai';
+import { Link } from "react-scroll";
+
 
 
 function Articles(){
@@ -40,13 +43,21 @@ function Articles(){
     <h1 className="xl:text-7xl md:text-5xl font-bold mb-[90px] text-5xl" >Welcome to articles page</h1>
     <div className="xl:text-xl md:text-lg tracking-normal text-lg break-words">Here you can read about my thoughts, work and what I am currently working on. My blog is ntended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.</div>
     <p className="font-bold mt-[80px] text-2xl">Enjoy!</p>
+
+    <div className="text-center">
+
+    <div><Link to="mainArticles" smooth={true} offset={-150}><AiOutlineArrowDown className="text-center max-w-[1240px] mx-auto md:mt-[190px] sm:mt-[160px] mt-[100px] xl:text-5xl sm:text-4xl text-3xl duration-500 ease-in-out hover:scale-125"/></Link></div>
     </div>
     </div>
+    
+ 
+    </div>
+    
 
 
 
         <div>
-    <h2 className="mx-auto text-center md:text-8xl text-7xl font-thin py-[50px]">Articles</h2>
+    <h2 className="mx-auto text-center md:text-8xl text-7xl font-thin py-[50px]" id="mainArticles">Articles</h2>
 
     </div>
 

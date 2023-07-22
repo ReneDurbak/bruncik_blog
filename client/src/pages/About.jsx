@@ -4,12 +4,11 @@ import selfie from "../assets/selfe.jpg"
 import { Link } from "react-router-dom";
 import food from"../assets/food.jpg"
 import gym from"../assets/gym.jpg"
-import meditation from"../assets/meditation.jpg"
-import nature from"../assets/nature.jpg"
 import aehim from "../assets/aehim.jpg"
 import book from "../assets/book.jpg"
 import ImageComponent from "../components/ImageComponent";
-
+import Email from "../components/Email";
+import Registration from "../components/Registration";
 
 
 
@@ -20,7 +19,7 @@ function About(){
 
     {/*1st picture*/}
     const hash1 = "LFLDroDOOSMv_MNGDj%M.TogD%D*";
-    const styling1 = "w-[600px] float-right mt-[-475px] rounded-md"
+    const styling1 = "w-[600px] float-right mt-[-670px] rounded-md shadow-xl"
     const height1 = 800;
     const width1 = 550;
 
@@ -28,7 +27,7 @@ function About(){
     {/*2nd picture*/}
 
     const hash2 = "|33[@:-;D*9FDiM|.7-;xaRjf6fks:off6Rkayj[00D%-:?b.8tQD%D%NGx[ogaeM{M|kC%LogR*~p-;IU9FDiRj%g?Ht7MxNFog%M%LRjIURjt74oD%%L-;-;t7IUD%Rix]xuV@IUIVxt%MxuNG?b%MRjD%D%M{%M-;t8"
-    const styling2 = "float-right rounded-xl w-[475px] ml-20 h-1/2 "
+    const styling2 = "float-left rounded-xl w-[475px] mr-12 h-1/2 "
     const height2 = 845;
     const width2 = 475;
 
@@ -59,9 +58,12 @@ return(
     <Navbar/>
     
     {/*Hello intro*/}
-        <div className="py-[500px] max-w-[1240px] mx-auto text-left  2xl:px-[10px] px-[20px] md:text-7xl text-4xl font-bold">
-      Hello!<br />
-      <div>I am Peter Brunčík</div>
+        <div className="xl:py-[545px] max-w-[1240px] mx-auto text-left  2xl:px-[10px] px-[20px] md:text-[170px] text-4xl font-bold not-italic">
+    <div className="mt-[120px] ml-[px]">
+      <div className="">Hello!</div>
+      <div className="italic text-[90px] mt-[100px] font-shadows font-regular">I am Peter Brunčík</div>
+
+      </div>
       <ImageComponent useHash={hash1} src={selfie} styling={styling1} useWidth={width1} useHeight={height1}/>
     </div>
 
@@ -69,7 +71,7 @@ return(
         
 
     {/*Who am I?*/}
-    <div className="w-full bg-stone-500		 py-[300px]">
+    <div className="w-full bg-stone-500		 py-[350px]">
         <div className="max-w-[1240px] mx-auto  text-white px-4">
         <ImageComponent src={aehim} useHash={hash2} styling={styling2} useWidth={width2} useHeight={height2}/>
         <div className="mb-[150px] mt-[-170px]">
@@ -122,7 +124,7 @@ return(
     
 
 
-    
+<Registration/>
 
 
     

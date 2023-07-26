@@ -61,7 +61,7 @@ return(
         <div className="xl:py-[545px] max-w-[1240px] mx-auto text-left  2xl:px-[10px] px-[20px] md:text-[170px] text-4xl font-bold not-italic">
     <div className="mt-[120px] ml-[px]">
       <div className="">Hello!</div>
-      <div className="italic text-[90px] mt-[100px] font-shadows font-regular">I am Peter Brunčík</div>
+      <div className="text-[90px] mt-[100px] font-shadows font-regular">I am Peter Brunčík</div>
 
       </div>
       <ImageComponent useHash={hash1} src={selfie} styling={styling1} useWidth={width1} useHeight={height1}/>
@@ -71,10 +71,10 @@ return(
         
 
     {/*Who am I?*/}
-    <div className="w-full bg-stone-500		 py-[350px]">
-        <div className="max-w-[1240px] mx-auto  text-white px-4">
+    <div className="w-full bg-stone-500	 py-[460px]">
+        <div className="max-w-[1680px] mx-auto  text-white px-4">
         <ImageComponent src={aehim} useHash={hash2} styling={styling2} useWidth={width2} useHeight={height2}/>
-        <div className="mb-[150px] mt-[-170px]">
+        <div className="mb-[150px] mt-[-360px]">
         <h1 className="text-7xl font-bold text-start" >Who am I?</h1>
         </div> 
 

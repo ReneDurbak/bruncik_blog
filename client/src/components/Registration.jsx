@@ -60,7 +60,7 @@ export default function Registration(){
         <>
         <div className="max-w-[1240px] mx-auto mb-[300px]"  id="Email">
             <div className='mx-2'>
-            <h1 className="sm:text-4xl text-2xl font-bold text-center mb-8">Registration form</h1>
+            <h1 className="sm:text-4xl text-2xl font-bold text-center mb-8">Contact me</h1>
             </div>
   <form 
   className="bg-slate-300 border-black  shadow-2xl rounded-2xl lg:px-8 px-4 py-10 mb-4 md:mx-[150px] mx-[20px] sm:text-base text-sm"

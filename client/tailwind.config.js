@@ -14,6 +14,7 @@ export default {
     },
     fontWeight: {
       thin: 100,
+      lesnormal: 300,
       normal: 400,
       bold: 700,
     },

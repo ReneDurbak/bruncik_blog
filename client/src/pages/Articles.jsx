@@ -38,7 +38,7 @@ function Articles(){
         <>
 
     <Navbar/>
-    <div className="text-white 2xl:pt-[315px] 2xl:pb-[325px]  px-4 md:pt-[250px] md:pb-[210px] xl:pt-[250px] xl:pb-[280px] lg:pt-[280px] lg:pb-[230px] md:tracking-normal  pt-[260px] pb-[240px]  bg-gray-900">
+    <div className="text-white 2xl:pt-[315px] 2xl:pb-[325px]  px-4 md:pt-[250px] md:pb-[210px] xl:pt-[250px] xl:pb-[280px] lg:pt-[280px] lg:pb-[230px] md:tracking-normal  pt-[260px] pb-[240px]  bg-sky-800">
      <div className="max-w-[1240px] mx-auto px-4">   
     <h1 className="xl:text-7xl md:text-5xl font-bold mb-[90px] text-5xl" >Welcome to articles page</h1>
     <div className="xl:text-xl md:text-lg tracking-normal text-lg break-words">Here you can read about my thoughts, work and what I am currently working on. My blog is ntended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.</div>

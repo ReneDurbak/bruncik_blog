@@ -95,9 +95,9 @@ return(
       <div className="xl:basis-1/7 xl:border-l-4 border-white h-full py-[5px] ">
         <ul className="xl:block flex my-4 sm:text-[40px] text-3xl text-white">
           <li className="xl:ml-7 xl:mt-[-14px]"><a href="https://www.instagram.com/peterbruncik/" target="_blank"><SiInstagram className="hover:scale-125 ease-in-out duration-500" /></a></li>
-          <li className="ml-7 xl:my-11"><a><SiYoutube className="hover:scale-125 ease-in-out duration-500" /></a></li>
-          <li className="ml-7 xl:my-11"><a><SiSpotify className="hover:scale-125 ease-in-out duration-500" /></a></li>
-          <li className="ml-7 xl:mt-10 xl:mb-[-14px]"><a><SiTwitter className="hover:scale-125 ease-in-out duration-500" /></a></li>
+          <li className="ml-7 xl:my-11"><a href="https://youtube.com/@peterbruncik" target="_blank"><SiYoutube className="hover:scale-125 ease-in-out duration-500" /></a></li>
+          <li className="ml-7 xl:my-11"><a href="https://open.spotify.com/show/4fCLQgWYQqpEqcBmzQcwfm" target="_blank"><SiSpotify className="hover:scale-125 ease-in-out duration-500" /></a></li>
+          <li className="ml-7 xl:mt-10 xl:mb-[-14px]"><a href="https://twitter.com/peterbruncik" target="_blank"><SiTwitter className="hover:scale-125 ease-in-out duration-500" /></a></li>
     
         </ul>
       </div>

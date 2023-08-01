@@ -12,6 +12,9 @@ import pushups1 from "../assets/push-ups/pushups1.png"
 import pushups2 from "../assets/push-ups/pushups2.png"
 import exploreA from "../assets/explore/exploreA.png"
 import exploreB from "../assets/explore/exploreB.png"
+import queston from "../assets/mycourse/question.png"
+import lines from "../assets/push-ups/lines.png"
+
 
 
 function Home(){
@@ -77,30 +80,30 @@ function Home(){
       <div className="font-thin sm:text-2xl lg:text-3xl text-3xl  grid sm:grid-flow-col sm:auto-cols-fr sm:mx-0 mx-8 sm:gap-0 gap-0  text-center sm:mt-[120px] mt-[80px] ">
      
       <div className="mb-10">
-        <div className="xl:bg-[url('/src/assets/explore/exelementbg1.png')] md:bg-[url('/src/assets/explore/exelementbg1lg.png')] bg-[url('/src/assets/explore/exelementbg1.png')] bg-cover w-full">
+        <div className="xl:bg-[url('/src/assets/explore/exelementbg1lg.png')] md:bg-[url('/src/assets/explore/exelementbg1lg.png')] bg-[url('/src/assets/explore/exelementbg1lg.png')] bg-cover">
       <ImageComponent src={exploreA} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
       </div>
-        <div className="lg:pt-3  duration-300 ease-in-out ">Articles </div>
-    <div className="underline sm:underline-offset-2 underline-offset-2 decoration-1  sm:text-xs md:text-base text-sm duration-300 ease-in-out hover:text-stone-400 active:text-red-400"><Link to="/articles">Read more </Link> </div>
+        <div className="lg:pt-3">Articles </div>
+        <div className="mt-[-4px]"><Link to="/articles" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 decoration-1 active:text-red-400">Read more </Link> </div>
    
         </div>
 
         <div className="mb-10">
-          <div className="xl:bg-[url('/src/assets/explore/exelementbg2.png')] md: md:bg-[url('/src/assets/explore/exelementbg2lg.png')] bg-[url('/src/assets/explore/exelementbg2.png')] bg-cover w-full">
+          <div className="xl:bg-[url('/src/assets/explore/exelementbg2.png')] md: md:bg-[url('/src/assets/explore/exelementbg2lg.png')] bg-[url('/src/assets/explore/exelementbg2lg.png')] bg-cover">
         <ImageComponent src={exploreA} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
         </div>
-        <div className=" lg:pt-3  duration-300 ease-in-out  ">Push-ups</div>
-        <div className="underline sm:underline-offset-2 underline-offset-2 decoration-1 sm:text-xs md:text-base text-sm duration-300 ease-in-out hover:text-stone-400"><Link to="/push-ups">Read more </Link> </div>
+        <div className=" lg:pt-3">Push-ups</div>
+        <div className="mt-[-4px]"><Link to="/push-ups" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 decoration-1 active:text-red-400">Read more </Link> </div>
 
         </div>
 
 
         <div className="mb-10">
-          <div className="xl:bg-[url('/src/assets/explore/exelementbg3.png')]   md:bg-[url('/src/assets/explore/exelementbg3lg.png')] bg-[url('/src/assets/explore/exelementbg3.png')] bg-cover w-full">
+          <div className="xl:bg-[url('/src/assets/explore/exelementbg3.png')]   md:bg-[url('/src/assets/explore/exelementbg3lg.png')] bg-[url('/src/assets/explore/exelementbg3lg.png')] bg-cover">
         <ImageComponent src={exploreB} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
         </div>
-        <div className="lg:pt-3lg:  duration-300 ease-in-out" >My course </div>
-        <div className="underline sm:underline-offset-2 underline-offset-2 decoration-1  sm:text-xs md:text-base text-sm duration-300 ease-in-out hover:text-stone-400"><Link to="/mycourse">Read more </Link> </div>
+        <div className="lg:pt-3" >My course </div>
+        <div className="mt-[-4px]"><Link to="/mycourse" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 hover:decoration-1 active:text-red-400">Read more </Link> </div>
         
         </div>
 
@@ -119,7 +122,7 @@ function Home(){
     {/*menu*/}
       {/*Articles*/ }
 
-    <div className="w-full  2xl:bg-[url('/src/assets/articles/articlesbg.png')] lg:bg-[url('/src/assets/articles/articlesbgnotebook.png')] sm:bg-[url('/src/assets/articles/articlesbgtablet.png')] bg-[url('/src/assets/articles/articlesbgmobile.png')] bg-cover	py-[300px] sm:py-[400px] lg:py-[575px]  font-spectral">
+    <div className="w-full  2xl:bg-[url('/src/assets/articles/articlesbg.png')] lg:bg-[url('/src/assets/articles/articlesbgnotebook.png')] md:bg-[url('/src/assets/articles/articlesbgtablet.png')] bg-[url('/src/assets/articles/articlesbgmobile.png')] bg-cover	py-[350px] sm:py-[400px] lg:py-[575px]  font-spectral">
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-4 sm:px-10 px-10">
         <div className="mb-[75px] mt-[-360px]">
         <h1 className="2xl:text-8xl xl:text-7xl  md:text-6xl sm:text-5xl text-2xl  lg:text-start text-center underline decoration-1 underline-offset-[15px]" >Articles</h1>
@@ -136,7 +139,7 @@ function Home(){
         </div>
 
         <div className="mt-3 text-center sm:text-base  text-xs">
-        <Link to="/articles" className="bg-red-400 rounded-2xl px-2 py-1 hover:bg-red-500 duration-500 ease-in-out lg:float-left" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to see more ...</span></Link>
+        <Link to="/articles" className="bg-lime-400 rounded-2xl px-2 py-1 hover:bg-lime-500 duration-500 ease-in-out lg:float-left" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to see more ...</span></Link>
         </div>
 
 
@@ -144,9 +147,12 @@ function Home(){
     </div>
 
 
+    
+
+
       {/*Push ups gallery*/}
  
-    <div className=" w-full 2xl:bg-[url('/src/assets/push-ups/pushupsbg.png')] lg:bg-[url('/src/assets/push-ups/pushupsbgnotebook.png')] sm:bg-[url('/src/assets/push-ups/pushupsbgtablet.png')] bg-[url('/src/assets/push-ups/pushupsbgmobile.png')] bg-cover	py-[300px] sm:py-[400px] lg:py-[520px] font-spectral">
+    <div className=" w-full 2xl:bg-[url('/src/assets/push-ups/pushupsbg.png')] lg:bg-[url('/src/assets/push-ups/pushupsbgnotebook.png')] sm:bg-[url('/src/assets/push-ups/pushupsbgtablet.png')]  bg-cover	py-[300px] sm:py-[400px] lg:py-[520px] font-spectral">
       
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-4 sm:px-10 px-10">
  
@@ -154,50 +160,64 @@ function Home(){
         <h1 className="2xl:text-8xl xl:text-7xl md:text-6xl sm:text-5xl text-2xl text-center lg:text-left   underline decoration-1 underline-offset-[15px]" >Push Ups Gallery</h1>
         </div> 
 
+        {/*Picture & Text container*/}
         <div className="flex lg:flex-row flex-col">
-
-          <div className="flex mx-auto sm:gap-20 lg:gap-5 lg:w-full">
-        <div className="flex flex-col">
+        <div className="sm:hidden max-w-[1380px]">
+          <img src={lines} className="left-0 absolute z-[-1] w-[650px] mt-[-70px]" />
+          </div>
+          {/*Picture container*/}
+          <div className="flex mx-auto sm:gap-20 lg:gap-5 gap-8 lg:w-full">  
+          
+       {/*Pic 1*/}
+        <div className="flex flex-col ">
         <ImageComponent src={pushups1} useHash={hashp1} styling={stylingp1} useWidth={widthp1} useHeight={heightp1}/>
       <div className="flex justify-center xl:text-xl sm:text-base text-sm sm:font-normal font-bold">DAY 1</div>
         </div>
 
+        {/*Pic 2*/}
         <div className="flex flex-col ">
         <ImageComponent src={pushups2} useHash={hashp2} styling={stylingp2} useWidth={widthp2} useHeight={heightp2}/>
         <div className="flex justify-center xl:text-xl  sm:text-base text-sm sm:font-normal font-bold">DAY 70</div>
         </div>
+
         </div>
 
+        {/*Additional text*/}
         <div className="xl:text-[22px] text-base  tracking-wider break-words font-regular lg:text-right text-center sm:w-full lg:ml-10 lg:mt-0 mt-8 ">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit vehicula est, nec mattis magna semper eu. Nunc convallis gravida enim a fringilla. Aliquam viverra condimentum varius. Donec rutrum commodo sapien a blandit. Pellentesque eget faucibus augue, ut cursus ipsum. Vestibulum aliquam tempor lorem, ac fermentum ipsum vestibulum non. Duis sit amet porttitor dui. Curabitur euismod eget sem ac hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit vehicula est, nec mattis magna semper eu. Nunc convallis gravida enim a fringilla. Aliquam viverra condimentum varius. Donec rutrum commodo sapien a blandit. Pellentesque eget faucibus augue, ut cursus ipsum. Vestibulum aliquam tempor lorem, ac fermentum ipsum vestibulum non. Duis sit amet porttitor dui. Curabitur euismod eget sem ac hendrerit.
         <div className=" mt-3 text-center xl:text-base sm:text-sm text-xs">
-        <Link to="/push-ups" className="bg-lime-400 rounded-2xl px-2 py-1 hover:bg-lime-500 duration-500 ease-in-out lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to see more ...</span></Link>
+        <Link to="/push-ups" className="bg-red-400 rounded-2xl px-2 py-1 hover:bg-red-500 duration-500 ease-in-out lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to see more ...</span></Link>
         </div>
         </div>
-
-        
 
         </div>
      
 
-      
-
         </div>
+
     </div>
+
+
+
+
+
 
 
 
      {/*My course*/}
 
-     <div className="mt-[-50px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')] sm:bg-[url('/src/assets/mycourse/coursebgtablet.png')] bg-[url('/src/assets/mycourse/coursebgmobile.png')]  bg-cover py-[325px] sm:py-[250px] lg:py-[225px]	 xl:py-[200px] 2xl:py-[150px] font-spectral">
-      <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-4 sm:px-10 px-10">
+     <div className="sm:mt-[-50px] mt-[-350px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')]   bg-cover xl:mb-[75px] py-[325px] sm:py-[250px] lg:py-[200px]	 xl:py-[200px] 2xl:py-[150px] font-spectral">
+      <div className="2xl:max-w-[1680px]  mx-auto 2xl:px-4 sm:px-10 px-10">
     
       <h1 className="  xl:text-7xl sm:text-5xl text-2xl  lg:text-left text-center underline decoration-1 underline-offset-[25px] " >My Course - Work with me</h1>
    
 
 
-      <div className=" mx-auto xl:mt-[445px] sm:mt-[350px] mt-[225px] text-black sm:px-4 px-10">
-      <div className="align-middle mx-auto text-center xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold">Comming soon!</div>
+      <div className=" mx-auto xl:mt-[445px] sm:mt-[350px]  mt-[150px] text-black sm:px-4 px-10">
+        <div className="lg:hidden max-w-[1380px] sm:mt-[-230px]">
+          <img src={queston} className="mx-auto w-[200px] sm:w-[250px]" />
+        </div>
+      <div className="align-middle mx-auto text-center xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[400px] xl:mt-0 mt-[-110px]">Comming soon!</div>
       
       
       <div className="mt-[150px]" >
@@ -213,9 +233,15 @@ function Home(){
 
 
 
+
+
+
+
+
+
    {/*About me*/}
 
-   <div className="  2xl:bg-[url('/src/assets/about/aboutbg.png')] xl:bg-[url('/src/assets/about/aboutbgnotebookxl.png')] lg:bg-[url('/src/assets/about/aboutbgnotebook.png')] sm:bg-[url('/src/assets/about/aboutbgtablet.png')] bg-[url('/src/assets/about/aboutbgmobile.png')] bg-cover	py-[300px]  sm:py-[450px] lg:py-[600px] 2xl:py-[450px]  mb-[325px] font-spectral">
+   <div className="  2xl:bg-[url('/src/assets/about/aboutbg.png')] xl:bg-[url('/src/assets/about/aboutbgnotebookxl.png')] lg:bg-[url('/src/assets/about/aboutbgnotebook.png')] sm:bg-[url('/src/assets/about/aboutbgtablet.png')] bg-[url('/src/assets/about/aboutbgmobile.png')] bg-cover	py-[300px]  sm:py-[450px] lg:py-[600px] 2xl:py-[450px] lg:mb-[150px] mb-[-75px] font-spectral">
       
       <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-4 sm:px-10 px-10">
 
@@ -231,7 +257,7 @@ function Home(){
       </div>
 
       <div className="mt-3 text-center xl:text-base sm:text-sm text-xs">
-        <Link to="/about" className=" bg-red-400 rounded-2xl px-2 py-1 hover:bg-red-500 duration-500 ease-in-out xl:float-left lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to learn about me more ...</span></Link>
+        <Link to="/about" className="duration-500 ease-in-out bg-gradient-to-b from-lime-200 via-red-200 to-cyan-200 rounded-2xl px-2 py-1 hover:bg-gradient-to-b hover:from-lime-300 hover:via-red-300 hover:to-cyan-300 xl:float-left lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to learn about me more ...</span></Link>
         </div>
 
       </div>

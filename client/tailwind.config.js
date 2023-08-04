@@ -11,12 +11,7 @@ export default {
       poppins: "'Poppins', sans-serif",
       spectral: "'Spectral', serif",
       shadows: "'Shadows Into Light', cursive",
-    },
-    fontWeight: {
-      thin: 100,
-      lesnormal: 300,
-      normal: 400,
-      bold: 700,
+      spectralsc: "Spectral SC, serif",
     },
     screens: {
       'sm': '640px',

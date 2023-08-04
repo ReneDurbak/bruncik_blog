@@ -53,7 +53,7 @@ export default function Footer(){
 
 return(
     <>
-    <footer className="bg-black mt-auto py-16 font-spectral w-full  bg-[url('/src/assets/footerbg2.png')] bg-cover">
+    <footer className="bg-slate-950 mt-auto py-16 font-spectral w-full  bg-[url('/src/assets/footerbg2.png')] bg-cover">
   <div className="flex flex-col xl:flex-row items-center justify-center xl:max-w-[1800px]   2xl:mx-auto sm:max-w-[600px]   xl:mx-4  mx-auto ">
 
     {/* Newsletter */}
@@ -67,7 +67,7 @@ return(
 
       <form className="my-2 sm:w-[450px] w-full mx-auto"   onSubmit={sendEmail} >
         < div className="flex items-center">
-          <input type="email" name="user_Email" onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className="italic px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white border-l-4 border-r-[50px] border-y-4 mr-[-30px] border-white" />
+          <input type="email" name="user_Email" onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className="italic px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-slate-950 float-left text-white border-l-4 border-r-[50px] border-y-4 mr-[-30px] border-white" />
           
           <div className="float-left bg-white py-auto mb-4 h-full">
           <AiOutlineArrowRight className="sm:text-xs xl:text-base text-sm text-black" type="submit" />  

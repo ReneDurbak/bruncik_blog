@@ -39,7 +39,7 @@ return(
 
   {/* ----mobile version------ */}
   
-    <ul className={nav ? "origin-top flex flex-col absolute top-18  w-full ease-in-out duration-500  md:hidden  bg-[#2A6CA5] opacity-100 " : "origin-top scale-y-0 	 flex flex-col absolute top-18  w-full ease-in-out duration-500  md:hidden  bg-[#2A6CA5] opacity-100 "}>
+    <ul className={nav ? "origin-top flex flex-col absolute top-18  w-full ease-in-out duration-500  md:hidden  bg-[#2A6CA5] opacity-100  z-20" : "origin-top scale-y-0 	 flex flex-col absolute top-18  w-full ease-in-out duration-500  md:hidden  bg-[#2A6CA5] opacity-100  z-20"}>
       <li className="p-4 sm:text-lg text-sm hover:text-neutral-400 duration-300 w-full text-center"><NavLink to="/">Home</NavLink></li>
       <li className="p-4 sm:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink to="/push-ups">Push-ups</NavLink></li>
       <li className="p-4 sm:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink to="/articles">Articles</NavLink></li>

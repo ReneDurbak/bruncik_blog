@@ -53,7 +53,7 @@ export default function Footer(){
 
 return(
     <>
-    <footer className="bg-slate-950 mt-auto py-16 font-spectral w-full  bg-[url('/src/assets/footerbg2.png')] bg-cover">
+    <footer className="bg-slate-950 mt-auto py-16 font-spectral w-full  xl:bg-[url('/src/assets/footerbg.png')] lg:bg-[url('/src/assets/footerbglaptop.png')] bg-cover">
   <div className="flex flex-col xl:flex-row items-center justify-center xl:max-w-[1800px]   2xl:mx-auto sm:max-w-[600px]   xl:mx-4  mx-auto ">
 
     {/* Newsletter */}

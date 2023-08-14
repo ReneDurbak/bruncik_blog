@@ -64,7 +64,7 @@ function Home(){
         <>
     <Navbar/>
     {/*Intro*/ }
-    <div className="2xl:text-[160px] sm:px-20 text-center mx-auto w-full  xl:text-8xl lg:text-8xl text-5xl md:text-7xl  xl:pt-[320px] xl:pb-[320px] 3xl:pt-[480px] 3xl:pb-[440px] 2xl:pt-[340px] 2xl:pb-[340px] 2xl:px-[200px] lg:pt-[220px] lg:pb-[220px] md:pt-[200px] md:pb-[200px] pt-[275px] pb-[275px]  md:bg-[url('/src/assets/bgImg.jpg')] bg-[url('/src/assets/bgImgmobile.png')] bg-cover font-thin align-middle md:tracking-normal tracking-tight text-white leading-normal">
+    <div className="2xl:text-[160px] sm:px-20 text-center mx-auto w-full  xl:text-8xl lg:text-8xl text-5xl md:text-7xl 3xl:pt-[480px] 3xl:pb-[440px] 2xl:pt-[420px] 2xl:pb-[370px]  xl:pt-[380px] xl:pb-[330px]  lg:pt-[280px] lg:pb-[230px] md:pt-[290px] md:pb-[240px] pt-[340px] pb-[340px] xl:bg-[url('/src/assets/bgImg.jpg')] md:bg-[url('/src/assets/bgImglaptop.png')] bg-[url('/src/assets/bgImgmobile.png')] bg-cover font-thin align-middle md:tracking-normal tracking-tight text-white leading-normal">
       Breath in<br/> Breath out
     </div>
 
@@ -74,7 +74,7 @@ function Home(){
         What you can see on my site...
       </h1>
 
-      <div className="font-thin sm:text-2xl lg:text-3xl text-3xl  grid sm:grid-flow-col sm:auto-cols-fr sm:mx-0 mx-8 xl:gap-x-12 gap-0  text-center sm:mt-[120px] mt-[80px] ">
+      <div className="font-thin sm:text-2xl lg:text-[29px] text-3xl  grid sm:grid-flow-col sm:auto-cols-fr sm:mx-0 mx-8 xl:gap-x-12 gap-0  text-center sm:mt-[120px] mt-[80px] ">
      
       <div className="mb-10">
         <div className="2xl:bg-[url('/src/assets/explore/exelementbg1lg.png')] md:bg-[url('/src/assets/explore/exelementbg1lg.png')] bg-[url('/src/assets/explore/exelementbg1lg.png')] bg-cover">
@@ -120,7 +120,7 @@ function Home(){
       {/*Articles*/ }
 
     <div className="w-full  2xl:bg-[url('/src/assets/articles/articlesbg.png')] lg:bg-[url('/src/assets/articles/articlesbgnotebook.png')] md:bg-[url('/src/assets/articles/articlesbgtablet.png')] bg-[url('/src/assets/articles/articlesbgmobile.png')] bg-cover	pt-[350px] sm:py-[400px] lg:py-[575px]  font-spectral">
-        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-4 sm:px-10 px-10">
+        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-4 lg:px-20 sm:px-10 px-10">
         
    
         <div>
@@ -162,7 +162,7 @@ function Home(){
  
     <div className="sm:mt-[-150px] lg:mt-[-250px] 2xl:mt-[-50px] mt-[250px]  w-full 2xl:bg-[url('/src/assets/push-ups/pushupsbg.png')] lg:bg-[url('/src/assets/push-ups/pushupsbgnotebook.png')] sm:bg-[url('/src/assets/push-ups/pushupsbgtablet.png')] bg-cover	py-[300px] sm:py-[400px] lg:py-[575px] font-spectral">
       
-        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-4 sm:px-10 px-10">
+        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-4 lg:px-20 sm:px-10 px-10">
  
         <div className="mb-[75px] mt-[-360px] 2xl:max-w-[1680px] mx-auto">
         <h1 className="2xl:text-8xl xl:text-7xl md:text-6xl sm:text-5xl text-2xl text-center lg:text-left   underline decoration-1 underline-offset-[15px]" >Push Ups Gallery</h1>
@@ -215,18 +215,18 @@ function Home(){
 
      {/*My course*/}
 
-     <div className="sm:mt-[-350px] lg:mt-[-350px] 2xl:mt-[-75px] mt-[-450px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')]   bg-cover py-[325px] sm:py-[250px] lg:py-[200px]	 xl:py-[200px] 2xl:py-[150px] xl:mb-[225px] font-spectral">
+     <div className="sm:mt-[-350px] lg:mt-[-350px] 2xl:mt-[-75px] mt-[-450px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')]   bg-cover py-[325px] sm:py-[250px] lg:py-[250px]	 xl:py-[200px] 2xl:py-[150px] xl:mb-[225px] font-spectral">
       <div className="2xl:max-w-[1680px]  mx-auto 2xl:px-4 sm:px-10 px-10">
     
-      <h1 className="  xl:text-7xl sm:text-5xl text-2xl  lg:text-left text-center underline decoration-1 underline-offset-[25px] " >My Course - Work with me</h1>
+      <h1 className="  2xl:text-7xl xl:text-6xl sm:text-5xl text-2xl  lg:text-left text-center underline decoration-1 underline-offset-[25px] " >My Course - Work with me</h1>
    
 
 
-      <div className=" mx-auto xl:mt-[445px] sm:mt-[350px]  mt-[150px] text-black sm:px-4 px-10">
+      <div className="xl:mt-[445px] sm:mt-[350px]  mt-[150px] text-black sm:px-4 px-10">
         <div className="lg:hidden max-w-[1380px] sm:mt-[-230px] mt-[-50px]">
           <img src={queston} className="mx-auto w-[200px] sm:w-[250px]" />
         </div>
-      <div className="align-middle mx-auto text-center 2xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[400px] xl:mt-0 mt-[-110px]">Comming soon!</div>
+      <div className="align-middle mx-auto text-center 2xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[400px] xl:mt-0 mt-[-110px]">Coming soon!</div>
       
       
       <div className="sm:mt-[150px] mt-[100px]" >

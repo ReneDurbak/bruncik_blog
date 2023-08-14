@@ -83,7 +83,7 @@ function Articles(){
         onChange: handleSearchChange,
         onKeyPress: handleKeyPress,
         placeholder: "Search...",
-        className: "outline-none sm:pt-3 pt-3 pb-2  2xl:text-3xl lg:text-[26px] text-2xl  ease-in-out duration-500 sm:w-[190px] w-full block px-3 xl:text-[25px] tracking-wide"
+        className: "outline-none sm:pt-3 pt-3 pb-2  2xl:text-3xl lg:text-[26px] sm:text-2xl text-xl  ease-in-out duration-500 sm:w-[190px] w-full block px-3 xl:text-[25px] tracking-wide"
       };
 
 
@@ -104,13 +104,13 @@ function Articles(){
         <>
 {/*Articles intro*/}
     <Navbar/>
-    <div id="articles" className="text-white 2xl:pt-[145px]  2xl:pb-[115px] xl:pt-[145px] xl:pb-14 lg:pt-[280px] lg:pb-[115px]  md:pt-[250px] md:pb-[105px] sm:pt-[100px] sm:pb-[75px] pt-[260px] pb-14   md:tracking-normal   lg:bg-[url('/src/assets/articlesintrobg.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">
+    <div id="articles" className="text-white 2xl:pt-[200px]  2xl:pb-[100px] xl:pt-[220px] xl:pb-16 lg:pt-[350px] lg:pb-[115px]  md:pt-[300px] md:pb-[50px] sm:pt-[150px] sm:pb-[120px] pt-[260px] pb-14   md:tracking-normal   lg:bg-[url('/src/assets/articlesintrobg.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">
      <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-4 sm:px-10 px-6 grid sm:grid-cols-2 sm:grid-flow-col	lg:gap-20 sm:gap-8 2xl:mt-4 xl:mt-[-25px] lg:mt-[-185px] md:mt-[-135px] sm:mt-[-25px] mt-[-190px]">   
      
-     <div className="col-span-2 relative sm:mt-0">
-    <h1 className="xl:text-8xl lg:text-7xl mb-6 text-6xl tracking-wide" >Articles</h1>
+     <div className="col-span-2 sm:mt-0">
+    <h1 className="2xl:text-8xl lg:text-7xl mb-6 text-6xl tracking-wide" >Articles</h1>
 
-  <div className="2xl:text-[41px] xl:text-3xl lg:text-2xl md:text-xl sm:text-lg  text-lg mb-[100px] tracking-wide">
+  <div className="2xl:text-[41px] lg:text-2xl md:text-lg sm:text-lg  text-lg mb-[100px] tracking-wide">
     <div>
       “It is impossible for a man to learn what he thinks he already knows.”{" "}
       <div className="text-right mt-4 font-bold">-Epictetus</div>
@@ -118,12 +118,12 @@ function Articles(){
   </div>
 
 {/*desktop - additional text*/}
-  <div className="hidden 2xl:block">
-  <div className=" tracking-normal text-xl break-words text-black bg-slate-100 rounded-2xl py-5 px-6 mt-[100px] font-poppins shadow-2xl">
+  <div className="hidden lg:block">
+  <div className=" tracking-normal 2xl:text-xl xl:text-[16px] md:text-[15px] break-words text-black bg-slate-100 rounded-2xl py-5 px-6 mt-[100px] font-poppins shadow-2xl">
     Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
   </div>
 
-  <p className="font-bold mt-[80px] text-3xl font-poppins">Enjoy!</p>
+  <p className="font-bold mt-[80px]  2xl:text-3xl xl:text-2xl md:text-xl text-base font-poppins">Enjoy!</p>
 </div>
 
 
@@ -138,7 +138,7 @@ function Articles(){
 
 <div className="sm:mt-[-50px]  max-w-[350px]  sm:px-0 px-6 "> 
 <div>
-    <div className="bg-slate-100 rounded-2xl sm:px-6 px-4 sm:py-5 py-3 text-center font-spectral">
+    <div className="bg-white rounded-2xl sm:px-6 px-4 sm:py-5 py-3 text-center font-spectral">
       <div className="lg:max-w-[320px] w-full py-2">
 <div className="mx-0">
     <h1 className="uppercase text-black underline underline-offset-4 font-bold sm:text-xl text-lg">Try out my newsletter</h1>
@@ -147,14 +147,14 @@ function Articles(){
     </section>
 
     <section>
-      <input className="bg-white rounded-xl italic mt-2 mb-1 outline-2 outline outline-offset-1 outline-black focus:outline focus:shadow-lg sm:py-[10px] py-[6px]  text-black text-center w-full sm:text-base text-sm" placeholder="My email address is..."/>
+      <input className="bg-white rounded-xl italic mt-2 mb-1 outline-1 outline outline-offset-1 outline-black focus:outline focus:shadow-lg sm:py-[10px] py-[6px]  text-black text-center w-full sm:text-base text-sm" placeholder="My email address is..."/>
     </section>
 
     <section>
       <input type="submit" value="Subscribe" className="active:bg-white active:text-black italic bg-slate-950 rounded-xl mt-2 hover:shadow-xl ease-in-out duration-300 sm:py-3 py-[10px] text-white text-center w-full sm:text-base text-sm" placeholder="My email address is..."/>
     </section>
 
-      <div className="text-black mt-4  text-[13px] italic">"Zero spam. Only the finest ideas you'll discover online."</div>
+      <div className="text-black mt-4  text-[11px] italic">"Zero spam. Only the finest ideas you'll discover online."</div>
 
     </div>
     </div>
@@ -167,7 +167,7 @@ function Articles(){
     {/*Newsletter*/}
     <div className="xl:mt-[-75px] lg:mt-[-45px] md:mt-[-50px] max-w-[350px] md:max-w-[265px] xl:max-w-[325px] lg:max-w-[285px] 2xl:max-w-full md:block md:px-0 hidden"> 
 <div className="border-l-2">
-    <div className="bg-slate-100 rounded-2xl px-6  xl:px-4 md:px-5 2xl:py-5 xl:py-3 md:py-1 ml-4 text-center font-spectral">
+    <div className="bg-white rounded-2xl px-6  xl:px-4 md:px-5 2xl:pt-5 2xl:pb-2 xl:py-3 md:py-1 ml-4 text-center font-spectral">
       <div className="lg:max-w-[320px] w-full py-2">
 <div className="mx-0">
     <h1 className="uppercase text-black underline underline-offset-4 font-bold 2xl:text-xl xl:text-lg lg:text-base md:text-[15px] mt-1">Try out my newsletter</h1>
@@ -195,19 +195,19 @@ function Articles(){
     </div>
 
 
-{/*laptop, tablet and mobile res of additional text*/}
-    <div className="2xl:hidden block max-w-[1380px] mx-auto sm:px-10 px-6 xl:mt-[-115px] lg:mt-[-95px] md:mt-[-15px] sm:mt-[-15px] mt-[-25px]">
+{/*tablet and mobile res of additional text*/}
+    <div className="lg:hidden block max-w-[1380px] mx-auto sm:px-10 px-6 xl:mt-[-115px] lg:mt-[-95px] md:mt-[-15px] sm:mt-[-15px] mt-[-25px]">
   <div className="2xl:text-xl xl:text-[18px] md:text-[15px] sm:text-[15px] text-[14px] tracking-normal  break-words text-black bg-slate-100 rounded-2xl 2xl:py-5 xl:py-4 md:py-3 md:px-6 sm:py-3 sm:px-3 px-3 py-3 lg:mt-[100px] font-poppins shadow-2xl">
     Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
   </div>
 
-  <p className="font-bold mt-[80px] 2xl:text-3xl xl:text-2xl md:text-xl sm:text-lg text-base font-poppins">Enjoy!</p>
+  <p className="font-bold mt-[80px] sm:text-lg text-base font-poppins">Enjoy!</p>
 </div>
 
 
-
-    <div className="text-center xl:mt-[-160px] lg:mt-[-175px] md:mt-[-175px] sm:mt-[-125px]">
-    <div><Link to="mainArticles" smooth={true} offset={15}><img src={arrowDown} className="text-center max-w-[1240px] mx-auto 2xl:mt-[240px] xl:mt-[190px] lg:mt-[225px] md:mt-[215px] sm:mt-[175px] mt-[15px] 2xl:w-[45px]  lg:w-[35px] md:w-[30px] sm:w-[32px] 
+{/*Arrow Down */}
+    <div className="text-center 2xl:mt-[-120px] xl:mt-[-160px] lg:mt-[-175px] md:mt-[-175px] sm:mt-[-125px]">
+    <div><Link to="mainArticles" smooth={true} offset={-50}><img src={arrowDown} className="text-center max-w-[1240px] mx-auto 2xl:mt-[240px] xl:mt-[190px] lg:mt-[225px] md:mt-[215px] sm:mt-[175px] mt-[15px] 2xl:w-[45px]  lg:w-[35px] md:w-[30px] sm:w-[32px] 
     w-[25px] duration-500 ease-in-out hover:scale-125 active:scale-125"/> </Link></div>
     </div>
     </div>
@@ -229,14 +229,14 @@ function Articles(){
 
 
 {/*Filter section*/}
-<div className="2xl:max-w-[1380px] w-full mx-auto 2xl:px-4 sm:px-10 px-6 grid grid-flow-col auto-cols-auto mb-[125px] 2xl:mt-0 mt-4">
+<div className="2xl:max-w-[1380px] w-full mx-auto 2xl:px-4 sm:px-10 px-6 grid grid-flow-col auto-cols-auto sm:mb-[125px] mb-20 2xl:mt-0 mt-4">
 
 
-<div className=" flex sm:flex-row flex-col justify-center	flex-wrap auto-rows-fr sm:gap-x-6 lg:gap-x-8 xl:gap-x-10 gap-y-6 lg:font-normal font-normal sm:font-bold 2xl:text-2xl lg:text-xl sm:text-base text-xl font-spectralsc  font-serif">
+<div className=" flex flex-row  justify-center	flex-wrap auto-rows-fr gap-x-4 gap-y-5 sm:gap-x-6 lg:gap-x-8 xl:gap-x-10 sm:gap-y-6 lg:font-normal font-normal   font-spectralsc  font-serif">
 {
 /*Search bar*/}
 
-<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black focus:shadow-lg px-2 mt-4 sm:mt-0 mb-10 sm:mb-0">
+<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black px-2 mt-4 sm:mt-0 mb-10 sm:mb-0 w-full sm:w-auto">
 <div className="my-auto">
 <Autosuggest
           suggestions={suggestions}
@@ -250,7 +250,7 @@ function Articles(){
         />
         </div>
 
-<span className=" inline-flex  px-2 my-auto"><img src={magnifier} className="text-black w-[34px]"/> </span>
+<span className=" inline-flex  px-2 my-auto"><img src={magnifier} className="text-black 2xl:w-[34px] w-[28px]"/> </span>
 </div>
 
 
@@ -259,7 +259,7 @@ function Articles(){
       {filterOptions.map((filter) => (
         <span
           key={filter.id}
-          className={`shadow-lg grid grid-flow-col grid-cols-auto rounded-full px-4 py-3 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-2 outline-offset-1 ease-in-out duration-200  tracking-widest ${
+          className={`shadow-lg rounded-full px-4 py-3 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-200  tracking-widest  2xl:text-2xl lg:text-xl sm:text-base text-base ${
             selectedFilter === filter.id
               ? "bg-gray-950 text-white outline-black"
               : "bg-slate-100	 text-gray-800"
@@ -269,7 +269,7 @@ function Articles(){
        {selectedFilter ===filter.id ?
         <div className="flex">
              <div className="">
-              <img src={filter.imageUrlClicked} className="2xl:w-[45px] md:w-[38px] sm:w-[34px] w-[35px] mr-2"/>
+              <img src={filter.imageUrlClicked} className="2xl:w-[45px] md:w-[38px] sm:w-[34px] w-[30px] mr-2"/>
               </div>
 
          <div className="xl:mt-auto sm:my-auto my-auto mx-auto text-center"> {filter.name}</div>
@@ -277,7 +277,7 @@ function Articles(){
           :
           <div className="flex">
              <div className=" my-auto">
-              <img src={filter.imageUrl} className="2xl:w-[45px] md:w-[38px] sm:w-[34px] w-[35px] mr-2"/>
+              <img src={filter.imageUrl} className="2xl:w-[45px] md:w-[38px] sm:w-[34px] w-[30px] mr-2"/>
               </div>
 
          <div className="xl:mt-auto sm:my-auto my-auto mx-auto text-center"> {filter.name}</div>
@@ -286,6 +286,7 @@ function Articles(){
         }
         </span>
       ))}
+
     </div>
     </div>
 
@@ -300,39 +301,46 @@ function Articles(){
  
 {/*All articles*/}
 
-<div className="tracking-[4px] 2xl:px-4 sm:px-10 px-6 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid xl:grid-cols-3 sm:grid-cols-2  grid-cols-1 2xl:gap-x-[110px] lg:gap-x-[75px] md:gap-x-[75px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-[135px] mb-20 font-spectral 2xl:text-lg lg:text-base sm:text-xs text-base font-thin">
+<div className="tracking-[4px] 2xl:px-4 sm:px-18 px-16 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid xl:grid-cols-3 sm:grid-cols-2  grid-cols-1 2xl:gap-x-[110px] lg:gap-x-[75px] md:gap-x-[75px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-[40px] mb-20 font-spectral 2xl:text-lg lg:text-base sm:text-xs text-base font-thin">
   
 
 
 <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[275px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px] lg:text-2xl sm:text-xl text-2xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
   </div>
-
-
 
   <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[275px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px] lg:text-2xl sm:text-xl text-2xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
   </div>
-
 
   <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[275px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px] lg:text-2xl sm:text-xl text-2xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
   </div>
-
-
 
   <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[275px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px] lg:text-2xl sm:text-xl text-2xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
   </div>
 
+  <div className="w-full">
+  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
+  </div>
+
+
+
+  
+
+
+  
 
  
   </div>

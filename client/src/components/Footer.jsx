@@ -53,7 +53,7 @@ export default function Footer(){
 
 return(
     <>
-    <footer className="bg-black mt-auto py-16 font-spectral w-full  xl:bg-[url('/src/assets/footerbg.png')] lg:bg-[url('/src/assets/footerbglaptop.png')] bg-cover">
+    <footer className="bg-black mt-auto py-16 font-spectral w-full  2xl:bg-[url('/src/assets/footerbg.png')] xl:bg-[url('/src/assets/footerbglaptopxl.png')] lg:bg-[url('/src/assets/footerbglaptop.png')] sm:bg-[url('/src/assets/footerbgtablet.png')] bg-[url('/src/assets/footerbgmobile.png')] bg-cover">
   <div className="flex flex-col xl:flex-row items-center justify-center xl:max-w-[1800px]   2xl:mx-auto sm:max-w-[600px]   xl:mx-4  mx-auto ">
 
     {/* Newsletter */}
@@ -86,7 +86,7 @@ return(
         <li className="xl:mt-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/push-ups" className="hover:text-gray-400 duration-300 ease-in-out">Push ups series</Link></li>
         <li className="xl:mt-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/mycourse" className="hover:text-gray-400 duration-300 ease-in-out">My course</Link></li>
         <li className="xl:my-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/about" className="hover:text-gray-400 duration-300 ease-in-out">About</Link></li>
-        <li className="xl:mb-2 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><a href="mailto:peterbruncik700@gmail.com?subject=Contact" className="hover:text-gray-400 duration-300 ease-in-out">Contact</a></li>
+        <li className="xl:mb-2 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=Contact" target="_blank"rel="noopener noreferrer" className="hover:text-gray-400 duration-300 ease-in-out">Contact</a></li>
       </ul>
     </div>
 

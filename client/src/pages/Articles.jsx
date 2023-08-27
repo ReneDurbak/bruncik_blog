@@ -118,7 +118,7 @@ function Articles(){
   </div>
 
 {/*desktop - additional text*/}
-  <div className="hidden lg:block">
+  <div className="hidden 2xl:block">
   <div className=" tracking-normal 2xl:text-xl xl:text-[16px] md:text-[15px] break-words text-black bg-slate-100 rounded-2xl py-5 px-6 mt-[100px] font-poppins shadow-2xl">
     Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
   </div>
@@ -139,10 +139,10 @@ function Articles(){
 <div className="sm:mt-[-50px]  max-w-[350px]  sm:px-0 px-6 "> 
 <div>
     <div className="bg-white rounded-2xl sm:px-6 px-4 sm:py-5 py-3 text-center font-spectral">
-      <div className="lg:max-w-[320px] w-full py-2">
+      <div className="w-full py-2">
 <div className="mx-0">
     <h1 className="uppercase text-black underline underline-offset-4 font-bold sm:text-xl text-lg">Try out my newsletter</h1>
-    <section className="xl:my-1 sm:my-2 my-1">
+    <section className=" sm:my-2 my-1">
     <div className="text-black mx-4 text-base">Sign up for our weekly newsletter and get a dose of inspiration! </div>
     </section>
 
@@ -165,7 +165,7 @@ function Articles(){
 
 
     {/*Newsletter*/}
-    <div className="xl:mt-[-75px] lg:mt-[-45px] md:mt-[-50px] max-w-[350px] md:max-w-[265px] xl:max-w-[325px] lg:max-w-[285px] 2xl:max-w-full md:block md:px-0 hidden"> 
+    <div className="xl:mt-[-75px] lg:mt-[-45px] md:mt-[-50px] max-w-[350px] md:max-w-[265px] xl:max-w-[325px] lg:max-w-[285px] 2xl:max-w-full lg:block md:px-0 hidden"> 
 <div className="border-l-2">
     <div className="bg-white rounded-2xl px-6  xl:px-4 md:px-5 2xl:pt-5 2xl:pb-2 xl:py-3 md:py-1 ml-4 text-center font-spectral">
       <div className="lg:max-w-[320px] w-full py-2">
@@ -196,7 +196,7 @@ function Articles(){
 
 
 {/*tablet and mobile res of additional text*/}
-    <div className="lg:hidden block max-w-[1380px] mx-auto sm:px-10 px-6 xl:mt-[-115px] lg:mt-[-95px] md:mt-[-15px] sm:mt-[-15px] mt-[-25px]">
+    <div className="2xl:hidden block max-w-[1380px] mx-auto sm:px-10 px-6 xl:mt-[-115px] lg:mt-[-95px] md:mt-[-15px] sm:mt-[-15px] mt-[-25px]">
   <div className="2xl:text-xl xl:text-[18px] md:text-[15px] sm:text-[15px] text-[14px] tracking-normal  break-words text-black bg-slate-100 rounded-2xl 2xl:py-5 xl:py-4 md:py-3 md:px-6 sm:py-3 sm:px-3 px-3 py-3 lg:mt-[100px] font-poppins shadow-2xl">
     Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
   </div>
@@ -215,16 +215,15 @@ function Articles(){
 
 
 
+
+
+
+
+
         <div>
     <h2 className="mx-auto text-center xl:text-7xl text-6xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
 
     </div>
-
-
-
-
-
-
 
 
 
@@ -301,46 +300,43 @@ function Articles(){
  
 {/*All articles*/}
 
-<div className="tracking-[4px] 2xl:px-4 sm:px-18 px-16 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid xl:grid-cols-3 sm:grid-cols-2  grid-cols-1 2xl:gap-x-[110px] lg:gap-x-[75px] md:gap-x-[75px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-[40px] mb-20 font-spectral 2xl:text-lg lg:text-base sm:text-xs text-base font-thin">
+<div className="tracking-[4px] 2xl:px-4 sm:px-18 px-12 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid xl:grid-cols-3 sm:grid-cols-2  grid-cols-1 2xl:gap-x-[110px] lg:gap-x-[75px] md:gap-x-[75px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-[80px] mb-20 font-spectral 2xl:text-lg lg:text-base sm:text-xs text-sm font-thin">
   
 
 
 <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
   </div>
+
+  
+  <div className="w-full">
+  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
+  </div>
+
 
   <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
   </div>
+
 
   <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
   </div>
+
 
   <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
   </div>
-
-  <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 2xl:h-[300px] lg:h-[275px] sm:h-[225px] h-[250px]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
-  
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xl"> How to start meditation (Beginners Guide)</div>
-  </div>
-
-
-
-  
-
-
-  
 
  
   </div>

@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import React from 'react'
+import { useState, useEffect } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink, Link } from 'react-router-dom';
 
@@ -12,15 +11,43 @@ function Navbar(){
   }
 
 
+  const scrollDirection = useScrollDirection();
+
+  function useScrollDirection() {
+    const [scrollDirection, setScrollDirection] = useState(null);
+  
+    useEffect(() => {
+      let lastScrollY = window.pageYOffset;
+  
+      const updateScrollDirection = () => {
+        if(window.innerWidth < 640){
+        const scrollY = window.pageYOffset;
+        const direction = scrollY > lastScrollY ? "down" : "up";
+        if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+          setScrollDirection(direction);
+        }
+        lastScrollY = scrollY > 0 ? scrollY : 0;
+      }
+      };
+      window.addEventListener("scroll", updateScrollDirection); // add event listener
+      return () => {
+        window.removeEventListener("scroll", updateScrollDirection); // clean up
+      } 
+    }, [scrollDirection]);
+  
+    return scrollDirection;
+  };
+
+
 return(
     <>
     
 
       
-    <header className="w-full bg-[#2A6CA5]  text-white sm:fixed">
-  <div className=" lg:p-6 p-5 md:flex md:items-center md:justify-between 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-4 lg:px-10 sm:px-10 px-6">
+    <header className={`w-full bg-[#2A6CA5] text-white sm:fixed sticky transition-all duration-500 ${scrollDirection === "down" ? "top-[-500px]" : "top-0"}`}> 
+  <div className=" lg:p-6 sm:p-5 p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-4 lg:px-10 sm:px-10 px-6">
     <div className="flex items-center justify-between w-full md:w-auto">
-      <h1 className="text-white 2xl:text-4xl xl:text-3xl lg:text-[28px] md:text-2xl sm:text-2xl  text-2xl font-hurricane cursor-pointer"><Link to="/">Peter Brunčík</Link></h1>
+      <h1 className="text-white 2xl:text-4xl xl:text-3xl lg:text-[28px] md:text-2xl sm:text-2xl  text-[25px] font-hurricane cursor-pointer"><Link to="/">Peter Brunčík</Link></h1>
       <div onClick={handleNav} className="block md:hidden">
         {!nav ? <AiOutlineMenu className="cursor-pointer"  size={20} /> : <AiOutlineClose className="cursor-pointer" size={20} />}
       </div>

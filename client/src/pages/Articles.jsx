@@ -47,12 +47,17 @@ function Articles(){
       
       );
   
-      const [selectedFilter, setSelectedFilter] = useState(null);
-    
-      const handleFilterClick = (filter) => {
-        setSelectedFilter(filter === selectedFilter ? null : filter);
 
-      }
+      {/*Filter*/}
+      const [selectedFilter, setSelectedFilter] = useState(null);
+      const [checkClickFilter, setcheckClickFilter] = useState(false)
+      const handleFilterClick = (filter) => {
+        setSelectedFilter(selectedFilter === filter ? null : filter);
+        setcheckClickFilter(!checkClickFilter)
+      };
+      
+
+
 
 
       {/*Search*/}
@@ -255,17 +260,17 @@ function Articles(){
 
 {/*Filter options*/}
 
-      {filterOptions.map((filter) => (
+     {filterOptions.map((filter) => (
         <span
           key={filter.id}
-          className={`shadow-lg rounded-full px-4 py-3 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-200  tracking-widest  2xl:text-2xl lg:text-xl sm:text-base text-base ${
+          className={`shadow-lg rounded-full px-4 py-3 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-200  tracking-widest  2xl:text-2xl lg:text-xl sm:text-base text-base hover:shadow-xl ${
             selectedFilter === filter.id
               ? "bg-gray-950 text-white outline-black"
-              : "bg-slate-100	 text-gray-800"
+              : `${checkClickFilter=== true ? "hidden" : ""}`
           }`}
           onClick={() => handleFilterClick(filter.id)}
         >
-       {selectedFilter ===filter.id ?
+       {selectedFilter === filter.id ?
         <div className="flex">
              <div className="">
               <img src={filter.imageUrlClicked} className="2xl:w-[45px] md:w-[38px] sm:w-[34px] w-[30px] mr-2"/>
@@ -288,11 +293,6 @@ function Articles(){
 
     </div>
     </div>
-
-
-
-
-
 
 
 

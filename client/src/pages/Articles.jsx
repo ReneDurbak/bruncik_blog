@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect, useMemo, useState } from "react";
-import { AiOutlineArrowDown } from 'react-icons/ai';
 import { Link } from "react-scroll";
 import Autosuggest from 'react-autosuggest';
 import magnifier from "../assets/magnifier.png"
@@ -109,15 +108,15 @@ function Articles(){
         <>
 {/*Articles intro*/}
     <Navbar/>
-    <div id="articles" className="text-white 2xl:pt-[200px]  2xl:pb-[100px] xl:pt-[220px] xl:pb-16 lg:pt-[350px] lg:pb-[115px]  md:pt-[300px] md:pb-[50px] sm:pt-[150px] sm:pb-[120px] pt-[260px] pb-14   md:tracking-normal   lg:bg-[url('/src/assets/articlesintrobg.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">
+    <div id="articles" className="text-white 2xl:pt-[200px]  2xl:pb-[100px] xl:pt-[250px] xl:pb-16 lg:pt-[350px] lg:pb-[115px]  md:pt-[300px] md:pb-[50px] sm:pt-[150px] sm:pb-[120px] pt-[260px] pb-14   md:tracking-normal   2xl:bg-[url('/src/assets/articlesintrobg.png')] xl:bg-[url('/src/assets/articlesintrobglaptopxl.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">
      <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-4 sm:px-10 px-6 grid sm:grid-cols-2 sm:grid-flow-col	lg:gap-20 sm:gap-8 2xl:mt-4 xl:mt-[-25px] lg:mt-[-185px] md:mt-[-135px] sm:mt-[-25px] mt-[-190px]">   
      
      <div className="col-span-2 sm:mt-0">
     <h1 className="2xl:text-8xl lg:text-7xl mb-6 text-6xl tracking-wide" >Articles</h1>
 
-  <div className="2xl:text-[41px] lg:text-2xl md:text-lg sm:text-lg  text-lg mb-[100px] tracking-wide">
+  <div className="2xl:text-[41px] xl:text-2xl lg:text-[19px] md:text-lg sm:text-lg  text-xs mb-[100px] tracking-wide">
     <div>
-      “It is impossible for a man to learn what he thinks he already knows.”{" "}
+      “It is impossible for a man to learn what he thinks he already knows.”
       <div className="text-right mt-4 font-bold">-Epictetus</div>
     </div>
   </div>
@@ -224,19 +223,23 @@ function Articles(){
 
 
 
-
+{/*Topics*/}
         <div>
     <h2 className="mx-auto text-center xl:text-7xl text-6xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
-
     </div>
 
 
 
+
 {/*Filter section*/}
-<div className="2xl:max-w-[1380px] w-full mx-auto 2xl:px-4 sm:px-10 px-6 grid grid-flow-col auto-cols-auto sm:mb-[125px] mb-20 2xl:mt-0 mt-4">
+<div className="2xl:max-w-[1380px] w-full mx-auto 2xl:px-4 sm:px-10 px-4 grid grid-flow-col auto-cols-auto sm:mb-[125px] mb-20 2xl:mt-0 mt-4">
 
 
 <div className=" flex flex-row  justify-center	flex-wrap auto-rows-fr gap-x-4 gap-y-5 sm:gap-x-6 lg:gap-x-8 xl:gap-x-10 sm:gap-y-6 lg:font-normal font-normal   font-spectralsc  font-serif">
+
+
+
+
 {
 /*Search bar*/}
 
@@ -263,7 +266,7 @@ function Articles(){
      {filterOptions.map((filter) => (
         <span
           key={filter.id}
-          className={`shadow-lg rounded-full px-4 py-3 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-200  tracking-widest  2xl:text-2xl lg:text-xl sm:text-base text-base hover:shadow-xl ${
+          className={`shadow-lg rounded-full px-4 py-3 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-200  tracking-widest  2xl:text-2xl lg:text-xl sm:text-base text-base hover:scale-105 hover:duration-500 hover:ease-in-out ${
             selectedFilter === filter.id
               ? "bg-gray-950 text-white outline-black"
               : `${checkClickFilter=== true ? "hidden" : ""}`
@@ -300,44 +303,36 @@ function Articles(){
  
 {/*All articles*/}
 
-<div className="tracking-[4px] 2xl:px-4 sm:px-18 px-12 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid xl:grid-cols-3 sm:grid-cols-2  grid-cols-1 2xl:gap-x-[110px] lg:gap-x-[75px] md:gap-x-[75px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-[80px] mb-20 font-spectral 2xl:text-lg lg:text-base sm:text-xs text-sm font-thin">
+<div className="tracking-[4px] 2xl:px-4 sm:px-18 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid xl:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[75px] md:gap-x-[75px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-lg lg:text-base sm:text-xs text-[10px] font-thin">
   
 
 
 <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xs"> How to start meditation (Beginners Guide)</div>
   </div>
-
-  
-  <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
-  
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
-  </div>
-
 
   <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xs"> How to start meditation (Beginners Guide)</div>
   </div>
-
 
   <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xs"> How to start meditation (Beginners Guide)</div>
   </div>
-
 
   <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-lg"> How to start meditation (Beginners Guide)</div>
+ <div className="mt-2 2xl:text-[28px]  xl:text-2xl lg:text-xl sm:text-lg text-xs"> How to start meditation (Beginners Guide)</div>
   </div>
 
+  
+  
  
   </div>
 

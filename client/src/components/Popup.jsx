@@ -28,9 +28,9 @@ function Popup(props) {
 
   
   return props.trigger  && !clickedOutside ? (
-    <div className='fixed top-0 left-0 w-full h-[100vh] bg-[#00000080] flex justify-center items-center  lg:hidden'>
+    <div className='fixed top-0 left-0 w-full h-[100vh] bg-[#00000080] z-[10] flex justify-center items-center  lg:hidden'>
       <div id='pop-up' className='relative'>
-        <button className='rounded-md px-1 text-black bg-none absolute right-7 sm:right-1 top-1 sm:top-[-45px]' onClick={() => props.setTrigger(false)}><GrFormClose className="sm:text-2xl text-lg"/></button>
+        <button className='rounded-md px-1 text-black bg-none absolute right-7 sm:right-1 top-2 sm:top-[-45px]' onClick={() => props.setTrigger(false)}><GrFormClose className="sm:text-2xl text-lg"/></button>
         {props.children}
       </div>
     </div>

@@ -64,7 +64,7 @@ function Home(){
         <>
     <Navbar/>
     {/*Intro*/ }
-    <div className="2xl:text-[160px] sm:px-20 text-center mx-auto w-full  xl:text-8xl lg:text-8xl text-5xl md:text-7xl 3xl:pt-[480px] 3xl:pb-[440px] 2xl:pt-[420px] 2xl:pb-[370px]  xl:pt-[380px] xl:pb-[330px]  lg:pt-[280px] lg:pb-[230px] md:pt-[290px] md:pb-[240px] pt-[340px] pb-[340px] xl:bg-[url('/src/assets/bgImg.jpg')] md:bg-[url('/src/assets/bgImglaptop.png')] bg-[url('/src/assets/bgImgmobile.png')] bg-cover font-thin align-middle md:tracking-normal tracking-tight text-white leading-normal">
+    <div className="2xl:text-[160px] sm:px-20 text-center mx-auto w-full  xl:text-8xl lg:text-8xl text-5xl md:text-7xl 3xl:pt-[480px] 3xl:pb-[440px] 2xl:pt-[420px] 2xl:pb-[370px]  xl:pt-[380px] xl:pb-[330px]  lg:pt-[280px] lg:pb-[230px] md:pt-[290px] md:pb-[240px] pt-[340px] pb-[345px] xl:bg-[url('/src/assets/bgImg.jpg')] md:bg-[url('/src/assets/bgImglaptop.png')] bg-[url('/src/assets/bgImgmobile.png')] bg-cover font-thin align-middle md:tracking-normal tracking-tight text-white leading-normal">
       Breath in<br/> Breath out
     </div>
 
@@ -222,11 +222,11 @@ function Home(){
    
 
 
-      <div className="xl:mt-[445px] sm:mt-[350px]  mt-[150px] text-black sm:px-4 px-10">
-        <div className="lg:hidden max-w-[1380px] sm:mt-[-230px] mt-[-50px]">
-          <img src={queston} className="mx-auto w-[200px] sm:w-[250px]" />
+      <div className="xl:mt-[350px] sm:mt-[350px]  mt-[150px] text-black sm:px-4 px-10">
+        <div className=" max-w-full sm:mt-[-230px] mt-[-50px]">
+          <img src={queston} className="mx-auto w-[200px] sm:w-[250px] lg:w-[275px] xl:w-[325px] 2xl:w-[425px]" />
         </div>
-      <div className="align-middle mx-auto text-center 2xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[400px] xl:mt-0 mt-[-110px]">Coming soon!</div>
+      <div className="align-middle mx-auto text-center 2xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[-190px] xl:mt-[-200px] 2xl:mt-[-275px] mt-[-110px]">Coming soon!</div>
       
       
       <div className="sm:mt-[150px] mt-[100px]" >

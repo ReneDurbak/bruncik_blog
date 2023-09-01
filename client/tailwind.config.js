@@ -11,7 +11,8 @@ export default {
       poppins: "'Poppins', sans-serif",
       spectral: "'Spectral', serif",
       shadows: "'Shadows Into Light', cursive",
-      spectralsc: "Spectral SC, serif",
+      spectralsc: "'Spectral SC', serif",
+      indieflower: "'Rock Salt', cursive",
     },
     screens: {
       'sm': '640px',

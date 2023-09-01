@@ -67,7 +67,7 @@ return(
 
       <form className="my-2 sm:w-[450px] w-full mx-auto"   onSubmit={sendEmail} >
         < div className="flex items-center">
-          <input type="email" name="user_Email" onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className="italic px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white border-l-4 border-r-[50px] border-y-4 mr-[-30px] border-white" />
+          <input type="email" name="user_Email" onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className="italic px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white md:border-l-4 border-l-[2px] border-r-[50px] md:border-y-4 border-y-[2px] mr-[-30px] border-white" />
           
           <div className="float-left bg-white py-auto mb-4 h-full">
           <AiOutlineArrowRight className="sm:text-xs xl:text-base text-sm text-black" type="submit" />  
@@ -86,7 +86,7 @@ return(
         <li className="xl:mt-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/push-ups" className="hover:text-gray-400 duration-300 ease-in-out">Push ups series</Link></li>
         <li className="xl:mt-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/mycourse" className="hover:text-gray-400 duration-300 ease-in-out">My course</Link></li>
         <li className="xl:my-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/about" className="hover:text-gray-400 duration-300 ease-in-out">About</Link></li>
-        <li className="xl:mb-2 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=Contact" target="_blank"rel="noopener noreferrer" className="hover:text-gray-400 duration-300 ease-in-out">Contact</a></li>
+        <li className="xl:mb-2 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=Subject&body=Peter - Usually replies within 24 hours." target="_blank"rel="noopener noreferrer" className="hover:text-gray-400 duration-300 ease-in-out">Contact</a></li>
       </ul>
     </div>
 

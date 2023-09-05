@@ -1,18 +1,37 @@
 import { useEffect, useState } from "react";
+import { useTransition, animated } from "react-spring";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import React from "react";
 import ringbell from "../assets/Ringbelt.png"
 import profilepicture from "../assets/profilepicture.png"
+import profilepicture2 from "../assets/profilepicture2.png"
 import hearticon from "../assets/hearticon.png"
 import {MdKeyboardDoubleArrowDown} from "react-icons/md"
 import PushupsPopup from "../components/PushupsPopup";
 import instagramIcon from "../assets/Instagram.png"
 import GmailIcon from "../assets/Gmail.png"
 import TwitterIcon from "../assets/Twitter.png"
+import SwitchGalleryIcon from "../assets/Switchgalleryicon.png"
+import CloseButton from "../assets/closebutton.png"
+
 
 
 function Pushups(){
+
+
+  const PushupsGallery = [
+    {
+      name:"Peter's Push Ups Gallery",
+      id: 1,
+      photo: profilepicture,
+    },
+    {
+      name:"Teodor's Push Ups Gallery",
+      id: 2,
+      photo: profilepicture2,
+    },
+  ]
 
   const Filteroptions = [
     {
@@ -40,6 +59,30 @@ function Pushups(){
   //Pop-ups variables
   const [timedPopup, setTimedPopup] = useState(false)
 
+  //Pushups gallery variables
+
+  const [pushupsGalleryIsVisible, setPushupsGalleryVisible] = useState(false)
+  const pushupsGalleryTransition = useTransition(pushupsGalleryIsVisible, {
+      config:{mass:1, tension:150, friction:30, clamp: true},
+      from:{ x:700, opacity:0},
+      enter:{x:0, opacity:1},
+      leave:{x:700, opacity:0},
+  })
+
+  //Notifications variables
+
+  const [notificationIsVisible, setNotificationIsVisible] = useState(false)
+  const notificationsTransition = useTransition(notificationIsVisible,{
+    config:{mass:1, tension:150, friction:40, clamp: true},
+    from: {x:1000, opacity:0},
+    enter:{x:0, opacity:1},
+    leave:{x:1000, opacity:0},
+  })
+
+
+
+
+
   useEffect(()=>{
 
     setTimeout(() => {
@@ -47,6 +90,66 @@ function Pushups(){
     }, 1000);
 
   },[])
+
+  useEffect(() => {
+
+    {/*Pushups gallery window*/}
+    const handleClickOutsidePushupsGallery = (event) => {
+      const pushupsGalleryElement = document.getElementById("pushupsgallery");
+      const triggerpushupsgallery = document.getElementById("triggerpushupsgallery"); 
+  
+      if (pushupsGalleryElement && triggerpushupsgallery && !pushupsGalleryElement.contains(event.target) && !triggerpushupsgallery.contains(event.target)) {
+        setPushupsGalleryVisible(false);
+      }
+    };
+  
+  
+  if(pushupsGalleryIsVisible === true){
+    window.addEventListener('click', handleClickOutsidePushupsGallery);
+  }
+  
+    return () => {
+      window.removeEventListener('click', handleClickOutsidePushupsGallery);
+    };
+
+
+ 
+
+
+
+  }, [pushupsGalleryIsVisible]);
+
+
+
+
+
+
+  useEffect(() => {
+
+       {/*Notification window*/}
+
+       const handleClickOutisdeNotifications = (event) => {
+        const notificationElement = document.getElementById("notifications")
+        const triggerNotifications = document.getElementById("notificationsTrigger")
+  
+        if(notificationElement && triggerNotifications && !notificationElement.contains(event.target) && !triggerNotifications.contains(event.target)){
+          setNotificationIsVisible(false)
+        }
+      }
+  
+        if(notificationIsVisible === true){
+          window.addEventListener('click', handleClickOutisdeNotifications)
+        }
+  
+        return()=>{
+          window.removeEventListener('click', handleClickOutisdeNotifications)
+        }
+  
+      
+
+  },[notificationIsVisible])
+  
+
 
 
     return(
@@ -67,9 +170,9 @@ function Pushups(){
        <div className="mt-10 font-indieflower">Feel free to contact me on social media</div>
 
        <div className="flex justify-between mt-10 mx-14">
-          <a><img src={instagramIcon} className="hover:scale-110 duration-300 ease-in-out"/></a>
-          <a><img src={GmailIcon} className="hover:scale-110 duration-300 ease-in-out"/></a>
-          <a><img src={TwitterIcon} className="hover:scale-110 duration-300 ease-in-out"/></a>
+          <a href="https://www.instagram.com/peterbruncik/" target="_blank"><img src={instagramIcon} className="hover:scale-110 duration-300 ease-in-out"/></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=[Subject]&body=[Peter - Usually replies within 24 hours.]" target="_blank" rel="noopener noreferrer"><img src={GmailIcon} className="hover:scale-110 duration-300 ease-in-out"/></a>
+          <a href="https://twitter.com/peterbruncik" target="_blank"><img src={TwitterIcon} className="hover:scale-110 duration-300 ease-in-out"/></a>
        </div>
 
 
@@ -84,20 +187,93 @@ function Pushups(){
     <div className=" 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-4 sm:px-10 px-6 font-poppins">
        
        
-    <div className="bg-gray-300 xl:px-12 lg:px-8  px-6 pt-14 pb-10 rounded-[50px]">
+    <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  px-6 pt-14 pb-10 rounded-[50px]">
+            {/*Notification and Push ups gallery container*/}
             <div className="flex justify-between ">
                 <div className="my-auto">
-                <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] font-regular tracking-normal">Explore</h1>
+                <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] font-regular tracking-normal" >Explore</h1>
                 </div>
                 <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-8">
                     
-                    <div className="my-auto">
-                    <img src={ringbell} className="xl:w-[48px] lg:w-[40px] md:w-[36px]"/>
-                    </div>
+                    {/*Notifications button*/}
+                    <div className="relative my-auto">
+                    <img src={ringbell} className="xl:w-[48px] lg:w-[40px] md:w-[36px]" onClick={()=>{setNotificationIsVisible(true)}} id="notificationsTrigger"/>
+
+                      {/*Notification window*/}
+                      {notificationsTransition((style,item)=>
+                        item ?
+
+                        <animated.div style={style} className="absolute top-0 left-[-580px] bottom-0 right-0 w-[650px] z-[2]">
+                        <div className="relative bg-white flex flex-col py-8 pl-6 pr-10 justify-center items-start   rounded-[30px] z-[2]" id="notifications">
+                          <div className=" h-full w-full">
+                            <div className="absolute right-8 top-4"><img src={CloseButton} onClick={()=>{setNotificationIsVisible(false)}}/></div>
+                            <h1 className="text-2xl font-bold">Notifications</h1>
+                          
+                            <div className="flex space-x-3 mt-2 text-sm">
+                              <div className="underline underline-offset-8">View all</div>
+                              <div>Mentions</div>
+                            </div>
+
+                            {/*View all container*/}
+                            <div className="flex flex-col mt-4">
+
+                              <div className="flex space-x-4 my-2">
+                                <img src={profilepicture2} className="w-[48px]"/>
+                                <div className="my-auto w-full">
+                                  <div>
+                                    Peter Bruncik added new member YAKSHA
+                                  </div>
+                                  <div className="text-xs text-[#777777] mt-[1px] flex justify-between">
+                                    <div>
+                                      Friday 2:20 pm
+                                    </div>
+                                    
+                                    <div>
+                                      Dec 24, 2023
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                              </div>
+                          </div>
+
+                        </div>
+                        </div>
+                      </animated.div>
+
+
+
+                      : ""
+                      )
+                      }
+
+
+                </div>
                     
-                    <div className="my-auto">
-                    <img src={profilepicture} className="xl:w-[64px] lg:w-[54px] md:w-[50px]"/>
-                    </div>
+
+                    {/*Push-ups gallery button*/}
+              
+                      <div className="relative my-auto">
+                      <img src={profilepicture} className="xl:w-[64px] lg:w-[54px] md:w-[50px] hover:scale-105 duration-300 ease-in-out"  onClick={()=>setPushupsGalleryVisible(true)} id="triggerpushupsgallery"/>
+                      
+                      {/*Push ups gallery window*/}
+                      {pushupsGalleryTransition((style,item) => 
+                        item ?
+                        <animated.div style={style} className="absolute w-[400px] top-0  left-[-335px]   z-[2] ">
+                        <div className="h-full flex flex-col justify-center items-center  divide-y-2 divide-black" id="pushupsgallery">
+                          {PushupsGallery.map(PushupsGallery =>
+                          <div className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center py-12  w-full first:rounded-t-[30px] duration-300 ease-in-out" key={PushupsGallery.id}>
+                          <div className="absolute left-3"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[54px] md:w-[50px]"/></div>
+                          <div className="absolute left-[110px] font-bold">{PushupsGallery.name}</div>
+                        </div>
+                          )}
+                        <div className="relative bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] py-12 space-x-10 duration-300 ease-in-out"><div className="absolute left-5"><img src={SwitchGalleryIcon}/></div> <div className="absolute left-[70px] font-bold">Switch to another gallery</div> </div>
+                        </div> 
+                        </animated.div> : ''
+                      )}
+
+                      </div>
+               
 
                 </div>
             </div>

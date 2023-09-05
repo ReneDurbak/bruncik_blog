@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react'
-import {GrFormClose} from "react-icons/gr"
 import {PiEyeClosedBold} from "react-icons/pi"
 
 function NewsletterPopup(props) {
@@ -16,14 +15,14 @@ function NewsletterPopup(props) {
       }
     };
 
-    if (props.trigger) {
+    if (clickedOutside === false) {
       window.addEventListener('click', handleClickOutside);
     }
 
     return () => {
       window.removeEventListener('click', handleClickOutside);
     };
-  }, [props.trigger, props.setTrigger]);
+  },[] );
 
 
 

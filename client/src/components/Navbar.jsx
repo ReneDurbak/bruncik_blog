@@ -45,20 +45,20 @@ return(
 
       
     <header className={`w-full z-[5] bg-[#2A6CA5] text-white sm:fixed sticky transition-all duration-500 ${scrollDirection === "down" ? "top-[-500px]" : "top-0"}`}> 
-  <div className=" lg:p-6 sm:p-5 p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-4 lg:px-10 sm:px-10 px-6">
+  <div className=" lg:p-6 sm:p-5 p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 sm:px-10 px-6">
     <div className="flex items-center justify-between w-full md:w-auto">
-      <h1 className="text-white 2xl:text-4xl xl:text-3xl lg:text-[28px] md:text-2xl sm:text-2xl  text-[25px] font-hurricane cursor-pointer"><Link to="/">Peter Brunčík</Link></h1>
+      <h1 className="text-white 2xl:text-[30px] xl:text-3xl lg:text-[28px] md:text-2xl sm:text-2xl  text-[25px] font-hurricane cursor-pointer"><Link to="/">Peter Brunčík</Link></h1>
       <div onClick={handleNav} className="block md:hidden">
         {!nav ? <AiOutlineMenu className="cursor-pointer"  size={20} /> : <AiOutlineClose className="cursor-pointer" size={20} />}
       </div>
     </div>
     {/* ----desktop version------ */}
     <ul className="md:flex md:flex-row flex-col md:items-center hidden md:ml-10">
-      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-xl hover:text-neutral-400 duration-300"><NavLink to="/">Home</NavLink></li>
-      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-xl  hover:text-neutral-400 duration-300"><NavLink to="/push-ups">Push-ups</NavLink></li>
-      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-xl hover:text-neutral-400 duration-300"><NavLink to="/articles">Articles</NavLink></li>
-      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-xl hover:text-neutral-400 duration-300"><NavLink to="/mycourse">My Course</NavLink></li>
-      <li className="sm:ml-0 md:ml-3 lg:ml-4 xl:ml-5  md:text-sm lg:text-base 2xl:text-xl hover:text-neutral-400 duration-300"><NavLink to="/about">About Me</NavLink></li>
+      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/">Home</NavLink></li>
+      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-lg  hover:text-neutral-400 duration-300"><NavLink to="/push-ups">Push-ups</NavLink></li>
+      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/articles">Articles</NavLink></li>
+      <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm lg:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/mycourse">My Course</NavLink></li>
+      <li className="sm:ml-0 md:ml-3 lg:ml-4 xl:ml-5  md:text-sm lg:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/about">About Me</NavLink></li>
     </ul>
 
     

@@ -103,7 +103,7 @@ return(
 
 
     {/* Footer Text */}
-    <p className="xl:visible invisible text-white 2xl:text-xl xl:text-base text-sm float-right align-middle 2xl:mx-auto mr-auto ml-4 px-4 text-center">FEEL FREE TO CONTACT ME ON SOCIAL MEDIA</p>
+    <p className="xl:visible invisible text-white 2xl:text-[19px] xl:text-base text-sm float-right align-middle 2xl:mx-auto mr-auto ml-4 px-4 text-center">FEEL FREE TO CONTACT ME ON SOCIAL MEDIA</p>
   </div>
 
   <div className="bottom-0 align-bottom text-white text-center sm:mt-12 sm:text-sm text-xs mb-[-55px] ">

@@ -66,7 +66,7 @@ function Pushups(){
       config:{mass:1, tension:150, friction:30, clamp: true},
       from:{ x:700, opacity:0},
       enter:{x:0, opacity:1},
-      leave:{x:700, opacity:0},
+      leave:{x:550, opacity:0},
   })
 
   //Notifications variables
@@ -157,7 +157,7 @@ function Pushups(){
         <Navbar/>
         
       {/*Push-ups intro*/}
-      <div className="bg-[url('/src//assets/pushupsintrobg.png')] bg-cover py-[540px]"/>
+      <div className="bg-[url('/src//assets/pushupsintrobg.png')] bg-cover py-[400px]"/>
 
 
 
@@ -184,7 +184,7 @@ function Pushups(){
 
 
       {/*Push-ups videos*/}
-    <div className=" 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-4 sm:px-10 px-6 font-poppins">
+    <div className=" 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 font-poppins">
        
        
     <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  px-6 pt-14 pb-10 rounded-[50px]">
@@ -197,7 +197,7 @@ function Pushups(){
                     
                     {/*Notifications button*/}
                     <div className="relative my-auto">
-                    <img src={ringbell} className="xl:w-[48px] lg:w-[40px] md:w-[36px]" onClick={()=>{setNotificationIsVisible(true)}} id="notificationsTrigger"/>
+                    <img src={ringbell} className="xl:w-[48px] lg:w-[40px] md:w-[36px] hover:scale-105 duration-300 ease-in-out" onClick={()=>{setNotificationIsVisible(true)}} id="notificationsTrigger"/>
 
                       {/*Notification window*/}
                       {notificationsTransition((style,item)=>
@@ -206,7 +206,7 @@ function Pushups(){
                         <animated.div style={style} className="absolute top-0 left-[-580px] bottom-0 right-0 w-[650px] z-[2]">
                         <div className="relative bg-white flex flex-col py-8 pl-6 pr-10 justify-center items-start   rounded-[30px] z-[2]" id="notifications">
                           <div className=" h-full w-full">
-                            <div className="absolute right-8 top-4"><img src={CloseButton} onClick={()=>{setNotificationIsVisible(false)}}/></div>
+                            <div className="absolute right-8 top-4"><img src={CloseButton} className="duration-300 ease-in-out hover:scale-110" onClick={()=>{setNotificationIsVisible(false)}}/></div>
                             <h1 className="text-2xl font-bold">Notifications</h1>
                           
                             <div className="flex space-x-3 mt-2 text-sm">

@@ -79,6 +79,9 @@ function Pushups(){
     leave:{x:1000, opacity:0},
   })
 
+  //Gallery switch variables
+
+  const [switchGallery, setSwitchGallery] = useState(false)
 
 
 
@@ -100,6 +103,7 @@ function Pushups(){
   
       if (pushupsGalleryElement && triggerpushupsgallery && !pushupsGalleryElement.contains(event.target) && !triggerpushupsgallery.contains(event.target)) {
         setPushupsGalleryVisible(false);
+        setSwitchGallery(false)
       }
     };
   
@@ -197,7 +201,7 @@ function Pushups(){
                     
                     {/*Notifications button*/}
                     <div className="relative my-auto">
-                    <img src={ringbell} className="xl:w-[48px] lg:w-[40px] md:w-[36px] hover:scale-105 duration-300 ease-in-out" onClick={()=>{setNotificationIsVisible(true)}} id="notificationsTrigger"/>
+                    <img src={ringbell} className="xl:w-[48px] lg:w-[40px] md:w-[36px] hover:scale-105 duration-300 ease-in-out cursor-pointer" onClick={()=>{setNotificationIsVisible(true)}} id="notificationsTrigger"/>
 
                       {/*Notification window*/}
                       {notificationsTransition((style,item)=>
@@ -206,7 +210,7 @@ function Pushups(){
                         <animated.div style={style} className="absolute top-0 left-[-580px] bottom-0 right-0 w-[650px] z-[2]">
                         <div className="relative bg-white flex flex-col py-8 pl-6 pr-10 justify-center items-start   rounded-[30px] z-[2]" id="notifications">
                           <div className=" h-full w-full">
-                            <div className="absolute right-8 top-4"><img src={CloseButton} className="duration-300 ease-in-out hover:scale-110" onClick={()=>{setNotificationIsVisible(false)}}/></div>
+                            <div className="absolute right-8 top-4"><img src={CloseButton} className="duration-300 ease-in-out hover:scale-110 cursor-pointer" onClick={()=>{setNotificationIsVisible(false)}}/></div>
                             <h1 className="text-2xl font-bold">Notifications</h1>
                           
                             <div className="flex space-x-3 mt-2 text-sm">
@@ -254,22 +258,67 @@ function Pushups(){
                     {/*Push-ups gallery button*/}
               
                       <div className="relative my-auto">
-                      <img src={profilepicture} className="xl:w-[64px] lg:w-[54px] md:w-[50px] hover:scale-105 duration-300 ease-in-out"  onClick={()=>setPushupsGalleryVisible(true)} id="triggerpushupsgallery"/>
+                      <img src={profilepicture} className="xl:w-[64px] lg:w-[54px] md:w-[50px] hover:scale-105 duration-300 ease-in-out cursor-pointer"  onClick={()=>setPushupsGalleryVisible(true)} id="triggerpushupsgallery"/>
                       
                       {/*Push ups gallery window*/}
                       {pushupsGalleryTransition((style,item) => 
                         item ?
                         <animated.div style={style} className="absolute w-[400px] top-0  left-[-335px]   z-[2] ">
-                        <div className="h-full flex flex-col justify-center items-center  divide-y-2 divide-black" id="pushupsgallery">
-                          {PushupsGallery.map(PushupsGallery =>
-                          <div className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center py-12  w-full first:rounded-t-[30px] duration-300 ease-in-out" key={PushupsGallery.id}>
-                          <div className="absolute left-3"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[54px] md:w-[50px]"/></div>
-                          <div className="absolute left-[110px] font-bold">{PushupsGallery.name}</div>
-                        </div>
-                          )}
-                        <div className="relative bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] py-12 space-x-10 duration-300 ease-in-out"><div className="absolute left-5"><img src={SwitchGalleryIcon}/></div> <div className="absolute left-[70px] font-bold">Switch to another gallery</div> </div>
-                        </div> 
+                          {switchGallery
+                            ?
+                            <div className="bg-white rounded-[30px] p-4 flex flex-col space-y-1 overflow-y-scroll max-h-[200px]" id="pushupsgallery">
+                              
+                              <div className="flex space-x-2">
+                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer"/><div>Rene's gallery</div>
+                              </div>
+
+                              <div className="flex space-x-2">
+                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer"/><div>Rene's gallery</div>
+                              </div>
+
+                              <div className="flex space-x-2">
+                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer"/><div>Rene's gallery</div>
+                              </div>
+
+                              <div className="flex space-x-2">
+                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer"/><div>Rene's gallery</div>
+                              </div>
+
+                              <div className="flex space-x-2">
+                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer"/><div>Rene's gallery</div>
+                              </div>
+
+                              <div className="flex space-x-2">
+                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer"/><div>Rene's gallery</div>
+                              </div>
+
+                              <div className="flex space-x-2">
+                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer"/><div>Rene's gallery</div>
+                              </div>
+
+                            
+                            </div>
+                       
+                            :  <div className="h-full flex flex-col justify-center items-center  divide-y-2 divide-black" id="pushupsgallery">
+                            {PushupsGallery.map(PushupsGallery =>
+                            <div className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center py-12  w-full first:rounded-t-[30px] duration-300 ease-in-out" key={PushupsGallery.id}>
+                            <div className="absolute left-3"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[54px] md:w-[50px]"/></div>
+                            <div className="absolute left-[110px] font-bold">{PushupsGallery.name}</div>
+                          </div>
+                            )}
+                          <div className="relative bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] py-12 space-x-10 duration-300 ease-in-out  switchGalleryScrollbar" onClick={()=>setSwitchGallery(true)}> 
+                  
+                              <img src={SwitchGalleryIcon} className="absolute left-5"/>
+                           
+                            <div className="absolute left-[70px] font-bold">Switch to another gallery</div> 
+                          </div>
+
+                          </div> 
+                          }
+
                         </animated.div> : ''
+                          
+                  
                       )}
 
                       </div>

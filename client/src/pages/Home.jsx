@@ -177,7 +177,7 @@ function Home(){
           <div className="flex mx-auto sm:gap-20 lg:gap-5 gap-8 lg:w-full">  
           
           
-       {/*Pic 1*/}
+        {/*Pic 1*/}
         <div className="flex flex-col ">
         <ImageComponent src={pushups1} useHash={hashp1} styling={stylingp1} useWidth={widthp1} useHeight={heightp1}/>
       <div className="flex justify-center xl:text-xl sm:text-base text-sm sm:font-normal font-bold">DAY 1</div>

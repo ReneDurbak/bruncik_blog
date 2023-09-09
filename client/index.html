@@ -2,33 +2,81 @@
 <html lang="en">
   <head>
     <style>
-      .pushupsScroll::-webkit-scrollbar {
-        width: 25px;
-   
-      }
 
-      .pushupsScroll::-webkit-scrollbar-track{
+      /*Push ups videos scrollbar*/
+      @media (min-width: 768px){
+        .pushupsScroll::-webkit-scrollbar {
+          width: 25px;
+        }
+
+      }
+      
+      @media (min-width: 768px){
+        .pushupsScroll::-webkit-scrollbar-track{
+          background: #9C9C9C;
+          border-radius: 30px;
+          margin-top: 16px; 
+    
+        }
+
+      }
+      
+      @media (min-width: 768px){
+        .pushupsScroll::-webkit-scrollbar-thumb {
+          border-radius: 30px;
+          background: #555454;
+        }
+      }
+      
+
+      @media (min-width: 768px){
+        .pushupsScroll::-webkit-scrollbar-thumb:hover {
+    
+          background: #464545;
+        }
+
+      }
+      
+
+
+
+      /*Push ups videos scrollbar - small resolution*/
+
+      @media (max-width: 640px){
+      .pushupsScrollSM::-webkit-scrollbar {
+        width: 10px;
+      }
+    }
+
+      .pushupsScrollSM::-webkit-scrollbar-track{
         background: #9C9C9C;
         border-radius: 30px;
         margin-top: 16px; 
   
       }
 
-      .pushupsScroll::-webkit-scrollbar-thumb {
+      .pushupsScrollSM::-webkit-scrollbar-thumb {
         border-radius: 30px;
         background: #555454;
       }
-
-      .pushupsScroll::-webkit-scrollbar-thumb:hover {
+      @media (max-width: 640px){
+      .pushupsScrollSM::-webkit-scrollbar-thumb:active {
     
         background: #464545;
       }
+    }
+
+
+
+
+
+      /*Switch Gallery scrollbar*/
 
       .switchGalleryScrollbar::-webkit-scrollbar {
-        width: 4px;   
+        width: 10px;   
       }
       .switchGalleryScrollbar::-webkit-scrollbar-thumb {
-        background: #767779;
+        background: black;
         border-radius: 30px; 
       }
 
@@ -38,9 +86,13 @@
 
       .switchGalleryScrollbar::-webkit-scrollbar-track{
         border-radius: 30px;
-        background:#bfc0c3;
+        background:#777777;
+        margin-block: 10px;
       }
 
+
+
+      /*Website scrollbar*/
 
       ::-webkit-scrollbar {
         width: 18px;   

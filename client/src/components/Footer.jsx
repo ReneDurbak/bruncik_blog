@@ -54,7 +54,7 @@ export default function Footer(){
 return(
     <>
     <footer className="bg-black mt-auto py-16 font-spectral w-full  2xl:bg-[url('/src/assets/footerbg.png')] xl:bg-[url('/src/assets/footerbglaptopxl.png')] lg:bg-[url('/src/assets/footerbglaptop.png')] sm:bg-[url('/src/assets/footerbgtablet.png')] bg-[url('/src/assets/footerbgmobile.png')] bg-cover">
-  <div className="flex flex-col xl:flex-row items-center justify-center xl:max-w-[1800px]   2xl:mx-auto sm:max-w-[600px]   xl:mx-4  mx-auto ">
+  <div className="flex flex-col xl:flex-row items-center justify-center xl:max-w-[1800px] 2xl:px-20   2xl:mx-auto sm:max-w-[600px]   xl:mx-4  mx-auto ">
 
     {/* Newsletter */}
     <div className="xl:basis-1/3 xl:mr-20">

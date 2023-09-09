@@ -116,8 +116,8 @@ function Articles(){
         <>
 {/*Articles intro*/}
     <Navbar/>
-    <div id="articles" className="text-white 2xl:pt-[200px]  2xl:pb-[100px] xl:pt-[250px] xl:pb-16 lg:pt-[350px] lg:pb-[115px]  md:pt-[300px] md:pb-[50px] sm:pt-[150px] sm:pb-[120px] pt-[260px] pb-14   md:tracking-normal   2xl:bg-[url('/src/assets/articlesintrobg.png')] xl:bg-[url('/src/assets/articlesintrobglaptopxl.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">
-     <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 grid sm:grid-cols-2 sm:grid-flow-col	lg:gap-20 sm:gap-8 2xl:mt-4 xl:mt-[-25px] lg:mt-[-185px] md:mt-[-135px] sm:mt-[-25px] mt-[-190px]">   
+    <div id="articles" className="text-white 2xl:pt-[200px]  2xl:pb-[75px] xl:pt-[250px] xl:pb-16 lg:pt-[350px] lg:pb-[115px]  md:pt-[300px] md:pb-[50px] sm:pt-[150px] sm:pb-[120px] pt-[260px] pb-20   md:tracking-normal   2xl:bg-[url('/src/assets/articlesintrobg.png')] xl:bg-[url('/src/assets/articlesintrobglaptopxl.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">
+     <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 grid sm:grid-cols-2 sm:grid-flow-col	lg:gap-8 sm:gap-8 2xl:mt-4 xl:mt-[-25px] lg:mt-[-185px] md:mt-[-135px] sm:mt-[-25px] mt-[-190px]">   
      
      <div className="col-span-2 sm:mt-0 2xl:mt-[-25px]">
     <h1 className="2xl:text-8xl lg:text-7xl mb-6 text-6xl tracking-wide" >Articles</h1>
@@ -130,7 +130,7 @@ function Articles(){
   </div>
 
 {/*desktop - additional text*/}
-  <div className="hidden xl:block">
+  <div className="hidden lg:block">
   <div className=" tracking-normal 2xl:text-lg xl:text-[16px] md:text-[15px] break-words text-black bg-slate-100 rounded-2xl py-5 px-6 mt-[100px] font-poppins shadow-2xl">
     Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
   </div>
@@ -208,7 +208,7 @@ function Articles(){
 
 
 {/*tablet and mobile res of additional text*/}
-    <div className="xl:hidden block max-w-[1380px] mx-auto sm:px-10 px-6 xl:mt-[-115px] lg:mt-[-95px] md:mt-[-15px] sm:mt-[-15px] mt-[-25px]">
+    <div className="lg:hidden block max-w-[1380px] mx-auto sm:px-10 px-6 xl:mt-[-115px] lg:mt-[-95px] md:mt-[-15px] sm:mt-[-15px] mt-[-25px]">
   <div className="2xl:text-xl xl:text-[18px] md:text-[15px] sm:text-[15px] text-[14px] tracking-normal  break-words text-black bg-slate-100 rounded-2xl 2xl:py-5 xl:py-4 md:py-3 md:px-6 sm:py-3 sm:px-3 px-3 py-3 lg:mt-[100px] font-poppins shadow-2xl">
     Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
   </div>
@@ -251,7 +251,7 @@ function Articles(){
 {
 /*Search bar*/}
 
-<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black px-2 mt-4 sm:mt-0 mb-6 sm:mb-0 w-full sm:w-auto">
+<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-6 sm:px-2 px-0 mx-6 mt-4 sm:mt-0 mb-6 sm:mb-0 w-full sm:w-auto">
 <div className="my-auto">
 <Autosuggest
           suggestions={suggestions}

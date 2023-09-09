@@ -21,7 +21,7 @@ export default function Email(){
 
       if(rgExp.test(email)){
         setError(false)
-        setMessage("Message was sent succesfully")
+        setMessage("Message was sent successfully")
         emailjs.sendForm(
           'test123',
            'tempEmail',

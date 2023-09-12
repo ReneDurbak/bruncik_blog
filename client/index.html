@@ -25,6 +25,7 @@
         .pushupsScroll::-webkit-scrollbar-thumb {
           border-radius: 30px;
           background: #555454;
+          border: none
         }
       }
       
@@ -58,6 +59,7 @@
       .pushupsScrollSM::-webkit-scrollbar-thumb {
         border-radius: 30px;
         background: #555454;
+        border: none
       }
       @media (max-width: 640px){
       .pushupsScrollSM::-webkit-scrollbar-thumb:active {
@@ -77,7 +79,8 @@
       }
       .switchGalleryScrollbar::-webkit-scrollbar-thumb {
         background: black;
-        border-radius: 30px; 
+        border-radius: 30px;
+        border: none; 
       }
 
       .switchGalleryScrollbar::-webkit-scrollbar-thumb:hover {
@@ -95,11 +98,13 @@
       /*Website scrollbar*/
 
       ::-webkit-scrollbar {
-        width: 18px;   
+        width: 22px;
+        height: 0px;   
       }
       ::-webkit-scrollbar-thumb {
         background: #767779;
-        border-radius: 30px; 
+        border-radius: 30px;
+        border: 3px solid #e3e4e6; 
       }
 
       ::-webkit-scrollbar-thumb:hover {
@@ -109,7 +114,7 @@
       ::-webkit-scrollbar-track{
         border-radius: 30px;
         margin-block: 1px;
-        background:#bfc0c3;
+        background:#e3e4e6;
       }
 
       

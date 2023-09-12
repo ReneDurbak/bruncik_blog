@@ -44,7 +44,7 @@ return(
     
 
       
-    <header className={`w-full z-[5] bg-[#2A6CA5] text-white sm:fixed sticky transition-all duration-500 ${scrollDirection === "down" ? "top-[-500px]" : "top-0"}`}> 
+    <header className={`w-full z-[5] bg-[#2A6CA5] text-white sm:fixed sticky transition-all duration-150 ${scrollDirection === "down" ? "top-[-500px]" : "top-0"}`}> 
   <div className=" 2xl:p-5 lg:p-6 sm:p-5 p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-6">
     <div className="flex items-center justify-between w-full md:w-auto">
       <h1 className="text-white 2xl:text-[32px] xl:text-3xl lg:text-[28px] md:text-2xl sm:text-2xl  text-[25px] font-hurricane cursor-pointer"><Link to="/">Peter Brunčík</Link></h1>

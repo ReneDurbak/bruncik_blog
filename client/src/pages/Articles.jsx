@@ -148,7 +148,7 @@ function Articles(){
 <NewsletterPopup trigger={timedPopup} setTrigger={setTimedPopup}>
 
 
-<div className="sm:mt-[-50px]  max-w-[350px]  sm:px-0 px-6 "> 
+<div className="sm:mt-[-160px]  max-w-[350px]  sm:px-0 px-6 "> 
 <div>
     <div className="bg-white rounded-2xl sm:px-6 px-4 sm:py-5 py-3 text-center font-spectral">
       <div className="w-full py-2">
@@ -308,34 +308,35 @@ function Articles(){
  
 {/*All articles*/}
 
-<div className="md:tracking-[4px] tracking-[3px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid xl:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[75px] md:gap-x-[75px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-base sm:text-xs text-[10px] font-thin">
+<div className="md:tracking-[4px] tracking-[3px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
   
 
 
 <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-xl sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
+<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
   </div>
 
   <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-xl sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
+<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
   </div>
 
   <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-xl sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
+<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
   </div>
 
   <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
   
- <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-xl sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
+<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
   </div>
 
+  
   
   
  

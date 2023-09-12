@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
+import { useMediaQuery } from 'react-responsive'
+import { Link } from "react-router-dom"
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import React from "react";
@@ -34,7 +36,7 @@ function Pushups(){
     },
   ]
 
-  const Filteroptions = [
+  const filterOptions = [
     {
       name: "Newest",
       id: 1
@@ -55,36 +57,39 @@ function Pushups(){
 
   //Filter variables
   const [selected, setSelected] = useState("")
-  const [open,setOpen] = useState(false)
+  const [openSwitchGalleryGenres,setOpenSwitchGalleryGenres] = useState(false)
 
   //Pop-ups variables
   const [timedPopup, setTimedPopup] = useState(false)
 
-  //Pushups gallery variables
+  //Resolution variables
+  const isBigLaptop = useMediaQuery({query: '(min-width: 1280px )'})
+  const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
+  const isTablet = useMediaQuery({query: '(min-width: 768px )'})
+  const isBigMobile = useMediaQuery({query: '(min-width: 640px )'})
+  const isMobile = useMediaQuery({query: '(min-width: 275px )'})
 
+  //Pushups gallery variables
   const [pushupsGalleryIsVisible, setPushupsGalleryVisible] = useState(false)
   const pushupsGalleryTransition = useTransition(pushupsGalleryIsVisible, {
       config:{mass:1, tension:150, friction:30, clamp: true},
-      from:{ x:700, opacity:0},
+      from:{ x: isBigLaptop ? 50 : isLaptop ? 60 : isTablet ? 55 : isBigMobile ? 45 : isMobile ? 20 : 700, opacity:0},
       enter:{x:0, opacity:1},
-      leave:{x:550, opacity:0},
+      leave:{x: isBigLaptop ? 50 : isLaptop ? 60 : isTablet ? 55 : isBigMobile ? 50 : isMobile ? 20 : 700, opacity:0},
   })
 
   //Notifications variables
-
   const [notificationIsVisible, setNotificationIsVisible] = useState(false)
   const [notificationSwitch, setNotificationSwitch] = useState(false)
   const notificationsTransition = useTransition(notificationIsVisible,{
-    config:{mass:1, tension:150, friction:40, clamp: true},
-    from: {x:1000, opacity:0},
+    config:{mass:1, tension:150, friction:30, clamp: true},
+    from: {x:isBigLaptop ? 200 : isLaptop ? 100 : isTablet ? 100 : isBigMobile ? 50 : isMobile ? 20 : 1000, opacity:0},
     enter:{x:0, opacity:1},
-    leave:{x:1000, opacity:0},
+    leave:{x:isBigLaptop ? 200 : isLaptop ? 100 : isTablet ? 100 : isBigMobile ? 50 : isMobile ? 20 : 1000, opacity:0},
   })
 
   //Gallery switch variables
-
   const [switchGallery, setSwitchGallery] = useState(false)
-  const [galleryChange, setGalleryChanged] = useState(false)
  
 
 
@@ -98,36 +103,27 @@ function Pushups(){
 
   },[])
 
+
+
   useEffect(() => {
 
     {/*Pushups gallery window*/}
     const handleClickOutsidePushupsGallery = (event) => {
+
       const pushupsGalleryElement = document.getElementById("pushupsgallery");;
       const triggerpushupsgallery = document.getElementById("triggerpushupsgallery");
-
+      const test = document.getElementById("test");
 
     if(pushupsGalleryElement && triggerpushupsgallery && !pushupsGalleryElement.contains(event.target) && !triggerpushupsgallery.contains(event.target)) {
-      
       setPushupsGalleryVisible(false);
-
       }
     };
 
- 
-    
 
-    if(pushupsGalleryIsVisible === true){
-
+    if(pushupsGalleryIsVisible === true ){
       window.addEventListener('click', handleClickOutsidePushupsGallery);
-
     }
-       
       
-
-
-
-    
-   
 
     return () => {
       window.removeEventListener('click', handleClickOutsidePushupsGallery);
@@ -139,17 +135,13 @@ function Pushups(){
 
 
 
- 
-
-
-
-
 
   useEffect(() => {
 
        {/*Notification window*/}
 
        const handleClickOutsideNotifications = (event) => {
+
         const notificationElement = document.getElementById("notifications")
         const triggerNotifications = document.getElementById("notificationsTrigger")
   
@@ -164,12 +156,38 @@ function Pushups(){
   
         return()=>{
           window.removeEventListener('click', handleClickOutsideNotifications)
-        }
-  
-      
+        }     
 
   },[notificationIsVisible])
   
+
+
+  useEffect(()=>{
+
+    {/*Switch Gallery genres window*/}
+
+    const handleClickOutsideSwitchGalleryGenresElement = (event) =>{
+
+    const switchGalleryGenresElement = document.getElementById("switchGalleryGenres")
+    const triggerGalleryGenresElement = document.getElementById("switchGalleryGenresTrigger")
+
+    if(switchGalleryGenresElement && triggerGalleryGenresElement && !switchGalleryGenresElement.contains(event.target) && !triggerGalleryGenresElement.contains(event.target)){
+      setOpenSwitchGalleryGenres(false)
+    }
+  }
+
+
+    if(openSwitchGalleryGenres === true){
+      window.addEventListener('click', handleClickOutsideSwitchGalleryGenresElement)
+  }
+
+    return()=> {
+      window.removeEventListener('click', handleClickOutsideSwitchGalleryGenresElement)
+    }
+     
+
+
+  },[openSwitchGalleryGenres])
 
 
 
@@ -178,20 +196,20 @@ function Pushups(){
         <Navbar/>
         
       {/*Push-ups intro*/}
-      <div className="bg-[url('/src//assets/pushupsintrobg.png')] bg-cover xl:py-[500px] md:py-[350px] py-[300px]"/>
+      <div className="bg-[url('/src//assets/pushupsintrobg.png')] bg-cover xl:py-[450px] md:py-[350px] py-[300px]"/>
 
 
 
       {/*Popup*/}
       <PushupsPopup trigger={timedPopup} setTrigger={setTimedPopup} >
-      <div className='bg-white border-black lg:border-2 border-[1px] rounded-[35px] xl:text-2xl lg:text-xl sm:text-[16px] text-[15px] flex justify-center items-center'>
+      <div className='bg-white border-black xl:border-2 border-[1px] rounded-[35px] xl:text-2xl lg:text-xl sm:text-[16px] text-[15px] flex justify-center items-center'>
        <div className="max-w-full mx-auto lg:px-6 sm:px-6  px-4 lg:py-10 sm:py-6 pb-3  pt-8 text-center ">
        <div className="xl:text-4xl lg:text-3xl sm:text-2xl text-[21px]"> Do you want to be on my site?</div><div className="mt-2">& have your own gallery of push ups?</div>
 
        <div className="md:mt-10 sm:mt-8 mt-6 font-indieflower">Feel free to contact me on social media</div>
 
-       <div className="flex justify-between xl:mt-10 lg:mt-8 sm:mt-4 mt-4 xl:mx-0 lg:mx-18 sm:px-[100px] px-8">
-          <a href="https://www.instagram.com/peterbruncik/" target="_blank"><img src={instagramIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-auto w-[50px]"/></a>
+       <div className="flex justify-between items-center xl:mt-10 lg:mt-8 sm:mt-4 mt-4 xl:mx-0 lg:mx-18 sm:px-[100px] px-8">
+          <a href="https://www.instagram.com/peterbruncik/" target="_blank"><img src={instagramIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-[55px] w-[45px]"/></a>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=[Subject]&body=[Peter - Usually replies within 24 hours.]" target="_blank" rel="noopener noreferrer"><img src={GmailIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-auto w-[50px]"/></a>
           <a href="https://twitter.com/peterbruncik" target="_blank"><img src={TwitterIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-auto w-[50px]"/></a>
        </div>
@@ -208,11 +226,11 @@ function Pushups(){
     <div className=" 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 font-poppins">
        
        
-    <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  sm:px-6 px-3 pt-14 pb-10 rounded-[50px]">
+    <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  sm:px-6 px-3 pt-14 pb-10 md:rounded-[50px] rounded-[30px]">
             {/*Notification and Push ups gallery container*/}
             <div className="flex justify-between ">
                 <div className="my-auto">
-                <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] text-[26px] font-regular tracking-normal" >Explore</h1>
+                <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] text-[26px] font-bold tracking-normal" >Explore</h1>
                 </div>
                 <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-8 space-x-4">
                     
@@ -224,15 +242,15 @@ function Pushups(){
                       {notificationsTransition((style,item)=>
                         item ?
 
-                        <animated.div style={style} className="absolute md:top-0 top-[-10px] lg:left-[-580px] sm:left-[-470px] bottom-0 right-[-60px] lg:w-[650px] sm:w-[520px] w-[340px] px-0 z-[2]">
-                        <div className="relative shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 sm:py-3 py-3 lg:pl-6 pl-3 sm:pl-4 lg:pr-10 pr-3 justify-center items-start   rounded-[30px] z-[2]" id="notifications">
+                        <animated.div style={style} className="absolute md:top-0 top-[-10px] lg:left-[-580px] md:left-[-460px] bottom-0 right-[-60px] lg:w-[650px] sm:w-[520px] w-[315px] px-0 z-[2]">
+                        <div className="relative shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 sm:py-3 py-3 lg:pl-6 pl-3 sm:pl-4 lg:pr-10 pr-3 justify-center items-start   md:rounded-[30px] rounded-[20px] z-[2]" id="notifications">
                           <div className=" h-full w-full">
-                            <div className="absolute lg:right-8 sm:right-4 right-3 top-4"><img src={CloseButtonv2} className="duration-300 ease-in-out hover:scale-110 cursor-pointer sm:w-auto w-[18px]" onClick={()=>{setNotificationIsVisible(false)}}/></div>
-                            <h1 className="2xl:text-2xl xl:text-xl sm:text-lg text-base font-bold">Notifications</h1>
+                            <div className="absolute lg:right-8 sm:right-4 right-3 2xl:top-9 xl:top-6 sm:top-4 top-3"><img src={CloseButtonv2} className="duration-300 ease-in-out hover:scale-110 cursor-pointer sm:w-auto w-[18px]" onClick={()=>{setNotificationIsVisible(false)}}/></div>
+                            <h1 className="2xl:text-2xl xl:text-xl sm:text-lg text-sm tracking-wide	 font-bold">Notifications</h1>
                           
-                            <div className="flex space-x-3 mt-2 2xl:text-sm text-[12px]">
-                              <div className={`${notificationSwitch ? "no-underline" : "underline " } underline-offset-8 hover:underline duration-300 ease-in-out`} onClick={()=>setNotificationSwitch(false)}>View all</div>
-                              <div className={`${notificationSwitch ? "underline " : "no-underline"} underline-offset-8 hover:underline duration-300 ease-in-out`} onClick={()=>setNotificationSwitch(true)}>Mentions</div>
+                            <div className="flex space-x-3 mt-2 2xl:text-sm sm:text-xs text-[10px] ">
+                              <div className={`${notificationSwitch ? "no-underline text-gray-400" : "underline " } underline-offset-8 hover:underline duration-300 ease-in-out`} onClick={()=>setNotificationSwitch(false)}>View all</div>
+                              <div className={`${notificationSwitch ? "underline " : "no-underline text-gray-400"} underline-offset-8 hover:underline duration-300 ease-in-out`} onClick={()=>setNotificationSwitch(true)}>Mentions</div>
                             </div>
 
                             {notificationSwitch ?
@@ -240,9 +258,11 @@ function Pushups(){
         
                             <div className="flex-col mt-6">
 
-                              <div className="flex space-x-4 my-3">
-                                <img src={profilepicture2} className="2xl:w-[48px] w-[40px]"/>
-                                <div className="my-auto w-full 2xl:text-base sm:text-[14px] text-xs">
+                              <div className="flex space-x-4 my-2">
+                                <div>
+                                  <img src={profilepicture2} className="2xl:w-[48px] sm:w-[40px] w-[32px]"/>
+                                </div>
+                                <div className="my-auto w-full 2xl:text-base sm:text-[14px] text-[11px]">
                                   <div>
                                     @Peter Bruncik on DAY 41 ! Keep working!💪
                                   </div>
@@ -258,12 +278,15 @@ function Pushups(){
                           <div className="flex flex-col mt-4">
 
                               <div className="flex space-x-4 my-2">
-                                <img src={profilepicture2} className="2xl:w-[48px]  w-[40px] "/>
-                                <div className="my-auto w-full 2xl:text-base sm:text-[14px] text-xs">
+                                <div>
+                                <img src={profilepicture2} className="2xl:w-[48px] sm:w-[40px] w-[32px] "/>
+                                </div>
+
+                                <div className="my-auto w-full 2xl:text-base sm:text-[14px] text-[11px]">
                                   <div>
                                     Peter Bruncik added new member YAKSHA
                                   </div>
-                                  <div className="2xl:text-xs lg:text-[11px] text-[10px] text-[#777777] mt-[1px] flex justify-between">
+                                  <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
                                     <div>
                                       Friday 2:20 pm
                                     </div>
@@ -306,47 +329,76 @@ function Pushups(){
             
                     {pushupsGalleryTransition((style,item) => 
                       item ?
-                      <animated.div style={style} className="absolute w-[400px]  shadow-2xl rounded-[30px] top-0  left-[-335px]   z-[2]">
-                        
+                      <animated.div style={style} className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl rounded-[30px] 2xl:top-0 md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]">
+           
                         {switchGallery ?
-                            <div className="bg-white  rounded-[30px] px-5 pt-3 pb-1"   id="switchpushups">
-                            <div className="pr-20 flex flex-col space-y-1 overflow-y-scroll max-h-[200px] switchGalleryScrollbar">
+                            <div   id="test" className="bg-white  rounded-[30px] px-5 py-3 xl:text-base lg:text-[14px] sm:text-[12px] text-[10px]">
+                            <div className="pr-20 flex flex-col space-y-1 overflow-y-scroll xl:max-h-[200px] md:max-h-[175px] max-h-[100px] switchGalleryScrollbar">
                               
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Milan</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Samo</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Misko</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Jozko</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+                              
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Marek</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Riso</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Martin</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Gregor</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
 
-                              <div className="flex space-x-2">
-                                <input type="checkbox" className="accent-gray-400 rounded-[30px] bg-gray-700 cursor-pointer" onClick={()=>{{setSwitchGallery(false)}; setGalleryChanged(true)}}/><div>Dano</div>
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
                               </div>
+                              
+
+
+                              
+                              
                             </div>
                           
                           </div>
@@ -355,16 +407,16 @@ function Pushups(){
                       
                           :  
                           
-                          <div className="h-full flex flex-col justify-center items-center  divide-y-2 divide-black"   id="pushupsgallery">
+                          <div className="h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"   id="pushupsgallery">
                           {PushupsGallery.map(PushupsGallery =>
-                          <div className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center py-12  w-full first:rounded-t-[30px] duration-300 ease-in-out" key={PushupsGallery.id}>
-                          <div className="absolute left-3"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[54px] md:w-[50px]"/></div>
-                          <div className="absolute left-[110px] font-bold">{PushupsGallery.name}</div>
+                          <div className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:rounded-t-[30px] duration-300 ease-in-out" key={PushupsGallery.id}>
+                          <div className="absolute sm:left-7 left-4"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px]"/></div>
+                          <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">{PushupsGallery.name}</div>
                         </div>
                           )}
-                        <div className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] py-12 space-x-10 duration-300 ease-in-out" onClick={()=>{setSwitchGallery(true); setGalleryChanged(false)}} > 
-                          <img src={SwitchGalleryIcon} className="absolute left-5 hover:scale-110 duration-300 ease-in-out"/>
-                          <div className="absolute left-[70px] font-bold">Switch to another gallery</div> 
+                        <div className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-300 ease-in-out" onClick={()=>{setSwitchGallery(true)}} > 
+                          <img src={SwitchGalleryIcon} className="absolute sm:left-9 left-5 hover:scale-110 duration-300 ease-in-out xl:w-[58px] lg:w-[44px] sm:w-[36px] w-[20px]"/>
+                          <div className="absolute lg:left-[90px] sm:left-[50px] left-[15px]">Switch to another gallery</div> 
                         </div>
 
                         </div> 
@@ -383,22 +435,25 @@ function Pushups(){
 
             
         <div className="pt-10 pb-2 flex justify-between relative font-poppins">
-        <div className="underline underline-offset-[3px] font-spectral xl:text-[18px] lg:text-[15px] md:text-[13px] text-[10px] font-bold 2xl:tracking-normal md:tracking-wider my-auto">Learn more about 100 club challenge </div>
+        <div className="underline underline-offset-[3px] font-spectral xl:text-[18px] lg:text-[15px] sm:text-[13px] text-[10px] font-regular 2xl:tracking-normal md:tracking-wider my-auto"><Link to="/articles">Learn more about 100 club challenge </Link> </div>
 
         {/*Filter*/}
-        <div className="flex lg:space-x-6 md:space-x-4 space-x-3"><div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] ">Filter</div> 
-        <div>
-        <div className="bg-white rounded-2xl shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  p-2  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[13px]">
-          <div className="mr-2">{selected ? selected : "Newest"}</div> <MdKeyboardDoubleArrowDown size={18} onClick={()=>{setOpen(!open)}} className="hover:scale-125 duration-300 ease-in-out xl:w-auto lg:w-[16px] w-[14px]"/></div>
+        <div className="flex lg:space-x-6 md:space-x-4 space-x-3">
+          <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] ">Filter</div> 
+        
+        {/*Actual fitler*/}
+        <div id="switchGalleryGenresTrigger" className={`${openSwitchGalleryGenres ? "" :"duration-500 ease-in-out hover:scale-110"}`} onClick={()=>{setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)}}>
+        <div className="bg-white rounded-2xl shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  p-2  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[12px]">
+          <div className="mr-2">{selected ? selected : "Newest"}</div> <MdKeyboardDoubleArrowDown size={18} className="hover:scale-125 duration-300 ease-in-out xl:w-auto lg:w-[16px] w-[14px]"/></div>
           
-          <div className= {`absolute z-[1] top-10 right-0 2xl:w-[125px] xl:w-[110px] md:w-[95px] w-[90px]  rounded-2xl 2xl:text-[17px] xl:text-md md:text-sm text-[13px]   bg-white ${open? "" : "hidden"}`}>
-          {Filteroptions.map((filteroption) => 
+          <div id="switchGalleryGenres" className= {`absolute z-[1] top-10 right-0 2xl:w-[125px] xl:w-[110px] md:w-[95px] w-[90px]  rounded-2xl 2xl:text-[17px] xl:text-md md:text-sm text-[12px]   bg-white ${openSwitchGalleryGenres? "" : "hidden"}`}>
+          {filterOptions.map((filteroption) => 
           <div 
             key={filteroption.id} 
             className="flex items-center justify-center px-4 py-[12px] first:rounded-t-2xl last:rounded-b-2xl  hover:bg-[#777777] active:bg-[#5e5d5d]"
             onClick={()=>{
               setSelected(filteroption.name)
-              setOpen(!open)
+              setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)
               console.log(filteroption)
             }}
             >
@@ -413,8 +468,17 @@ function Pushups(){
         </div>
 
 
-<div className=" 2xl:pt-4 md:pt-10 pt-16 font-poppins">
+<div className=" 2xl:pt-4 md:pt-10 pt-4 font-poppins">
     <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-8 2xl:gap-x-10 xl:gap-y-10 xl:gap-x-10 lg:gap-y-8 lg:gap-x-8 md:gap-y-8 md:gap-x-8 gap-y-10 gap-x-2 2xl:px-[120px] xl:px-20 lg:px-20 md:px-6  px-2   2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll sm:pushupsScroll pushupsScrollSM">
+
+
+      <div className="relative aspect-[4/7]">
+        <iframe className="aspect-[4/7] w-full rounded-[30px]" src="https://www.youtube.com/embed/TAGCf_QzbBw" title="Mafia 2 Radio Soundtrack - Billy Merman - 900 miles" allowFullScreen/>
+        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
+          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
+          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
+        </div>
+      </div>
 
 
       <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">

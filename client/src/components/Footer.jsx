@@ -54,7 +54,7 @@ export default function Footer(){
 return(
     <>
     <footer className="bg-black mt-auto py-16 font-spectral w-full  2xl:bg-[url('/src/assets/footerbg.png')] xl:bg-[url('/src/assets/footerbglaptopxl.png')] lg:bg-[url('/src/assets/footerbglaptop.png')] sm:bg-[url('/src/assets/footerbgtablet.png')] bg-[url('/src/assets/footerbgmobile.png')] bg-cover">
-  <div className="flex flex-col xl:flex-row items-center justify-center xl:max-w-[1800px] 2xl:px-20   2xl:mx-auto sm:max-w-[600px]   xl:mx-4  mx-auto ">
+  <div className="flex flex-col xl:flex-row items-center justify-center xl:max-w-[1800px] 2xl:px-20 xl:pl-[75px]   2xl:mx-auto sm:max-w-[600px]   xl:mx-4  mx-auto ">
 
     {/* Newsletter */}
     <div className="xl:basis-1/3 xl:mr-20">
@@ -79,7 +79,7 @@ return(
     </div>
 
     {/* Menu */}
-    <div className="xl:basis-1/4 xl:border-l-4 xl:border-white  ">
+    <div className="2xl:basis-1/5 xl:basis-1/6 xl:border-l-4 xl:border-white">
       <ul className="text-white xl:text-base sm:text-xs text-[9px] xl:block flex xl:my-[-3px] my-4 uppercase font-bold tracking-wide">
         <li className=" xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/" className="hover:text-gray-400 duration-300 ease-in-out">HOME</Link></li>
         <li className="xl:mt-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/articles" className="hover:text-gray-400 duration-300 ease-in-out">Articles</Link></li>
@@ -91,7 +91,6 @@ return(
     </div>
 
     {/* Icons */}
-
       <div className="xl:basis-1/7 xl:border-l-4 border-white h-full py-[5px] ">
         <ul className="xl:block flex my-4 sm:text-[40px] text-3xl text-white">
           <li className="xl:ml-7 xl:mt-[-14px]"><a href="https://www.instagram.com/peterbruncik/" target="_blank"><SiInstagram className="hover:scale-125 ease-in-out duration-500" /></a></li>
@@ -103,7 +102,7 @@ return(
 
 
     {/* Footer Text */}
-    <p className="xl:visible invisible text-white 2xl:text-[19px] xl:text-base text-sm float-right align-middle 2xl:mx-auto mr-auto ml-4 px-4 text-center">FEEL FREE TO CONTACT ME ON SOCIAL MEDIA</p>
+    <p className="xl:visible invisible text-white 2xl:text-[19px] xl:text-[14px] text-sm float-right align-middle 2xl:mx-auto mr-auto 2xl:ml-120 xl:ml-8  px-4 text-center">FEEL FREE TO CONTACT ME ON SOCIAL MEDIA</p>
   </div>
 
   <div className="bottom-0 align-bottom text-white text-center sm:mt-12 sm:text-sm text-xs mb-[-55px] ">

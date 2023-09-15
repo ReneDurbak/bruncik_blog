@@ -15,7 +15,7 @@ import instagramIcon from "../assets/Instagram.png"
 import GmailIcon from "../assets/Gmail.png"
 import TwitterIcon from "../assets/Twitter.png"
 import SwitchGalleryIcon from "../assets/Switchgalleryicon.png"
-import CloseButton from "../assets/closebutton.png"
+import {VscDebugStepBack} from "react-icons/vsc"
 import CloseButtonv2 from "../assets/closebuttonv2.png"
 
 
@@ -112,11 +112,20 @@ function Pushups(){
 
       const pushupsGalleryElement = document.getElementById("pushupsgallery");;
       const triggerpushupsgallery = document.getElementById("triggerpushupsgallery");
-      const test = document.getElementById("test");
+      const trigger = document.getElementById("testTrigger");
+      const trigger2 = document.getElementById("testTrigger2");
 
-    if(pushupsGalleryElement && triggerpushupsgallery && !pushupsGalleryElement.contains(event.target) && !triggerpushupsgallery.contains(event.target)) {
-      setPushupsGalleryVisible(false);
-      }
+
+   
+
+        if(pushupsGalleryElement && triggerpushupsgallery && trigger &&  !pushupsGalleryElement.contains(event.target) && !triggerpushupsgallery.contains(event.target) && !trigger.contains(event.target) && trigger2 && !trigger2.contains(event.target)) {
+        setPushupsGalleryVisible(false);
+        setSwitchGallery(false)
+        }
+      
+      
+        
+      
     };
 
 
@@ -245,12 +254,12 @@ function Pushups(){
                         <animated.div style={style} className="absolute md:top-0 top-[-10px] lg:left-[-580px] md:left-[-460px] bottom-0 right-[-60px] lg:w-[650px] sm:w-[520px] w-[315px] px-0 z-[2]">
                         <div className="relative shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 sm:py-3 py-3 lg:pl-6 pl-3 sm:pl-4 lg:pr-10 pr-3 justify-center items-start   md:rounded-[30px] rounded-[20px] z-[2]" id="notifications">
                           <div className=" h-full w-full">
-                            <div className="absolute lg:right-8 sm:right-4 right-3 2xl:top-9 xl:top-6 sm:top-4 top-3"><img src={CloseButtonv2} className="duration-300 ease-in-out hover:scale-110 cursor-pointer sm:w-auto w-[18px]" onClick={()=>{setNotificationIsVisible(false)}}/></div>
+                            <div className="absolute lg:right-8 sm:right-4 right-3 2xl:top-[35px] xl:top-6 sm:top-4 top-3"><img src={CloseButtonv2} className="duration-300 ease-in-out hover:scale-110 cursor-pointer sm:w-auto 2xl:w-[26px] xl:w-[24px] w-[16px]" onClick={()=>{setNotificationIsVisible(false)}}/></div>
                             <h1 className="2xl:text-2xl xl:text-xl sm:text-lg text-sm tracking-wide	 font-bold">Notifications</h1>
                           
                             <div className="flex space-x-3 mt-2 2xl:text-sm sm:text-xs text-[10px] ">
-                              <div className={`${notificationSwitch ? "no-underline text-gray-400" : "underline " } underline-offset-8 hover:underline duration-300 ease-in-out`} onClick={()=>setNotificationSwitch(false)}>View all</div>
-                              <div className={`${notificationSwitch ? "underline " : "no-underline text-gray-400"} underline-offset-8 hover:underline duration-300 ease-in-out`} onClick={()=>setNotificationSwitch(true)}>Mentions</div>
+                              <div className={`${notificationSwitch ? "no-underline text-gray-400" : "underline " } underline-offset-8 hover:underline duration-300 ease-in-out cursor-pointer`} onClick={()=>setNotificationSwitch(false)}>View all</div>
+                              <div className={`${notificationSwitch ? "underline " : "no-underline text-gray-400"} underline-offset-8 hover:underline duration-300 ease-in-out cursor-pointer`} onClick={()=>setNotificationSwitch(true)}>Mentions</div>
                             </div>
 
                             {notificationSwitch ?
@@ -331,96 +340,94 @@ function Pushups(){
                       item ?
                       <animated.div style={style} className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl rounded-[30px] 2xl:top-0 md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]">
            
-                        {switchGallery ?
-                            <div   id="test" className="bg-white  rounded-[30px] px-5 py-3 xl:text-base lg:text-[14px] sm:text-[12px] text-[10px]">
-                            <div className="pr-20 flex flex-col space-y-1 overflow-y-scroll xl:max-h-[200px] md:max-h-[175px] max-h-[100px] switchGalleryScrollbar">
-                              
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-                              
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-
-                              <div>
-                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
-                                </div>
-                              </div>
-                              
-
-
-                              
-                              
-                            </div>
+                         
                           
-                          </div>
-
-                        
-                      
-                          :  
-                          
-                          <div className="h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"   id="pushupsgallery">
+                          <div id="pushupsgallery">
+                          <div className={`${switchGallery ? "hidden" : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"}`}>
                           {PushupsGallery.map(PushupsGallery =>
                           <div className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:rounded-t-[30px] duration-300 ease-in-out" key={PushupsGallery.id}>
                           <div className="absolute sm:left-7 left-4"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px]"/></div>
                           <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">{PushupsGallery.name}</div>
                         </div>
                           )}
-                        <div className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-300 ease-in-out" onClick={()=>{setSwitchGallery(true)}} > 
+                        <div id="testTrigger" className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-300 ease-in-out" onClick={()=>{setSwitchGallery(true)}} > 
                           <img src={SwitchGalleryIcon} className="absolute sm:left-9 left-5 hover:scale-110 duration-300 ease-in-out xl:w-[58px] lg:w-[44px] sm:w-[36px] w-[20px]"/>
                           <div className="absolute lg:left-[90px] sm:left-[50px] left-[15px]">Switch to another gallery</div> 
                         </div>
 
-                        </div> 
-                        }
+                        </div>
+
+
+
+                        
+                        <div className={`${switchGallery ? "bg-white  rounded-[30px] px-5 py-3 xl:text-base lg:text-[14px] sm:text-[12px] text-[10px]" : "hidden"}`}>
+                            <div className="pr-20 flex flex-col space-y-1 overflow-y-scroll xl:max-h-[200px] sm:max-h-[175px] max-h-[90px] switchGalleryScrollbar">
+                              <VscDebugStepBack className="absolute sm:right-14 right-10 top-4 xl:text-xl lg:text-[16px] sm:text-base text-xs duration-300 ease-in-out hover:scale-110" id="testTrigger2" onClick={()=>{{setSwitchGallery(false)}}}/>
+                              <div>
+                                <div id="testTrigger2" className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+                              
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="flex md:space-x-2 space-x-1" onClick={()=>{{setSwitchGallery(false)}}}>
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer"/><div>Milan</div>
+                                </div>
+                              </div>
+
+                            </div>                          
+                          </div>
+
+                        </div>
+                        
 
                       </animated.div> : ''
                         
@@ -442,7 +449,7 @@ function Pushups(){
           <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] ">Filter</div> 
         
         {/*Actual fitler*/}
-        <div id="switchGalleryGenresTrigger" className={`${openSwitchGalleryGenres ? "" :"duration-500 ease-in-out hover:scale-110"}`} onClick={()=>{setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)}}>
+        <div id="switchGalleryGenresTrigger" className={`${openSwitchGalleryGenres ? "" :"duration-500 ease-in-out hover:scale-110 cursor-pointer"}`} onClick={()=>{setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)}}>
         <div className="bg-white rounded-2xl shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  p-2  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[12px]">
           <div className="mr-2">{selected ? selected : "Newest"}</div> <MdKeyboardDoubleArrowDown size={18} className="hover:scale-125 duration-300 ease-in-out xl:w-auto lg:w-[16px] w-[14px]"/></div>
           
@@ -450,7 +457,7 @@ function Pushups(){
           {filterOptions.map((filteroption) => 
           <div 
             key={filteroption.id} 
-            className="flex items-center justify-center px-4 py-[12px] first:rounded-t-2xl last:rounded-b-2xl  hover:bg-[#777777] active:bg-[#5e5d5d]"
+            className="flex items-center justify-center px-4 py-[12px] first:rounded-t-2xl last:rounded-b-2xl  hover:bg-[#777777] active:bg-[#5e5d5d] cursor-pointer"
             onClick={()=>{
               setSelected(filteroption.name)
               setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)
@@ -469,7 +476,7 @@ function Pushups(){
 
 
 <div className=" 2xl:pt-4 md:pt-10 pt-4 font-poppins">
-    <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-8 2xl:gap-x-10 xl:gap-y-10 xl:gap-x-10 lg:gap-y-8 lg:gap-x-8 md:gap-y-8 md:gap-x-8 gap-y-10 gap-x-2 2xl:px-[120px] xl:px-20 lg:px-20 md:px-6  px-2   2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll sm:pushupsScroll pushupsScrollSM">
+    <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-8 2xl:gap-x-10 xl:gap-y-10 xl:gap-x-10 lg:gap-y-8 lg:gap-x-8 md:gap-y-8 md:gap-x-8 gap-y-10 gap-x-2 2xl:px-[120px] xl:px-20 lg:px-20 md:px-6  px-2   2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
 
 
       <div className="relative aspect-[4/7]">

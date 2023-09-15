@@ -2,6 +2,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-scroll";
+import { useMediaQuery } from 'react-responsive'
+import {Link as RouteLink} from "react-router-dom"
 import Autosuggest from 'react-autosuggest';
 import magnifier from "../assets/magnifier.png"
 import arrowDown from "../assets/arrowDown.png"
@@ -45,6 +47,29 @@ function Articles(){
       []
       
       );
+
+      const ListofArticles = [
+        {
+          id: 1,
+          title: "How to start meditation (Beginners Guide)",
+          label: filterOptions[0].name,
+        },
+        {
+          id: 2,
+          title: "The Wim Hof Method and Its Surprising Benefits",
+          label: filterOptions[1].name,
+        },
+        {
+          id: 3,
+          title: "Vegan staple foods (must eat)",
+          label: filterOptions[2].name,
+        },
+        {
+          id: 4,
+          title: "TOP 3 books about Stoicism (Ryan Holiday choice)",
+          label: filterOptions[6].name,
+        },
+      ]
   
 
       {/*Filter*/}
@@ -97,6 +122,10 @@ function Articles(){
         placeholder: "Search...",
         className: "outline-none sm:pt-3 pt-3 pb-2  2xl:text-2xl lg:text-[26px] sm:text-2xl text-[16px]  ease-in-out duration-500 sm:w-[190px] w-full block px-3 xl:text-[25px] tracking-wide"
       };
+
+
+      //Media queries
+      const isBigMobile = useMediaQuery({query: '(min-width: 640px )'})
 
 
 
@@ -274,7 +303,7 @@ function Articles(){
      {filterOptions.map((filter) => (
         <span
           key={filter.id}
-          className={`shadow-lg rounded-full sm:px-4 px-2 sm:py-3 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl lg:text-xl sm:text-base text-[11px] hover:scale-110 hover:bg-gray-950 hover:text-white hover:duration-500 ${
+          className={`shadow-lg rounded-full sm:px-4 px-2 sm:py-3 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl lg:text-xl sm:text-base text-[11px] md:hover:scale-110 md:hover:bg-gray-950 md:hover:text-white hover:duration-500 ${
             selectedFilter === filter.id
               ? "bg-gray-950 text-white outline-black"
               : `${checkClickFilter=== true ? "hidden" : ""}`
@@ -288,7 +317,7 @@ function Articles(){
         <img
           src={
             selectedFilter === filter.id || hoveredFilter === filter.id
-            ? filter.imageUrlClicked
+            ? isBigMobile ? filter.imageUrlClicked : selectedFilter === filter.id ? filter.imageUrlClicked : filter.imageUrl
             : filter.imageUrl
           }
           className="2xl:w-[40px] md:w-[38px] sm:w-[34px] w-[20px] mr-2"
@@ -310,37 +339,20 @@ function Articles(){
 
 <div className="md:tracking-[4px] tracking-[3px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
   
-
-
-<div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
+{ListofArticles.map((article) =>
+  <RouteLink to={`/articles/${article.id}`}>
+  <div className="w-full" key={article.id}>
+  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>
   
-<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
+  <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]">
+{article.title}
   </div>
-
-  <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
-  
-<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
   </div>
-
-  <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
-  
-<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
-  </div>
-
-  <div className="w-full">
-  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">Mind </div> </div>
-  
-<div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]"> How to start meditation (Beginners Guide)</div>
-  </div>
-
-  
-  
-  
+  </RouteLink>
+)
+}  
  
-  </div>
+</div>
 
 
 

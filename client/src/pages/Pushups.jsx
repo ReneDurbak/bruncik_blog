@@ -235,7 +235,7 @@ function Pushups(){
     <div className=" 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 font-poppins">
        
        
-    <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  sm:px-6 px-3 pt-14 pb-10 md:rounded-[50px] rounded-[30px]">
+    <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  sm:px-6 px-3 md:pt-14 pt-6 pb-10 md:rounded-[50px] rounded-[30px]">
             {/*Notification and Push ups gallery container*/}
             <div className="flex justify-between ">
                 <div className="my-auto">
@@ -446,11 +446,11 @@ function Pushups(){
 
         {/*Filter*/}
         <div className="flex lg:space-x-6 md:space-x-4 space-x-3">
-          <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] ">Filter</div> 
+          <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] sm:block hidden ">Filter</div> 
         
         {/*Actual fitler*/}
         <div id="switchGalleryGenresTrigger" className={`${openSwitchGalleryGenres ? "" :"duration-500 ease-in-out hover:scale-110 cursor-pointer"}`} onClick={()=>{setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)}}>
-        <div className="bg-white rounded-2xl shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  p-2  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[12px]">
+        <div className="bg-white md:rounded-2xl rounded-xl shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  px-2 py-1  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[12px]">
           <div className="mr-2">{selected ? selected : "Newest"}</div> <MdKeyboardDoubleArrowDown size={18} className="hover:scale-125 duration-300 ease-in-out xl:w-auto lg:w-[16px] w-[14px]"/></div>
           
           <div id="switchGalleryGenres" className= {`absolute z-[1] top-10 right-0 2xl:w-[125px] xl:w-[110px] md:w-[95px] w-[90px]  rounded-2xl 2xl:text-[17px] xl:text-md md:text-sm text-[12px]   bg-white ${openSwitchGalleryGenres? "" : "hidden"}`}>

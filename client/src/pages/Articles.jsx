@@ -120,12 +120,14 @@ function Articles(){
         onChange: handleSearchChange,
         onKeyPress: handleKeyPress,
         placeholder: "Search...",
-        className: "outline-none sm:pt-3 pt-3 pb-2  2xl:text-2xl lg:text-[26px] sm:text-2xl text-[16px]  ease-in-out duration-500 sm:w-[190px] w-full block px-3 xl:text-[25px] tracking-wide"
+        className: "outline-none sm:pt-2 lg:pt-3 pt-3 sm:pb-1 lg:pb-2 xl:pb-2 pb-2  2xl:text-[23px] xl:text-[26px] lg:text-xl sm:text-[17px] text-[16px]  ease-in-out duration-500 sm:w-[120px] lg:w-[190px] w-full block px-3 xl:text-[25px] tracking-wide"
       };
 
 
       //Media queries
-      const isBigMobile = useMediaQuery({query: '(min-width: 640px )'})
+      const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
+
+
 
 
 
@@ -151,7 +153,7 @@ function Articles(){
      <div className="col-span-2 sm:mt-0 2xl:mt-[-25px]">
     <h1 className="2xl:text-8xl lg:text-7xl mb-6 text-6xl tracking-wide" >Articles</h1>
 
-  <div className="2xl:text-[30px] xl:text-2xl lg:text-[19px] md:text-lg sm:text-[19px]  text-[15px] mb-[100px] tracking-wide">
+  <div className="2xl:text-[30px] xl:text-2xl lg:text-[19px] md:text-lg sm:text-[19px]  text-[17px] mb-[100px] tracking-wide">
     <div>
       “It is impossible for a man to learn what he thinks he already knows.”
       <div className="text-right mt-4 font-bold">-Epictetus</div>
@@ -161,7 +163,8 @@ function Articles(){
 {/*desktop - additional text*/}
   <div className="hidden lg:block">
   <div className=" tracking-normal 2xl:text-lg xl:text-[16px] md:text-[15px] break-words text-black bg-slate-100 rounded-2xl py-5 px-6 mt-[100px] font-poppins shadow-2xl">
-    Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
+  Welcome to my articles homepage, the vibrant ❤️ of this platform, where each word brims with passion and dedication. Whether you're a new here or a loyal reader, I'm thrilled you're here. I'm committed to sharing wisdom 🧠, tips 💡, and experiences 🌟 to help you thrive in life, firmly believing that continuous learning and growth are essential.
+I hope you'll find inspiration 💫 and practical guidance here. Thank you for your support 🙏, and let's embrace the journey of lifelong learning 📚 and growth 🌱 together! 🤝
   </div>
 
   <p className="font-bold mt-[80px]  2xl:text-3xl xl:text-2xl md:text-xl text-base font-poppins">Enjoy!</p>
@@ -177,7 +180,7 @@ function Articles(){
 <NewsletterPopup trigger={timedPopup} setTrigger={setTimedPopup}>
 
 
-<div className="sm:mt-[-160px]  max-w-[350px]  sm:px-0 px-6 "> 
+<div className="sm:mt-[-105px]  max-w-[350px]  sm:px-0 px-6 "> 
 <div>
     <div className="bg-white rounded-2xl sm:px-6 px-4 sm:py-5 py-3 text-center font-spectral">
       <div className="w-full py-2">
@@ -239,8 +242,8 @@ function Articles(){
 {/*tablet and mobile res of additional text*/}
     <div className="lg:hidden block max-w-[1380px] mx-auto sm:px-10 px-6 xl:mt-[-115px] lg:mt-[-95px] md:mt-[-15px] sm:mt-[-15px] mt-[-25px]">
   <div className="2xl:text-xl xl:text-[18px] md:text-[15px] sm:text-[15px] text-[14px] tracking-normal  break-words text-black bg-slate-100 rounded-2xl 2xl:py-5 xl:py-4 md:py-3 md:px-6 sm:py-3 sm:px-3 px-3 py-3 lg:mt-[100px] font-poppins shadow-2xl">
-    Here you can read about my thoughts, work and what I am currently working on. My blog is intended for everyone who is open to new opportunities, willing to work on themselves and constantly improve. My site is for people who are constantly looking for something new, for those who are not afraid of new things and are willing to take risks and step out of their comfort zone. For brave, authentic and predictable people with a great appetite for change and a better version of themselves. For those who want to improve themselves and work on themselves with every step, either physically or mentally.
-  </div>
+  Welcome to my articles homepage, the vibrant ❤️ of this platform, where each word brims with passion and dedication. Whether you're a new here or a loyal reader, I'm thrilled you're here. I'm committed to sharing wisdom 🧠, tips 💡, and experiences 🌟 to help you thrive in life, firmly believing that continuous learning and growth are essential.
+I hope you'll find inspiration 💫 and practical guidance here. Thank you for your support 🙏, and let's embrace the journey of lifelong learning 📚 and growth 🌱 together! 🤝  </div>
 
   <p className="font-bold mt-[80px] sm:text-lg text-base font-poppins">Enjoy!</p>
 </div>
@@ -262,17 +265,17 @@ function Articles(){
 
 {/*Topics*/}
         <div>
-    <h2 className="mx-auto text-center 2xl:text-6xl xl:text-7xl text-6xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
+    <h2 className="mx-auto text-center 2xl:text-6xl xl:text-7xl lg:text-6xl sm:text-5xl text-6xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
     </div>
 
 
 
 
 {/*Filter section*/}
-<div className="2xl:max-w-[1380px] w-full mx-auto 2xl:px-4 sm:px-10 px-2 grid grid-flow-col auto-cols-auto sm:mb-[125px] mb-20 2xl:mt-0 mt-4">
+<div className="2xl:max-w-[1380px] w-full mx-auto 2xl:px-4 sm:px-6 lg:px-10 px-2 grid grid-flow-col auto-cols-auto sm:mb-[125px] mb-20 2xl:mt-0 mt-4">
 
 
-<div className=" flex flex-row  justify-center	flex-wrap auto-rows-fr gap-x-3 gap-y-4 sm:gap-x-6 lg:gap-x-8 xl:gap-x-10 sm:gap-y-6 lg:font-normal font-normal   font-spectralsc  font-serif">
+<div className=" flex flex-row  justify-center	flex-wrap auto-rows-fr gap-x-3 gap-y-4 sm:gap-x-4 lg:gap-x-8 xl:gap-x-10 sm:gap-y-6 lg:font-normal font-normal   font-spectralsc  font-serif">
 
 
 
@@ -280,7 +283,7 @@ function Articles(){
 {
 /*Search bar*/}
 
-<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-6 sm:px-2 px-0 mx-6 mt-4 sm:mt-0 mb-6 sm:mb-0 w-full sm:w-auto">
+<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 px-0 mx-6 mt-4 sm:mt-0 lg:mt- lg:mb-1 mb-6 sm:mb-0 w-full sm:w-auto">
 <div className="my-auto">
 <Autosuggest
           suggestions={suggestions}
@@ -294,7 +297,7 @@ function Articles(){
         />
         </div>
 
-<span className=" inline-flex  px-2 my-auto"><img src={magnifier} className="text-black 2xl:w-[30px] sm:w-[28px] w-[26px]"/> </span>
+<span className=" inline-flex  px-2 my-auto"><img src={magnifier} className="text-black 2xl:w-[30px] xl:w-[28px] lg:w-[24px] sm:w-[20px] w-[26px]"/> </span>
 </div>
 
 
@@ -303,7 +306,7 @@ function Articles(){
      {filterOptions.map((filter) => (
         <span
           key={filter.id}
-          className={`shadow-lg rounded-full sm:px-4 px-2 sm:py-3 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl lg:text-xl sm:text-base text-[11px] md:hover:scale-110 md:hover:bg-gray-950 md:hover:text-white hover:duration-500 ${
+          className={`shadow-lg rounded-full sm:px-4 px-2 lg:py-3 sm:py-2 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl xl:text-lg lg:text-base sm:text-[11px] text-[11px] lg:hover:scale-110 lg:hover:bg-gray-950 lg:hover:text-white hover:duration-500 ${
             selectedFilter === filter.id
               ? "bg-gray-950 text-white outline-black"
               : `${checkClickFilter=== true ? "hidden" : ""}`
@@ -317,10 +320,10 @@ function Articles(){
         <img
           src={
             selectedFilter === filter.id || hoveredFilter === filter.id
-            ? isBigMobile ? filter.imageUrlClicked : selectedFilter === filter.id ? filter.imageUrlClicked : filter.imageUrl
+            ? isLaptop ? filter.imageUrlClicked : selectedFilter === filter.id ? filter.imageUrlClicked : filter.imageUrl
             : filter.imageUrl
           }
-          className="2xl:w-[40px] md:w-[38px] sm:w-[34px] w-[20px] mr-2"
+          className="2xl:w-[40px] xl:w-[38px] lg:w-[32px] sm:w-[26px] w-[20px] mr-2"
         />
       </div>
       <div className="xl:mt-auto sm:my-auto my-auto mx-auto text-center">{filter.name}</div>
@@ -337,12 +340,12 @@ function Articles(){
  
 {/*All articles*/}
 
-<div className="md:tracking-[4px] tracking-[3px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
+<div className="xl:tracking-[4px] tracking-[2px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
   
 {ListofArticles.map((article) =>
   <RouteLink to={`/articles/${article.id}`}>
   <div className="w-full" key={article.id}>
-  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 px-4 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>
+  <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 lg:px-4 px-1 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>
   
   <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]">
 {article.title}

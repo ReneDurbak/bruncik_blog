@@ -252,8 +252,8 @@ function Pushups(){
                             <h1 className="2xl:text-2xl xl:text-xl md:text-lg text-sm tracking-wider	 font-bold">Notifications</h1>
                           
                             <div className="flex space-x-3 mt-2 2xl:text-sm md:text-xs text-[10px] ">
-                              <div className={`${notificationSwitch ? "no-underline text-gray-400" : "underline " } underline-offset-8 duration-300 ease-in-out cursor-pointer`} onClick={()=>setNotificationSwitch(false)}>View all</div>
-                              <div className={`${notificationSwitch ? "underline " : "no-underline text-gray-400 hover:text-red-400"} underline-offset-8 duration-300 ease-in-out cursor-pointer`} onClick={()=>setNotificationSwitch(true)}>Mentions</div>
+                              <div className={`${notificationSwitch ? "no-underline text-gray-400 hover:text-[#696969]" : "underline " } underline-offset-8 duration-300 ease-in-out cursor-pointer`} onClick={()=>setNotificationSwitch(false)}>View all</div>
+                              <div className={`${notificationSwitch ? "underline " : "no-underline text-gray-400 hover:text-[#696969]"} underline-offset-8 duration-300 ease-in-out cursor-pointer`} onClick={()=>setNotificationSwitch(true)}>Mentions</div>
                             </div>
 
                             {notificationSwitch ?

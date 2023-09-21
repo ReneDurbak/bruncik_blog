@@ -84,9 +84,9 @@ function Pushups(){
   const [notificationSwitch, setNotificationSwitch] = useState(false)
   const notificationsTransition = useTransition(notificationIsVisible,{
     config:{mass:1, tension:150, friction:30, clamp: true},
-    from: {x:isBigLaptop ? 200 : isLaptop ? 100 : isTablet ? 100 : isBigMobile ? 50 : isMobile ? 20 : 1000, opacity:0},
+    from: {x:isBigLaptop ? 50 : isLaptop ? 60 : isTablet ? 55 : isBigMobile ? 45 : isMobile ? 20 : 1000, opacity:0},
     enter:{x:0, opacity:1},
-    leave:{x:isBigLaptop ? 200 : isLaptop ? 100 : isTablet ? 100 : isBigMobile ? 50 : isMobile ? 20 : 1000, opacity:0},
+    leave:{x:isBigLaptop ? 50 : isLaptop ? 60 : isTablet ? 55 : isBigMobile ? 45 : isMobile ? 20 : 1000, opacity:0},
   })
 
   //Gallery switch variables
@@ -245,7 +245,7 @@ function Pushups(){
                       {notificationsTransition((style,item)=>
                         item ?
 
-                        <animated.div style={style} className="absolute top-[-10px] xl:left-[-490px] lg:left-[-510px] md:left-[-400px] bottom-0 right-[-55px] lg:w-[650px] md:w-[520px] w-[315px] px-0 z-[2]">
+                        <animated.div style={style} className="absolute xl:top-[-12px] top-[-10px] xl:left-[-490px] lg:left-[-510px] md:left-[-400px] bottom-0 right-[-55px] lg:w-[650px] md:w-[520px] w-[315px] px-0 z-[2]">
                         <div className="relative shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 md:py-3 py-3 lg:pl-6 pl-3 md:pl-4 lg:pr-10 pr-3 justify-center items-start   lg:rounded-[30px] rounded-[20px] z-[2]" id="notifications">
                           <div className=" h-full w-full">
                             <div className="absolute lg:right-8 md:right-4 right-3 2xl:top-[35px] xl:top-6 md:top-4 top-3"><img src={CloseButtonv2} className="duration-300 ease-in-out hover:scale-110 cursor-pointer sm:w-auto 2xl:w-[26px] xl:w-[24px] w-[16px]" onClick={()=>{setNotificationIsVisible(false)}}/></div>
@@ -332,7 +332,7 @@ function Pushups(){
             
                     {pushupsGalleryTransition((style,item) => 
                       item ?
-                      <animated.div style={style} className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl rounded-[30px] 2xl:top-0 md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]">
+                      <animated.div style={style} className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl rounded-[30px] xl:top-[-5px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]">
            
                          
                           

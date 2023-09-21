@@ -21,106 +21,26 @@ console.log(otherArticles)
     <>
     <Navbar/>
     {/*Main container*/}
-    <div className='2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-1  mt-[120px] mb-[900px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 pl-6'>
-        
-        {/*About the author side panel*/}
-        <div className="border-l-2  absolute  right-0 max-h-auto top-7 z-[-1]">
-            <div className="relative max-w-[525px] mx-auto text-left">
-                <div className="px-20 mt-[225px]">
-
-            
-                    <h1 className="underline underline-offset-[25px] decoration-gray-300">ABOUT THE AUTHOR</h1>
-                    <div className="mt-10">
-                    Peter Brunčík writes about egestas dui at iaculis ultricies. Nunc pulvinar neque at tellus accumsan lobortis nec non est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam dignissim dapibus volutpat. Pellentesque iaculis sapien quam, ut fermentum enim scelerisque in. 
-                    <div className="mt-6 underline underline-offset-4  decoration-gray-300">Click here to learn more</div>
-                    </div>
-
-                    {/*Add banner*/}
-                    <div className="flex justify-center  my-[200px]">
-                        <div className="w-[300px] h-[400px] bg-[#D9D9D9] rounded-lg p-4 flex justify-center items-center text-xl">
-                            
-                            <span className="rotate-[-45deg]">
-                                Miesto pre reklamu
-                            </span>
-                        </div>
-                    </div>
-
-
-                    {/*Share container*/}
-                    <div className="grid justify-center text-center">
-                        <h1 className="text-xl font-bold">Share this article</h1>
-                        
-                        <div className="flex space-x-4 mt-6">
-                            <div><a href>Pinterest</a></div>
-                            <div><a href>Pinterest</a></div>
-                            <div><a href>Pinterest</a></div>
-                        </div>
-                    </div>
-
-
-                    {/*Add banner*/}
-                    <div className="flex justify-center  my-[200px]">
-                        <div className="w-[300px] h-[400px] bg-[#D9D9D9] rounded-lg p-4 flex justify-center items-center text-xl">
-                            
-                            <span className="rotate-[-45deg]">
-                                Miesto pre reklamu
-                            </span>
-                        </div>
-                    </div>
-
-
-                    {/*Read next container*/}
-
-                    <div className="text-left">
-                        <div className="divide-y-2 divide-gray-300">
-                                <h1 className="uppercase mb-4">Read next</h1>
-                            <div className="divide-y-2 divide-gray-300 mt-2">
-                            {otherArticles.map((article)=> 
-                            <div>
-                                <div key={article.id} className="py-6">
-                                    {article.title}
-                                </div>
-                            </div>
-                            )}
-                            </div>
-
-
-                            <div className="pt-8 pb-[250px] flex space-x-4">
-                                <div>
-                                    All articles
-                                </div>
-
-                                <div>
-                                    sipka
-                                </div>
-                            
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
+    <div className='2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 pl-6'>
         
 
 
         {/*Article container*/}
-        <div className="2xl:max-w-[1100px] ">
+        <div className="2xl:max-w-[1100px] col-span-2">
             <div className="col-span-2">
             <div className="flex justify-start items-center space-x-4 mt-16 text-[13px]">
                 <div>16.AUGUST 2023, 12:45 </div>
                 <div className="text-gray-400">Reading time: 2:00</div> 
             </div>
 
-            <div className="text-6xl my-6">{article.title}</div>
+            <div className="xl:text-6xl md:text-5xl xl:my-6 md:my-4">{article.title}</div>
 
-            <div className="flex justify-start items-center space-x-4 mt-10 ">
-                <div className="text-sm">written by <strong className="ml-5 tracking-wider text-lg">PETER BRUNCIK</strong></div>
-                <div className="border-l-2 border-black pl-6 text-lg uppercase"><strong>{article.label}</strong></div>
+            <div className="flex justify-start items-center space-x-4 mt-10 xl:text-lg md:text-base">
+                <div className="text-sm">written by </div><strong className="ml-5 tracking-wider">PETER BRUNCIK</strong>
+                <div className="border-l-2 border-black pl-6 uppercase"><strong>{article.label}</strong>
             </div>
+            </div>
+
 
         </div>
 
@@ -202,7 +122,88 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
   
         
 
+    
+        {/*About the author side panel*/}
+        <div className="border-l-2 mr-0 mt-[-100px]  max-h-auto z-[-1]">
+            <div className="relative xl:max-w-[400px] lg:max-w-[300px] sm:max-w-[250px] mx-auto xl:text-left text-center">
+                <div className="xl:px-20 lg:px-8 md:px-6 lg:mt-[210px] sm:mt-[180px]">
 
+            
+                    <h1 className="underline underline-offset-[25px] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs">ABOUT THE AUTHOR</h1>
+                    <div className="mt-10 xl:text-base lg:text-sm sm:text-xs">
+                    Peter Brunčík writes about egestas dui at iaculis ultricies. Nunc pulvinar neque at tellus accumsan lobortis nec non est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam dignissim dapibus volutpat. Pellentesque iaculis sapien quam, ut fermentum enim scelerisque in. 
+                    <div className="mt-6 underline underline-offset-4  decoration-gray-300 xl:text-base lg:text-sm">Click here to learn more</div>
+                    </div>
+
+                    {/*Add banner*/}
+                    <div className="flex justify-center  my-[200px]">
+                        <div className="w-[300px] h-[400px] bg-[#D9D9D9] rounded-lg p-4 flex justify-center items-center text-xl">
+                            
+                            <span className="rotate-[-45deg]">
+                                Miesto pre reklamu
+                            </span>
+                        </div>
+                    </div>
+
+
+                    {/*Share container*/}
+                    <div className="grid justify-center text-center">
+                        <h1 className="text-xl font-bold">Share this article</h1>
+                        
+                        <div className="flex space-x-4 mt-6">
+                            <div><a href>Pinterest</a></div>
+                            <div><a href>Pinterest</a></div>
+                            <div><a href>Pinterest</a></div>
+                        </div>
+                    </div>
+
+
+                    {/*Add banner*/}
+                    <div className="flex justify-center  my-[200px]">
+                        <div className="w-[300px] h-[400px] bg-[#D9D9D9] rounded-lg p-4 flex justify-center items-center text-xl">
+                            
+                            <span className="rotate-[-45deg]">
+                                Miesto pre reklamu
+                            </span>
+                        </div>
+                    </div>
+
+
+                    {/*Read next container*/}
+
+                    <div className="text-left xl:text-base lg:text-sm sm:text-xs">
+                        <div className="divide-y-2 divide-gray-300">
+                                <h1 className="uppercase mb-4">Read next</h1>
+                            <div className="divide-y-2 divide-gray-300 mt-2">
+                            {otherArticles.map((article)=> 
+                            <div>
+                                <div key={article.id} className="xl:py-6 md:py-5">
+                                    {article.title}
+                                </div>
+                            </div>
+                            )}
+                            </div>
+
+
+                            <div className="xl:pt-8 lg:pt-4 md:pt-3 pb-[250px] flex space-x-4">
+                                <div>
+                                    All articles
+                                </div>
+
+                                <div>
+                                    sipka
+                                </div>
+                            
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
       
 
 

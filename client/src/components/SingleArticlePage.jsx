@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
+import commentIcon from "../assets/commentIcon.png"
+import arrowRight from "../assets/Allarticlesarrow.png"
+import twitter from "../assets/twShare.png"
+import facebook from "../assets/fbShare.png"
+import pinterest from "../assets/pintShare.png"
 
 export default function SingleArticlePage({articles}) {
 
@@ -81,8 +86,8 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                 </div>
 
                 <div className="flex space-x-2">
-                    <div>
-                        Ikonka
+                    <div className="my-auto">
+                        <img src={commentIcon}/>
                     </div>
 
                     <div>

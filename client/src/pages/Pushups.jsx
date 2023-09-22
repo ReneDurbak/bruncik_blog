@@ -100,7 +100,7 @@ function Pushups(){
 
     setTimeout(() => {
       setTimedPopup(true)
-    }, 1500);
+    }, 5000);
 
   },[])
 
@@ -206,7 +206,7 @@ function Pushups(){
       {/*Popup*/}
       <PushupsPopup trigger={timedPopup} setTrigger={setTimedPopup} >
       <div className='bg-white border-black xl:border-2 border-[1px] rounded-[35px] xl:text-2xl lg:text-xl sm:text-[16px] text-[15px] flex justify-center items-center'>
-       <div className="max-w-full mx-auto lg:px-6 sm:px-6  px-4 lg:py-10 sm:py-6 pb-3  pt-8 text-center ">
+       <div className="max-w-full mx-auto lg:px-6 sm:px-6  px-4 lg:py-10 sm:py-6 pb-8  pt-8 text-center ">
        <div className="xl:text-4xl lg:text-3xl sm:text-2xl text-[21px]"> Do you want to be on my site?</div><div className="mt-2">& have your own gallery of push ups?</div>
 
        <div className="md:mt-10 sm:mt-8 mt-6 font-indieflower">Feel free to contact me on social media</div>
@@ -218,7 +218,7 @@ function Pushups(){
        </div>
 
 
-       <div className="lg:text-sm sm:text-xs text-[9px] xl:mt-10 lg:mt-8 sm:mt-6 mt-6 ">Note: Send me at least 7 videos of your push ups from every single day and I’ll post it on my page.<br/><strong>I’ll update it every week.</strong></div>
+       <div className="lg:text-sm  sm:text-[10px] sm:block hidden xl:mt-10 lg:mt-8 sm:mt-6 mt-6 text-left">Note: Send me at least 7 videos of your push ups from every single day and I’ll post it on my page.<br/><div  className="text-center"><strong>I’ll update it every week.</strong></div></div>
        </div>
       </div>
       </PushupsPopup>
@@ -229,7 +229,7 @@ function Pushups(){
     <div className=" 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 font-poppins">
        
        
-    <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  sm:px-6 px-3 md:pt-14 pt-6 pb-10 lg:rounded-[50px] rounded-[30px]">
+    <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  sm:px-6 px-3 md:pt-14 pt-6 pb-10 lg:rounded-[50px] rounded-[20px]">
             {/*Notification and Push ups gallery container*/}
             <div className="flex justify-between ">
                 <div className="my-auto">
@@ -444,7 +444,7 @@ function Pushups(){
         
         {/*Actual fitler*/}
         <div id="switchGalleryGenresTrigger" className={`${openSwitchGalleryGenres ? "" :"duration-500 ease-in-out hover:scale-110 cursor-pointer"}`} onClick={()=>{setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)}}>
-        <div className="bg-white md:rounded-2xl rounded-xl shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  px-2 py-1  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[12px]">
+        <div className="bg-white xl:rounded-2xl sm:rounded-xl rounded-[10px] shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  px-2 py-1  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[12px]">
           <div className="mr-2">{selected ? selected : "Newest"}</div> <MdKeyboardDoubleArrowDown size={18} className="hover:scale-125 duration-300 ease-in-out xl:w-auto lg:w-[16px] w-[14px]"/></div>
           
           <div id="switchGalleryGenres" className= {`absolute z-[1] top-10 right-0 2xl:w-[125px] xl:w-[110px] md:w-[95px] w-[90px]  rounded-2xl 2xl:text-[17px] xl:text-md md:text-sm text-[12px]   bg-white ${openSwitchGalleryGenres? "" : "hidden"}`}>

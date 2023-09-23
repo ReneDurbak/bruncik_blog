@@ -1,6 +1,8 @@
-import { useParams } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useParams, Link as RouteLink } from "react-router-dom"
+import { useState } from "react"
 import { useMediaQuery } from 'react-responsive'
+import { Link } from "react-router-dom"
+import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import commentIcon from "../assets/commentIcon.png"
@@ -18,20 +20,21 @@ export default function SingleArticlePage({articles}) {
     //media query
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
 
-
+    //side bar 
     const [closeSideBar, setCloseSideBar] = useState(false)
 
+   
 
-
-    
     //Find clicked article
     const {id} = useParams()
 
     const article = articles.find((article) =>  article.id === Number(id))
-    const otherArticles = articles.map((article) => {
-        article.id !== Number(id)
-         return article;
-        })
+    const otherArticles = articles.filter((article) => article.id !== Number(id) )
+    
+    //console.log(otherArticles)
+
+    //URL
+    const currentURL = `peterbruncik.com/articles/${id}`
 
   
     
@@ -169,7 +172,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     <div className="sm:mt-10 mt-8 xl:text-base lg:text-sm sm:text-xs text-[10px]">
                     <strong>Peter Brunčík</strong> writes about egestas dui at iaculis ultricies. Nunc pulvinar neque at tellus accumsan lobortis nec non est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam dignissim dapibus volutpat. Pellentesque iaculis sapien quam, ut fermentum enim scelerisque in. 
                     <div className="mt-6 underline underline-offset-4  decoration-gray-300 xl:text-base lg:text-sm sm:text-[11px] text-[8px] flex space-x-1">
-                        <div className=" hover:cursor-pointer">Click here to learn more</div> 
+                        <div className=" hover:cursor-pointer"><Link to="/about">Click here to learn more</Link></div> 
                         
                         <div className="my-auto">
                             <img src={arrowRightIntro} className="hover:scale-110 duration-100 ease-in-out xl:w-[26px] lg:w-[20px] sm:w-[18px] w-[12px]  hover:cursor-pointer"/>
@@ -193,9 +196,9 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <h1 className="xl:text-xl sm:text-base text-xs font-bold">Share this article</h1>
                         
                         <div className="flex xl:space-x-8 sm:space-x-6 space-x-2 xl:mt-6 mt-4">
-                            <div><a href="https://twitter.com/peterbruncik"><img src={pinterest} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></a></div>
-                            <div><a href="https://twitter.com/peterbruncik"><img src={twitter} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></a></div>
-                            <div><a href="https://twitter.com/peterbruncik"><img src={facebook} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></a></div>
+                            <div><PinterestShareButton url={currentURL} media={currentURL}><img src={pinterest} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></PinterestShareButton></div>
+                            <div><TwitterShareButton url={currentURL} title="Check out this article!" via="peterbruncik"><img src={twitter} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></TwitterShareButton></div>
+                            <div><FacebookShareButton url={currentURL} quote="Check out this article!"><img src={facebook} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></FacebookShareButton></div>
                         </div>
                     </div>
 
@@ -218,10 +221,12 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                                 <h1 className="uppercase mb-4 text-[#6F6F6F]">Read next</h1>
                             <div className="divide-y-2 divide-gray-300 mt-2">
                             {otherArticles.map((article)=> 
-                            <div>
-                                <div key={article.id} className="xl:py-6 py-4">
+                            <div key={article.id}>
+                            <RouteLink to={`/articles/${article.id}`}>
+                                <div className="xl:py-6 py-4">
                                     {article.title}
                                 </div>
+                            </RouteLink>
                             </div>
                             )}
                             </div>

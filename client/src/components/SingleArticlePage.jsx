@@ -1,5 +1,5 @@
 import { useParams, Link as RouteLink } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useMediaQuery } from 'react-responsive'
 import { Link } from "react-router-dom"
 import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
@@ -23,7 +23,8 @@ export default function SingleArticlePage({articles}) {
     //side bar 
     const [closeSideBar, setCloseSideBar] = useState(false)
 
-   
+   //write a comment
+   const[openWriteCommentWindow, setOpenWriteCommentWindow] = useState(false)
 
     //Find clicked article
     const {id} = useParams()
@@ -37,7 +38,24 @@ export default function SingleArticlePage({articles}) {
     const currentURL = `peterbruncik.com/articles/${id}`
 
   
-    
+    useEffect(()=>{
+        
+         const handleClickOutsideCommentWindow = (event) => {
+            const commentWindow = document.getElementById("commentWindow")
+            const triggerCommentWindow = document.getElementById("triggerCommentsWindow")
+
+            if(commentWindow && triggerCommentWindow && !triggerCommentWindow.contains(event.target) && !commentWindow.contains(event.target)){
+                setOpenWriteCommentWindow(false)
+            }
+        }
+
+
+        window.addEventListener('click', handleClickOutsideCommentWindow)
+
+        return () =>{
+            window.removeEventListener('click', addEventListener)
+        }
+    })
 
 
 
@@ -111,10 +129,14 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <img src={commentIcon}/>
                     </div>
 
-                    <div className="my-auto">
+                    <div id="triggerCommentsWindow" className="my-auto" onClick={() =>  setOpenWriteCommentWindow(true)}>
                         Write a comment
                     </div>
+
                 </div>
+
+                
+           
             </div>
 
 
@@ -142,6 +164,22 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
             </div>
         </div>
+
+
+                 {/*Write a comment window*/}
+                    {
+                    openWriteCommentWindow ?
+                    <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center">
+                        <div className="bg-white rounded-lg p-2" id="commentWindow">
+                        
+                        <div>Okienko pre comment</div>
+
+                        <div onClick={()=> setOpenWriteCommentWindow(false)}>close window</div>
+                        </div>
+
+                    </div>
+                    : ""
+                    }
 
 
         </div>

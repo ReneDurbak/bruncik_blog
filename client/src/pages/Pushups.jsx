@@ -111,21 +111,21 @@ function Pushups(){
     {/*Pushups gallery window*/}
     const handleClickOutsidePushupsGallery = (event) => {
 
-      const pushupsGalleryElement = document.getElementById("pushupsgallery");;
-      const triggerpushupsgallery = document.getElementById("triggerpushupsgallery");
+    const pushupsGalleryElement = document.getElementById("pushupsgallery");;
+    const triggerpushupsgallery = document.getElementById("triggerpushupsgallery");
 
 
-        if(triggerpushupsgallery && pushupsGalleryElement  && !triggerpushupsgallery.contains(event.target) && !pushupsGalleryElement.contains(event.target) ) {
-          setPushupsGalleryVisible(false);
-          setSwitchGallery(false)
-        }
+    if(triggerpushupsgallery && pushupsGalleryElement  && !triggerpushupsgallery.contains(event.target) && !pushupsGalleryElement.contains(event.target) ) {
+        setPushupsGalleryVisible(false);
+        setSwitchGallery(false)
+    }
       
     };
 
 
-    if(pushupsGalleryIsVisible === true ){
-      window.addEventListener('click', handleClickOutsidePushupsGallery);
-    }
+
+    window.addEventListener('click', handleClickOutsidePushupsGallery);
+    
       
 
     return () => {
@@ -141,25 +141,25 @@ function Pushups(){
 
   useEffect(() => {
 
-       {/*Notification window*/}
+      {/*Notification window*/}
 
-       const handleClickOutsideNotifications = (event) => {
+      const handleClickOutsideNotifications = (event) => {
 
-        const notificationElement = document.getElementById("notifications")
-        const triggerNotifications = document.getElementById("notificationsTrigger")
+      const notificationElement = document.getElementById("notifications")
+      const triggerNotifications = document.getElementById("notificationsTrigger")
   
-        if(notificationElement && triggerNotifications && !notificationElement.contains(event.target) && !triggerNotifications.contains(event.target)){
+      if(notificationElement && triggerNotifications && !notificationElement.contains(event.target) && !triggerNotifications.contains(event.target)){
           setNotificationIsVisible(false)
-        }
+      }
       }
   
-        if(notificationIsVisible === true){
-          window.addEventListener('click', handleClickOutsideNotifications)
-        }
+      
+      window.addEventListener('click', handleClickOutsideNotifications)
+        
   
-        return()=>{
-          window.removeEventListener('click', handleClickOutsideNotifications)
-        }     
+      return()=>{
+        window.removeEventListener('click', handleClickOutsideNotifications)
+      }     
 
   },[notificationIsVisible])
   
@@ -180,9 +180,9 @@ function Pushups(){
   }
 
 
-    if(openSwitchGalleryGenres === true){
-      window.addEventListener('click', handleClickOutsideSwitchGalleryGenresElement)
-  }
+    
+    window.addEventListener('click', handleClickOutsideSwitchGalleryGenresElement)
+
 
     return()=> {
       window.removeEventListener('click', handleClickOutsideSwitchGalleryGenresElement)

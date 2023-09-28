@@ -37,6 +37,8 @@ export default function SingleArticlePage({articles}) {
     //URL
     const currentURL = `peterbruncik.com/articles/${id}`
 
+    const [hideNameInput, setHideNameInput] = useState(false)
+
   
     useEffect(()=>{
         
@@ -59,8 +61,7 @@ export default function SingleArticlePage({articles}) {
 
 
 
-
-  return (
+return (
     <>
     <Navbar/>
     {/*Main container*/}
@@ -73,7 +74,7 @@ export default function SingleArticlePage({articles}) {
             <div className="col-span-2">
             <div className="flex justify-start items-center space-x-4 mt-16 xl:text-[13px] sm:text-[11px] text-[9px]">
                 <div>16.AUGUST 2023, 12:45 </div>
-                <div className="text-gray-400">Reading time: 2:00</div> 
+                <div className="text-gray-400">Reading time: 2:00</div> {/*npm modul na zobrazovanie casu -> date-fns*/}
             </div>
 
             <div className="xl:text-6xl lg:text-5xl md:text-4xl  text-3xl xl:my-6 md:my-4 sm:my-3 my-4 font-bold">{article.title}</div>
@@ -169,12 +170,34 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                  {/*Write a comment window*/}
                     {
                     openWriteCommentWindow ?
-                    <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center">
-                        <div className="bg-white rounded-lg p-2" id="commentWindow">
+                    <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center md:px-0 px-6">
+                        <div className="relative bg-white rounded-[30px] p-6 px-8 w-[500px]" id="commentWindow">
                         
-                        <div>Okienko pre comment</div>
+                        <div className="text-bold md:text-2xl text-xl font-bold">Write a comment</div>
 
-                        <div onClick={()=> setOpenWriteCommentWindow(false)}>close window</div>
+                        <div className={`${hideNameInput ? "hidden" : "mt-7 md:text-base text-sm"}`}>
+                            <p className="font-bold md:text-base text-xs">Name:</p>
+                            <input placeholder="Your name " className="w-full md:rounded-[30px] rounded-[15px] mt-2 border-2 py-2 px-4 border-gray-400"/>
+                        </div>
+
+                        <div className={`${hideNameInput ? "flex space-x-2 md:mt-[107px] mt-[95px]" : "flex space-x-2 mt-1"}`}>
+                                <input type="checkbox"  onClick={()=>setHideNameInput(!hideNameInput)}/>
+                                <div className="font-bold md:text-base text-xs">Stay anonymous</div>
+                            </div> 
+
+                        <div className="mt-8 md:text-base text-sm">
+                            <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>
+                            <textarea type="text" placeholder="Write a comment ... " className="w-full md:rounded-[30px] rounded-[15px] max-h-[200px] mt-2 border-2 py-2 px-5 border-gray-400"/>
+                        </div>
+
+                        <div className="px-4">
+                        <div className="w-full bg-black text-white md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
+                            <div>Send</div>
+                            <div>Icon</div>
+                        </div>
+                        </div>
+
+                        <div className="absolute top-5 right-5" onClick={()=> setOpenWriteCommentWindow(false)}>X</div>
                         </div>
 
                     </div>

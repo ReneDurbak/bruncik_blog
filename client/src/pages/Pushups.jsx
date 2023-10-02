@@ -205,16 +205,16 @@ function Pushups(){
 
       {/*Popup*/}
       <PushupsPopup trigger={timedPopup} setTrigger={setTimedPopup} >
-      <div className='bg-white border-black xl:border-2 border-[1px] rounded-[35px] xl:text-2xl lg:text-xl sm:text-[16px] text-[15px] flex justify-center items-center'>
+      <div className='bg-white border-black xl:border-2 border-[1px] md:rounded-[35px] rounded-3xl xl:text-2xl lg:text-xl sm:text-[16px] text-[15px] flex justify-center items-center'>
        <div className="max-w-full mx-auto lg:px-6 sm:px-6  px-4 lg:py-10 sm:py-6 pb-8  pt-8 text-center ">
        <div className="xl:text-4xl lg:text-3xl sm:text-2xl text-[21px]"> Do you want to be on my site?</div><div className="mt-2">& have your own gallery of push ups?</div>
 
        <div className="md:mt-10 sm:mt-8 mt-6 font-indieflower">Feel free to contact me on social media</div>
 
        <div className="flex justify-between items-center xl:mt-10 lg:mt-8 sm:mt-4 mt-4 xl:mx-0 lg:mx-18 sm:px-[100px] px-8">
-          <a href="https://www.instagram.com/peterbruncik/" target="_blank"><img src={instagramIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-[55px] w-[45px]"/></a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=[Subject]&body=[Peter - Usually replies within 24 hours.]" target="_blank" rel="noopener noreferrer"><img src={GmailIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-auto w-[50px]"/></a>
-          <a href="https://twitter.com/peterbruncik" target="_blank"><img src={TwitterIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-auto w-[50px]"/></a>
+          <a href="https://www.instagram.com/peterbruncik/" target="_blank"><img src={instagramIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-[55px] w-[35px]"/></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=[Subject]&body=[Peter - Usually replies within 24 hours.]" target="_blank" rel="noopener noreferrer"><img src={GmailIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-auto w-[40px]"/></a>
+          <a href="https://twitter.com/peterbruncik" target="_blank"><img src={TwitterIcon} className="hover:scale-110 duration-300 ease-in-out lg:w-auto w-[40px]"/></a>
        </div>
 
 
@@ -354,7 +354,7 @@ function Pushups(){
 
 
                         
-                        <div className={`${switchGallery ? "bg-white  rounded-[30px] px-5 py-3 xl:text-base lg:text-[14px] sm:text-[12px] text-[10px]" : "hidden"}`}>
+                        <div className={`${switchGallery ? "bg-white  md:rounded-[30px] rounded-xl px-5 py-3 xl:text-base lg:text-[14px] sm:text-[12px] text-[10px]" : "hidden"}`}>
                             <div className="pr-20 flex flex-col space-y-1 overflow-y-scroll xl:max-h-[200px] sm:max-h-[175px] max-h-[90px] switchGalleryScrollbar">
                               <VscDebugStepBack className="absolute sm:right-14 right-10 top-4 xl:text-xl lg:text-[16px] sm:text-base text-xs duration-300 ease-in-out hover:scale-110" onClick={()=>{{setSwitchGallery(false)}}}/>
                               <div className=" cursor-pointer">
@@ -473,7 +473,7 @@ function Pushups(){
     <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
 
 
-      <div className="relative aspect-[4/7]">
+      <div className="relative">
         <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/TAGCf_QzbBw" title="Mafia 2 Radio Soundtrack - Billy Merman - 900 miles" allowFullScreen/>
         <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
@@ -481,97 +481,53 @@ function Pushups(){
         </div>
       </div>
 
-      <div className="relative aspect-[4/7]">
+      <div className="relative">
         <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/v6HBZC9pZHQ" title="Baby Keem, Kendrick Lamar - family ties (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen/>
-        <div className="absolute w-full flex justify-between md:px-6 px-2 py-1  bg-[#242424] roun rounded-b-[30px]">
+        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
         </div>
       </div>
 
-      <div className="relative aspect-[4/7]">
+      <div className="relative">
         <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/4B4pgDet6jo" title="𝐌𝐮𝐬𝐢𝐜 𝐒𝐨𝐮𝐧𝐝𝐬 𝐁𝐞𝐭𝐭𝐞𝐫 𝐖𝐢𝐭𝐡 𝐘𝐨𝐮 (Slowed) (Wolf Of Wallstreet) (Music VIdeo)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen/>
-        <div className="absolute w-full flex justify-between md:px-6 px-2 py-1  bg-[#242424] roun rounded-b-[30px]">
+        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
         </div>
       </div>
 
-      <div className="relative aspect-[4/7]">
+      <div className="relative">
         <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/TAGCf_QzbBw" title="Mafia 2 Radio Soundtrack - Billy Merman - 900 miles" allowFullScreen/>
-        <div className="absolute w-full flex justify-between md:px-6 px-2 py-1  bg-[#242424] roun rounded-b-[30px]">
+        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
         </div>
       </div>
 
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
+      <div className="relative">
+      <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/w2uKoytemDo" title="Amnesia GoGo - House of Creep 7 - [Sk-Cz] - Part.1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
         </div>
-        </div>
+      </div>
 
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo2.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
+      <div className="relative">
+        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/lB_OdxptWxE" title="Sam Butera &amp; The Witnesses - Let The Good Times Roll (Mafia II soundtrack)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
         </div>
-        </div>
+      </div>
 
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
+      <div className="relative">
+        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/hIq4UTgqDAc" title="Mobb Deep - Survival of the Fittest (Official HD Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
         </div>
-        </div>
-
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo2.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-        </div>
-
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo3.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-        </div>
-
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-        </div>
-
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo3.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-        </div>
-
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo2.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-        </div>
-
-        <div className="relative aspect-[4/7] bg-[url('/src/assets/pushupvideo.png')] bg-cover rounded-[30px] hover:scale-105 duration-500 ease-in-out ">
-        <div className="absolute bottom-0 w-full flex justify-between lg:px-3 sm:px-2 px-1 pb-4">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-        </div>
-
-        
-        
-
-
+      </div>
 
         </div>
 </div>

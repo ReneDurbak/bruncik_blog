@@ -163,8 +163,8 @@ function Articles(){
 {/*desktop - additional text*/}
   <div className="hidden lg:block">
   <div className=" tracking-normal 2xl:text-lg xl:text-[16px] md:text-[15px] break-words text-black bg-slate-100 rounded-2xl py-5 px-6 mt-[100px] font-poppins shadow-2xl">
-  Welcome to my articles homepage, the vibrant ❤️ of this platform, where each word brims with passion and dedication. Whether you're a new here or a loyal reader, I'm thrilled you're here. I'm committed to sharing wisdom 🧠, tips 💡, and experiences 🌟 to help you thrive in life, firmly believing that continuous learning and growth are essential.
-I hope you'll find inspiration 💫 and practical guidance here. Thank you for your support 🙏, and let's embrace the journey of lifelong learning 📚 and growth 🌱 together! 🤝
+  Welcome to my articles homepage, the vibrant ❤️ of this platform, where each word brims with passion and dedication. Whether you're a new here or a loyal reader, I'm thrilled you're here. I'm committed to sharing wisdom 🧠, tips 💡, and experiences 🌟 to help you thrive in life, firmly believing that continuous learning and growth are essential.<br/>
+ I hope you'll find inspiration 💫 and practical guidance here. Thank you for your support 🙏, and let's embrace the journey of lifelong learning 📚 and growth 🌱 together! 🤝
   </div>
 
   <p className="font-bold mt-[80px]  2xl:text-3xl xl:text-2xl md:text-xl text-base font-poppins">Enjoy!</p>

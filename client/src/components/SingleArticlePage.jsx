@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useMediaQuery } from 'react-responsive'
 import { Link } from "react-router-dom"
 import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
+import {BiHorizontalLeft, BiHorizontalRight} from "react-icons/bi"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import commentIcon from "../assets/commentIcon.png"
@@ -17,16 +18,17 @@ import closeButton from "../assets/closebutton.png"
 export default function SingleArticlePage({articles}) {
 
 
-    //media query
+    const isMobile = useMediaQuery({query: '(max-width: 640px )'})
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
 
-    //side bar 
+ 
     const [closeSideBar, setCloseSideBar] = useState(false)
 
-   //write a comment
+
    const[openWriteCommentWindow, setOpenWriteCommentWindow] = useState(false)
 
-    //Find clicked article
+
+
     const {id} = useParams()
 
     const article = articles.find((article) =>  article.id === Number(id))
@@ -34,7 +36,6 @@ export default function SingleArticlePage({articles}) {
     
     //console.log(otherArticles)
 
-    //URL
     const currentURL = `peterbruncik.com/articles/${id}`
 
     const [hideNameInput, setHideNameInput] = useState(false)
@@ -72,17 +73,17 @@ return (
         {/*Article container*/}
         <div className="2xl:max-w-[1100px] col-span-2 xl:mt-0 sm:mt-[-40px] mt-[-120px]">
             <div className="col-span-2">
-            <div className="flex justify-start items-center space-x-4 mt-16 xl:text-[13px] sm:text-[11px] text-[9px]">
+            <div className="flex justify-start items-center space-x-4 mt-16 font-bold 2xl:text-[14px] xl:text-[13px] md:text-[12px] sm:text-[11px] text-[10px]">
                 <div>16.AUGUST 2023, 12:45 </div>
                 <div className="text-gray-400">Reading time: 2:00</div> {/*npm modul na zobrazovanie casu -> date-fns*/}
             </div>
 
-            <div className="xl:text-6xl lg:text-5xl md:text-4xl  text-3xl xl:my-6 md:my-4 sm:my-3 my-4 font-bold">{article.title}</div>
+            <div className="xl:text-6xl lg:text-5xl sm:text-[28px]  text-3xl xl:my-6 md:my-4 sm:my-3 my-4 font-bold">{article.title}</div>
 
             <div className="flex justify-start items-center sm:space-x-4 space-x-2 xl:mt-10 xl:text-lg sm:text-[13px] text-[11px]">
                 <div className="xl:text-base md:text-[13px] text-[11px] font-spectral">written by </div>
                 <strong className=" tracking-wider">PETER BRUNCIK</strong>
-                <div className="border-l-2 border-black sm:pl-5 pl-2 uppercase"><strong>{article.label}</strong>
+                <div className="border-l-[1px] border-black sm:pl-5 pl-2 uppercase"><strong>{article.label}</strong>
             </div>
             </div>
 
@@ -93,7 +94,7 @@ return (
 
         {/*Article content*/}
 
-        <div className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] break-all leading-6 lg:pr-0 sm:pr-7 ">
+        <div className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] break-all leading-6 md:pr-0 sm:pr-8 pr-5 ">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula est nec sapien finibus eleifend. Nunc ut urna vitae augue ultrices eleifend ut quis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod purus id augue aliquet fermentum. Vestibulum vulputate, erat et molestie viverra, tellus mi aliquam enim, a dictum ipsum sapien nec dolor. Nulla nec mi augue. Vestibulum at felis magna. Nam at congue tellus.
 
 Etiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
@@ -115,12 +116,81 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
             
         </div>
 
+        {/*About the author - mobile res*/}
+        { 
+        isMobile ?
+        <div className="mt-20 pr-10">
+        <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">ABOUT THE AUTHOR</h1>
+            <div className=" mt-8  text-[12px]">
+            <strong>Peter Brunčík</strong> writes about egestas dui at iaculis ultricies. Nunc pulvinar neque at tellus accumsan lobortis nec non est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam dignissim dapibus volutpat. Pellentesque iaculis sapien quam, ut fermentum enim scelerisque in. 
+            <div className="mt-6 underline underline-offset-4  decoration-gray-300 xl:text-base lg:text-sm sm:text-[11px] text-[8px] flex space-x-1">
+                <div className=" hover:cursor-pointer text-[11px]"><Link to="/about">Click here to learn more</Link></div> 
+                
+                <div className="my-auto">
+                    <img src={arrowRightIntro} className="hover:scale-110 duration-100 ease-in-out xl:w-[26px] lg:w-[20px] sm:w-[18px] w-[12px]  hover:cursor-pointer"/>
+                </div>
+            </div>
+        </div>
+
+
+        <div className="my-12">
+            <div className="flex space-x-3 my-auto">
+                <h1 className="my-auto text-sm font-bold">Share:</h1>
+                <div className="flex space-x-2">
+                    <PinterestShareButton url={currentURL} media={currentURL}><img src={pinterest} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></PinterestShareButton>
+                    <TwitterShareButton url={currentURL} title="Check out this article!" via="peterbruncik"><img src={twitter} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></TwitterShareButton>
+                    <FacebookShareButton url={currentURL} quote="Check out this article!"><img src={facebook} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></FacebookShareButton>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div className="text-left text-[11px] pr-2">
+        <div className="divide-y-2 divide-gray-300">
+                <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">Read next</h1>
+            <div className="divide-y-2 divide-gray-300 mt-2">
+            {otherArticles.map((article)=> 
+            <div key={article.id}>
+            <RouteLink to={`/articles/${article.id}`}>
+                <div className="xl:py-6 py-4">
+                    {article.title}
+                </div>
+            </RouteLink>
+            </div>
+            )}
+            </div>
+
+
+            <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 flex xl:space-x-4 md:space-x-3 space-x-2">
+                <div className="font-bold  hover:cursor-pointer">
+                    <Link to="/articles">All articles</Link>
+                </div>
+
+                <div className="my-auto">
+                    <img src={arrowRight} className="xl:w-[22px] w-[14px] hover:scale-105 duration-100 ease-in-out"/>
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+        : ""
+            
+        }
+
+
 
         {/*Comments container*/}
-        <div className="mt-[200px]">
-            <h1 className="xl:text-4xl md:text-2xl text-xl">Comments and reviews</h1>
+        <div className="md:mt-[200px] md:my-20 my-[100px] md:pr-0 pr-4">
+            <h1 className="xl:text-4xl md:text-2xl text-xl font-bold">Comments and reviews</h1>
 
-            <div className="flex space-x-6 uppercase mt-6 xl:text-lg text-xs xl:mt-8">
+            <div className="flex space-x-6 uppercase mt-6 2xl:text-[19px] xl:text-lg text-xs xl:mt-8">
                 <div className="my-auto ">
                     Comments
                 </div>
@@ -153,7 +223,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <div className="xl:text-sm text-[11px] text-[#757575] mt-2">July 1, 2017 at 12:57 AM</div>
                     </div>
 
-                    <div className="xl:pl-20 pl-8">
+                    <div className="xl:pl-20 pl-8 pr-7">
                         <div className="border-2 border-gray-300 rounded-[10px] max-w-[480px] mt-6 xl:p-4 p-3">
                             <div className="xl:text-sm text-xs">
                             Thank you for the fantastic list! I've already read 'Meditations' by Marcus Aurelius, and now I have a list of books I want to dive into next. Stoicism is an inspiring philosophical movement for me.
@@ -197,7 +267,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         </div>
                         </div>
 
-                        <div className="absolute top-5 right-5" onClick={()=> setOpenWriteCommentWindow(false)}>X</div>
+                        <div className="absolute top-5 right-5" onClick={()=> setOpenWriteCommentWindow(false)}><img className="md:w-[30px] w-[24px]" src={closeButton}/></div>
                         </div>
 
                     </div>
@@ -217,19 +287,18 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
         {/*About the author side panel*/}
         {closeSideBar ? 
             
-        <div className={`${isLaptop ? "hidden" : "text-bold absolute top-20 right-8"}`} onClick={()=>setCloseSideBar(false)}>icon</div>
-    
+        <div className={`${isLaptop ? "hidden" : "text-bold absolute top-20 right-8 md:block hidden"}`} onClick={()=>setCloseSideBar(false)}><BiHorizontalLeft size={20}/></div>
         :
         
-            <div className={`${closeSideBar ? "hidden" : "relative xl:border-l-2 border-l-[1px] mr-0 sm:mt-[-100px] mt-[-125px]  max-h-auto z-[0]"}`}>
+            <div className={`${closeSideBar ? "hidden" : "relative xl:border-l-2 border-l-[1px] mr-0 sm:mt-[-100px] mt-[-125px]  max-h-auto z-[0] md:block hidden"}`}>
             <div onClick={()=>setCloseSideBar(true)} className={`${isLaptop ? "hidden" : "absolute sm:left-2 sm:top-[60px] top-5"}`}>
-                <img src={closeButton} className="sm:w-[24px] w-[20px]"/>
+                <BiHorizontalRight size={20}/>
             </div>
             <div className="relative xl:max-w-[400px] lg:max-w-[300px] sm:max-w-[250px] max-w-[150px] mx-auto text-left">
                 <div className="xl:pr-20 xl:pl-12 lg:px-8 md:px-6 px-4 lg:mt-[210px] md:mt-[150px] sm:mt-[180px] mt-[100px]">
 
             
-                    <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">ABOUT THE AUTHOR</h1>
+                    <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">ABOUT THE AUTHOR</h1>
                     <div className="sm:mt-10 mt-8 xl:text-base lg:text-sm sm:text-xs text-[10px]">
                     <strong>Peter Brunčík</strong> writes about egestas dui at iaculis ultricies. Nunc pulvinar neque at tellus accumsan lobortis nec non est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam dignissim dapibus volutpat. Pellentesque iaculis sapien quam, ut fermentum enim scelerisque in. 
                     <div className="mt-6 underline underline-offset-4  decoration-gray-300 xl:text-base lg:text-sm sm:text-[11px] text-[8px] flex space-x-1">
@@ -241,19 +310,11 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     </div>
                     </div>
 
-                    {/*Add banner*/}
-                    <div className="flex justify-center  my-[200px]">
-                        <div className="w-[300px] h-[400px] bg-[#D9D9D9] text-[#6F6F6F] rounded-lg p-4 flex justify-center items-center text-xl">
-                            
-                            <span className="rotate-[-45deg]">
-                                Miesto pre reklamu
-                            </span>
-                        </div>
-                    </div>
+
 
 
                     {/*Share container*/}
-                    <div className="grid justify-center text-center">
+                    <div className="grid justify-center text-center my-[180px]">
                         <h1 className="xl:text-xl sm:text-base text-xs font-bold">Share this article</h1>
                         
                         <div className="flex xl:space-x-8 sm:space-x-6 space-x-2 xl:mt-6 mt-4">
@@ -264,22 +325,12 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     </div>
 
 
-                    {/*Add banner*/}
-                    <div className="flex justify-center  my-[200px]">
-                        <div className="w-[300px] h-[400px] bg-[#D9D9D9]  text-[#6F6F6F] rounded-lg p-4 flex justify-center items-center text-xl">
-                            
-                            <span className="rotate-[-45deg]">
-                                Miesto pre reklamu
-                            </span>
-                        </div>
-                    </div>
-
 
                     {/*Read next container*/}
 
                     <div className="text-left xl:text-base sm:text-xs text-xs">
                         <div className="divide-y-2 divide-gray-300">
-                                <h1 className="uppercase mb-4 text-[#6F6F6F]">Read next</h1>
+                                <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">Read next</h1>
                             <div className="divide-y-2 divide-gray-300 mt-2">
                             {otherArticles.map((article)=> 
                             <div key={article.id}>
@@ -295,7 +346,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
                             <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 pb-[250px] flex xl:space-x-4 md:space-x-3 space-x-2">
                                 <div className="font-bold  hover:cursor-pointer">
-                                    All articles
+                                    <Link to="/articles">All articles</Link>
                                 </div>
 
                                 <div className="my-auto">
@@ -307,6 +358,19 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         </div>
 
                     </div>
+
+
+                    
+                    {/*Add banner*/}
+                    <div className="flex justify-center  mb-[200px]">
+                        <div className="w-[300px] h-[400px] bg-[#D9D9D9] text-[#6F6F6F] rounded-lg p-4 flex justify-center items-center text-xl">
+                            
+                            <span className="rotate-[-45deg]">
+                                Miesto pre reklamu
+                            </span>
+                        </div>
+                    </div>
+
 
 
                 </div>

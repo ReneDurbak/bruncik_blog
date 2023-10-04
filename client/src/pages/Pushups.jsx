@@ -161,7 +161,7 @@ function Pushups(){
         window.removeEventListener('click', handleClickOutsideNotifications)
       }     
 
-  },[notificationIsVisible])
+  },[])
   
 
 
@@ -190,7 +190,7 @@ function Pushups(){
      
 
 
-  },[openSwitchGalleryGenres])
+  },[])
 
 
 

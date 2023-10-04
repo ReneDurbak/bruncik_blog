@@ -4,6 +4,8 @@ import { useMediaQuery } from 'react-responsive'
 import { Link } from "react-router-dom"
 import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
 import {BiHorizontalLeft, BiHorizontalRight} from "react-icons/bi"
+import { Rating } from '@mui/material';
+import Button from '@mui/material/Button';
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import commentIcon from "../assets/commentIcon.png"
@@ -13,10 +15,57 @@ import twitter from "../assets/twShare.png"
 import facebook from "../assets/fbShare.png"
 import pinterest from "../assets/pintShare.png"
 import closeButton from "../assets/closebutton.png"
+import paperPlane from "../assets/PaperPlane.png"
 
 
 export default function SingleArticlePage({articles}) {
 
+    const labelsForArticleReview = [
+        {
+            id:1,
+            labelTitle: "Inspiring",
+        },
+        {
+            id:2,
+            labelTitle: "Easy to read",
+        },
+        {
+            id:3,
+            labelTitle: "Motivational",
+        },
+        {
+            id:4,
+            labelTitle: "Interesting",
+        },
+        {
+            id:5,
+            labelTitle: "Practical",
+        },
+        {
+            id:6,
+            labelTitle: "Informational",
+        },
+        {
+            id:7,
+            labelTitle: "Impractical",
+        },
+        {
+            id:8,
+            labelTitle: "Unconvincing",
+        },
+        {
+            id:9,
+            labelTitle: "Incorrect",
+        },
+        {
+            id:10,
+            labelTitle: "Confusing"
+        },
+        {
+            id:11,
+            labelTitle: "Complicated",
+        }
+    ]
 
     const isMobile = useMediaQuery({query: '(max-width: 640px )'})
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
@@ -25,9 +74,7 @@ export default function SingleArticlePage({articles}) {
     const [closeSideBar, setCloseSideBar] = useState(false)
 
 
-   const[openWriteCommentWindow, setOpenWriteCommentWindow] = useState(false)
-
-
+    const[openWriteCommentWindow, setOpenWriteCommentWindow] = useState(false)
 
     const {id} = useParams()
 
@@ -40,7 +87,56 @@ export default function SingleArticlePage({articles}) {
 
     const [hideNameInput, setHideNameInput] = useState(false)
 
-  
+
+    const [rating, setRating] = useState(0)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [comment, setComment] = useState('')
+    const [selectedLabel, setSelectedLabel] = useState('')
+
+    const handleRatingChange = (event, newRating) => {
+    setRating(newRating)
+    setIsModalOpen(true)
+    };
+
+    const handleCloseReviewWindow = () => {
+    setIsModalOpen(false)
+    setHideNameInput(false)
+    }
+
+    const handleSave = () => {
+    console.log('Rating:', rating)
+    console.log('Comment:', comment)
+    console.log('Selected Label:', selectedLabel)
+    handleCloseReviewWindow()
+    }
+
+
+    useEffect(()=>{
+        
+        const handleCLickOutsideReviewWindow = (event) => {
+            const reviewWindow = document.getElementById("reviewWindow")
+            const reviewWindowTrigger = document.getElementById("reviewWindowTrigger")
+
+            if(reviewWindow && reviewWindowTrigger && !reviewWindow.contains(event.target) && !reviewWindowTrigger.contains(event.target)){
+                handleCloseReviewWindow()
+            }
+        }
+
+
+        window.addEventListener('click', handleCLickOutsideReviewWindow)
+
+        return ()=>{ 
+            window.removeEventListener('click', handleCLickOutsideReviewWindow)
+        }
+        
+
+    }, [])
+
+
+
+
+
+
     useEffect(()=>{
         
          const handleClickOutsideCommentWindow = (event) => {
@@ -49,6 +145,7 @@ export default function SingleArticlePage({articles}) {
 
             if(commentWindow && triggerCommentWindow && !triggerCommentWindow.contains(event.target) && !commentWindow.contains(event.target)){
                 setOpenWriteCommentWindow(false)
+                setHideNameInput(false)
             }
         }
 
@@ -56,9 +153,9 @@ export default function SingleArticlePage({articles}) {
         window.addEventListener('click', handleClickOutsideCommentWindow)
 
         return () =>{
-            window.removeEventListener('click', addEventListener)
+            window.removeEventListener('click', handleClickOutsideCommentWindow)
         }
-    })
+    }, [])
 
 
 
@@ -110,11 +207,73 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
         {/*Review container*/}
         <div className="mt-[125px] flex justify-center">
             <div className="text-center">
-                <h1 className="lg:text-2xl md:text-xl text-[14px] font-bold">How do you rate this article?</h1>
-                <div>Stars</div>
+                <h1 className="lg:text-2xl md:text-xl text-[14px] font-bold mb-2">How do you rate this article?</h1>
+                <Rating
+                id="reviewWindowTrigger"
+                name="article-rating"
+                value={rating}
+                precision={0.5} // Allows half-star ratings
+                onChange={handleRatingChange}
+                style={{fontSize: 62}}
+            />
+
+                { isModalOpen ?
+                <div className="fixed top-0 left-0 flex justify-center items-center bg-[#00000080] z-[10] h-[100vh] w-full">
+                    <div  id="reviewWindow" className="relative px-6 py-6 w-[750px] bg-white rounded-[30px]">
+                    <h1 className="text-left font-bold tracking-wider"> Rate this article</h1>
+
+                    <div className="absolute top-4 right-4 w-[28px]"><img src={closeButton} className="duration-300 ease-out hover:scale-110" onClick={()=> handleCloseReviewWindow()}/></div>
+
+                    <div className={`${hideNameInput ? "hidden" : "mt-7 text-xs text-left"}`}>
+                        <p className="font-bold text-xs">Name:</p>
+                        <input placeholder="Your name " className="w-[325px] font-bold md:rounded-[30px] rounded-[15px] mt-2 border-2 py-[5px] px-4 border-gray-400"/>
+                    </div>
+
+                    <div className={`${hideNameInput ? "flex space-x-2 md:mt-[89px] mt-[95px]" : "flex space-x-2 mt-2"}`}>
+                            <input type="checkbox"  onClick={()=>setHideNameInput(!hideNameInput)}/>
+                            <div className="font-bold text-xs">Stay anonymous</div>
+                    </div>
+                    
+                    <h1 className="text-left text-xs italic mt-3 font-bold">Choose tags that fit this article:</h1>
+                    
+                    {/*Labels*/}
+                    <div className="flex flex-row  items-center flex-wrap auto-rows-fr space-x-2 my-2 text-sm">
+                        {labelsForArticleReview.map( (label) =>
+                            <div id={label.id} className="rounded-2xl border border-black px-2 my-1 duration-300 ease-in-out hover:bg-black hover:text-white active:bg-slate-600 active:border-slate-600">{label.labelTitle}</div>
+                        )
+                        }
+
+                    </div>
+
+                    <input placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className="w-full font-bold md:rounded-[30px] rounded-[15px] mt-2 mb-6 border-2 py-2 px-4 text-xs border-gray-400"/>
+
+                    <Rating name="read-only" value={rating} readOnly size="large" style={{fontSize:70}} precision={0.5} />
+            
+                
+                    {/*Send button rating*/}
+                    <div className="text-right mt-2">
+                        <Button onClick={handleSave} variant="contained" style={{backgroundColor: 'black', color: 'white', borderRadius: 30, paddingTop: 6, paddingBottom: 6, paddingRight: 70, paddingLeft: 70}}>
+                            <div className="flex space-x-1 text-xs capitalize tracking-widest font-poppins">
+                                <div className="underline underline-offset-2  my-auto">send</div>
+                                <div className="my-auto"><img src={paperPlane} className="w-[10px]"/></div>
+                            </div>
+                        </Button>
+                    </div>  
+                    
+                    </div>
+                </div>
+
+
+                    :""
+
+                    }
             </div>
             
         </div>
+
+
+
+
 
         {/*About the author - mobile res*/}
         { 
@@ -186,6 +345,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
 
 
+
         {/*Comments container*/}
         <div className="md:mt-[200px] md:my-20 my-[100px] md:pr-0 pr-4">
             <h1 className="xl:text-4xl md:text-2xl text-xl font-bold">Comments and reviews</h1>
@@ -253,7 +413,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <div className={`${hideNameInput ? "flex space-x-2 md:mt-[107px] mt-[95px]" : "flex space-x-2 mt-1"}`}>
                                 <input type="checkbox"  onClick={()=>setHideNameInput(!hideNameInput)}/>
                                 <div className="font-bold md:text-base text-xs">Stay anonymous</div>
-                            </div> 
+                        </div> 
 
                         <div className="mt-8 md:text-base text-sm">
                             <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>

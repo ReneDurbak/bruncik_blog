@@ -67,6 +67,19 @@ export default function SingleArticlePage({articles}) {
         }
     ]
 
+
+    const [selectedLabels, setSelectedLabels] = useState([])
+
+    const handleLabelClick = (labelID) => {
+        if (selectedLabels.includes(labelID)){
+            setSelectedLabels(selectedLabels.filter((id) => id !== labelID))
+        }else{
+            setSelectedLabels([...selectedLabels, labelID])
+        }
+
+       
+    }
+
     const isMobile = useMediaQuery({query: '(max-width: 640px )'})
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
 
@@ -81,17 +94,16 @@ export default function SingleArticlePage({articles}) {
     const article = articles.find((article) =>  article.id === Number(id))
     const otherArticles = articles.filter((article) => article.id !== Number(id) )
     
-    //console.log(otherArticles)
 
     const currentURL = `peterbruncik.com/articles/${id}`
 
     const [hideNameInput, setHideNameInput] = useState(false)
 
 
+    const [name, setName] = useState("")
     const [rating, setRating] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [comment, setComment] = useState('')
-    const [selectedLabel, setSelectedLabel] = useState('')
 
     const handleRatingChange = (event, newRating) => {
     setRating(newRating)
@@ -101,12 +113,17 @@ export default function SingleArticlePage({articles}) {
     const handleCloseReviewWindow = () => {
     setIsModalOpen(false)
     setHideNameInput(false)
+    setRating(0)
+    setName('')
+    setComment('')
+    setSelectedLabels([])
     }
 
     const handleSave = () => {
+    console.log('Name', name)
     console.log('Rating:', rating)
     console.log('Comment:', comment)
-    console.log('Selected Label:', selectedLabel)
+    console.log('Selected Label:', selectedLabels)
     handleCloseReviewWindow()
     }
 
@@ -119,6 +136,10 @@ export default function SingleArticlePage({articles}) {
 
             if(reviewWindow && reviewWindowTrigger && !reviewWindow.contains(event.target) && !reviewWindowTrigger.contains(event.target)){
                 handleCloseReviewWindow()
+                setRating(0)
+                setName('')
+                setComment('')
+                setSelectedLabels([])
             }
         }
 
@@ -226,11 +247,11 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
                     <div className={`${hideNameInput ? "hidden" : "mt-7 text-xs text-left"}`}>
                         <p className="font-bold text-xs">Name:</p>
-                        <input placeholder="Your name " className="w-[325px] font-bold md:rounded-[30px] rounded-[15px] mt-2 border-2 py-[5px] px-4 border-gray-400"/>
+                        <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className="w-[325px] font-bold md:rounded-[30px] rounded-[15px] mt-2 border-2 py-[5px] px-4 border-gray-400"/>
                     </div>
 
                     <div className={`${hideNameInput ? "flex space-x-2 md:mt-[89px] mt-[95px]" : "flex space-x-2 mt-2"}`}>
-                            <input type="checkbox"  onClick={()=>setHideNameInput(!hideNameInput)}/>
+                            <input  name="anonymousCheckbox" type="checkbox"  onClick={()=>{setHideNameInput(!hideNameInput), setName("Anonymous")}}/>
                             <div className="font-bold text-xs">Stay anonymous</div>
                     </div>
                     
@@ -239,7 +260,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     {/*Labels*/}
                     <div className="flex flex-row  items-center flex-wrap auto-rows-fr space-x-2 my-2 text-sm">
                         {labelsForArticleReview.map( (label) =>
-                            <div id={label.id} className="rounded-2xl border border-black px-2 my-1 duration-300 ease-in-out hover:bg-black hover:text-white active:bg-slate-600 active:border-slate-600">{label.labelTitle}</div>
+                            <div key={label.id} onClick={()=> handleLabelClick(label.id)} className={`px-2 my-1 duration-300 ease-in-out rounded-2xl border ${selectedLabels.includes(label.id) ? "bg-blue-400" : "border-black hover:bg-black hover:text-white active:bg-slate-600 active:border-slate-600"} `}>{label.labelTitle}</div>
                         )
                         }
 

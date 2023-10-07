@@ -80,7 +80,7 @@ export default function SingleArticlePage({articles}) {
        
     }
 
-    const isMobile = useMediaQuery({query: '(max-width: 640px )'})
+    const isTablet = useMediaQuery({query: '(max-width: 768px )'})
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
 
  
@@ -191,7 +191,7 @@ return (
         {/*Article container*/}
         <div className="2xl:max-w-[1100px] col-span-2 xl:mt-0 sm:mt-[-40px] mt-[-120px]">
             <div className="col-span-2">
-            <div className="flex justify-start items-center space-x-4 mt-16 font-bold 2xl:text-[14px] xl:text-[13px] md:text-[12px] sm:text-[11px] text-[10px]">
+            <div className="flex justify-start items-center space-x-4 mt-16 font-regular  xl:text-[12px] md:text-[10px] sm:text-[9px] text-[8px]">
                 <div>16.AUGUST 2023, 12:45 </div>
                 <div className="text-gray-400">Reading time: 2:00</div> {/*npm modul na zobrazovanie casu -> date-fns*/}
             </div>
@@ -251,7 +251,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     </div>
 
                     <div className={`${hideNameInput ? "flex space-x-2 md:mt-[89px] mt-[95px]" : "flex space-x-2 mt-2"}`}>
-                            <input  name="anonymousCheckbox" type="checkbox"  onClick={()=>{setHideNameInput(!hideNameInput), setName("Anonymous")}}/>
+                            <input  name="anonymousCheckbox" className="cursor-pointer" type="checkbox"  onClick={()=>{setHideNameInput(!hideNameInput), setName("Anonymous")}}/>
                             <div className="font-bold text-xs">Stay anonymous</div>
                     </div>
                     
@@ -260,7 +260,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     {/*Labels*/}
                     <div className="flex flex-row  items-center flex-wrap auto-rows-fr space-x-2 my-2 text-sm">
                         {labelsForArticleReview.map( (label) =>
-                            <div key={label.id} onClick={()=> handleLabelClick(label.id)} className={`px-2 my-1 duration-300 ease-in-out rounded-2xl border ${selectedLabels.includes(label.id) ? "bg-blue-400" : "border-black hover:bg-black hover:text-white active:bg-slate-600 active:border-slate-600"} `}>{label.labelTitle}</div>
+                            <div key={label.id} onClick={()=> handleLabelClick(label.id)} className={`cursor-pointer px-2 my-1 duration-300 ease-in-out rounded-2xl border ${selectedLabels.includes(label.id) ? "bg-blue-400" : "border-black hover:bg-black hover:text-white active:bg-slate-600 active:border-slate-600"} `}>{label.labelTitle}</div>
                         )
                         }
 
@@ -273,12 +273,12 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                 
                     {/*Send button rating*/}
                     <div className="text-right mt-2">
-                        <Button onClick={handleSave} variant="contained" style={{backgroundColor: 'black', color: 'white', borderRadius: 30, paddingTop: 6, paddingBottom: 6, paddingRight: 70, paddingLeft: 70}}>
+                        <button onClick={handleSave} variant="contained" className=" bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500  md:text-base text-sm mt-2 p-2 rounded-[30px]">
                             <div className="flex space-x-1 text-xs capitalize tracking-widest font-poppins">
                                 <div className="underline underline-offset-2  my-auto">send</div>
                                 <div className="my-auto"><img src={paperPlane} className="w-[10px]"/></div>
                             </div>
-                        </Button>
+                        </button>
                     </div>  
                     
                     </div>
@@ -298,7 +298,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
         {/*About the author - mobile res*/}
         { 
-        isMobile ?
+        isTablet ?
         <div className="mt-20 pr-10">
         <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">ABOUT THE AUTHOR</h1>
             <div className=" mt-8  text-[12px]">
@@ -432,7 +432,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         </div>
 
                         <div className={`${hideNameInput ? "flex space-x-2 md:mt-[107px] mt-[95px]" : "flex space-x-2 mt-1"}`}>
-                                <input type="checkbox"  onClick={()=>setHideNameInput(!hideNameInput)}/>
+                                <input type="checkbox" className="cursor-pointer"  onClick={()=>setHideNameInput(!hideNameInput)}/>
                                 <div className="font-bold md:text-base text-xs">Stay anonymous</div>
                         </div> 
 
@@ -442,8 +442,8 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         </div>
 
                         <div className="px-4">
-                        <div className="w-full bg-black text-white md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
-                            <div>Send</div>
+                        <div className="w-full bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500 md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
+                            <div className="font-bold underline-offset-2 underline">Send</div>
                             <div>Icon</div>
                         </div>
                         </div>

@@ -265,7 +265,7 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 
 {/*Topics*/}
         <div>
-    <h2 className="mx-auto text-center 2xl:text-6xl xl:text-7xl lg:text-6xl sm:text-5xl text-6xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
+    <h2 className="mx-auto text-center 2xl:text-6xl xl:text-7xl lg:text-6xl sm:text-5xl text-5xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
     </div>
 
 
@@ -283,7 +283,7 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 {
 /*Search bar*/}
 
-<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 px-0 mx-6 mt-4 sm:mt-0 lg:mt- lg:mb-1 mb-6 sm:mb-0 w-full sm:w-auto">
+<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 px-0 mx-12 mt-4 sm:mt-0 lg:mt- lg:mb-1 mb-6 sm:mb-0 w-full sm:w-auto">
 <div className="my-auto">
 <Autosuggest
           suggestions={suggestions}
@@ -340,7 +340,7 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
  
 {/*All articles*/}
 
-<div className="xl:tracking-[4px] tracking-[2px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
+<div className="xl:tracking-[4px] tracking-[1px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
   
 {ListofArticles.map((article) =>
   <RouteLink to={`/articles/${article.id}`}>

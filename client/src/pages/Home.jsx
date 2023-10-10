@@ -9,7 +9,7 @@ import pushups1 from "../assets/push-ups/pushups1.png"
 import pushups2 from "../assets/push-ups/pushups2.png"
 import exploreA from "../assets/explore/exploreA.png"
 import exploreB from "../assets/explore/exploreB.png"
-import queston from "../assets/mycourse/question.png"
+import question from "../assets/mycourse/question.png"
 import lines from "../assets/push-ups/lines.png"
 
 
@@ -81,7 +81,7 @@ function Home(){
       <ImageComponent src={exploreA} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
       </div>
         <div className="lg:pt-3">Articles </div>
-        <div className="mt-[-4px] "><Link to="/articles" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 decoration-1 active:text-red-400">Read more </Link> </div>
+        <div className="mt-[-4px] "><a href="#articles" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 decoration-1 active:text-red-400">Read more </a> </div>
    
         </div>
 
@@ -90,7 +90,7 @@ function Home(){
         <ImageComponent src={exploreA} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
         </div>
         <div className=" lg:pt-3">Push Ups Gallery</div>
-        <div className="mt-[-4px]"><Link to="/push-ups" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 decoration-1 active:text-red-400">Read more </Link> </div>
+        <div className="mt-[-4px]"><a href="#push-ups" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 decoration-1 active:text-red-400">Read more </a> </div>
 
         </div>
 
@@ -100,7 +100,7 @@ function Home(){
         <ImageComponent src={exploreB} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
         </div>
         <div className="lg:pt-3" >Work with me - My Course </div>
-        <div className="mt-[-4px]"><Link to="/mycourse" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 hover:decoration-1 active:text-red-400">Read more </Link> </div>
+        <div className="mt-[-4px]"><a href="#mycourse" className="no-underline sm:text-xs md:text-base text-sm hover:underline underline-offset-2 hover:decoration-1 active:text-red-400">Read more </a> </div>
         
         </div>
 
@@ -119,7 +119,7 @@ function Home(){
     {/*menu*/}
       {/*Articles*/ }
 
-    <div className="w-full  2xl:bg-[url('/src/assets/articles/articlesbg.png')] lg:bg-[url('/src/assets/articles/articlesbgnotebook.png')] md:bg-[url('/src/assets/articles/articlesbgtablet.png')] bg-[url('/src/assets/articles/articlesbgmobile.png')] bg-cover	pt-[350px] sm:py-[400px] lg:py-[600px]  font-spectral">
+    <div id="articles" className="w-full  2xl:bg-[url('/src/assets/articles/articlesbg.png')] lg:bg-[url('/src/assets/articles/articlesbgnotebook.png')] md:bg-[url('/src/assets/articles/articlesbgtablet.png')] bg-[url('/src/assets/articles/articlesbgmobile.png')] bg-cover	pt-[350px] sm:py-[400px] lg:py-[600px]  font-spectral">
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-20 sm:px-10 px-10">
         
    
@@ -131,11 +131,11 @@ function Home(){
         <ImageComponent src={articlemenu} useHash={hash2} styling={styling2} useWidth={width2} useHeight={height2}/>
 
         </div> 
-        <div className="2xl:text-[19px] xl:text-lg text-base break-words  font-regular tracking-normal  text-center lg:text-left underline-offset-2">
+        <div className="2xl:text-[19px] xl:text-lg text-base break-words  font-regular tracking-normal  text-justify lg:text-left underline-offset-2">
           
         Right on this page, you'll discover the <strong>heart</strong> and <strong>essence</strong> of this entire website, my portfolio, which is <u>primarily composed</u> of <strong>articles</strong> on this site. Their content consists of <strong>practical</strong> and <strong>helpful advice</strong> meant to assist you in living a happy and fulfilled life, or to serve as a source of <strong>inspiration</strong> on days when you <strong>lack motivation</strong> or are going through tough times. You'll find articles covering various areas and topics that I've been deeply involved in for quite some time. Through my <strong>knowledge</strong> and <strong>experiences</strong>, encapsulated in these articles, I aim to present this information to you in the <strong>simplest</strong> form possible. However, these texts may not resonate with everyone, so <u>I believe that each person will find their own path in this and hopefully, find something useful in it</u>. After all, as an old Chinese proverb goes, <i>"when the student is ready, the teacher will appear."</i>          </div>
           <div className="mt-3 text-center sm:text-base  text-sm">
-        <Link to="/articles" className="active:bg-lime-600 bg-lime-400 rounded-2xl px-2 py-1 hover:bg-lime-500 duration-500 ease-in-out lg:float-left" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to see more ...</span></Link>
+        <Link to="/articles" className="active:bg-lime-600 bg-lime-400 rounded-2xl px-2 py-1 hover:bg-lime-500 duration-500 ease-in-out lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span></Link>
         
         
         </div>
@@ -159,7 +159,7 @@ function Home(){
 
       {/*Push ups gallery*/}
  
-    <div className="sm:mt-[-150px] lg:mt-[-250px] 2xl:mt-[0px] mt-[250px]  w-full 2xl:bg-[url('/src/assets/push-ups/pushupsbg.png')] lg:bg-[url('/src/assets/push-ups/pushupsbgnotebook.png')] sm:bg-[url('/src/assets/push-ups/pushupsbgtablet.png')] bg-cover	py-[300px] sm:py-[400px] lg:py-[575px] font-spectral">
+    <div id="push-ups" className="sm:mt-[-150px] lg:mt-[-250px] 2xl:mt-[0px] mt-[250px]  w-full 2xl:bg-[url('/src/assets/push-ups/pushupsbg.png')] lg:bg-[url('/src/assets/push-ups/pushupsbgnotebook.png')] sm:bg-[url('/src/assets/push-ups/pushupsbgtablet.png')] bg-cover	py-[300px] sm:py-[400px] lg:py-[575px] font-spectral">
       
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-20 sm:px-10 px-10">
  
@@ -191,10 +191,11 @@ function Home(){
         </div>
 
         {/*Additional text*/}
-        <div className="2xl:text-[19px] xl:text-lg text-base tracking-normal break-words font-regular lg:text-right text-center sm:w-full 2xl:ml-[200px] xl:ml-[0px] lg:ml-20 lg:mt-0 mt-8 underline-offset-2">
+        <div className="2xl:text-[19px] xl:text-lg text-base tracking-normal break-words font-regular lg:text-right text-justify sm:w-full 2xl:ml-[200px] xl:ml-[0px] lg:ml-20 lg:mt-0 mt-8 underline-offset-2">
         <i><strong>Push ups, push ups, push ups</strong>. Have you ever tried doing <strong>1,000 push ups</strong> in a single day? How many push ups can you do in one set? And what about your endurance, not just at the gym (or in bed)?</i> I'm not asking these questions to belittle or embarrass you, but to highlight how <u>physical strength and endurance shape your identity and who you are as a person</u>. It's not just about having a ripped body and excellent physical fitness; it's also about how you handle <strong>obstacles, discomfort</strong>, and the <strong>pain</strong> that comes with them. Exercise itself helps us with that.
-On this page, you'll find videos of different people, including myself ;), who have decided to change their lives, thanks in part to push ups that we do every day, no matter the circumstances, whether we feel good or not. This is how you can build discipline and endurance, and bring order to your life. For more information or to join us, you can find details inside. I look forward to having you join us! :)        <div className=" mt-3 text-center xl:text-base sm:text-sm text-sm">
-        <Link to="/push-ups" className="active:bg-red-900 bg-red-400 rounded-2xl px-2 py-1 hover:bg-red-500 duration-300 ease-in-out lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to see more ...</span></Link>
+On this page, you'll find videos of different people, including myself ;), who have decided to change their lives, thanks in part to push ups that we do every day, no matter the circumstances, whether we feel good or not. This is how you can build discipline and endurance, and bring order to your life. For more information or to join us, you can find details inside. I look forward to having you join us! :)        
+        <div className=" mt-3 text-center xl:text-base sm:text-sm text-sm">
+        <Link to="/push-ups" className="active:bg-red-900 bg-red-400 rounded-2xl px-2 py-1 hover:bg-red-500 duration-300 ease-in-out lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span></Link>
         </div>
         </div>
 
@@ -214,7 +215,7 @@ On this page, you'll find videos of different people, including myself ;), who h
 
      {/*My course*/}
 
-     <div className="sm:mt-[-350px] lg:mt-[-350px] 2xl:mt-[-50px] mt-[-450px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')]   bg-cover py-[325px] sm:py-[250px] lg:py-[250px]	 xl:py-[200px] 2xl:py-[150px] xl:mb-[225px] font-spectral">
+     <div id="mycourse" className="sm:mt-[-350px] lg:mt-[-350px] 2xl:mt-[-50px] mt-[-450px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')]   bg-cover py-[325px] sm:py-[250px] lg:py-[250px]	 xl:py-[200px] 2xl:py-[150px] xl:mb-[225px] font-spectral">
       <div className="2xl:max-w-[1680px]  mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-10">
     
       <h1 className="  2xl:text-7xl xl:text-6xl sm:text-5xl text-2xl  lg:text-left text-center underline decoration-1 underline-offset-[25px] " >My Course - Work with me</h1>
@@ -223,7 +224,7 @@ On this page, you'll find videos of different people, including myself ;), who h
 
       <div className="xl:mt-[310px] sm:mt-[350px]  mt-[150px] text-black sm:px-4 px-10">
         <div className=" max-w-full sm:mt-[-230px] mt-[-50px]">
-          <img src={queston} className="mx-auto w-[200px] sm:w-[250px] lg:w-[275px] xl:w-[325px] 2xl:w-[425px]" />
+          <img src={question} className="mx-auto w-[200px] sm:w-[250px] lg:w-[275px] xl:w-[325px] 2xl:w-[425px]" />
         </div>
       <div className="align-middle mx-auto text-center 2xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[-190px] xl:mt-[-200px] 2xl:mt-[-260px] mt-[-110px]">Coming soon!</div>
       
@@ -263,13 +264,13 @@ On this page, you'll find videos of different people, including myself ;), who h
       <ImageComponent src={selfieabout} useHash={hash4} styling={styling4} useWidth={width4} useHeight={height4}/>
    
 
-      <div className="2xl:text-[19px] xl:text-lg text-base break-words font-regular tracking-normal    lg:text-left text-center underline-offset-2">
+      <div className="2xl:text-[19px] xl:text-lg text-base break-words font-regular tracking-normal    lg:text-left text-justify underline-offset-2">
         <div className="sm:text-3xl text-2xl mb-4 font-bold track">Who the hell am I?</div>
-        Maybe you're now wondering the same question I used to ask myself when I first came across a bunch of motivational speakers, mental coaches, and similar figures on the internet, preaching about how to live and what to do. In those moments, we often think, 'Who's this person, and why should I listen to them?' The change happens when we get to <u>know this person better, learn about their backstory, what they've been through</u>, and <u>what their life's direction and purpose are</u>.
+        Maybe you're now wondering the same question I used to ask myself when I first came across a bunch of motivational speakers, mental coaches, and similar figures on the internet, preaching about how to live and what to do. In those moments, we often think, 'Who's this person, and why should I listen to them?' The change happens when we get to <u>know this person better, learn about their backstory, what they've been through</u>, and <u>what their life's direction and purpose are</u>.<br/>
 And <u>that's exactly my goal</u>. For those of you who have known me for a while, this might not be all that interesting, but you can still discover things about me that you might not have known. As for the rest of you, this page is here for you. Its purpose is to provide insight into my life so that you can get to <u>know me better, trust me, and also understand the background behind my transformation</u>. So don't hesitate, click below."       </div>
 
       <div className="mt-3 text-center xl:text-base sm:text-sm text-sm">
-        <Link to="/about" className="duration-500 ease-in-out bg-gradient-to-b from-lime-200 via-red-200 to-cyan-200 rounded-2xl px-2 py-1 hover:bg-gradient-to-b hover:from-lime-300 hover:via-red-300 hover:to-cyan-300 active:from-lime-400 active:via-red-400 active:to-cyan-400 xl:float-left lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span> <span className="no-underline">to learn about me more ...</span></Link>
+        <Link to="/about" className="duration-500 ease-in-out bg-gradient-to-b from-lime-200 via-red-200 to-cyan-200 rounded-2xl px-2 py-1 hover:bg-gradient-to-b hover:from-lime-300 hover:via-red-300 hover:to-cyan-300 active:from-lime-400 active:via-red-400 active:to-cyan-400 lg:float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span></Link>
         </div>
 
       </div>

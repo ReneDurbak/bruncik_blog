@@ -4,8 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 import { Link } from "react-router-dom"
 import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
 import {BiHorizontalLeft, BiHorizontalRight} from "react-icons/bi"
-import { Rating } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Rating } from '@mui/material'
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import commentIcon from "../assets/commentIcon.png"
@@ -16,6 +15,7 @@ import facebook from "../assets/fbShare.png"
 import pinterest from "../assets/pintShare.png"
 import closeButton from "../assets/closebutton.png"
 import paperPlane from "../assets/PaperPlane.png"
+import paperPlaneBlack from "../assets/PaperPlaneBlack.png"
 
 
 export default function SingleArticlePage({articles}) {
@@ -80,12 +80,16 @@ export default function SingleArticlePage({articles}) {
        
     }
 
-    const isTablet = useMediaQuery({query: '(max-width: 768px )'})
+    const isTabletAboutMe = useMediaQuery({query: '(max-width: 768px )'})
+    const isTablet = useMediaQuery({query: '(min-width: 768px )'})
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
+    const isLaptopXl = useMediaQuery({query: '(min-width: 1440px)'})
+    const isDesktop = useMediaQuery({query: '(min-width: 1536px)'})
 
  
     const [closeSideBar, setCloseSideBar] = useState(false)
 
+    const [hoverOnPaperPlane, setHoverOnPaperPlane] = useState(false)
 
     const[openWriteCommentWindow, setOpenWriteCommentWindow] = useState(false)
 
@@ -104,6 +108,7 @@ export default function SingleArticlePage({articles}) {
     const [rating, setRating] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [comment, setComment] = useState('')
+
 
     const handleRatingChange = (event, newRating) => {
     setRating(newRating)
@@ -185,7 +190,7 @@ return (
     <Navbar/>
     {/*Main container*/}
     <div className={`${closeSideBar ? "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 px-7" : "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 pl-4"}`}>
-        
+
 
 
         {/*Article container*/}
@@ -198,11 +203,11 @@ return (
 
             <div className="xl:text-6xl lg:text-5xl sm:text-[28px]  text-3xl xl:my-6 md:my-4 sm:my-3 my-4 font-bold">{article.title}</div>
 
-            <div className="flex justify-start items-center sm:space-x-4 space-x-2 xl:mt-10 xl:text-lg sm:text-[13px] text-[11px]">
+            <div className=" flex justify-start items-center sm:space-x-4 space-x-2 xl:mt-10 xl:text-lg sm:text-[13px] text-[11px]">
                 <div className="xl:text-base md:text-[13px] text-[11px] font-spectral">written by </div>
                 <strong className=" tracking-wider">PETER BRUNCIK</strong>
-                <div className="border-l-[1px] border-black sm:pl-5 pl-2 uppercase"><strong>{article.label}</strong>
-            </div>
+                <div className="border-l-[1px] border-black  uppercase" style={{ height: isLaptopXl ?'16px': isLaptop ? '11px' : isTablet ? '10px': '9px' }}></div>
+                <div><strong>{article.label}</strong></div>
             </div>
 
 
@@ -212,7 +217,7 @@ return (
 
         {/*Article content*/}
 
-        <div className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] break-all leading-6 md:pr-0 sm:pr-8 pr-5 ">
+        <div className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] text-justify leading-6 md:pr-0 sm:pr-8 pr-5 ">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula est nec sapien finibus eleifend. Nunc ut urna vitae augue ultrices eleifend ut quis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod purus id augue aliquet fermentum. Vestibulum vulputate, erat et molestie viverra, tellus mi aliquam enim, a dictum ipsum sapien nec dolor. Nulla nec mi augue. Vestibulum at felis magna. Nam at congue tellus.
 
 Etiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
@@ -222,8 +227,7 @@ Nam sed dictum lectus, ullamcorper fermentum enim. Aliquam efficitur nibh eu dol
 Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum sed nulla in turpis fringilla elementum et a eros. Cras dictum, quam at vestibulum eleifend, metus tellus convallis massa, et tincidunt ipsum dui vel tortor. Pellentesque vulputate luctus turpis ut varius. Quisque id erat interdum, tincidunt velit ut, vehicula neque. Sed lorem odio, egestas ac iaculis ut, interdum sit amet felis. Fusce pellentesque magna sed nunc semper, ac imperdiet lectus mattis. Suspendisse eu rhoncus ante, ut sollicitudin nisl. Suspendisse potenti. Vivamus hendrerit pretium rutrum. Mauris massa libero, consectetur id lacus sed, molestie faucibus massa. Ut eu interdum mauris. In faucibus mauris ut ultrices sodales. Duis elementum faucibus metus ac molestie. Sed at quam libero. In leo magna, condimentum porta magna eget, pellentesque euismod diam.
         </div>
 
-        
-
+    
 
         {/*Review container*/}
         <div className="mt-[125px] flex justify-center">
@@ -233,50 +237,51 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                 id="reviewWindowTrigger"
                 name="article-rating"
                 value={rating}
-                precision={0.5} // Allows half-star ratings
+                precision={0.5}
                 onChange={handleRatingChange}
-                style={{fontSize: 62}}
+                style={{fontSize: isDesktop ? 62 : isLaptopXl ? 55 : isTablet ? 45: 40}}
+                
             />
 
                 { isModalOpen ?
-                <div className="fixed top-0 left-0 flex justify-center items-center bg-[#00000080] z-[10] h-[100vh] w-full">
-                    <div  id="reviewWindow" className="relative px-6 py-6 w-[750px] bg-white rounded-[30px]">
+                <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center">
+                    <div  id="reviewWindow" className="relative md:px-6 px-4 py-6 md:max-w-[750px] max-w-full lg:mx-0 md:mx-10 sm:mx-8 mx-4  bg-white rounded-[30px]">
                     <h1 className="text-left font-bold tracking-wider"> Rate this article</h1>
 
                     <div className="absolute top-4 right-4 w-[28px]"><img src={closeButton} className="duration-300 ease-out hover:scale-110" onClick={()=> handleCloseReviewWindow()}/></div>
 
-                    <div className={`${hideNameInput ? "hidden" : "mt-7 text-xs text-left"}`}>
-                        <p className="font-bold text-xs">Name:</p>
-                        <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className="w-[325px] font-bold md:rounded-[30px] rounded-[15px] mt-2 border-2 py-[5px] px-4 border-gray-400"/>
+                    <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-xs text-[10px] text-left"}`}>
+                        <p className="font-bold md:text-xs text-[10px]">Name:</p>
+                        <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className="md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 border-gray-400 outline-0"/>
                     </div>
 
-                    <div className={`${hideNameInput ? "flex space-x-2 md:mt-[89px] mt-[95px]" : "flex space-x-2 mt-2"}`}>
+                    <div className={`${hideNameInput ? "flex space-x-2" : "flex space-x-2 mt-2"}`}>
                             <input  name="anonymousCheckbox" className="cursor-pointer" type="checkbox"  onClick={()=>{setHideNameInput(!hideNameInput), setName("Anonymous")}}/>
-                            <div className="font-bold text-xs">Stay anonymous</div>
+                            <div className="font-bold md:text-xs text-[10px]">Stay anonymous</div>
                     </div>
                     
-                    <h1 className="text-left text-xs italic mt-3 font-bold">Choose tags that fit this article:</h1>
+                    <h1 className="text-left md:text-xs text-[10px] italic md:mt-3 mt-8 font-bold">Choose tags that fit this article:</h1>
                     
                     {/*Labels*/}
-                    <div className="flex flex-row  items-center flex-wrap auto-rows-fr space-x-2 my-2 text-sm">
+                    <div className="flex flex-row  flex-wrap auto-rows-fr md:space-x-2 space-x-1 my-2 md:text-sm text-xs">
                         {labelsForArticleReview.map( (label) =>
-                            <div key={label.id} onClick={()=> handleLabelClick(label.id)} className={`cursor-pointer px-2 my-1 duration-300 ease-in-out rounded-2xl border ${selectedLabels.includes(label.id) ? "bg-blue-400" : "border-black hover:bg-black hover:text-white active:bg-slate-600 active:border-slate-600"} `}>{label.labelTitle}</div>
+                            <div key={label.id} onClick={()=> handleLabelClick(label.id)} className={`cursor-pointer px-2 my-1 duration-300 ease-in-out rounded-2xl border ${selectedLabels.includes(label.id) ? "bg-black text-white border-black" : " border-black lg:hover:bg-black lg:hover:text-white active:bg-slate-600 active:border-slate-600"} `}>{label.labelTitle}</div>
                         )
                         }
 
                     </div>
 
-                    <input placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className="w-full font-bold md:rounded-[30px] rounded-[15px] mt-2 mb-6 border-2 py-2 px-4 text-xs border-gray-400"/>
+                    <textarea placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className="w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px] border-gray-400 outline-0 overflow-hidden"/>
 
-                    <Rating name="read-only" value={rating} readOnly size="large" style={{fontSize:70}} precision={0.5} />
+                    <Rating name="read-only" value={rating} readOnly size="large" style={{ fontSize: isDesktop ? 70 : isTablet ? 50 : 40}} precision={0.5} />
             
                 
                     {/*Send button rating*/}
                     <div className="text-right mt-2">
-                        <button onClick={handleSave} variant="contained" className=" bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500  md:text-base text-sm mt-2 p-2 rounded-[30px]">
-                            <div className="flex space-x-1 text-xs capitalize tracking-widest font-poppins">
-                                <div className="underline underline-offset-2  my-auto">send</div>
-                                <div className="my-auto"><img src={paperPlane} className="w-[10px]"/></div>
+                        <button onClick={handleSave} variant="contained" onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} className=" bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]">
+                            <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] capitalize tracking-widest font-poppins">
+                                <div className="underline underline-offset-2  my-auto font-bold">send</div>
+                                <div className="my-auto"><img src={hoverOnPaperPlane ? paperPlaneBlack : paperPlane} className="w-[11px]"/></div>
                             </div>
                         </button>
                     </div>  
@@ -298,7 +303,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
         {/*About the author - mobile res*/}
         { 
-        isTablet ?
+        isTabletAboutMe ?
         <div className="mt-20 pr-10">
         <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">ABOUT THE AUTHOR</h1>
             <div className=" mt-8  text-[12px]">
@@ -315,8 +320,8 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
         <div className="my-12">
             <div className="flex space-x-3 my-auto">
-                <h1 className="my-auto text-sm font-bold">Share:</h1>
-                <div className="flex space-x-2">
+                <h1 className="my-auto text-sm font-bold uppercase tracking-wider">share:</h1>
+                <div className="flex space-x-3">
                     <PinterestShareButton url={currentURL} media={currentURL}><img src={pinterest} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></PinterestShareButton>
                     <TwitterShareButton url={currentURL} title="Check out this article!" via="peterbruncik"><img src={twitter} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></TwitterShareButton>
                     <FacebookShareButton url={currentURL} quote="Check out this article!"><img src={facebook} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></FacebookShareButton>
@@ -422,29 +427,29 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     {
                     openWriteCommentWindow ?
                     <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center md:px-0 px-6">
-                        <div className="relative bg-white rounded-[30px] p-6 px-8 w-[500px]" id="commentWindow">
+                        <div className="relative bg-white rounded-[30px] py-6 md:px-8 px-4 w-[500px]" id="commentWindow">
                         
                         <div className="text-bold md:text-2xl text-xl font-bold">Write a comment</div>
 
-                        <div className={`${hideNameInput ? "hidden" : "mt-7 md:text-base text-sm"}`}>
+                        <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"}`}>
                             <p className="font-bold md:text-base text-xs">Name:</p>
-                            <input placeholder="Your name " className="w-full md:rounded-[30px] rounded-[15px] mt-2 border-2 py-2 px-4 border-gray-400"/>
+                            <input placeholder="Your name " className="w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] py-2 md:px-4 px-3 border-black outline-0"/>
                         </div>
 
-                        <div className={`${hideNameInput ? "flex space-x-2 md:mt-[107px] mt-[95px]" : "flex space-x-2 mt-1"}`}>
+                        <div className={`${hideNameInput ? "flex space-x-2 " : "flex space-x-2 mt-1"}`}>
                                 <input type="checkbox" className="cursor-pointer"  onClick={()=>setHideNameInput(!hideNameInput)}/>
                                 <div className="font-bold md:text-base text-xs">Stay anonymous</div>
                         </div> 
 
                         <div className="mt-8 md:text-base text-sm">
                             <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>
-                            <textarea type="text" placeholder="Write a comment ... " className="w-full md:rounded-[30px] rounded-[15px] max-h-[200px] mt-2 border-2 py-2 px-5 border-gray-400"/>
+                            <textarea type="text" placeholder="Write a comment... " className="w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] mt-2 xl:border-2 border-[1px] py-2 md:px-5 px-3 border-gray-400 outline-0 overflow-hidden"/>
                         </div>
 
                         <div className="px-4">
-                        <div className="w-full bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500 md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
+                        <div onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} className="w-full bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500 md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
                             <div className="font-bold underline-offset-2 underline">Send</div>
-                            <div>Icon</div>
+                            <div className="my-auto"><img src={hoverOnPaperPlane? paperPlaneBlack : paperPlane} className="w-[15px]"/></div>
                         </div>
                         </div>
 

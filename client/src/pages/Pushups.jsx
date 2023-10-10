@@ -233,7 +233,7 @@ function Pushups(){
             {/*Notification and Push ups gallery container*/}
             <div className="flex justify-between ">
                 <div className="my-auto">
-                <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] text-[26px] font-semibold tracking-wider" >Explore</h1>
+                <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] text-[22px] font-semibold tracking-wider" >Explore</h1>
                 </div>
                 <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-8 space-x-4">
                     
@@ -332,19 +332,19 @@ function Pushups(){
             
                     {pushupsGalleryTransition((style,item) => 
                       item ?
-                      <animated.div style={style} className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl rounded-[30px] xl:top-[-5px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]">
+                      <animated.div style={style} className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl xl:top-[-5px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]">
            
                          
                           
                           <div id="pushupsgallery">
                           <div className={`${switchGallery ? "hidden" : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"}`}>
                           {PushupsGallery.map(PushupsGallery =>
-                          <div key={PushupsGallery.id} onClick={()=>{ setPushupsGalleryVisible(false); setSwitchGallery(false)}} className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:rounded-t-[30px] duration-300 ease-in-out" >
+                          <div key={PushupsGallery.id} onClick={()=>{ setPushupsGalleryVisible(false); setSwitchGallery(false)}} className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-300 ease-in-out" >
                           <div className="absolute sm:left-7 left-4"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px]"/></div>
                           <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">{PushupsGallery.name}</div>
                         </div>
                           )}
-                        <div className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center rounded-b-[30px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-300 ease-in-out" onClick={()=>{setSwitchGallery(true)}} > 
+                        <div className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center md:rounded-b-[30px] rounded-b-[15px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-300 ease-in-out" onClick={()=>{setSwitchGallery(true)}} > 
                           <img src={SwitchGalleryIcon} className="absolute sm:left-9 left-5 hover:scale-110 duration-300 ease-in-out xl:w-[58px] lg:w-[44px] sm:w-[36px] w-[20px]"/>
                           <div className="absolute lg:left-[90px] sm:left-[50px] left-[15px]">Switch to another gallery</div> 
                         </div>
@@ -440,7 +440,7 @@ function Pushups(){
 
         {/*Filter*/}
         <div className="flex lg:space-x-6 md:space-x-4 space-x-3">
-          <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] sm:block hidden ">Filter</div> 
+          <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] md:block hidden ">Filter</div> 
         
         {/*Actual fitler*/}
         <div id="switchGalleryGenresTrigger" className={`${openSwitchGalleryGenres ? "" :"duration-500 ease-in-out hover:scale-110 cursor-pointer"}`} onClick={()=>{setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)}}>

@@ -107,7 +107,11 @@ export default function SingleArticlePage({articles}) {
     const [name, setName] = useState("")
     const [rating, setRating] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [comment, setComment] = useState('')
+    const [comment, setComment] = useState("")
+    const [nameMessage, setNameMessage] = useState("")
+    const [feedbackMessage, setFeedbackMessage] = useState("")
+    const [nameError, setNameError] = useState(false)
+    const [feedbackError, setFeedbackError] = useState(false)
 
 
     const handleRatingChange = (event, newRating) => {
@@ -116,20 +120,79 @@ export default function SingleArticlePage({articles}) {
     };
 
     const handleCloseReviewWindow = () => {
-    setIsModalOpen(false)
-    setHideNameInput(false)
-    setRating(0)
-    setName('')
-    setComment('')
-    setSelectedLabels([])
+        setIsModalOpen(false)
+        setHideNameInput(false)
+        setRating(0)
+        setName('')
+        setComment('')
+        setSelectedLabels([])
+        setNameMessage('')
+        setFeedbackMessage('')
+        setNameError(false)
+        setFeedbackError(false)
     }
 
-    const handleSave = () => {
+    const handleCloseCommentWindow = () => {
+        setOpenWriteCommentWindow(false)
+        setHideNameInput(false)
+        setName('')
+        setComment('')
+        setNameMessage('')
+        setFeedbackMessage('')
+        setNameError(false)
+        setFeedbackError(false)
+    }
+
+    const handleSaveRating = () => {
     console.log('Name', name)
     console.log('Rating:', rating)
     console.log('Comment:', comment)
     console.log('Selected Label:', selectedLabels)
-    handleCloseReviewWindow()
+
+    if (name === "") {
+        setNameMessage("Please insert name!");
+        setNameError(true);
+    } else {
+        setNameMessage("");
+        setNameError(false);
+    }  
+    if (comment === "") {
+        setFeedbackMessage("Please insert comment!");
+        setFeedbackError(true);
+    } else {
+        setFeedbackMessage("");
+        setFeedbackError(false);
+    } 
+    if (name !== "" && comment !== "") {
+        handleCloseReviewWindow();
+    } 
+
+
+
+    }
+
+    const handleSaveComment = () => {
+        console.log('Name', name)
+        console.log('Rating:', rating)
+        console.log('Comment:', comment)
+
+        if (name === "") {
+            setNameMessage("Please insert name!");
+            setNameError(true);
+        } else {
+            setNameMessage("");
+            setNameError(false);
+        }  
+        if (comment === "") {
+            setFeedbackMessage("Please insert comment!");
+            setFeedbackError(true);
+        } else {
+            setFeedbackMessage("");
+            setFeedbackError(false);
+        } 
+        if (name !== "" && comment !== "") {
+            handleCloseCommentWindow();
+        } 
     }
 
 
@@ -141,10 +204,6 @@ export default function SingleArticlePage({articles}) {
 
             if(reviewWindow && reviewWindowTrigger && !reviewWindow.contains(event.target) && !reviewWindowTrigger.contains(event.target)){
                 handleCloseReviewWindow()
-                setRating(0)
-                setName('')
-                setComment('')
-                setSelectedLabels([])
             }
         }
 
@@ -170,8 +229,7 @@ export default function SingleArticlePage({articles}) {
             const triggerCommentWindow = document.getElementById("triggerCommentsWindow")
 
             if(commentWindow && triggerCommentWindow && !triggerCommentWindow.contains(event.target) && !commentWindow.contains(event.target)){
-                setOpenWriteCommentWindow(false)
-                setHideNameInput(false)
+                handleCloseCommentWindow()
             }
         }
 
@@ -252,7 +310,10 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
                     <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-xs text-[10px] text-left"}`}>
                         <p className="font-bold md:text-xs text-[10px]">Name:</p>
-                        <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className="md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 border-gray-400 outline-0"/>
+                        <div className={nameError ? "mt-1" : ""}>
+                            <div className="text-red-400 text-xs pl-2">{nameMessage}</div>
+                            <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className={nameError ? "md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 border-red-400 outline-0" : "md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 border-gray-400 outline-0"}/>
+                        </div>
                     </div>
 
                     <div className={`${hideNameInput ? "flex space-x-2" : "flex space-x-2 mt-2"}`}>
@@ -271,14 +332,17 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
                     </div>
 
-                    <textarea placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className="w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px] border-gray-400 outline-0 overflow-hidden"/>
+                    <div className={feedbackError ? "" : "mt-4"}>
+                        <div className="text-red-400 text-xs text-left ml-4">{feedbackMessage}</div>
+                        <textarea placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className={feedbackError ? "w-full italic font-bold md:rounded-[30px] rounded-[15px] mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px] border-red-400 outline-0 overflow-hidden" :"w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px] border-gray-400 outline-0 overflow-hidden"}/>
+                    </div>
 
                     <Rating name="read-only" value={rating} readOnly size="large" style={{ fontSize: isDesktop ? 70 : isTablet ? 50 : 40}} precision={0.5} />
             
                 
                     {/*Send button rating*/}
                     <div className="text-right mt-2">
-                        <button onClick={handleSave} variant="contained" onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} className=" bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]">
+                        <button onClick={handleSaveRating} variant="contained" onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} className=" bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]">
                             <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] capitalize tracking-widest font-poppins">
                                 <div className="underline underline-offset-2  my-auto font-bold">send</div>
                                 <div className="my-auto"><img src={hoverOnPaperPlane ? paperPlaneBlack : paperPlane} className="w-[11px]"/></div>
@@ -432,8 +496,9 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <div className="text-bold md:text-2xl text-xl font-bold">Write a comment</div>
 
                         <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"}`}>
+                            <div className="text-red-400 text-xs pl-2">{nameMessage}</div>
                             <p className="font-bold md:text-base text-xs">Name:</p>
-                            <input placeholder="Your name " className="w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] py-2 md:px-4 px-3 border-black outline-0"/>
+                            <input placeholder="Your name "  onChange={(e)=> setName(e.target.value)} className={nameError ?  "w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] py-2 md:px-4 px-3 border-red-400 outline-0" : "w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] py-2 md:px-4 px-3 border-gray-400 outline-0"}/>
                         </div>
 
                         <div className={`${hideNameInput ? "flex space-x-2 " : "flex space-x-2 mt-1"}`}>
@@ -443,17 +508,18 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
                         <div className="mt-8 md:text-base text-sm">
                             <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>
-                            <textarea type="text" placeholder="Write a comment... " className="w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] mt-2 xl:border-2 border-[1px] py-2 md:px-5 px-3 border-gray-400 outline-0 overflow-hidden"/>
+                            <div className="text-xs text-red-400">{feedbackMessage}</div>
+                            <textarea type="text" placeholder="Write a comment... " className={feedbackError ?  "w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] mt-2 xl:border-2 border-[1px] py-2 md:px-5 px-3 border-red-400 outline-0 overflow-hidden" :"w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] mt-2 xl:border-2 border-[1px] py-2 md:px-5 px-3 border-gray-400 outline-0 overflow-hidden"} onChange={(e)=> setComment(e.target.value)} />
                         </div>
 
                         <div className="px-4">
-                        <div onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} className="w-full bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500 md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
+                        <div onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} onClick={()=> handleSaveComment()} className="w-full bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500 md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
                             <div className="font-bold underline-offset-2 underline">Send</div>
                             <div className="my-auto"><img src={hoverOnPaperPlane? paperPlaneBlack : paperPlane} className="w-[15px]"/></div>
                         </div>
                         </div>
 
-                        <div className="absolute top-5 right-5" onClick={()=> setOpenWriteCommentWindow(false)}><img className="md:w-[30px] w-[24px]" src={closeButton}/></div>
+                        <div className="absolute top-5 right-5" onClick={()=> handleCloseCommentWindow()}><img className="md:w-[30px] w-[24px] duration-300 ease-out hover:scale-110" src={closeButton}/></div>
                         </div>
 
                     </div>
@@ -500,7 +566,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
 
                     {/*Share container*/}
-                    <div className="grid justify-center text-center my-[180px]">
+                    <div className="grid justify-center text-center mt-[180px] mb-20">
                         <h1 className="xl:text-xl sm:text-base text-xs font-bold">Share this article</h1>
                         
                         <div className="flex xl:space-x-8 sm:space-x-6 space-x-2 xl:mt-6 mt-4">
@@ -512,9 +578,10 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
 
 
+
                     {/*Read next container*/}
 
-                    <div className="text-left xl:text-base sm:text-xs text-xs">
+                    <div className="text-left xl:text-base sm:text-xs text-xs mt-[450px]">
                         <div className="divide-y-2 divide-gray-300">
                                 <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">Read next</h1>
                             <div className="divide-y-2 divide-gray-300 mt-2">
@@ -530,7 +597,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                             </div>
 
 
-                            <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 pb-[250px] flex xl:space-x-4 md:space-x-3 space-x-2">
+                            <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 pb-[100px] flex xl:space-x-4 md:space-x-3 space-x-2">
                                 <div className="font-bold  hover:cursor-pointer">
                                     <Link to="/articles">All articles</Link>
                                 </div>

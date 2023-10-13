@@ -339,12 +339,12 @@ function Pushups(){
                           <div id="pushupsgallery">
                           <div className={`${switchGallery ? "hidden" : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"}`}>
                           {PushupsGallery.map(PushupsGallery =>
-                          <div key={PushupsGallery.id} onClick={()=>{ setPushupsGalleryVisible(false); setSwitchGallery(false)}} className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-300 ease-in-out" >
+                          <div key={PushupsGallery.id} onClick={()=>{ setPushupsGalleryVisible(false); setSwitchGallery(false)}} className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-500 ease-in-out" >
                           <div className="absolute sm:left-7 left-4"><img src={PushupsGallery.photo} className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px]"/></div>
                           <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">{PushupsGallery.name}</div>
                         </div>
                           )}
-                        <div className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center md:rounded-b-[30px] rounded-b-[15px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-300 ease-in-out" onClick={()=>{setSwitchGallery(true)}} > 
+                        <div className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center md:rounded-b-[30px] rounded-b-[15px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-500 ease-in-out" onClick={()=>{setSwitchGallery(true)}} > 
                           <img src={SwitchGalleryIcon} className="absolute sm:left-9 left-5 hover:scale-110 duration-300 ease-in-out xl:w-[58px] lg:w-[44px] sm:w-[36px] w-[20px]"/>
                           <div className="absolute lg:left-[90px] sm:left-[50px] left-[15px]">Switch to another gallery</div> 
                         </div>

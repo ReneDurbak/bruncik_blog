@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Router>
-            <ScrollToTop />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -47,7 +47,7 @@ function App() {
         <Route path="/articles/:id" element={<SingleArticlePage articles={ListofArticles}/>}/>
         <Route path="/mycourse" element={<Mycourse />} />
         <Route path="/push-ups" element={<Pushups/>} />
-      </Routes>
+      </Routes>  
     </Router>
   );
 }

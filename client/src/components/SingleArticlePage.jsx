@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
 import {BiHorizontalLeft, BiHorizontalRight} from "react-icons/bi"
 import { Rating } from '@mui/material'
+import { Helmet } from "react-helmet"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import commentIcon from "../assets/commentIcon.png"
@@ -16,6 +17,7 @@ import pinterest from "../assets/pintShare.png"
 import closeButton from "../assets/closebutton.png"
 import paperPlane from "../assets/PaperPlane.png"
 import paperPlaneBlack from "../assets/PaperPlaneBlack.png"
+
 
 
 export default function SingleArticlePage({articles}) {
@@ -247,6 +249,11 @@ export default function SingleArticlePage({articles}) {
 
 return (
     <>
+    <Helmet>
+        <title>{article.title}</title>
+        <link rel="icon" type="image/svg+xml" href="/articles.png" />
+    </Helmet>
+
     <Navbar/>
     {/*Main container*/}
     <div className={`${closeSideBar ? "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 px-7" : "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 pl-4"}`}>
@@ -285,6 +292,36 @@ Etiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in fa
 Nam sed dictum lectus, ullamcorper fermentum enim. Aliquam efficitur nibh eu dolor vehicula, et auctor massa ornare. Praesent non elit tristique, euismod eros eu, egestas massa. Integer ut nunc sed quam scelerisque venenatis. Maecenas venenatis sapien ipsum, mattis mattis nunc lacinia mattis. Mauris vestibulum massa a ante imperdiet tincidunt. Cras accumsan id ex vel pulvinar. Vestibulum quis lectus non urna tempor tempor. Suspendisse nec velit at diam dignissim luctus.
 
 Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum sed nulla in turpis fringilla elementum et a eros. Cras dictum, quam at vestibulum eleifend, metus tellus convallis massa, et tincidunt ipsum dui vel tortor. Pellentesque vulputate luctus turpis ut varius. Quisque id erat interdum, tincidunt velit ut, vehicula neque. Sed lorem odio, egestas ac iaculis ut, interdum sit amet felis. Fusce pellentesque magna sed nunc semper, ac imperdiet lectus mattis. Suspendisse eu rhoncus ante, ut sollicitudin nisl. Suspendisse potenti. Vivamus hendrerit pretium rutrum. Mauris massa libero, consectetur id lacus sed, molestie faucibus massa. Ut eu interdum mauris. In faucibus mauris ut ultrices sodales. Duis elementum faucibus metus ac molestie. Sed at quam libero. In leo magna, condimentum porta magna eget, pellentesque euismod diam.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula est nec sapien finibus eleifend. Nunc ut urna vitae augue ultrices eleifend ut quis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod purus id augue aliquet fermentum. Vestibulum vulputate, erat et molestie viverra, tellus mi aliquam enim, a dictum ipsum sapien nec dolor. Nulla nec mi augue. Vestibulum at felis magna. Nam at congue tellus.
+
+Etiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
+
+Nam sed dictum lectus, ullamcorper fermentum enim. Aliquam efficitur nibh eu dolor vehicula, et auctor massa ornare. Praesent non elit tristique, euismod eros eu, egestas massa. Integer ut nunc sed quam scelerisque venenatis. Maecenas venenatis sapien ipsum, mattis mattis nunc lacinia mattis. Mauris vestibulum massa a ante imperdiet tincidunt. Cras accumsan id ex vel pulvinar. Vestibulum quis lectus non urna tempor tempor. Suspendisse nec velit at diam dignissim luctus.
+
+Vestibulum pharetr tiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
+
+Nam sed dictum lectus, ullamcorper fermentum enim. Aliquam efficitur nibh eu dolor vehicula, et auctor massa ornare. Praesent non elit tristique, euismod eros eu, egestas massa. Integer ut nunc sed quam scelerisque venenatis. Maecenas venenatis sapien ipsum, mattis mattis nunc lacinia mattis. Mauris vestibulum massa a ante imperdiet tincidunt. Cras accumsan id ex vel pulvinar. Vestibulum quis lectus non urna tempor tempor. Suspendisse nec velit at diam dignissim luctus.
+
+Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum sed nulla in turpis fringilla elementum et a eros. Cras dictum, quam at vestibulum eleifend, metus tellus convallis massa, et tincidunt ipsum dui vel tortor. Pellentesque vulputate luctus turpis ut varius. Quisque id erat interdum, tincidunt velit ut, vehicula neque. Sed lorem odio, egestas ac iaculis ut, interdum sit amet felis. Fusce pellentesque magna sed nunc semper, ac imperdiet lectus mattis. Suspendisse eu rhoncus ante, ut sollicitudin nisl. Suspendisse potenti. Vivamus hendrerit pretium rutrum. Mauris massa libero, consectetur id lacus sed, molestie faucibus massa. Ut eu interdum mauris. In faucibus mauris ut ultrices sodales. Duis elementum faucibus metus ac molestie. Sed at quam libero. In leo magna, condimentum porta magna eget, pellentesque euismod diam.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula est nec sapien finibus eleifend. Nunc ut urna vitae augue ultrices eleifend ut quis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod purus id augue aliquet fermentum. Vestibulum vulputate, erat et molestie viverra, tellus mi aliquam enim, a dictum ipsum sapien nec dolor. Nulla nec mi augue. Vestibulum at felis magna. Nam at congue tellus.
+
+Etiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
+
+Nam sed dictum lectus, ullamcorper fermentum enim. Aliquam efficitur nibh eu dolor vehicula, et auctor massa ornare. Praesent non elit tristique, euismod eros eu, egestas massa. Integer ut nunc sed quam scelerisque venenatis. Maecenas venenatis sapien ipsum, mattis mattis nunc lacinia mattis. Mauris vestibulum massa a ante imperdiet tincidunt. Cras accumsan id ex vel pulvinar. Vestibulum quis lectus non urna tempor tempor. Suspendisse nec velit at diam dignissim luctus.
+
+Vestibulum pharetr tiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
+
+Nam sed dictum lectus, ullamcorper fermentum enim. Aliquam efficitur nibh eu dolor vehicula, et auctor massa ornare. Praesent non elit tristique, euismod eros eu, egestas massa. Integer ut nunc sed quam scelerisque venenatis. Maecenas venenatis sapien ipsum, mattis mattis nunc lacinia mattis. Mauris vestibulum massa a ante imperdiet tincidunt. Cras accumsan id ex vel pulvinar. Vestibulum quis lectus non urna tempor tempor. Suspendisse nec velit at diam dignissim luctus.
+
+Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum sed nulla in turpis fringilla elementum et a eros. Cras dictum, quam at vestibulum eleifend, metus tellus convallis massa, et tincidunt ipsum dui vel tortor. Pellentesque vulputate luctus turpis ut varius. Quisque id erat interdum, tincidunt velit ut, vehicula neque. Sed lorem odio, egestas ac iaculis ut, interdum sit amet felis. Fusce pellentesque magna sed nunc semper, ac imperdiet lectus mattis. Suspendisse eu rhoncus ante, ut sollicitudin nisl. Suspendisse potenti. Vivamus hendrerit pretium rutrum. Mauris massa libero, consectetur id lacus sed, molestie faucibus massa. Ut eu interdum mauris. In faucibus mauris ut ultrices sodales. Duis elementum faucibus metus ac molestie. Sed at quam libero. In leo magna, condimentum porta magna eget, pellentesque euismod diam.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula est nec sapien finibus eleifend. Nunc ut urna vitae augue ultrices eleifend ut quis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod purus id augue aliquet fermentum. Vestibulum vulputate, erat et molestie viverra, tellus mi aliquam enim, a dictum ipsum sapien nec dolor. Nulla nec mi augue. Vestibulum at felis magna. Nam at congue tellus.
+
+Etiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
+
+Nam sed dictum lectus, ullamcorper fermentum enim. Aliquam efficitur nibh eu dolor vehicula, et auctor massa ornare. Praesent non elit tristique, euismod eros eu, egestas massa. Integer ut nunc sed quam scelerisque venenatis. Maecenas venenatis sapien ipsum, mattis mattis nunc lacinia mattis. Mauris vestibulum massa a ante imperdiet tincidunt. Cras accumsan id ex vel pulvinar. Vestibulum quis lectus non urna tempor tempor. Suspendisse nec velit at diam dignissim luctus.
+
+Vestibulum pharetr
+        
         </div>
 
     
@@ -314,7 +351,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <p className="font-bold md:text-xs text-[10px]">Name:</p>
                         <div className={nameError ? "mt-1" : ""}>
                             <div className="text-red-400 sm:text-xs text-[11px pl-2">{nameErrorMessage}</div>
-                            <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className={nameError ? "md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 border-red-400 outline-0" : "md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 border-gray-400 outline-0"}/>
+                            <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className={`md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 ${nameError ? " border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
                         </div>
                     </div>
 
@@ -335,8 +372,8 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                     </div>
 
                     <div className={commentError ? "" : "mt-4"}>
-                        <div className="text-red-400 sm:text-xs text-[11px] text-left ml-3">{commentErrorMessage}</div>
-                        <textarea placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className={commentError ? "w-full italic font-bold md:rounded-[30px] rounded-[15px] mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px] border-red-400 outline-0 overflow-hidden" :"w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px] border-gray-400 outline-0 overflow-hidden"}/>
+                        <div className="text-red-600 sm:text-xs text-[11px] text-left ml-3">{commentErrorMessage}</div>
+                        <textarea placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className={`w-full italic font-bold md:rounded-[30px] rounded-[15px] mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px]  overflow-hidden ${commentError ?  "border-red-600 outline-0" :"border-gray-400 outline-0"}`}/>
                     </div>
 
                     <Rating name="read-only" value={rating} readOnly size="large" style={{ fontSize: isDesktop ? 70 : isTablet ? 50 : 40}} precision={0.5} />
@@ -386,7 +423,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
 
         <div className="my-12">
             <div className="flex space-x-3 my-auto">
-                <h1 className="my-auto text-sm font-bold uppercase tracking-wider">share:</h1>
+                <h1 className="my-auto text-sm font-bold uppercase tracking-widest">share:</h1>
                 <div className="flex space-x-3">
                     <PinterestShareButton url={currentURL} media={currentURL}><img src={pinterest} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></PinterestShareButton>
                     <TwitterShareButton url={currentURL} title="Check out this article!" via="peterbruncik"><img src={twitter} className="w-[20px] hover:scale-110 duration-300 ease-in-out"/></TwitterShareButton>
@@ -500,7 +537,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"}`}>
                             <p className="font-bold md:text-base text-xs">Name:</p>
                             <div className="text-red-400 sm:text-xs text-[11px] pl-2 mt-2">{nameErrorMessage}</div>
-                            <input placeholder="Your name "  onChange={(e)=> setName(e.target.value)} className={nameError ?  "w-full italic font-bold md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 border-red-400 outline-0" : "w-full italic font-bold md:rounded-[30px] rounded-[15px] mt-2 xl:border-2 border-[1px] py-2 md:px-4 px-3 border-gray-400 outline-0"}/>
+                            <input placeholder="Your name "  onChange={(e)=> setName(e.target.value)} className={`w-full italic font-bold md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 ${nameError ? "border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
                         </div>
 
                         <div className={`${hideNameInput ? "flex space-x-2 " : "flex space-x-2 mt-1"}`}>
@@ -511,7 +548,7 @@ Vestibulum pharetra scelerisque orci, ut scelerisque augue rutrum at. Vestibulum
                         <div className="mt-8 md:text-base text-sm">
                             <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>
                             <div className="sm:text-xs text-[11px] text-red-400 mt-2 pl-4">{commentErrorMessage}</div>
-                            <textarea type="text" placeholder="Write a comment... " className={commentError ?  "w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3 border-red-400 outline-0 overflow-hidden" :"w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] mt-2 xl:border-2 border-[1px] py-2 md:px-5 px-3 border-gray-400 outline-0 overflow-hidden"} onChange={(e)=> setComment(e.target.value)} />
+                            <textarea type="text" placeholder="Write a comment... " className={`w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3  overflow-hidden ${commentError ?   "border-red-400 outline-0" :" border-gray-400 outline-0"}`} onChange={(e)=> setComment(e.target.value)} />
                         </div>
 
                         <div className="px-4">

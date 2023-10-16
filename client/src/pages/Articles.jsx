@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-scroll";
 import { useMediaQuery } from 'react-responsive'
 import {Link as RouteLink} from "react-router-dom"
+import { Helmet } from 'react-helmet';
 import Autosuggest from 'react-autosuggest';
 import magnifier from "../assets/magnifier.png"
 import arrowDown from "../assets/arrowDown.png"
@@ -145,6 +146,12 @@ function Articles(){
 
     return(
         <>
+
+<Helmet>
+        <title>Articles Page</title>
+        <link rel="icon" type="image/svg+xml" href="/articles.png" />
+</Helmet>
+
 {/*Articles intro*/}
     <Navbar/>
     <div id="articles" className="text-white 2xl:pt-[200px]  2xl:pb-[75px] xl:pt-[250px] xl:pb-16 lg:pt-[350px] lg:pb-[115px]  md:pt-[300px] md:pb-[50px] sm:pt-[150px] sm:pb-[120px] pt-[260px] pb-20   md:tracking-normal   2xl:bg-[url('/src/assets/articlesintrobg.png')] xl:bg-[url('/src/assets/articlesintrobglaptopxl.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">

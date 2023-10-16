@@ -9,6 +9,7 @@ import book from "../assets/book.jpg"
 import ImageComponent from "../components/ImageComponent";
 import Email from "../components/Email";
 import Registration from "../components/Registration";
+import { Helmet } from 'react-helmet';
 
 
 
@@ -54,7 +55,12 @@ function About(){
 
 
 return(
-    <> 
+    <>
+    <Helmet>
+        <title>About me</title>
+        <link rel="icon" type="image/svg+xml" href="/aboutme.png" />
+    </Helmet>
+
     <Navbar/>
     
     {/*Hello intro*/}

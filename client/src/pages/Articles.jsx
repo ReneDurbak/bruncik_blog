@@ -120,9 +120,10 @@ function Articles(){
         value: searchQuery,
         onChange: handleSearchChange,
         onKeyPress: handleKeyPress,
+        id: "searchInput",
         placeholder: "Search...",
-        className: "outline-none sm:pt-2 lg:pt-3 pt-3 sm:pb-1 lg:pb-2 xl:pb-2 pb-2  2xl:text-[23px] xl:text-[26px] lg:text-xl sm:text-[17px] text-[16px]  ease-in-out duration-500 sm:w-[120px] lg:w-[190px] w-full block px-3 xl:text-[25px] tracking-wide"
-      };
+        className: "outline-none sm:pt-2 lg:pt-3 pt-1 sm:pb-1 lg:pb-2 xl:pb-2 pb-1  2xl:text-[23px] xl:text-[26px] lg:text-xl sm:text-[17px] text-[16px] w-full ease-in-out duration-500 flex font-normal block px-3 pr-4 xl:text-[25px] tracking-wide"
+      }; 
 
 
       //Media queries
@@ -227,7 +228,7 @@ function Articles(){
     </section>
 
     <section>
-      <input className="bg-white rounded-xl italic mt-2 mb-1 outline-2 outline outline-offset-1 outline-black focus:outline focus:shadow-lg 2xl:py-[10px] xl:py-[8px] md:py-[4px] sm:py-[2px] py-[2px] text-black text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..."/>
+      <input className="bg-white rounded-xl mt-2 mb-1 outline-2 outline outline-offset-1 outline-black focus:outline focus:shadow-lg 2xl:py-[10px] xl:py-[8px] md:py-[4px] sm:py-[2px] py-[2px] text-black text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..."/>
     </section>
 
     <section>
@@ -282,7 +283,7 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 <div className="2xl:max-w-[1380px] w-full mx-auto 2xl:px-4 sm:px-6 lg:px-10 px-2 grid grid-flow-col auto-cols-auto sm:mb-[125px] mb-20 2xl:mt-0 mt-4">
 
 
-<div className=" flex flex-row  justify-center	flex-wrap auto-rows-fr gap-x-3 gap-y-4 sm:gap-x-4 lg:gap-x-8 xl:gap-x-10 sm:gap-y-6 lg:font-normal font-normal   font-spectralsc  font-serif">
+<div className=" flex flex-row  justify-center	flex-wrap auto-rows-fr gap-x-3 gap-y-4 sm:gap-x-4 lg:gap-x-8 xl:gap-x-10 sm:gap-y-6 lg:font-normal font-normal   font-spectralsc">
 
 
 
@@ -290,8 +291,8 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 {
 /*Search bar*/}
 
-<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 px-0 mx-12 mt-4 sm:mt-0 lg:mt- lg:mb-1 mb-6 sm:mb-0 w-full sm:w-auto">
-<div className="my-auto">
+<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 mx-20 mt-4 sm:mt-0 lg:mt-2 lg:mb-1 mb-1 sm:mb-0 w-full sm:w-auto">
+<div className="my-auto flex-grow">
 <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={({ value }) => getSuggestions(value)}
@@ -304,7 +305,7 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
         />
         </div>
 
-<span className=" inline-flex  px-2 my-auto"><img src={magnifier} className="text-black 2xl:w-[30px] xl:w-[28px] lg:w-[24px] sm:w-[20px] w-[26px]"/> </span>
+<span className="px-2 my-auto"><img src={magnifier} className="text-black 2xl:w-[30px] xl:w-[28px] lg:w-[24px] sm:w-[20px] w-[20px] md:mx-0 mx-1"/> </span>
 </div>
 
 

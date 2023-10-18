@@ -96,7 +96,7 @@ function Home(){
     </div>
 
     {/*Explore*/ }
-    <div className="2xl:max-w-[1500px] max-w-[1380px] mx-auto pt-20 pb-20 sm:pb-[125px] 2xl:px-20 sm:px-10 px-6 md:bg-[url('/src/assets//explore/exbg.png')]  bg-cover font-spectral">
+    <div className="2xl:max-w-[1500px] max-w-[1380px] mx-auto lg:pt-[250px] sm:pt-[150px] pt-20 pb-20 sm:pb-[125px] 2xl:px-20 sm:px-10 px-6 md:bg-[url('/src/assets//explore/exbg.png')]  bg-cover font-spectral">
       <h1 className="sm:float-left text-center 2xl:text-[40px] xl:text-5xl sm:text-3xl text-xl underline sm:underline-offset-[20px] underline-offset-[10px] sm:decoration-2 decoration-1 sm:mx-0 mx-8">
         What you can see on my site...
       </h1>

@@ -67,7 +67,7 @@ return(
 
       <form className="my-2 sm:w-[450px] w-full mx-auto"   onSubmit={sendEmail} >
         < div className="flex items-center">
-          <input type="email" name="user_Email" onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className="italic px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white md:border-l-4 border-l-[2px] border-r-[50px] md:border-y-4 border-y-[2px] mr-[-30px] border-white" />
+          <input type="email" name="user_Email" onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className=" px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white md:border-l-4 border-l-[2px] border-r-[50px] md:border-y-4 border-y-[2px] mr-[-30px] border-white" />
           
           <div className="float-left bg-white py-auto mb-4 h-full">
           <AiOutlineArrowRight className="sm:text-xs xl:text-base text-sm text-black" type="submit" />  

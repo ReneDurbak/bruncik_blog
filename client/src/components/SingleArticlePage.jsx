@@ -351,7 +351,7 @@ Vestibulum pharetr
                         <p className="font-bold md:text-xs text-[10px]">Name:</p>
                         <div className={nameError ? "mt-1" : ""}>
                             <div className="text-red-400 sm:text-xs text-[11px pl-2">{nameErrorMessage}</div>
-                            <input name="nameInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className={`md:max-w-[325px] max-w-full italic font-bold md:rounded-[30px] rounded-[15px] xl:border-2 border-[1px] md:py-[4px] py-1 md:px-4 px-3 ${nameError ? " border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
+                            <input name="nameInput" id="singleArticleInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className={`md:max-w-[325px] max-w-full md:rounded-[30px] rounded-[15px] xl:border-2 border-[1px] md:pt-[6px] md:pb-[3px] py-1 md:px-4 px-3 ${nameError ? " border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
                         </div>
                     </div>
 
@@ -373,7 +373,7 @@ Vestibulum pharetr
 
                     <div className={commentError ? "" : "mt-4"}>
                         <div className="text-red-600 sm:text-xs text-[11px] text-left ml-3">{commentErrorMessage}</div>
-                        <textarea placeholder="Send me your feedback..." onChange={(e)=> setComment(e.target.value)} className={`w-full italic font-bold md:rounded-[30px] rounded-[15px] mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px]  overflow-hidden ${commentError ?  "border-red-600 outline-0" :"border-gray-400 outline-0"}`}/>
+                        <textarea placeholder="Send me your feedback..." id="singleArticleTextArea" onChange={(e)=> setComment(e.target.value)} className={`w-full md:rounded-[30px] rounded-[15px] mb-6 xl:border-2 border-[1px] md:py-2 py-[6px] md:px-4 px-3 md:text-xs text-[10px]  overflow-hidden ${commentError ?  "border-red-600 outline-0" :"border-gray-400 outline-0"}`}/>
                     </div>
 
                     <Rating name="read-only" value={rating} readOnly size="large" style={{ fontSize: isDesktop ? 70 : isTablet ? 50 : 40}} precision={0.5} />
@@ -537,7 +537,7 @@ Vestibulum pharetr
                         <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"}`}>
                             <p className="font-bold md:text-base text-xs">Name:</p>
                             <div className="text-red-400 sm:text-xs text-[11px] pl-2 mt-2">{nameErrorMessage}</div>
-                            <input placeholder="Your name "  onChange={(e)=> setName(e.target.value)} className={`w-full italic font-bold md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 ${nameError ? "border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
+                            <input placeholder="Your name " id="singleArticleInput" name="nameInput"  onChange={(e)=> setName(e.target.value)} className={`w-full md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 ${nameError ? "border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
                         </div>
 
                         <div className={`${hideNameInput ? "flex space-x-2 " : "flex space-x-2 mt-1"}`}>
@@ -548,7 +548,7 @@ Vestibulum pharetr
                         <div className="mt-8 md:text-base text-sm">
                             <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>
                             <div className="sm:text-xs text-[11px] text-red-400 mt-2 pl-4">{commentErrorMessage}</div>
-                            <textarea type="text" placeholder="Write a comment... " className={`w-full italic font-bold md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3  overflow-hidden ${commentError ?   "border-red-400 outline-0" :" border-gray-400 outline-0"}`} onChange={(e)=> setComment(e.target.value)} />
+                            <textarea type="text" name="feedbackInput" id="singleArticleTextArea" placeholder="Write a comment... " className={`w-full md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3  overflow-hidden ${commentError ?   "border-red-400 outline-0" :" border-gray-400 outline-0"}`} onChange={(e)=> setComment(e.target.value)} />
                         </div>
 
                         <div className="px-4">

@@ -11,7 +11,23 @@ body {
     color: rgb(163 163 163 / var(--tw-text-opacity));
   }
 
+input::placeholder {
+    font-style: italic;
+ }
 
+ #singleArticleInput::placeholder {
+  font-style: italic;
+  font-weight: bold;
+}
+
+textarea::placeholder {
+  font-style: italic;
+  font-weight: bold;
+}
+#searchInput::placeholder{
+  font-style: normal;
+  font-weight: normal;
+}
 
   
   

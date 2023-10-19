@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import {BiArrowFromTop} from 'react-icons/bi'
+import {BiArrowFromTop, BiArrowToTop} from 'react-icons/bi'
 import ImageComponent from "../components/ImageComponent";
 import articlemenu from "../assets/articles/articlemenu.png"
 import selfieabout from "../assets/selfieabout.png"
@@ -183,7 +183,7 @@ function Home(){
         <div style={showMoreButtonIsOpenArticles ? null : showMoreStyles} className="2xl:text-[19px] xl:text-lg text-base break-words  font-regular tracking-normal  text-justify lg:text-left underline-offset-2">
         Right on this page, you'll discover the <strong>heart</strong> and <strong>essence</strong> of this entire website, my portfolio, which is <u>primarily composed</u> of <strong>articles</strong> on this site. Their content consists of <strong>practical</strong> and <strong>helpful advice</strong> meant to assist you in living a happy and fulfilled life, or to serve as a source of <strong>inspiration</strong> on days when you <strong>lack motivation</strong> or are going through tough times. You'll find articles covering various areas and topics that I've been deeply involved in for quite some time. Through my <strong>knowledge</strong> and <strong>experiences</strong>, encapsulated in these articles, I aim to present this information to you in the <strong>simplest</strong> form possible. However, these texts may not resonate with everyone, so <u>I believe that each person will find their own path in this and hopefully, find something useful in it</u>. After all, as an old Chinese proverb goes, <i>"when the student is ready, the teacher will appear."</i>          
         </div>
-        <button className="mt-1 font-bold  rounded-3xl  duration-300 ease-in-out underline underline-offset-2" onClick={()=> setShowMoreButtonIsOpenArticles(!showMoreButtonIsOpenArticles)}>{showMoreButtonIsOpenArticles ? "less..." : "more..."} </button>
+        <button className="mt-1 font-bold  rounded-3xl  duration-300 ease-in-out underline underline-offset-2" onClick={()=> setShowMoreButtonIsOpenArticles(!showMoreButtonIsOpenArticles)}>{showMoreButtonIsOpenArticles ? <BiArrowToTop size={25}/> : "more..."} </button>
         </div>
 
         }
@@ -264,7 +264,7 @@ function Home(){
         <i><strong>Push ups, push ups, push ups</strong>. Have you ever tried doing <strong>1,000 push ups</strong> in a single day? How many push ups can you do in one set? And what about your endurance, not just at the gym (or in bed)?</i> I'm not asking these questions to belittle or embarrass you, but to highlight how <u>physical strength and endurance shape your identity and who you are as a person</u>. It's not just about having a ripped body and excellent physical fitness; it's also about how you handle <strong>obstacles, discomfort</strong>, and the <strong>pain</strong> that comes with them. Exercise itself helps us with that.
 On this page, you'll find videos of different people, including myself ;), who have decided to change their lives, thanks in part to push ups that we do every day, no matter the circumstances, whether we feel good or not. This is how you can build discipline and endurance, and bring order to your life. For more information or to join us, you can find details inside. I look forward to having you join us! :)        
         </div>
-        <button  className="mt-1 font-bold  rounded-3xl  duration-300 ease-in-out underline underline-offset-2" onClick={()=> setShowMoreButtonIsOpenPushUps(!showMoreButtonIsOpenPushUps)}>{showMoreButtonIsOpenPushUps ? "less..." : "more..."} </button>
+        <button  className="mt-1 font-bold  rounded-3xl  duration-300 ease-in-out underline underline-offset-2" onClick={()=> setShowMoreButtonIsOpenPushUps(!showMoreButtonIsOpenPushUps)}>{showMoreButtonIsOpenPushUps ? <BiArrowToTop size={25}/> : "more..."} </button>
         
         <div className=" mt-3 text-center xl:text-base sm:text-sm text-sm">
         <Link to="/push-ups" className="active:bg-red-900 bg-red-400 rounded-2xl px-2 py-1 hover:bg-red-500 duration-300 ease-in-out float-right" ><span className="underline decoration-1 underline-offset-2">Click here</span></Link>
@@ -362,7 +362,7 @@ On this page, you'll find videos of different people, including myself ;), who h
       And <u>that's exactly my goal</u>. For those of you who have known me for a while, this might not be all that interesting, but you can still discover things about me that you might not have known. As for the rest of you, this page is here for you. Its purpose is to provide insight into my life so that you can get to <u>know me better, trust me, and also understand the background behind my transformation</u>. So don't hesitate, click below."       
     </div>
 
-    <button  className="mt-1 font-bold  rounded-3xl  duration-300 ease-in-out underline underline-offset-2  " onClick={()=> setShowMoreButtonIsOpenAbout(!showMoreButtonIsOpenAbout)}>{showMoreButtonIsOpenAbout ? "sipka hore" : "more..."} </button>
+    <button  className="mt-1 font-bold  rounded-3xl  duration-300 ease-in-out underline underline-offset-2  " onClick={()=> setShowMoreButtonIsOpenAbout(!showMoreButtonIsOpenAbout)}>{showMoreButtonIsOpenAbout ? <BiArrowToTop size={25}/> : "more..."} </button>
     </div>
 
         

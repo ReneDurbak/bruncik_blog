@@ -117,6 +117,10 @@ export default function SingleArticlePage({articles}) {
     const [nameError, setNameError] = useState(false)
     const [commentError, setCommentError] = useState(false)
 
+    const handleAnoymousCheckboxCLick = () => {
+        setName("Anoymous")        
+    }
+
 
     const handleRatingChange = (event, newRating) => {
     setRating(newRating)
@@ -160,7 +164,7 @@ export default function SingleArticlePage({articles}) {
         setNameErrorMessage("");
         setNameError(false);
     }  
-    if (comment === "") {
+    if (comment === "" && selectedLabels.length === 0) {
         setCommentErrorMessage("Please insert comment!");
         setCommentError(true);
     } else {
@@ -181,7 +185,7 @@ export default function SingleArticlePage({articles}) {
         console.log('Comment:', comment)
 
         if (name === "") {
-            setNameErrorMessage("Please insert name!");
+            setName("Please insert name!");
             setNameError(true);
         } else {
             setNameErrorMessage("");
@@ -356,7 +360,7 @@ Vestibulum pharetr
                     </div>
 
                     <div className={`${hideNameInput ? "flex space-x-2" : "flex space-x-2 mt-2"}`}>
-                            <input  name="anonymousCheckbox" className="cursor-pointer" type="checkbox"  onClick={()=>{setHideNameInput(!hideNameInput), setName("Anonymous")}}/>
+                            <input  name="anonymousCheckbox" className="cursor-pointer" type="checkbox"  onClick={()=>{setHideNameInput(!hideNameInput), hideNameInput ? setName("")  : handleAnoymousCheckboxCLick() }}/>
                             <div className="font-bold md:text-xs text-[10px]">Stay anonymous</div>
                     </div>
                     
@@ -476,7 +480,7 @@ Vestibulum pharetr
 
 
         {/*Comments container*/}
-        <div className="md:mt-[200px] md:my-20 my-[100px] md:pr-0 pr-4">
+        <div className="md:mt-[200px] mt-[100px] xl:mb-[225px] md:mb-[150px] md:pr-0 pr-4">
             <h1 className="xl:text-4xl md:text-2xl text-xl font-bold">Comments and reviews</h1>
 
             <div className="flex space-x-6 uppercase mt-6 2xl:text-[19px] xl:text-lg text-xs xl:mt-8">
@@ -536,12 +540,12 @@ Vestibulum pharetr
 
                         <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"}`}>
                             <p className="font-bold md:text-base text-xs">Name:</p>
-                            <div className="text-red-400 sm:text-xs text-[11px] pl-2 mt-2">{nameErrorMessage}</div>
-                            <input placeholder="Your name " id="singleArticleInput" name="nameInput"  onChange={(e)=> setName(e.target.value)} className={`w-full md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 ${nameError ? "border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
+                            <div className="text-red-600 sm:text-xs text-[11px] pl-2 mt-2">{nameErrorMessage}</div>
+                            <input placeholder="Your name " id="singleArticleInput" name="nameInput"  onChange={(e)=> setName(e.target.value)} className={`w-full md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 ${nameError ? "border-red-400 text-red-600 outline-0" : "border-gray-400 outline-0"}`}/>
                         </div>
 
                         <div className={`${hideNameInput ? "flex space-x-2 " : "flex space-x-2 mt-1"}`}>
-                                <input type="checkbox" className="cursor-pointer"  onClick={()=>{setHideNameInput(!hideNameInput), setName("Anonymous")}}/>
+                                <input type="checkbox" className="cursor-pointer"  onClick={()=>{setHideNameInput(!hideNameInput),  hideNameInput ? setName("")  : handleAnoymousCheckboxCLick()}}/>
                                 <div className="font-bold md:text-base text-xs">Stay anonymous</div>
                         </div> 
 
@@ -551,8 +555,8 @@ Vestibulum pharetr
                             <textarea type="text" name="feedbackInput" id="singleArticleTextArea" placeholder="Write a comment... " className={`w-full md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3  overflow-hidden ${commentError ?   "border-red-400 outline-0" :" border-gray-400 outline-0"}`} onChange={(e)=> setComment(e.target.value)} />
                         </div>
 
-                        <div className="px-4">
-                        <div onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} onClick={()=> {handleSaveComment(),setClickOnPaperPlane(true), setTimeout(function(){ setClickOnPaperPlane(false) }, 1000)}} className="w-full bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500 md:mt-[125px] md:text-base text-sm mt-20 p-2 rounded-[30px] flex space-x-2 justify-center">
+                        <div className="px-4 mt-8 xl:mt-12">
+                        <div onMouseEnter={()=> setHoverOnPaperPlane(true)} onMouseLeave={()=> setHoverOnPaperPlane(false)} onClick={()=> {handleSaveComment(),setClickOnPaperPlane(true), setTimeout(function(){ setClickOnPaperPlane(false) }, 1000)}} className="w-full bg-black hover:bg-white hover:text-black border-white border hover:border-black active:bg-white active:text-black text-white ease-in-out duration-500 md:text-base text-sm p-2 rounded-[30px] flex space-x-2 justify-center">
                             <div className="font-bold underline-offset-2 underline">Send</div>
                             <div className="my-auto"><img src={hoverOnPaperPlane? paperPlaneBlack : paperPlane} className="w-[15px]"/></div>
                         </div>
@@ -581,15 +585,13 @@ Vestibulum pharetr
         <div className={`${isLaptop ? "hidden" : "text-bold absolute top-20 right-8 md:block hidden"}`} onClick={()=>setCloseSideBar(false)}><BiHorizontalLeft size={20}/></div>
         :
         
-            <div className={`${closeSideBar ? "hidden" : "relative xl:border-l-2 border-l-[1px] mr-0 sm:mt-[-100px] mt-[-125px]  max-h-auto z-[0] md:block hidden"}`}>
+            <div className={`${closeSideBar ? "hidden" : "relative xl:max-w-[400px] lg:max-w-[300px] sm:max-w-[250px] max-w-[150px] xl:pr-20 xl:pl-12 lg:px-8 md:px-6 px-4 mx-auto text-left xl:border-l-2 border-l-[1px] mr-0 sm:mt-[-100px] mt-[-125px]  max-h-auto z-[0] md:block hidden"}`}>
             <div onClick={()=>setCloseSideBar(true)} className={`${isLaptop ? "hidden" : "absolute sm:left-2 sm:top-[60px] top-5"}`}>
                 <BiHorizontalRight size={20}/>
             </div>
-            <div className="relative xl:max-w-[400px] lg:max-w-[300px] sm:max-w-[250px] max-w-[150px] mx-auto text-left">
-                <div className="xl:pr-20 xl:pl-12 lg:px-8 md:px-6 px-4 lg:mt-[210px] md:mt-[150px] sm:mt-[180px] mt-[100px]">
-
-            
+                <div className="lg:mt-[210px] md:mt-[150px] sm:mt-[180px] mt-[100px]">
                     <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">ABOUT THE AUTHOR</h1>
+                    {/*About the author*/}
                     <div className="sm:mt-10 mt-8 xl:text-base lg:text-sm sm:text-xs text-[10px]">
                     <strong>Peter Brunčík</strong> writes about egestas dui at iaculis ultricies. Nunc pulvinar neque at tellus accumsan lobortis nec non est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam dignissim dapibus volutpat. Pellentesque iaculis sapien quam, ut fermentum enim scelerisque in. 
                     <div className="mt-6 underline underline-offset-4  decoration-gray-300 xl:text-base lg:text-sm sm:text-[11px] text-[8px] flex space-x-1">
@@ -600,40 +602,52 @@ Vestibulum pharetr
                         </div>
                     </div>
                     </div>
+                 </div>
 
 
-
-
-                    {/*Share container*/}
-                    <div className="grid justify-center text-center mt-[180px] mb-20">
-                        <h1 className="xl:text-xl sm:text-base text-xs font-bold">Share this article</h1>
+                                    
+                {/*Add banner*/}
+                <div className="flex justify-center mt-[300px]">
+                    <div className="w-[300px] h-[400px] bg-[#D9D9D9] text-[#6F6F6F] rounded-lg p-4 flex justify-center items-center text-xl">
                         
-                        <div className="flex xl:space-x-8 sm:space-x-6 space-x-2 xl:mt-6 mt-4">
-                            <div><PinterestShareButton url={currentURL} media={currentURL}><img src={pinterest} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></PinterestShareButton></div>
-                            <div><TwitterShareButton url={currentURL} title="Check out this article!" via="peterbruncik"><img src={twitter} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></TwitterShareButton></div>
-                            <div><FacebookShareButton url={currentURL} quote="Check out this article!"><img src={facebook} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></FacebookShareButton></div>
-                        </div>
+                        <span className="rotate-[-45deg]">
+                            Miesto pre reklamu
+                        </span>
                     </div>
+                </div>
+
+
+
+                {/*Share container*/}
+                <div className="absolute bottom-[50%] grid justify-center text-center mt-[180px] mb-20">
+                    <h1 className="xl:text-xl sm:text-base text-xs font-bold">Share this article</h1>
+                    
+                    <div className="flex xl:space-x-8 sm:space-x-6 space-x-2 xl:mt-6 mt-4">
+                        <div><PinterestShareButton url={currentURL} media={currentURL}><img src={pinterest} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></PinterestShareButton></div>
+                        <div><TwitterShareButton url={currentURL} title="Check out this article!" via="peterbruncik"><img src={twitter} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></TwitterShareButton></div>
+                        <div><FacebookShareButton url={currentURL} quote="Check out this article!"><img src={facebook} className="xl:w-[58px] sm:w-[42px] w-[28px] hover:scale-110 duration-300 ease-in-out"/></FacebookShareButton></div>
+                    </div>
+                </div>
 
 
 
 
-                    {/*Read next container*/}
+                {/*Read next container*/}
 
-                    <div className="text-left xl:text-base sm:text-xs text-xs mt-[500px]">
-                        <div className="divide-y-2 divide-gray-300">
-                                <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">Read next</h1>
-                            <div className="divide-y-2 divide-gray-300 mt-2">
-                            {otherArticles.map((article)=> 
-                            <div key={article.id}>
-                            <RouteLink to={`/articles/${article.id}`}>
-                                <div className="xl:py-6 py-4">
-                                    {article.title}
-                                </div>
-                            </RouteLink>
+                <div className="absolute bottom-0 text-left xl:text-base sm:text-xs text-xs  xl:mb-[100px] md:mb-2">
+                    <div className="divide-y-2 divide-gray-300">
+                            <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">Read next</h1>
+                        <div className="divide-y-2 divide-gray-300 mt-2">
+                        {otherArticles.map((article)=> 
+                        <div key={article.id}>
+                        <RouteLink to={`/articles/${article.id}`}>
+                            <div className="xl:py-6 py-4">
+                                {article.title}
                             </div>
-                            )}
-                            </div>
+                        </RouteLink>
+                        </div>
+                        )}
+                </div>
 
 
                             <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 pb-[100px] flex xl:space-x-4 md:space-x-3 space-x-2">
@@ -652,32 +666,15 @@ Vestibulum pharetr
                     </div>
 
 
-                    
-                    {/*Add banner*/}
-                    <div className="flex justify-center  mb-[200px]">
-                        <div className="w-[300px] h-[400px] bg-[#D9D9D9] text-[#6F6F6F] rounded-lg p-4 flex justify-center items-center text-xl">
-                            
-                            <span className="rotate-[-45deg]">
-                                Miesto pre reklamu
-                            </span>
-                        </div>
-                    </div>
-
-
 
                 </div>
-            </div>
-            </div>
+    
          
         }
         
         
-      
 
-
-
-  
-        </div>
+    </div>
 
 
     <Footer/>

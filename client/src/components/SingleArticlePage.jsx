@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 import { Link } from "react-router-dom"
 import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
 import {BiHorizontalLeft, BiHorizontalRight} from "react-icons/bi"
-import { Rating } from '@mui/material'
+import { Rating, Checkbox, SvgIcon } from '@mui/material'
 import { Helmet } from "react-helmet"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
@@ -94,6 +94,35 @@ export default function SingleArticlePage({articles}) {
 
     const [hoverOnPaperPlane, setHoverOnPaperPlane] = useState(false)
     const [clickOnPaperPlane, setClickOnPaperPlane] = useState(false) 
+    const iconStyles = 'sm:px-[1px] xl:p-[3px] m-[-10px] xl:m-[-5px]'
+    const iconStyles2 = 'sm:px-[1px] xl:p-[5px] m-[-10px] xl:m-[-10px]'
+
+    
+    const PaperPlaneIconForReviews = (props) => (
+        <SvgIcon {...props}   className={iconStyles2}>
+            <svg viewBox="0 0 16 16" fill="none">
+            <path d="M14.3333 7.66667V12.6667C14.3333 13.1087 14.1577 13.5326 13.8452 13.8452C13.5326 14.1577 13.1087 14.3333 12.6667 14.3333H2.66667C2.22464 14.3333 1.80072 14.1577 1.48816 13.8452C1.17559 13.5326 1 13.1087 1 12.6667V2.66667C1 2.22464 1.17559 1.80072 1.48816 1.48816C1.80072 1.17559 2.22464 1 2.66667 1H10.1667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+       </SvgIcon>
+      );
+    
+    
+    const PaperPlaneIcon = (props) => (
+        <SvgIcon {...props}   className={iconStyles}>
+            <svg viewBox="0 0 16 16" fill="none">
+            <path d="M14.3333 7.66667V12.6667C14.3333 13.1087 14.1577 13.5326 13.8452 13.8452C13.5326 14.1577 13.1087 14.3333 12.6667 14.3333H2.66667C2.22464 14.3333 1.80072 14.1577 1.48816 13.8452C1.17559 13.5326 1 13.1087 1 12.6667V2.66667C1 2.22464 1.17559 1.80072 1.48816 1.48816C1.80072 1.17559 2.22464 1 2.66667 1H10.1667" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+       </SvgIcon>
+      );
+      
+      const PaperPlaneBlackIcon = (props) => (
+        <SvgIcon {...props} className={iconStyles}>
+          <path d="M12.07 11.365l1.588-1.588-1.06-1.062-12.073 12.073c1.234 1.426 3.036 2.313 5.2 2.313 4.737 0 8.603-3.866 8.603-8.603 0-.851-.123-1.675-.354-2.456l1.613-1.613-5.315-5.314zm1.498-2.637c.773-.257 1.598-.39 2.452-.39 4.563 0 8.438 3.09 8.438 8.438 0 .855-.134 1.68-.39 2.453l1.588 1.588-1.057 1.062-6.928-6.927zm-7.24 8.968c-.082-.029-2.147-.76-3.31-1.91-.148-.147-.243-.337-.243-.545 0-.452.367-.82.82-.82.21 0 .4.094.547.24 1.068 1.068 2.013 1.407 2.143 1.465.11.043.232.063.357.063.28 0 .545-.134.706-.36.176-.254.422-.729.59-1.167.129-.28.19-.534.19-.832 0-1.155-.933-2.088-2.087-2.088-.111 0-.217.019-.328.04-.417.092-.827.294-1.168.59-.427.296-.81.664-1.138 1.09-.163.16-.24.37-.24.59 0 .563.457 1.02 1.02 1.02 .222 0 .431-.078.59-.22 .154-.126 1.31-1.044 2.28-2.028-.9-1.695-1.86-2.912-2.102-3.173-.027-.032-.068-.057-.108-.057-.059 0-.108.05-.108.11 0 .13 1.116 1.205 2.812 2.101 .92-.983 2.075-1.902 2.23-2.027 .157-.138.36-.22.578-.22 .563 0 1.02.457 1.02 1.02 0 .228-.082.438-.22.594-.27.33-.61.712-1.038 1.108-.322.38-.693.753-1.108 1.08z" />
+        </SvgIcon>
+      );
+
+
+
 
     const[openWriteCommentWindow, setOpenWriteCommentWindow] = useState(false)
 
@@ -117,8 +146,8 @@ export default function SingleArticlePage({articles}) {
     const [nameError, setNameError] = useState(false)
     const [commentError, setCommentError] = useState(false)
 
-    const handleAnoymousCheckboxCLick = () => {
-        setName("Anoymous")        
+    const handleAnonymousCheckboxCLick = () => {
+        setName("Anonymous")        
     }
 
 
@@ -354,14 +383,14 @@ Vestibulum pharetr
                     <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-xs text-[10px] text-left"}`}>
                         <p className="font-bold md:text-xs text-[10px]">Name:</p>
                         <div className={nameError ? "mt-1" : ""}>
-                            <div className="text-red-400 sm:text-xs text-[11px pl-2">{nameErrorMessage}</div>
-                            <input name="nameInput" id="singleArticleInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className={`md:max-w-[325px] max-w-full md:rounded-[30px] rounded-[15px] xl:border-2 border-[1px] md:pt-[6px] md:pb-[3px] py-1 md:px-4 px-3 ${nameError ? " border-red-400 outline-0" : "border-gray-400 outline-0"}`}/>
+                            <div className="text-red-600 sm:text-xs text-[11px pl-2">{nameErrorMessage}</div>
+                            <input name="nameInput" id="singleArticleInput" placeholder="Your name" onChange={(e)=> setName(e.target.value)} className={`md:max-w-[325px] max-w-full md:rounded-[30px] rounded-[15px] xl:border-2 border-[1px] md:pt-[6px] md:pb-[3px] py-1 md:px-4 px-3 ${nameError ? " border-red-600 outline-0" : "border-gray-400 outline-0"}`}/>
                         </div>
                     </div>
 
-                    <div className={`${hideNameInput ? "flex space-x-2" : "flex space-x-2 mt-2"}`}>
-                            <input  name="anonymousCheckbox" className="cursor-pointer" type="checkbox"  onClick={()=>{setHideNameInput(!hideNameInput), hideNameInput ? setName("")  : handleAnoymousCheckboxCLick() }}/>
-                            <div className="font-bold md:text-xs text-[10px]">Stay anonymous</div>
+                    <div className={`${hideNameInput ? "relative first-line:flex space-x-2" : "relative  flex space-x-2 mt-2"}`}>
+                            <Checkbox icon={<PaperPlaneIconForReviews/>} checkedIcon={<PaperPlaneBlackIcon/>}  onClick={()=>{setHideNameInput(!hideNameInput), hideNameInput ? setName("")  : handleAnonymousCheckboxCLick() }}/>
+                            <div className=" md:text-xs text-[10px] absolute bottom-[1px] left-4 ">Stay anonymous</div>
                     </div>
                     
                     <h1 className="text-left md:text-xs text-[10px] italic md:mt-3 mt-8 font-bold">Choose tags that fit this article:</h1>
@@ -541,18 +570,18 @@ Vestibulum pharetr
                         <div className={`${hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"}`}>
                             <p className="font-bold md:text-base text-xs">Name:</p>
                             <div className="text-red-600 sm:text-xs text-[11px] pl-2 mt-2">{nameErrorMessage}</div>
-                            <input placeholder="Your name " id="singleArticleInput" name="nameInput"  onChange={(e)=> setName(e.target.value)} className={`w-full md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 ${nameError ? "border-red-400 text-red-600 outline-0" : "border-gray-400 outline-0"}`}/>
+                            <input placeholder="Your name " id="singleArticleInput" name="nameInput"  onChange={(e)=> setName(e.target.value)} className={`w-full md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] py-2 md:px-4 px-3 ${nameError ? "border-red-600 text-red-600 outline-0" : "border-gray-400 outline-0"}`}/>
                         </div>
 
-                        <div className={`${hideNameInput ? "flex space-x-2 " : "flex space-x-2 mt-1"}`}>
-                                <input type="checkbox" className="cursor-pointer"  onClick={()=>{setHideNameInput(!hideNameInput),  hideNameInput ? setName("")  : handleAnoymousCheckboxCLick()}}/>
-                                <div className="font-bold md:text-base text-xs">Stay anonymous</div>
+                        <div className={`${hideNameInput ? "flex space-x-1 " : "flex space-x-1 mt-1"}`}>
+                                <Checkbox icon={<PaperPlaneIcon/>} checkedIcon={<PaperPlaneBlackIcon/>}  onClick={()=>{setHideNameInput(!hideNameInput),  hideNameInput ? setName("")  : handleAnonymousCheckboxCLick()}}/>
+                                <div className="font-bold md:text-base text-xs my-auto">Stay anonymous</div>
                         </div> 
 
                         <div className="mt-8 md:text-base text-sm">
                             <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>
-                            <div className="sm:text-xs text-[11px] text-red-400 mt-2 pl-4">{commentErrorMessage}</div>
-                            <textarea type="text" name="feedbackInput" id="singleArticleTextArea" placeholder="Write a comment... " className={`w-full md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3  overflow-hidden ${commentError ?   "border-red-400 outline-0" :" border-gray-400 outline-0"}`} onChange={(e)=> setComment(e.target.value)} />
+                            <div className="sm:text-xs text-[11px] text-red-600 mt-2 pl-4">{commentErrorMessage}</div>
+                            <textarea type="text" name="feedbackInput" id="singleArticleTextArea" placeholder="Write a comment... " className={`w-full md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3  overflow-hidden ${commentError ?   "border-red-600 outline-0" :" border-gray-400 outline-0"}`} onChange={(e)=> setComment(e.target.value)} />
                         </div>
 
                         <div className="px-4 mt-8 xl:mt-12">

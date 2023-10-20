@@ -291,7 +291,7 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 {
 /*Search bar*/}
 
-<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 mx-20 mt-4 sm:mt-0 lg:mt-2 lg:mb-1 mb-1 sm:mb-0 w-full sm:w-auto">
+<div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 mx-12 mt-4 sm:mt-0 lg:mt-2 lg:mb-1 mb-1 sm:mb-0 w-full sm:w-auto">
 <div className="my-auto flex-grow">
 <Autosuggest
           suggestions={suggestions}

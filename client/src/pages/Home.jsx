@@ -76,6 +76,7 @@ function Home(){
   }
 
 
+  const isBigMobileIntroSection = useMediaQuery({query: '(max-width: 640px)'})
   const isBigMobile = useMediaQuery({query:'(min-width: 500px)'})
   const isMobile = useMediaQuery({query:'(min-width: 420px)'})
 
@@ -120,7 +121,7 @@ function Home(){
             <ImageComponent src={exploreA} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
             </Link>
           </div>
-        <div className=" lg:pt-3">Push Ups Gallery</div>
+        <div className=" lg:pt-3">{isBigMobileIntroSection ? "Push Ups" : "Push Ups Gallery"}</div>
         <div className="mt-[-4px]"><Link to="/push-ups" className="no-underline sm:text-xs md:text-base text-xs hover:underline underline-offset-2 decoration-1 active:text-red-400">Read more </Link> </div>
 
         </div>
@@ -132,7 +133,7 @@ function Home(){
             <ImageComponent src={exploreB} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
           </Link>
         </div>
-        <div className="lg:pt-3" >Work with me - My Course </div>
+        <div className="lg:pt-3" >{isBigMobileIntroSection ? "My course" : "Work with me - My Course"}</div>
         <div className="mt-[-4px]"><Link to="/mycourse" className="no-underline sm:text-xs md:text-base text-xs hover:underline underline-offset-2 hover:decoration-1 active:text-red-400">Read more </Link> </div>
         
         </div>

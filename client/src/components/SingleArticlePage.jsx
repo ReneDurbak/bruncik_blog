@@ -602,7 +602,7 @@ Vestibulum pharetr
 
                         <div className={`${hideNameInput ? "flex space-x-1 " : "flex space-x-1 mt-1"}`}>
                                 <Checkbox icon={<CheckboxIcon/>} checkedIcon={<CheckboxIconChecked/>}  onClick={()=>{setHideNameInput(!hideNameInput),  hideNameInput ? setName("")  : handleAnonymousCheckboxCLick()}}/>
-                                <div className="font-bold md:text-base text-xs mt-[14px] sm:mt-[10px] 2xl:mt-3">Stay anonymous</div>
+                                <div className="font-bold md:text-base text-xs mt-[14px] sm:mt-[10px]">Stay anonymous</div>
                         </div> 
 
                         <div className="mt-8 md:text-base text-sm">

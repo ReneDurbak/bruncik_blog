@@ -21,38 +21,6 @@ import {Helmet} from "react-helmet";
 function Home() {
 
 
-    { /*Explore pictures*/
-    }
-    const hash5 = "|33[@:-;D*9FDiM|.7-;xaRjf6fks:off6Rkayj[00D%-:?b.8tQD%D%NGx[ogaeM{M|kC%LogR*~p-;IU9FDiRj%g?Ht7MxNFog%M%LRjIURjt74oD%%L-;-;t7IUD%Rix]xuV@IUIVxt%MxuNG?b%MRjD%D%M  {%M-;t8"
-  const styling5 = "lg:w-[700px] lg:p-10 sm:p-8 mx-auto p-4"
-  const height5 = 845;
-  const width5= 475;
-
-
-
-  {/*Menu pictures*/}
-  
-
-  {/*Articles picture*/}
-  const hash2 = "|33[@:-;D*9FDiM|.7-;xaRjf6fks:off6Rkayj[00D%-:?b.8tQD%D%NGx[ogaeM{M|kC%LogR*~p-;IU9FDiRj%g?Ht7MxNFog%M%LRjIURjt74oD%%L-;-;t7IUD%Rix]xuV@IUIVxt%MxuNG?b%MRjD%D%M{%M-;t8"
-  const styling2 = "lg:float-right mx-auto mb-8 sm:mb-6 lg:mb-0 2xl:w-[500px] w-[420px]  2xl:ml-[280px] xl:ml-[200px] lg:ml-[100px] lg:ml-20"
-  const height2 = 845;
-  const width2 = 475;
-
-
-
-  {/*Push ups picture*/}
-  {/*pic1*/}
-  const hashp1 = "|33[@:-;D*9FDiM|.7-;xaRjf6fks:off6Rkayj[00D%-:?b.8tQD%D%NGx[ogaeM{M|kC%LogR*~p-;IU9FDiRj%g?Ht7MxNFog%M%LRjIURjt74oD%%L-;-;t7IUD%Rix]xuV@IUIVxt%MxuNG?b%MRjD%D%M{%M-;t8"
-  const stylingp1 = "lg:float-left  mx-auto mb-0 lg:mb-0 2xl:w-[250px] w-[210px] "
-  const heightp1 = 845;
-  const widthp1 = 475;
-
-   {/*pic2*/}
-   const hashp2 = "|33[@:-;D*9FDiM|.7-;xaRjf6fks:off6Rkayj[00D%-:?b.8tQD%D%NGx[ogaeM{M|kC%LogR*~p-;IU9FDiRj%g?Ht7MxNFog%M%LRjIURjt74oD%%L-;-;t7IUD%Rix]xuV@IUIVxt%MxuNG?b%MRjD%D%M{%M-;t8"
-   const stylingp2 = "lg:float-left  mx-auto mb-0 lg:mb-0 2xl:w-[250px] w-[210px] "
-   const heightp2 = 845;
-   const widthp2 = 475;
 
 
 
@@ -98,7 +66,7 @@ function Home() {
     </div>
 
     {/*Explore*/ }
-    <div className="2xl:max-w-[1500px] max-w-[1380px] mx-auto lg:pt-[250px] sm:pt-[150px] pt-20 pb-20 sm:pb-[125px] 2xl:px-20 sm:px-10 px-6 md:bg-[url('/src/assets//explore/exbg.png')]  bg-cover font-spectral">
+    <div className="2xl:max-w-[1500px] max-w-[1380px] mx-auto lg:pt-[250px] sm:pt-[150px] pt-20 pb-20 sm:pb-[125px] 2xl:px-20 sm:px-10 px-6 md:bg-[url('/src/assets/explore/exbg.png')]  bg-cover font-spectral">
       <h1 className="sm:float-left text-center 2xl:text-[40px] xl:text-5xl sm:text-3xl text-xl underline sm:underline-offset-[20px] underline-offset-[10px] sm:decoration-2 decoration-1 sm:mx-0 mx-8">
         What you can see on my site...
       </h1>
@@ -108,7 +76,7 @@ function Home() {
       <div className="mb-10">
         <div className="bg-[url('/src/assets/explore/exelementbg1lg.png')] bg-cover mx-[-10px] md:mx-0">
           <Link to="/articles">
-          <ImageComponent src={exploreA} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
+          <img src={exploreA} className="lg:w-[700px] lg:p-10 sm:p-8 mx-auto p-4"/>
           </Link>
         </div>
         <div className="lg:pt-3">Articles </div>
@@ -119,7 +87,7 @@ function Home() {
         <div className="mb-10">
           <div className="bg-[url('/src/assets/explore/exelementbg2lg.png')] bg-cover mx-[-10px] md:mx-0">
             <Link to="/push-ups">
-              <ImageComponent src={exploreA} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
+              <img src={exploreA} className="lg:w-[700px] lg:p-10 sm:p-8 mx-auto p-4"/>
             </Link>
           </div>
         <div className=" lg:pt-3">{isBigMobileIntroSection ? "Push Ups" : "Push Ups Gallery"}</div>
@@ -131,7 +99,7 @@ function Home() {
         <div className="mb-10">
           <div className="bg-[url('/src/assets/explore/exelementbg3lg.png')] bg-cover mx-[-10px] md:mx-0">
             <Link to="mycourse">
-              <ImageComponent src={exploreB} useHash={hash5} styling={styling5} useWidth={width5} useHeight={height5}/>
+              <img src={exploreB} className="lg:w-[700px] lg:p-10 sm:p-8 mx-auto p-4"/>
             </Link>
           </div>
         <div className="lg:pt-3" >{isBigMobileIntroSection ? "My course" : "Work with me - My Course"}</div>
@@ -170,7 +138,7 @@ function Home() {
         </div>
 
         {/*Articles picture*/}
-        <ImageComponent src={articlemenu} useHash={hash2} styling={styling2} useWidth={width2} useHeight={height2}/>
+        <img src={articlemenu} className="lg:float-right mx-auto mb-8 sm:mb-6 lg:mb-0 2xl:w-[500px] w-[420px]  2xl:ml-[280px] xl:ml-[200px] lg:ml-[100px] lg:ml-20"/>
         </div> 
 
         {isBigMobile ?
@@ -231,13 +199,13 @@ function Home() {
           
         {/*Pic 1*/}
         <div className="flex flex-col ">
-        <ImageComponent src={pushups1} useHash={hashp1} styling={stylingp1} useWidth={widthp1} useHeight={heightp1}/>
+        <img src={pushups1} className="lg:float-left  mx-auto mb-0 lg:mb-0 2xl:w-[250px] w-[210px] "/>
       <div className="flex justify-center xl:text-xl sm:text-base text-sm sm:font-normal font-bold">DAY 1</div>
         </div>
 
         {/*Pic 2*/}
         <div className="flex flex-col ">
-        <ImageComponent src={pushups2} useHash={hashp2} styling={stylingp2} useWidth={widthp2} useHeight={heightp2}/>
+        <img src={pushups2} className="lg:float-left  mx-auto mb-0 lg:mb-0 2xl:w-[250px] w-[210px] "/>
         <div className="flex justify-center xl:text-xl  sm:text-base text-sm sm:font-normal font-bold">DAY 70</div>
         </div>
 
@@ -345,7 +313,7 @@ On this page, you'll find videos of different people, including myself ;), who h
         <img src={smiley} className={isBigMobile ? "left-0 top-[-200px]  absolute z-[-1] w-[650px]" : isMobile ? "left-0 top-[-100px]  absolute z-[-1] w-[650px]" :  "left-0 top-[-50px]  absolute z-[-1] w-[650px]"} />
       </div>
 
-      <ImageComponent src={selfieabout} useHash={hash4} styling={styling4} useWidth={width4} useHeight={height4}/>
+      <img src={selfieabout} className="lg:float-left mx-auto  mb-8 sm:mb-6 lg:mb-0  2xl:w-[500px] w-[420px] 2xl:mr-[280px] xl:mr-[150px] lg:mr-[100px] xl:mt-[-75px]"/>
    
 
       {isBigMobile 

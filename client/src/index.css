@@ -29,6 +29,10 @@ textarea::placeholder {
   font-weight: normal;
 }
 
+.custom-shadow {
+  box-shadow: 5px 4px 5px 0px rgba(135, 189, 236, 1);
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);

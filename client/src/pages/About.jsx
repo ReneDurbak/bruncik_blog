@@ -1,10 +1,17 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import selfie from "../assets/selfiePhoto.png"
-import { Link } from "react-router-dom";
+import timeline from "../assets/timeline.png"
+import timelineBg from "../assets/timelineBg.png"
+import health from "../assets/valuesHealth.png"
+import movement from "../assets/valuesMovement.png"
+import improvement from "../assets/valuesImprovement.png"
+import arrowDown from "../assets/arrowDown.png"
+import healthImage from "../assets/healthImages.png"
+import healthHeart from "../assets/healthHeartBg.png"
 import Registration from "../components/Registration";
 import { Helmet } from 'react-helmet';
-
+import { Link } from "react-scroll";
 
 
 
@@ -12,41 +19,7 @@ import { Helmet } from 'react-helmet';
 
 function About(){
 
-    {/*1st picture*/}
-    const hash1 = "LFLDroDOOSMv_MNGDj%M.TogD%D*";
-    const styling1 = "w-[500px] float-right"
-    const height1 = 800;
-    const width1 = 550;
-
-
-    {/*2nd picture*/}
-
-    const hash2 = "|33[@:-;D*9FDiM|.7-;xaRjf6fks:off6Rkayj[00D%-:?b.8tQD%D%NGx[ogaeM{M|kC%LogR*~p-;IU9FDiRj%g?Ht7MxNFog%M%LRjIURjt74oD%%L-;-;t7IUD%Rix]xuV@IUIVxt%MxuNG?b%MRjD%D%M{%M-;t8"
-    const styling2 = "float-left rounded-xl w-[475px] mr-12 h-1/2 "
-    const height2 = 845;
-    const width2 = 475;
-
-
-    {/*3rd picture - Food*/}
-    const hash3 = "|DGHYi={K6W?OsofxCxaNG~Bj[Rjs:ofxaoLWBWq5;I;D$xYr=RkI;R*off9s:WoayWVR*WBoJo1D%s.kDNHo#oJxuoes:nNodogNGR*o0WCbbjZR5s:x^j[WBkCaJR+NGn#xGkDWXsSbHjtWXf6ofs.t7WVM_a#R*smxa";
-    const styling3 = "w-full rounded-lg mb-6 2xl:h-[355px] xl:h-[320px] lg:h-[250px] md:h-[170px] sm:h-[140px] h-[140px]"
-    const height3 = 350;
-    const width3 = 325;
-
-    
-    {/*4th picture - Nature*/}
-    const hash4 = "|+GvS8aJjGfQayaxafjtf6lVjFjsbHoKj?ayazayafbcjYf6jsj[fRazayVroej[aya|j@fRayfQIpjEfkj[oej?ayfQj[o#WDjta}ayj[f6jtayt6bbayoLazbHj[fQjtadoej[WVa#a}fkj@fQRkjYoea}WVazj[fkj@";
-    
-    {/*5th picture - book*/}
-    const hash5 = "|DHBbzLNX8rp4os,MxNGNH-Uj]RjM{xFR+j[aeRj00m+Iqo#?GR+R*NGjFMxD%Ne-:IpV@jFxuo}RjM|RPW=o}xux]tRofE3t6V@Ipxuxut7M|nhyDtRs:NGoJf7Rjs,t7t7kDRjM{xDR*ayt5kCX9xatRoeRPIVaeWBVs";
-
-
-    {/*6th picture - gym*/}
-    const hash6 = "|GGIP}p1I-R;Rqj]Sh%KIUpJb{aeayR*j^R,tRRjGdtS#lWBkVa#njbdV?u6o$j=bJs;aejZozV@NKkXXTjraJa}a#bJj[bLW=RibIkCWBWBbIWAt8kDxuofaxa#R*kCofozWVt8oJRjbHa{ayV@NaR+ofj]a}oLV@t6j]";
-
-
-
-
+  
 
 return(
     <>
@@ -58,19 +31,19 @@ return(
     <Navbar/>
     
     {/*Hello intro*/}
-    <div className="bg-no-repeat bg-cover pt-[100px] pb-[90px]" style={{
+    <div className="bg-no-repeat bg-cover h-[1100px] w-full mt-10" style={{
       backgroundImage: `url('/src/assets/aboutMeIntro.png')`,
-      backgroundSize: '120%',
+      backgroundSize: '100%',
       backgroundPosition: 'center'}}>
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-6 md:text-[170px] text-4xl font-bold not-italic">
     <div className="mt-0 flex">
-      <div className="pr-20 mt-[150px]">
-        <div className="font-bold">Hi!</div>
-        <div className="text-[90px] mt-[100px] font-thin">I am Peter<div className="mt-10">Brunčík</div> </div>
-        <div className="text-lg font-thin font-spectral tracking-wide mt-20 mb-[-40px]">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
-        <button className="p-2 text-white  bg-[#2A6CA5] custom-shadow text-sm rounded-[30px]">Learn more</button>
+      <div className="pr-[150px] mt-[280px] font-spectral">
+        <div>Hi!</div>
+        <div className="text-[90px] mt-[100px] font-thin tracking-wider">I'm Peter Brunčík </div>
+        <div className="text-lg font-thin font-spectral tracking-wide mt-20 mb-[-40px] text-justify">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
+        <button className="p-2 text-white  bg-[#2A6CA5] custom-shadow text-base rounded-[30px] font-poppins duration-300 ease-in-out hover:text-gray-700 active:text-black">Learn more</button>
       </div>
-      <img src={selfie} className="h-[750px] aspect-auto p-10 float-right mt-8"/>
+      <img src={selfie} className="h-[750px] aspect-auto p-10 mr-[-75px] float-right mt-[150px]"/>
       </div>
     </div>
     </div>
@@ -80,7 +53,7 @@ return(
 
   {/*My story*/}
 
-  <div className="h-[850px] bg-no-repeat mt-[-100px]" style={{
+  <div className="h-[1100px] bg-no-repeat mt-[-100px]" style={{
       backgroundImage: `url('/src/assets/aboutMeMyStory.png')`,
       backgroundSize: '100%',
       backgroundPosition: 'center'}}>
@@ -89,8 +62,7 @@ return(
       <h1 className="text-black text-3xl text-center pt-20 font-spectral uppercase tracking-[10px] font-bold">My story</h1>
 
 
-      
-
+      {/*Text bubbles*/}
       <div className="relative">
         <div className="bg-white p-4 w-[450px] h-[250px] float-left ml-20 mt-[50px] blur-xl rounded-[30px] relative">
         </div>
@@ -99,16 +71,108 @@ return(
       
 
       <div className="relative">
-        <div className="bg-white p-4 w-[500px] h-[300px] float-right mr-20 mt-[350px] blur-xl rounded-[30px] relative">
+        <div className="bg-white p-4 w-[500px] h-[300px] float-right mr-20 mt-[580px] blur-xl rounded-[30px] relative">
         </div>
-        <p className="absolute top-[400px] blur-none w-[400px] right-[135px]"> Sed molestie, quam a fringilla fringilla, nibh est interdum lectus, a pulvinar lectus lorem sit amet nisl. Aliquam consectetur, turpis quis ultrices rutrum, nisi ante aliquam libero, nec mattis augue leo eget ligula. Proin ac semper lorem. Suspendisse posuere accumsan diam sed tempor. Vivamus nunc dui, cursus sed augue eget, sodales eleifend orci. Fusce vestibulum volutpat velit. </p>
+        <p className="absolute top-[635px] blur-none w-[400px] right-[135px]"> Sed molestie, quam a fringilla fringilla, nibh est interdum lectus, a pulvinar lectus lorem sit amet nisl. Aliquam consectetur, turpis quis ultrices rutrum, nisi ante aliquam libero, nec mattis augue leo eget ligula. Proin ac semper lorem. Suspendisse posuere accumsan diam sed tempor. Vivamus nunc dui, cursus sed augue eget, sodales eleifend orci. Fusce vestibulum volutpat velit. </p>
       </div>
 
 
       </div>
+  </div>
+
+  {/*Timeline*/}
+  <div className="h-[1400px] relative">
+    
+    <img src={timelineBg} className="absolute top-0 w-full h*full"/>
+    
+    <div className="pt-[300px] relative">
+    <h1 className="text-4xl text-center font-spectral tracking-[50px] uppercase font-bold">Timeline</h1> 
+    </div>
+    <img src={timeline} className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] w-[1300px]"/>
 
   </div>
 
+
+  {/*My values*/}
+
+  <div className="max-w-full h-[1200px] bg-no-repeat" style={{
+      backgroundImage: `url('/src/assets/valuesbg.png')`,
+      backgroundSize: '100%',
+      backgroundPosition: 'center'}}>
+    <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-6 mt-[-350px] pt-[300px] ">
+      
+      <h1 className="flex justify-center text-6xl uppercase font-bold tracking-widest">My values</h1>
+
+      <div className="grid grid-flow-col auto-cols-fr mt-20  gap-x-20 px-[150px]">
+
+        {/*Health*/}
+        <div className="py-5 px-9 h-[300px] bg-[#ACDC6F] rounded-[60px] relative custom-shadow-card">
+        <div className="absolute w-[80%] top-[210px] border border-black"></div>
+          <img src={health} className="float-right w-[125px]"/>
+          <div className="pr-[100px] pt-[145px] pb-10">
+          <h1 className=" text-4xl font-bold">Health</h1>
+          <p className="underline underline-offset-4 mt-4 text-xl font-spectral">Learn more ...</p>
+          </div>
+        </div>
+
+        {/*Movement*/}
+        <div className="py-4 px-8 bg-[#DC836F] rounded-[40px] relative custom-shadow-card">
+        <div className="absolute w-[80%] top-[210px] border border-black"></div>
+          <img src={movement} className="float-right w-[125px]"/>
+          <div className="pr-[100px] pt-[145px] pb-10">
+          <h1 className=" text-4xl font-bold">Movement</h1>
+          <p className="underline underline-offset-4 mt-4 text-xl font-spectral">Learn more ...</p>
+          </div>
+        </div>
+
+        {/*Improvement*/}
+        <div className="py-4 px-8 bg-[#6FD5DC] rounded-[40px] relative custom-shadow-card">
+        <div className="absolute w-[80%] top-[210px] border border-black"></div>
+          <img src={improvement} className="float-right w-[125px]"/>
+          <div className="pr-[100px] pt-[145px] pb-10">
+          <h1 className=" text-4xl font-bold">Improvement</h1>
+          <p className="underline underline-offset-4 mt-4 text-xl font-spectral">Learn more ...</p>
+          </div>
+        </div>
+        
+      </div>
+
+  
+      {/*Scroll down arrow*/}
+      <div className="flex flex-col items-center mt-20 text-white uppercase text-2xl">
+        <p className="underline underline-offset-4">Scroll down</p>
+        <Link smooth={true} offset={-50}>
+          <img className="mt-1 w-[40px] duration-300 ease-in-out hover:scale-110" src={arrowDown} />
+        </Link>
+      </div>
+
+    </div>
+  </div>
+
+
+  {/*Health*/}
+
+  <div className="relative max-w-full h-[1350px] mt-[-50px] bg-no-repeat" style={{
+    backgroundImage: 'url(/src/assets/healthbg.png)',
+    backgroundSize: '100%',
+    backgroundPosition: 'center'
+  }}>
+    <img className="absolute right-[150px] top-20" src={healthHeart} alt="" />
+
+  <div className="px-20  pt-20">
+
+    <img className="float-left mr-10" src={healthImage}/>
+    
+    <div className="pt-[150px] ">
+      <h1 className="text-9xl uppercase rotate-[-15deg] underline underline-offset-[15px] decoration-4 font-spectral   mt-4">Health</h1>
+      <div className="text-xl tracking-wide mt-[63px] pt-8 ml-[730px] text-white border-t-4 border-black  max-w-[750px] mx-auto">
+      Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
+      </div>
+    </div>
+
+  </div>
+
+  </div>
     
 
 

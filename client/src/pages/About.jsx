@@ -8,6 +8,12 @@ import movement from "../assets/valuesMovement.png"
 import improvement from "../assets/valuesImprovement.png"
 import arrowDown from "../assets/arrowDown.png"
 import healthImage from "../assets/healthImages.png"
+import movementImage from "../assets/movement.png"
+import movementBg from "../assets/movementbg.png"
+import improvementImage from "../assets/improvement.png"
+import improvementBg from "../assets/improvementbg.png"
+import contactImage from "../assets/contactImage.png"
+import movimpbg from "../assets/movimpbg.png"
 import healthHeart from "../assets/healthHeartBg.png"
 import Registration from "../components/Registration";
 import { Helmet } from 'react-helmet';
@@ -30,11 +36,11 @@ return(
 
     <Navbar/>
     
+    <div className="mb-[300px]">
     {/*Hello intro*/}
     <div className="bg-no-repeat bg-cover h-[1100px] w-full mt-10" style={{
       backgroundImage: `url('/src/assets/aboutMeIntro.png')`,
-      backgroundSize: '100%',
-      backgroundPosition: 'center'}}>
+      }}>
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-6 md:text-[170px] text-4xl font-bold not-italic">
     <div className="mt-0 flex">
       <div className="pr-[150px] mt-[280px] font-spectral">
@@ -53,10 +59,9 @@ return(
 
   {/*My story*/}
 
-  <div className="h-[1100px] bg-no-repeat mt-[-100px]" style={{
+  <div className="h-[1100px] bg-no-repeat bg-cover mt-[-100px]" style={{
       backgroundImage: `url('/src/assets/aboutMeMyStory.png')`,
-      backgroundSize: '100%',
-      backgroundPosition: 'center'}}>
+      }}>
       
       <div className="mt-20">
       <h1 className="text-black text-3xl text-center pt-20 font-spectral uppercase tracking-[10px] font-bold">My story</h1>
@@ -83,7 +88,7 @@ return(
   {/*Timeline*/}
   <div className="h-[1400px] relative">
     
-    <img src={timelineBg} className="absolute top-0 w-full h*full"/>
+    <img src={timelineBg} className="absolute top-[-10px] w-full"/>
     
     <div className="pt-[300px] relative">
     <h1 className="text-4xl text-center font-spectral tracking-[50px] uppercase font-bold">Timeline</h1> 
@@ -95,10 +100,9 @@ return(
 
   {/*My values*/}
 
-  <div className="max-w-full h-[1200px] bg-no-repeat" style={{
-      backgroundImage: `url('/src/assets/valuesbg.png')`,
-      backgroundSize: '100%',
-      backgroundPosition: 'center'}}>
+  <div className="max-w-full h-[1200px] bg-no-repeat bg-cover" style={{
+    backgroundImage: `url('/src/assets/valuesbg.png')`,
+  }}>
     <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-6 mt-[-350px] pt-[300px] ">
       
       <h1 className="flex justify-center text-6xl uppercase font-bold tracking-widest">My values</h1>
@@ -152,12 +156,11 @@ return(
 
   {/*Health*/}
 
-  <div className="relative max-w-full h-[1350px] mt-[-50px] bg-no-repeat" style={{
+  <div className="relative max-w-full h-[1350px] mt-[-20px] bg-no-repeat bg-cover" style={{
     backgroundImage: 'url(/src/assets/healthbg.png)',
-    backgroundSize: '100%',
-    backgroundPosition: 'center'
+
   }}>
-    <img className="absolute right-[150px] top-20" src={healthHeart} alt="" />
+    {/*<img className="absolute right-[150px] top-20" src={healthHeart} alt="" />*/}
 
   <div className="px-20  pt-20">
 
@@ -173,10 +176,44 @@ return(
   </div>
 
   </div>
+
+
+  {/*Movement*/}
+  <div className="relative max-w-full h-[1000px] mt-[-150px]">
+    <img src={movimpbg } className="absolute bottom-[-600px] w-full z-[-1]"/>
+    <h1 className="text-9xl font-bold pl-[150px] uppercase">Movement</h1>
+    <img className="float-left pt-6 pl-[110px] pr-16" src={movementImage}/>
+    
+    <div className="pr-[150px] text-2xl mt-8 text-justify">
+    Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
+    </div>
+  </div>
+
+
+
+
+  {/*Improvement*/}
+  <div className="relative max-w-full h-[1000px] pt-[150px]">
+    <h1 className="text-8xl font-bold pl-[275px] uppercase mt-[-50px] mb-10">Constant improvement</h1>
+    <img className="float-left pt-10 pl-[110px] pr-16" src={improvementImage}/>
+    
+    <div className="pr-[150px] text-2xl mt-[450px] text-justify">
+    Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
+    </div>
+  </div>
+
+
+
+    {/*Contact*/}
+
+    <div className="h-[1000px] pt-[500px]">
+    <img src={contactImage} className="float-left pl-[200px] w-[900px]"/>
+    </div>
+
+  </div>
     
 
 
-<Registration/>
 
 
     

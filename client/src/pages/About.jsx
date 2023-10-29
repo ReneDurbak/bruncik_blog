@@ -88,7 +88,7 @@ return(
   {/*Timeline*/}
   <div className="h-[1400px] relative">
     
-    <img src={timelineBg} className="absolute top-[-10px] w-full"/>
+    <img src={timelineBg} className="absolute w-full"/>
     
     <div className="pt-[300px] relative">
     <h1 className="text-4xl text-center font-spectral tracking-[50px] uppercase font-bold">Timeline</h1> 
@@ -143,9 +143,9 @@ return(
 
   
       {/*Scroll down arrow*/}
-      <div className="flex flex-col items-center mt-20 text-white uppercase text-2xl">
+      <div className="flex flex-col items-center mt-[180px] text-white uppercase text-2xl">
         <p className="underline underline-offset-4">Scroll down</p>
-        <Link smooth={true} offset={-50}>
+        <Link to="healthSection" smooth={true} offset={-50}>
           <img className="mt-1 w-[40px] duration-300 ease-in-out hover:scale-110" src={arrowDown} />
         </Link>
       </div>
@@ -156,7 +156,7 @@ return(
 
   {/*Health*/}
 
-  <div className="relative max-w-full h-[1350px] mt-[-20px] bg-no-repeat bg-cover" style={{
+  <div id="healthSection" className="relative max-w-full h-[1350px] mt-[-25px] bg-no-repeat bg-cover" style={{
     backgroundImage: 'url(/src/assets/healthbg.png)',
 
   }}>
@@ -193,11 +193,11 @@ return(
 
 
   {/*Improvement*/}
-  <div className="relative max-w-full h-[1000px] pt-[150px]">
+  <div className="relative max-w-full h-[1000px] pt-[350px]">
     <h1 className="text-8xl font-bold pl-[275px] uppercase mt-[-50px] mb-10">Constant improvement</h1>
     <img className="float-left pt-10 pl-[110px] pr-16" src={improvementImage}/>
     
-    <div className="pr-[150px] text-2xl mt-[450px] text-justify">
+    <div className="pr-[150px] text-2xl mt-[350px] text-justify">
     Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
     </div>
   </div>
@@ -208,6 +208,7 @@ return(
 
     <div className="h-[1000px] pt-[500px]">
     <img src={contactImage} className="float-left pl-[200px] w-[900px]"/>
+    <Registration/>
     </div>
 
   </div>

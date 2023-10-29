@@ -12,7 +12,8 @@ export default {
       spectral: "'Spectral', serif",
       shadows: "'Shadows Into Light', cursive",
       spectralsc: "'Spectral SC', serif",
-      indieflower: "'Rock Salt', cursive",
+      indieflower: ['Indie Flower', 'cursive'],
+      cabin: ['Cabin', 'sans-serif'],
     },
     screens: {
       'sm': '640px',

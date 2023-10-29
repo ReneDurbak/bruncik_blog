@@ -9,12 +9,10 @@ import improvement from "../assets/valuesImprovement.png"
 import arrowDown from "../assets/arrowDown.png"
 import healthImage from "../assets/healthImages.png"
 import movementImage from "../assets/movement.png"
-import movementBg from "../assets/movementbg.png"
 import improvementImage from "../assets/improvement.png"
-import improvementBg from "../assets/improvementbg.png"
 import contactImage from "../assets/contactImage.png"
 import movimpbg from "../assets/movimpbg.png"
-import healthHeart from "../assets/healthHeartBg.png"
+import healthvaluesbg from "../assets/healthvaluesbg.png"
 import Registration from "../components/Registration";
 import { Helmet } from 'react-helmet';
 import { Link } from "react-scroll";
@@ -100,9 +98,8 @@ return(
 
   {/*My values*/}
 
-  <div className="max-w-full h-[1200px] bg-no-repeat bg-cover" style={{
-    backgroundImage: `url('/src/assets/valuesbg.png')`,
-  }}>
+  <div className="max-w-full h-[1200px]">
+    <img src={healthvaluesbg} className="absolute z-[-1] w-full"/>
     <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-6 mt-[-350px] pt-[300px] ">
       
       <h1 className="flex justify-center text-6xl uppercase font-bold tracking-widest">My values</h1>
@@ -156,11 +153,7 @@ return(
 
   {/*Health*/}
 
-  <div id="healthSection" className="relative max-w-full h-[1350px] mt-[-25px] bg-no-repeat bg-cover" style={{
-    backgroundImage: 'url(/src/assets/healthbg.png)',
-
-  }}>
-    {/*<img className="absolute right-[150px] top-20" src={healthHeart} alt="" />*/}
+  <div id="healthSection" className="relative max-w-full h-[1350px] mt-[-25px]">
 
   <div className="px-20  pt-20">
 

@@ -199,9 +199,9 @@ return(
 
     {/*Contact*/}
 
-    <div className="h-[1000px] pt-[500px]">
-      <div className="flex space-x-2">  
-        <img src={contactImage} className="2xl:pl-[200px] 2xl:h-[700px] lg:h-[500px] h-[200px]"/>
+    <div className="h-[1000px] pt-[500px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-0">
+      <div className="flex space-x-[250px]">  
+        <img src={contactImage} className="2xl:h-[700px] lg:h-[500px] h-[200px]"/>
         <Registration/>
       </div>
     </div>

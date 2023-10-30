@@ -61,7 +61,7 @@ export default function Registration(){
     <div className="w-[900px] font-cabin"  id="Email">
       
       <form 
-      className="bg-white border-black  shadow-[14px_14px_5px_0px_rgba(152,131,131,0.6)] rounded-[50px] lg:px-10 px-4 py-10 mb-4 md:mx-[150px] mx-[20px] sm:text-base text-sm outline outline-[1px]"
+      className="bg-white border-black  shadow-[14px_14px_5px_0px_rgba(152,131,131,0.6)] rounded-[50px] lg:px-10 px-4 py-10 mb-4  sm:text-base text-sm outline outline-[1px]"
       onSubmit={sendEmail}
       >
       

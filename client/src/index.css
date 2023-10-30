@@ -66,10 +66,29 @@ textarea::placeholder {
 .animate-shake {
   animation: shake 0.5s;
 }
-  
-  
-  
-  
-  
+
+
+
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+    max-height: 0px;
+  }
+  100% {
+    opacity: 1;
+    max-height: 600px;
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+    opacity: 1;
+    max-height: 600px;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0px;
+  }
+}
 
 

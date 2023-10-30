@@ -23,7 +23,7 @@ import { Link } from "react-scroll";
 
 function About(){
 
-  
+
 
 return(
     <>
@@ -45,7 +45,7 @@ return(
         <div>Hi!</div>
         <div className="text-[90px] mt-[100px] font-thin tracking-wider">I'm Peter Brunčík </div>
         <div className="text-lg font-thin font-spectral tracking-wide mt-20 mb-[-40px] text-justify">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
-        <button className="p-2 text-white  bg-[#2A6CA5] custom-shadow text-base rounded-[30px] font-poppins duration-300 ease-in-out hover:text-gray-700 active:text-black">Learn more</button>
+        <Link to="mystory" smooth={true}><button className="p-2 text-white  bg-[#2A6CA5] custom-shadow text-base rounded-[30px] font-poppins duration-300 ease-in-out underline-offset-[3px] hover:underline active:text-black">Learn more</button></Link>
       </div>
       <img src={selfie} className="h-[750px] aspect-auto p-10 mr-[-75px] float-right mt-[150px]"/>
       </div>
@@ -57,7 +57,7 @@ return(
 
   {/*My story*/}
 
-  <div className="h-[1100px] bg-no-repeat bg-cover mt-[-100px]" style={{
+  <div id="mystory" className="h-[1100px] bg-no-repeat bg-cover mt-[-100px]" style={{
       backgroundImage: `url('/src/assets/aboutMeMyStory.png')`,
       }}>
       
@@ -87,11 +87,11 @@ return(
   <div className="h-[1400px] relative">
     
     <img src={timelineBg} className="absolute w-full"/>
-    
+     
     <div className="pt-[300px] relative">
     <h1 className="text-4xl text-center font-spectral tracking-[50px] uppercase font-bold">Timeline</h1> 
     </div>
-    <img src={timeline} className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] w-[1300px]"/>
+    <img src={timeline} className="absolute z-[-1] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] w-[1300px]"/>
 
   </div>
 
@@ -110,9 +110,9 @@ return(
         <div className="py-5 px-9 h-[300px] bg-[#ACDC6F] rounded-[60px] relative custom-shadow-card">
         <div className="absolute w-[80%] top-[210px] border border-black"></div>
           <img src={health} className="float-right w-[125px]"/>
-          <div className="pr-[100px] pt-[145px] pb-10">
-          <h1 className=" text-4xl font-bold">Health</h1>
-          <p className="underline underline-offset-4 mt-4 text-xl font-spectral">Learn more ...</p>
+          <div className="pr-[100px] pt-[140px] pb-10">
+          <h1 className=" text-[38px] font-bold">Health</h1>
+          <p className="underline underline-offset-4 mt-4 text-[23px] font-spectral">Learn more</p>
           </div>
         </div>
 
@@ -122,7 +122,7 @@ return(
           <img src={movement} className="float-right w-[125px]"/>
           <div className="pr-[100px] pt-[145px] pb-10">
           <h1 className=" text-4xl font-bold">Movement</h1>
-          <p className="underline underline-offset-4 mt-4 text-xl font-spectral">Learn more ...</p>
+          <p className="underline underline-offset-4 mt-4 text-[23px] font-spectral">Learn more</p>
           </div>
         </div>
 
@@ -132,7 +132,7 @@ return(
           <img src={improvement} className="float-right w-[125px]"/>
           <div className="pr-[100px] pt-[145px] pb-10">
           <h1 className=" text-4xl font-bold">Improvement</h1>
-          <p className="underline underline-offset-4 mt-4 text-xl font-spectral">Learn more ...</p>
+          <p className="underline underline-offset-4 mt-4 text-[23px] font-spectral">Learn more</p>
           </div>
         </div>
         
@@ -186,11 +186,11 @@ return(
 
 
   {/*Improvement*/}
-  <div className="relative max-w-full h-[1000px] pt-[350px]">
-    <h1 className="text-8xl font-bold pl-[275px] uppercase mt-[-50px] mb-10">Constant improvement</h1>
-    <img className="float-left pt-10 pl-[110px] pr-16" src={improvementImage}/>
+  <div className="relative max-w-full h-[1000px] pt-[200px]">
+    <h1 className="text-[110px] font-bold pl-[275px] uppercase mt-[-50px] mb-2">Constant improvement</h1>
+    <img className="float-left pl-[110px] pr-16 w-[900px]" src={improvementImage}/>
     
-    <div className="pr-[150px] text-2xl mt-[350px] text-justify">
+    <div className="pr-[300px] text-2xl mt-[350px] text-justify">
     Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
     </div>
   </div>
@@ -199,9 +199,9 @@ return(
 
     {/*Contact*/}
 
-    <div className="h-[1000px] pt-[500px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-0">
-      <div className="flex space-x-[250px]">  
-        <img src={contactImage} className="2xl:h-[700px] lg:h-[500px] h-[200px]"/>
+    <div className="h-[1200px] pt-[500px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20">
+      <div className="flex space-x-[100px]">  
+        <img src={contactImage} className="2xl:h-[800px] lg:h-[500px] h-[200px] mr-[-50px] mt-[-75px]"/>
         <Registration/>
       </div>
     </div>

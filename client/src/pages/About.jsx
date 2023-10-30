@@ -200,8 +200,10 @@ return(
     {/*Contact*/}
 
     <div className="h-[1000px] pt-[500px]">
-    <img src={contactImage} className="float-left pl-[200px] w-[900px]"/>
-    <Registration/>
+      <div className="flex space-x-2">  
+        <img src={contactImage} className="2xl:pl-[200px] 2xl:h-[700px] lg:h-[500px] h-[200px]"/>
+        <Registration/>
+      </div>
     </div>
 
   </div>

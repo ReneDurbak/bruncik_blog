@@ -22,9 +22,6 @@ import paperPlaneBlack from "../assets/PaperPlaneBlack.png"
 export default function SingleArticlePage({articles}) {
 
 
-      
-
-
     const labelsForArticleReview = [
         {
             id: 1,
@@ -305,10 +302,15 @@ export default function SingleArticlePage({articles}) {
 
         <Navbar/> {/*Main container*/}
         <div className={
-            `${
-                isTabletAboutMe ? "max-w-[1380px] mx-auto grid-flow-col grid-cols-2 gap-x-3 mt-[120px] grid sm:px-10 px-4" : (closeSideBar ? "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 px-7" : "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 pl-4")
-            }`
-        }>
+  `${
+    isTabletAboutMe 
+      ? "max-w-[1380px] mx-auto grid-flow-col grid-cols-2 gap-x-3 mt-[120px] grid sm:px-10 px-4" 
+      : (closeSideBar 
+          ? "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 px-7" 
+          : "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 pl-4"
+        )
+  }`
+}>
 
 
             {/*Article container*/}
@@ -348,7 +350,7 @@ export default function SingleArticlePage({articles}) {
 
                 {/*Article content*/}
 
-                <div className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] text-justify leading-6 md:pr-0 sm:pr-8 pr-5 ">
+                <div className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] text-justify leading-6 pr-2">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula est nec sapien finibus eleifend. Nunc ut urna vitae augue ultrices eleifend ut quis tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod purus id augue aliquet fermentum. Vestibulum vulputate, erat et molestie viverra, tellus mi aliquam enim, a dictum ipsum sapien nec dolor. Nulla nec mi augue. Vestibulum at felis magna. Nam at congue tellus.
                     
                     Etiam id fermentum lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas ornare feugiat magna id ullamcorper. In hac habitasse platea dictumst. Nulla in urna neque. Praesent quis vestibulum dui. Donec ut dolor ut tortor laoreet maximus vel sit amet enim. Nam rutrum odio nec augue venenatis suscipit. Sed rutrum maximus dui gravida hendrerit. Sed vitae tellus ultrices, tempus tortor ac, iaculis felis. Pellentesque in turpis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut justo et felis dapibus placerat. Fusce faucibus tincidunt lectus quis malesuada. Maecenas tempus aliquam dui et condimentum.
@@ -490,8 +492,8 @@ export default function SingleArticlePage({articles}) {
                                     ))}
                                     {
                                     showMoreLabels 
-                                    ? <div className="cursor-pointer px-2 py-[1px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl" onClick={()=> setShowMoreLabels(false)}>Less</div>
-                                    : <div className="cursor-pointer px-2 py-[1px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl" onClick={() => setShowMoreLabels(true)}>More</div>
+                                    ? <div className="cursor-pointer px-2 py-[2px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl underline underline-offset-2" onClick={()=> setShowMoreLabels(false)}>Less</div>
+                                    : <div className="cursor-pointer px-2 py-[2px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl underline underline-offset-2" onClick={() => setShowMoreLabels(true)}>More</div>
                                     }
                                     
                                 </>
@@ -536,7 +538,7 @@ export default function SingleArticlePage({articles}) {
                                         setClickOnPaperPlane(true),
                                         setTimeout(function () {
                                             setClickOnPaperPlane(false)
-                                        }, 1000)
+                                        }, 200)
                                     }
                                 }
                                 variant="contained"
@@ -546,7 +548,7 @@ export default function SingleArticlePage({articles}) {
                                 onMouseLeave={
                                     () => setHoverOnPaperPlane(false)
                                 }
-                                className=" bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black text-white ease-in-out duration-700  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]">
+                                className=" bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]">
                                 <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] capitalize tracking-widest font-poppins">
                                     <div className="underline underline-offset-2  my-auto font-bold">send</div>
                                     <div className="my-auto">
@@ -766,8 +768,8 @@ export default function SingleArticlePage({articles}) {
                     </div>
 
                 <div className="px-4 mt-8 xl:mt-12">
-                    <div onMouseEnter={
-                            () => setHoverOnPaperPlane(true)
+                    <buton onMouseEnter={
+                            () => isLaptop ? setHoverOnPaperPlane(true) : setHoverOnPaperPlane(false)
                         }
                         onMouseLeave={
                             () => setHoverOnPaperPlane(false)
@@ -778,16 +780,16 @@ export default function SingleArticlePage({articles}) {
                                 setClickOnPaperPlane(true),
                                 setTimeout(function () {
                                     setClickOnPaperPlane(false)
-                                }, 1000)
+                                }, 200)
                             }
                         }
-                        className="w-full bg-black hover:bg-white hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black text-white ease-in-out duration-700 md:text-base text-sm p-2 rounded-[30px] flex space-x-2 justify-center">
+                        className="w-full bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700 md:text-base text-sm p-2 rounded-[30px] flex space-x-2 justify-center">
                         <div className="font-bold underline-offset-2 underline">Send</div>
                         <div className="my-auto"><img src={
-                                    hoverOnPaperPlane ? paperPlaneBlack : paperPlane
+                                    hoverOnPaperPlane || clickOnPaperPlane ? paperPlaneBlack : paperPlane
                                 }
                                 className="w-[15px]"/></div>
-                    </div>
+                    </buton>
                 </div>
 
                 <div className="absolute top-5 right-5"

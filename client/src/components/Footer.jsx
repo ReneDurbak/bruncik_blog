@@ -86,7 +86,7 @@ return(
         <li className="xl:mt-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/push-ups" className="hover:text-gray-400 duration-300 ease-in-out">Push ups series</Link></li>
         <li className="xl:mt-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/mycourse" className="hover:text-gray-400 duration-300 ease-in-out">My course</Link></li>
         <li className="xl:my-8 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><Link to="/about" className="hover:text-gray-400 duration-300 ease-in-out">About</Link></li>
-        <li className="xl:mb-2 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=[Subject]&body=[Peter - Usually replies within 24 hours.]" target="_blank"rel="noopener noreferrer" className="hover:text-gray-400 duration-300 ease-in-out">Contact</a></li>
+        <li className="xl:mb-2 xl:mx-5 mx-1 my-auto underline underline-offset-4 decoration-0"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=[Subject]&body=[Peter - Usually replies within 24 hours.]" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 duration-300 ease-in-out">Contact</a></li>
       </ul>
     </div>
 

@@ -60,18 +60,18 @@ return(
     
     <div className="mb-[300px]">
     {/*Hello intro*/}
-    <div className="bg-no-repeat bg-cover  h-[1100px] w-full" style={{
+    <div className="bg-no-repeat bg-cover  h-[1000px] w-full" style={{
       backgroundImage: isDesktop ? `url('/src/assets/aboutMeIntro.png')`: '',
       }}>
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto mt-10 2xl:px-20 lg:px-20 sm:px-10 px-6] font-bold not-italic">
     <div className="mt-0 flex">
-      <div className="2xl:pr-[150px] mt-[200px] font-spectral">
+      <div className="2xl:pr-[150px] mt-[150px] font-spectral">
         <div className=" 2xl:text-[170px]">Hi!</div>
         <div className="2xl:text-[90px]  font-thin tracking-wider mt-[-50px]">I'm Peter Brunčík </div>
         <div className="text-lg font-thin font-spectral tracking-wide text-justify md:block hidden">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
         <Link to="mystory" smooth={true}><button className="p-2 text-white mt-8 bg-[#2A6CA5] custom-shadow text-base rounded-[30px] font-poppins duration-300 ease-in-out underline-offset-[3px] hover:underline active:text-black">Learn more</button></Link>
       </div>
-      <img src={selfie} className="2xl:h-[750px] h-[350px] aspect-auto p-10 2xl:mr-[-75px] float-right mt-[150px]"/>
+      <img src={selfie} className="2xl:h-[750px] h-[350px] aspect-auto p-10 2xl:mr-[-75px] float-right mt-[120px]"/>
       </div>
     </div>
     </div>
@@ -193,7 +193,7 @@ return(
     <img className="float-left mr-10 2xl:w-[700px] w-[150px]" src={healthImage}/>
     
     <div className="relative pt-[300px]">
-      <img src={hearthIcon} className="absolute 2xl:top-[-450px] 2xl:left-[225px] 2xl:w-[1300px] w-[200px]" />
+      <img src={hearthIcon} className="absolute 2xl:top-[-450px] 2xl:left-[225px] 2xl:w-[1300px] w-[200px] z-[-1]" />
       <h1 className="2xl:text-9xl uppercase rotate-[-15deg] underline underline-offset-[15px] decoration-4 font-spectral   mt-4">Health</h1>
       <div className="text-xl tracking-wide mt-[63px] pt-8 2xl:ml-[730px] 2xl:text-white border-t-4 border-black  2xl:max-w-[750px] mx-auto text-right">
       Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
@@ -208,7 +208,6 @@ return(
   {/*Movement*/}
   <div id="movementSection" className="relative max-w-full h-[1100px] pt-[125px]">
     <img src={movimpbg } className="absolute bottom-[-650px] w-full z-[-1]"/>
-    <img src={shoeIcon} className="absolute 2xl:w-[700px] w-[200px] right-[150px] bottom-[-150px]"/>
     <h1 className="2xl:text-9xl font-bold pl-[150px] uppercase">Movement</h1>
     <img className="float-left pt-6 pl-[110px] pr-16" src={movementImage}/>
     <div className="2xl:pr-[150px] text-2xl mt-8">
@@ -222,7 +221,6 @@ return(
   {/*Improvement*/}
   <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] pt-[190px]">
     <h1 className="2xl:text-[110px] font-bold text-center 2xl:pl-[250px] uppercase mt-[-50px] mb-2">Constant improvement</h1>
-    <img src={improvementIcon} className="absolute right-[400px] top-0 2xl:w-[1000px] w-[200px]"/>
     <img className="float-left pl-[110px] pr-16 w-[900px]" src={improvementImage}/>
     
     <div className="2xl:pr-[300px] text-2xl mt-[350px]">

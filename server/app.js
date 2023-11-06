@@ -8,8 +8,6 @@ app.use(cors())
 app.use(express.json())
 
 
-
-
 app.get('/', (req,res)=>{
     return res.json('My backend')
 }) 

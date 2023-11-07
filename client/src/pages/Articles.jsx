@@ -1,5 +1,4 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-scroll";
 import { useMediaQuery } from 'react-responsive'
@@ -154,7 +153,6 @@ function Articles(){
 </Helmet>
 
 {/*Articles intro*/}
-    <Navbar/>
     <div id="articles" className="text-white 2xl:pt-[200px]  2xl:pb-[75px] xl:pt-[250px] xl:pb-16 lg:pt-[350px] lg:pb-[115px]  md:pt-[300px] md:pb-[50px] sm:pt-[150px] sm:pb-[120px] pt-[260px] pb-20   md:tracking-normal   2xl:bg-[url('/src/assets/articlesintrobg.png')] xl:bg-[url('/src/assets/articlesintrobglaptopxl.png')] md:bg-[url('/src/assets/articlesintrobgtablet.png')] bg-[url('/src/assets/articlesintrobgmobile.png')] bg-cover font-spectral ">
      <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 grid sm:grid-cols-2 sm:grid-flow-col	lg:gap-8 sm:gap-8 2xl:mt-4 xl:mt-[-25px] lg:mt-[-185px] md:mt-[-135px] sm:mt-[-25px] mt-[-190px]">   
      
@@ -366,19 +364,6 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 </div>
 
 
-
-
-
-
-
-
-
-
-
-    
-
-
-    <Footer/>
     </> 
     )
     

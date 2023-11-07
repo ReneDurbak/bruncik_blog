@@ -1,5 +1,3 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import selfie from "../assets/selfiePhoto.png"
 import timeline from "../assets/timeline.png"
 import timelineBg from "../assets/timelineBg.png"
@@ -44,8 +42,6 @@ function About() {
                 <title>About me</title>
                 <link rel="icon" type="image/svg+xml" href="/aboutme.png"/>
             </Helmet>
-
-            <Navbar/>
 
             <div className="mb-[300px]">
                 {/*Hello intro*/}
@@ -318,9 +314,6 @@ function About() {
                 </div>
               </div>                                
             </div>
-
-
-            <Footer/>
         </>
     )
 

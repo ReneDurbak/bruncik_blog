@@ -7,6 +7,8 @@ import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import SingleArticlePage from './components/SingleArticlePage.jsx';
 import ScrollToTop from './scrollToTop.jsx';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -38,7 +40,10 @@ function App() {
 
 
   return (
+    <>
+
     <Router>
+          <Navbar/>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -48,7 +53,9 @@ function App() {
         <Route path="/mycourse" element={<Mycourse />} />
         <Route path="/push-ups" element={<Pushups/>} />
       </Routes>  
+      <Footer/>
     </Router>
+    </>
   );
 }
 

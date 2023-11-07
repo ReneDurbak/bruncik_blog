@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 import { useMediaQuery } from 'react-responsive'
 import { Link } from "react-router-dom"
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import React from "react";
 import ringbell from "../assets/Ringbelt.png"
 import profilepicture from "../assets/profilepicture.png"
@@ -202,7 +200,6 @@ return(
           <title>Push ups page</title>
           <link rel="icon" type="image/svg+xml" href="/pushups.png" />
       </Helmet>
-      <Navbar/>
         
       {/*Push-ups intro*/}
       <div className="bg-[url('/src//assets/pushupsintrobg.png')] bg-cover xl:py-[450px] md:py-[350px] py-[300px]"/>
@@ -542,8 +539,6 @@ return(
         </div>
     </div>
 
-
-    <Footer/>
         </>
     )
 }

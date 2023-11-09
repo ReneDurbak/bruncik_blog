@@ -120,7 +120,7 @@ function Home() {
       {/*Articles*/ }
 
     <div id="articles" className="w-full  2xl:bg-[url('/src/assets/articles/articlesbg.png')] lg:bg-[url('/src/assets/articles/articlesbgnotebook.png')] sm:bg-[url('/src/assets/articles/articlesbgtablet.png')] bg-cover	pt-[350px] sm:py-[400px] lg:py-[600px]  font-spectral">
-        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-20 sm:px-10 px-10 ">
+        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 xl:px-10 lg:px-10 sm:px-10 px-10 ">
         
    
         <div className="">
@@ -178,7 +178,7 @@ function Home() {
  
     <div id="push-ups" className="sm:mt-[-150px] lg:mt-[-250px] 2xl:mt-[0px] mt-[250px]  w-full 2xl:bg-[url('/src/assets/push-ups/pushupsbg.png')] lg:bg-[url('/src/assets/push-ups/pushupsbgnotebook.png')] sm:bg-[url('/src/assets/push-ups/pushupsbgtablet.png')] bg-cover	py-[300px] sm:py-[400px] lg:py-[575px] font-spectral">
       
-        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-20 sm:px-10 px-10">
+        <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-10 sm:px-10 px-10">
  
         <div className="mb-[75px] mt-[-360px] 2xl:max-w-[1680px] mx-auto">
         <h1 className="2xl:text-7xl xl:text-7xl md:text-6xl sm:text-5xl text-2xl text-center lg:text-left   underline decoration-1 underline-offset-[15px]" >Push Ups Gallery</h1>
@@ -259,7 +259,7 @@ On this page, you'll find videos of different people, including myself ;), who h
      {/*My course*/}
 
      <div id="mycourse" className="sm:mt-[-350px] lg:mt-[-350px] 2xl:mt-[-50px] mt-[-450px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')]   bg-cover py-[325px] sm:py-[250px] lg:py-[250px]	 xl:py-[200px] 2xl:py-[150px] xl:mb-[225px] font-spectral">
-      <div className="2xl:max-w-[1680px]  mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-10">
+      <div className="2xl:max-w-[1680px] max-w-[1380px]  mx-auto 2xl:px-20 xl:px-10 lg:px-10 sm:px-10 px-10">
     
       <h1 className="  2xl:text-7xl xl:text-6xl sm:text-5xl text-2xl  lg:text-left text-center underline decoration-1 underline-offset-[25px] " >My Course - Work with me</h1>
    
@@ -299,7 +299,7 @@ On this page, you'll find videos of different people, including myself ;), who h
 
    <div className="mt-[-75px] sm:mt-[-125px] lg:mt-[-250px] 2xl:mt-[-70px]   2xl:bg-[url('/src/assets/about/aboutbg.png')] xl:bg-[url('/src/assets/about/aboutbgnotebookxl.png')] lg:bg-[url('/src/assets/about/aboutbgnotebook.png')] sm:bg-[url('/src/assets/about/aboutbgtablet.png')] bg-cover	py-[300px]  sm:py-[450px] lg:py-[600px] 2xl:py-[450px] 2xl:pb-[550px] lg:mb-[150px] mb-[-150px] font-spectral">
       
-      <div className= "2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-20 sm:px-10 px-10">
+      <div className= "2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-10 sm:px-10 px-10">
 
       <div className="mb-[60px] mt-[-360px] 2xl:max-w-[1680px] mx-auto">
       <h1 className="2xl:text-7xl xl:text-7xl md:text-6xl sm:text-4xl text-2xl text-center  lg:text-start underline decoration-1 underline-offset-[15px]" >About me</h1>

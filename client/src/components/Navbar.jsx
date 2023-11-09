@@ -43,7 +43,7 @@ function Navbar(){
 return(
     <>
     <header className={`w-full z-[5] bg-[#2A6CA5] text-white sm:fixed sticky transition-all duration-500 ${scrollDirection === "down" ? "top-[-100px]" : "top-0"}`}> 
-  <div className=" 2xl:p-5 xl:p-6 sm:p-[18px] p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-6">
+  <div className=" 2xl:p-5 xl:p-6 sm:p-[18px] p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px]  mx-auto 2xl:px-20 xl:px-[70px] lg:px-10 sm:px-10 px-6">
     <div className="flex items-center justify-between w-full md:w-auto">
       <h1 className="text-white 2xl:text-[32px] xl:text-3xl lg:text-[26px] md:text-2xl sm:text-2xl  text-[25px] font-hurricane cursor-pointer"><Link to="/"><div className="flex space-x-2"><img src={logo} className='xl:w-[32px] lg:w-[26px] md:w-[24px] w-[24px]  my-auto'/><div>Peter Brunčík</div></div></Link></h1>
       <div onClick={handleNav} className="block md:hidden">

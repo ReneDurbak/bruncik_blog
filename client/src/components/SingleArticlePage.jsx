@@ -300,7 +300,7 @@ export default function SingleArticlePage({articles}) {
             <link rel="icon" type="image/svg+xml" href="/articles.png"/>
         </Helmet>
 
-        <Navbar/> {/*Main container*/}
+        {/*Main container*/}
         <div className={
   `${
     isTabletAboutMe 
@@ -927,8 +927,6 @@ export default function SingleArticlePage({articles}) {
             </div>
         } </div>
 
-
-        <Footer/>
 
     </>
 

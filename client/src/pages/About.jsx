@@ -173,7 +173,7 @@ function About() {
                             <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#ACDC6F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card">
                                 <img src={bottomShadow}
                                     className="absolute lg:bottom-[-43px] xl:bottom-[-65px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
-                                <div className="absolute w-[80%] 2xl:top-[210px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
+                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
                                 <img src={health}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
                                 <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-16 pt-12 2xl:pb-10 xl:pb-8 lg:pb-4">
@@ -190,7 +190,7 @@ function About() {
                             <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#DC836F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card">
                                 <img src={bottomShadow}
                                     className="absolute lg:bottom-[-43px] xl:bottom-[-65px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
-                                <div className="absolute w-[80%] 2xl:top-[210px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
+                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
                                 <img src={movement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
                                 <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-16 pt-12 2xl:pb-10 xl:pb-8 lg:pb-4">
@@ -205,7 +205,7 @@ function About() {
                             <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px]  bg-[#6FD5DC] rounded-[30px] lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card2">
                                 <img src={bottomShadow}
                                     className="absolute lg:bottom-[-43px] xl:bottom-[-65px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
-                                <div className="absolute w-[80%] 2xl:top-[210px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
+                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
                                 <img src={improvement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
                                 <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-16 pt-12 2xl:pb-10 xl:pb-8 lg:pb-4">

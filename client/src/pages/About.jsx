@@ -138,7 +138,7 @@ function About() {
                         className="absolute w-full"/>
 
                     <div className="2xl:pt-[300px] xl:pt-[250px] sm:pt-[150px] pt-[100px]">
-                        <h1 className="xl:text-4xl lg:text-3xl text-2xl text-center font-spectral 2xl:tracking-[50px] uppercase font-bold">Timeline</h1>
+                        <h1 className="xl:text-4xl lg:text-3xl text-2xl text-center font-spectral tracking-[15px] 2xl:tracking-[50px] uppercase font-bold">Timeline</h1>
                     </div>
                     
                     {

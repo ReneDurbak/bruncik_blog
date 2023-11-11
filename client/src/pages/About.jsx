@@ -29,13 +29,16 @@ function About() {
 
 
     const isDesktop = useMediaQuery({query: '(min-width: 1538px)'})
+    const isLaptopXL = useMediaQuery({query: '(min-width: 1440px )'})
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
+    const isTablet = useMediaQuery({query: '(min-width: 768px)'})
     const isMobile = useMediaQuery({query: '(min-width: 640px)'})
-
+    
     const [email, setEmail] = useState("")
     const [message, setMessage] = useState("")
     const [hoverOnSendButton, setHoverOnSendButton] = useState(false)
     const [clickOnSendButton, setClickOnSendButton] = useState(false)
+
 
 
 
@@ -103,9 +106,12 @@ function About() {
 
                 {/*My story*/}
 
-                <div id="mystory" className="h-[1100px] bg-no-repeat bg-cover mt-[-100px]"
+                <div id="mystory" className="2xl:h-[1100px] xl:h-[870px] lg:h-[720px] md:h-[880px] sm:h-[780px] h-[500px] bg-no-repeat bg-cover mt-[-100px]"
                     style={
-                        {backgroundImage: `url('/src/assets/aboutMeMyStory.png')`}
+                        {
+                            backgroundImage: `${ isDesktop ? "url('/src/assets/aboutMeMyStory.png')" : isLaptopXL ? "url('/src/assets/aboutMeMyStoryLaptopXL.png')" : isLaptop ? "url('/src/assets/aboutMeMyStoryLaptop.png')" : isTablet ? "url('/src/assets/aboutMeMyStoryTablet.png')" : isMobile ? "url('/src/assets/aboutMeMyStoryBigMobile.png')"   : "url('/src/assets/aboutMeMyStoryMobile.png')" }`,
+                            backgroundSize: "100%"
+                        }
                 }>
 
                     <div className="mt-20">
@@ -132,12 +138,12 @@ function About() {
                 </div>
 
                 {/*Timeline*/}
-                <div className="lg:h-[1400px] h-[300px] relative">
+                <div className="xl:h-[1400px] lg:h-[1000px] h-[300px] relative">
 
                     <img src={timelineBg}
                         className="absolute w-full"/>
 
-                    <div className="2xl:pt-[300px] xl:pt-[250px] sm:pt-[150px] pt-[100px]">
+                    <div className="2xl:pt-[300px] xl:pt-[250px] sm:pt-[150px] pt-[125px] text-center">
                         <h1 className="xl:text-4xl lg:text-3xl text-2xl text-center font-spectral tracking-[15px] 2xl:tracking-[50px] uppercase font-bold">Timeline</h1>
                     </div>
                     
@@ -145,12 +151,12 @@ function About() {
                         isMobile ?
 
                         <img src={timeline}
-                        className="absolute z-[-1] 2xl:top-[53%] xl:top-[45%] lg:top-[30%] top-[120%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] 2xl:w-[1550px] xl:w-[1100px] lg:w-[850px] md:w-[650px] w-[600px]"/>
+                        className="absolute z-[-1] 2xl:top-[53%] xl:top-[45%] lg:top-[45%] top-[120%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] 2xl:w-[1550px] xl:w-[1100px] lg:w-[850px] md:w-[650px] w-[600px]"/>
 
                         :
 
                         <img src={timelineMobile}
-                        className="absolute z-[-1] top-[60%] left-0 right-0 m-auto w-[300px]"/>
+                        className="absolute z-[-1] top-[80%] left-0 right-0 m-auto w-[300px]"/>
 
                     }
 
@@ -160,19 +166,19 @@ function About() {
 
                 {/*My values*/}
 
-                <div className="max-w-full lg:h-[1200px]">
+                <div className="max-w-full 2xl:h-[1200px]">
                     <img src={healthvaluesbg}
-                        className="absolute z-[-1] w-full"/>
-                    <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 lg:mt-[-350px] mt-[500px] lg:pt-[300px] ">
+                        className="absolute z-[-1] w-full 2xl:block hidden"/>
+                    <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 lg:mt-[-350px] md:mt-[400px] mt-[650px] lg:pt-[300px] ">
 
-                        <h1 className="flex justify-center text-6xl uppercase font-bold tracking-widest">My values</h1>
+                        <h1 className="flex justify-center md:text-6xl text-3xl uppercase font-bold tracking-widest">My values</h1>
 
                         <div className="grid grid-flow-col auto-cols-fr mt-20 gap-x-2 sm:gap-x-8 md:gap-x-6 md:px-10 lg:gap-x-10 2xl:gap-x-20 2xl:px-[100px]">
 
                             {/*Health*/}
                             <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#ACDC6F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card">
                                 <img src={bottomShadow}
-                                    className="absolute lg:bottom-[-43px] xl:bottom-[-65px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
+                                    className="absolute lg:bottom-[-38px] xl:bottom-[-55px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
                                 <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
                                 <img src={health}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
@@ -189,7 +195,7 @@ function About() {
                             {/*Movement*/}
                             <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#DC836F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card">
                                 <img src={bottomShadow}
-                                    className="absolute lg:bottom-[-43px] xl:bottom-[-65px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
+                                    className="absolute lg:bottom-[-38px] xl:bottom-[-55px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
                                 <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
                                 <img src={movement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
@@ -204,7 +210,7 @@ function About() {
                             {/*Improvement*/}
                             <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px]  bg-[#6FD5DC] rounded-[30px] lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card2">
                                 <img src={bottomShadow}
-                                    className="absolute lg:bottom-[-43px] xl:bottom-[-65px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
+                                    className="absolute lg:bottom-[-38px] xl:bottom-[-55px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
                                 <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
                                 <img src={improvement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
@@ -220,11 +226,11 @@ function About() {
 
 
                         {/*Scroll down arrow*/}
-                        <div className="flex flex-col items-center mt-[180px] md:bg-inherit bg-black  uppercase text-2xl">
+                        <div className="flex flex-col items-center mt-[180px] 2xl:bg-inherit bg-black  uppercase text-2xl">
                             <Link to="healthSection"
                                 smooth={true}
                                 offset={-50}>
-                                <img className="mt-[-20px] w-[60px] duration-300 ease-in-out hover:scale-110"
+                                <img className=" mt-[-20px] w-[60px] duration-300 ease-in-out hover:scale-110"
                                     src={arrowDown}/>
                             </Link>
                         </div>
@@ -233,29 +239,37 @@ function About() {
                 </div>
 
 
-                <div className="2xl:max-w-full max-w-[1380px] mx-auto  lg:px-0 sm:px-10 px-6">
-                
-                
-                {/*Health*/}
-                <div id="healthSection" className="relative max-w-full 2xl:h-[1200px] 2xl:mt-[-25px]">
+                {/*Movement and improvement background picture*/}
+                <img src={movimpbg}
+                        className="absolute lg:top-[4800px]  2xl:top-[6300px] 2xl:block hidden w-full z-[-1]"/>
 
-                    <div className="2xl:px-20 xl:pt-20 mt-[160px]">
-                        <div className="relative pt-[300px]">
+
+
+
+                {/*Main Container*/}
+                <div className="2xl:max-w-full max-w-[1380px] mx-auto  2xl:px-20 lg:px-10 sm:px-10 px-6">
+
+
+                {/*Health*/}
+                <div id="healthSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[900px] lg:h-[700px] 2xl:mt-[-25px] mt-0 lg:mt-[-100px] xl:mt-0">
+
+                    <div className="2xl:px-20 xl:pt-20 2xl:mt-[160px] xl:mt-[200px]">
+                        <div className="relative pt-[300px] xl:pt-10 2xl:pt-[250px]">
                             {/*Health Image on laptops/desktops*/}
-                            <img className="lg:float-left lg:block hidden mx-auto 2xl:mr-10 2xl:w-[700px] w-[300px] 2xl:mt-[-250px]" src={healthImage}/>
+                            <img className="lg:float-left lg:block hidden mx-auto lg:mr-10 2xl:w-[700px] xl:w-[500px] lg:w-[300px] 2xl:mt-[-250px]" src={healthImage}/>
                             <img src={hearthIcon}
-                                className="absolute 2xl:top-[-450px] 2xl:left-[225px]  2xl:w-[1300px] md:w-[500px] w-[320px] md:top-[150px] top-[170px] md:left-[-165px] left-[-110px] lg:rotate-0 rotate-[16deg] z-[-1]"/>
+                                className="absolute 2xl:w-[1300px] lg:w-[400px] md:w-[500px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px]  md:top-[90px] top-[140px]  2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-165px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
                             
                             <div className="lg:flex lg:items-start relative">
-                              <h1 className="2xl:text-9xl lg:text-4xl md:text-8xl  text-5xl uppercase rotate-[-10deg] decoration-4  mt-4 text-center font-bold lg:text-left">Health</h1>
+                              <h1 className="2xl:text-9xl lg:text-7xl md:text-8xl  text-5xl uppercase rotate-[-10deg] decoration-4  mt-4 text-center font-bold lg:text-left">Health</h1>
                               <img src={healthUnderline} className="absolute lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 mx-auto lg:w-auto md:w-[450px] w-[220px]"/>
                             </div>
                             
                             {/*Health Image on mobiles/tablets*/}
-                            <img className="lg:float-left lg:hidden block mx-auto mt-20 w-[400px] 2xl:mt-[-250px]" src={healthImage}/>
+                            <img className="lg:float-left lg:hidden block mx-auto mt-20 w-[400px]" src={healthImage}/>
 
                             
-                            <div className="text-base lg:text-xl lg:tracking-wide 2xl:ml-[730px] xl:mt-16  mt-6 2xl:text-white 2xl:max-w-[750px] mx-auto text-justify lg:text-right">
+                            <div className="text-base 2xl:text-xl lg:tracking-wide 2xl:ml-[730px] lg:mt-16  mt-6 2xl:text-white 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
                                 Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
                             </div>
                         </div>
@@ -266,27 +280,27 @@ function About() {
 
 
                 {/*Movement*/}
-                <div id="movementSection" className="relative max-w-full lg:h-[1100px] pt-[200px] lg:pt-[125px]">
-                    <img src={movimpbg}
-                        className="absolute bottom-[-650px] 2xl:block hidden w-full z-[-1]"/>
-                    <img src={shoeIcon} className="absolute right-3 md:top-[150px] top-[135px] rotate-[-15deg] lg:hidden block md:w-[100px] w-[60px]"/>
-                    <h1 className="2xl:text-9xl xl:text-5xl md:text-6xl text-4xl text-center lg:text-left font-bold lg:pl-[150px] uppercase">Movement</h1>
-                    <img className="lg:float-left pt-6 lg:pl-[110px] lg:pr-16 2xl:w-auto w-[500px] mx-auto"
+                <div id="movementSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[900px] lg:h-[800px] 2xl:pt-[100px]  xl:pt-[100px] lg:pt-[200px] pt-[200px]">
+         
+                    <img src={shoeIcon} className="absolute right-3 md:top-[100px] top-[115px] rotate-[-15deg] lg:hidden block md:w-[100px] w-[60px]"/>
+                    <h1 className="2xl:text-9xl lg:text-7xl md:text-6xl text-4xl text-center lg:text-left font-bold 2xl:pl-[150px] lg:pl-10 uppercase">Movement</h1>
+                    <img className="lg:float-left 2xl:mt-6 xl:mt-10 mt-8 2xl:pl-[110px] 2xl:mr-16 lg:mr-10 2xl:w-auto xl:w-[650px] lg:w-[450px] mx-auto"
                         src={movementImage}/>
-                    <div className="2xl:pr-[150px] text-base lg:text-[22px] lg:leading-8 xl:mt-8 mt-6 text-justify lg:text-left">
+                    <div className="2xl:pr-[150px]  2xl:text-[22px] xl:text-xl lg:text-lg text-base 2xl:leading-8 2xl:mt-8 xl:mt-10 lg:mt-10 mt-6 text-justify lg:text-left">
                         Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
                     </div>
                 </div>
 
 
                 {/*Improvement*/}
-                <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] pt-[200px] lg:pt-[190px]">
-                    <h1 className="2xl:text-[110px] xl:text-5xl md:text-6xl text-4xl font-bold text-center lg:text-justify 2xl:pl-[310px] uppercase lg:mt-[-50px] mb-2">Constant improvement</h1>
-                    <img src={improvementIcon} className="absolute left-3 md:top-[150px] top-[140px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
-                    <img className="lg:float-left mx-auto lg:pl-[110px] xl:pr-16 xl:w-[900px] w-[450px] lg:pt-[110px] md:mt-10"
+                <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] pt-[200px] ">
+                    
+                    <h1 className="2xl:text-[110px] lg:text-7xl md:text-6xl text-4xl font-bold text-center 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
+                    <img src={improvementIcon} className="absolute left-3 md:top-[100px] top-[115px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
+                    <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] w-[450px] 2xl:mt-20 lg:mt-10  md:mt-10 mt-8"
                         src={improvementImage}/>
 
-                    <div className="2xl:pr-[300px] lg:text-[22px] md:text-lg text-base lg:leading-8 lg:mt-[425px] mt-6 text-justify lg:text-left">
+                    <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-xl lg:text-lg md:text-lg text-base 2xl:leading-8 2xl:mt-[425px] xl:mt-[215px] lg:mt-[175px] mt-6 text-justify lg:text-left">
                         Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
                     </div>
                 </div>
@@ -296,7 +310,7 @@ function About() {
 
                 {/*Contact*/}
 
-                <div className="lg:h-[1200px]  pt-[225px] lg:pt-[500px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-6">
+                <div className="2xl:h-[1200px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-6">
                     <div className="lg:flex lg:items-center lg:justify-between xl:space-x-[200px] lg:space-x-10">
                         <img src={contactImage}
                             className="2xl:h-[800px] lg:h-[500px] lg:block hidden xl:mr-[-100px] mt-[-75px]"/>

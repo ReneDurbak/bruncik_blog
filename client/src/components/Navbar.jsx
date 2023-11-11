@@ -64,11 +64,11 @@ return(
 
   {/* ----mobile version------ */}
     <ul className={nav ? "origin-top flex flex-col absolute top-18  w-full ease-in-out duration-500  md:hidden  bg-[#2A6CA5] opacity-100  z-20" : "origin-top scale-y-0 	 flex flex-col absolute top-18  w-full ease-in-out duration-500  md:hidden  bg-[#2A6CA5] opacity-100  z-20"}>
-      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 w-full text-center"><NavLink to="/">Home</NavLink></li>
-      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink to="/push-ups">Push-ups</NavLink></li>
-      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink to="/articles">Articles</NavLink></li>
-      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink to="/mycourse">My Course</NavLink></li>
-      <li className="p-4 pb-6 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink to="/about">About Me</NavLink></li>
+      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 w-full text-center"><NavLink onClick={() => setNav(false)} to="/">Home</NavLink></li>
+      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink onClick={() => setNav(false)} to="/push-ups">Push-ups</NavLink></li>
+      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink onClick={() => setNav(false)} to="/articles">Articles</NavLink></li>
+      <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink onClick={() => setNav(false)} to="/mycourse">My Course</NavLink></li>
+      <li className="p-4 pb-6 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink onClick={() => setNav(false)} to="/about">About Me</NavLink></li>
     </ul>
  
   </header>

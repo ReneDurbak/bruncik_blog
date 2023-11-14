@@ -34,10 +34,42 @@ function About() {
     const isTablet = useMediaQuery({query: '(min-width: 768px)'})
     const isMobile = useMediaQuery({query: '(min-width: 640px)'})
     
-    const [email, setEmail] = useState("")
     const [message, setMessage] = useState("")
+    const [messageError,setMessageError] = useState(false)
+    const [subject, setSubject] = useState("")
+    const [subjectError,setSubjectError] = useState(false)
     const [hoverOnSendButton, setHoverOnSendButton] = useState(false)
     const [clickOnSendButton, setClickOnSendButton] = useState(false)
+
+
+
+      function sendMessage(e) {
+        e.preventDefault();
+
+        const isMessageValid = message.trim() !== "";
+        const isSubjectValid = subject.trim() !== "";
+
+        setMessageError(!isMessageValid);
+        setSubjectError(!isSubjectValid);
+
+        if(!isMessageValid){
+            document.getElementById("message").value =  "Please insert your message" 
+        }
+
+        if(!isSubjectValid){
+            document.getElementById("subject").value =  "Please insert your subject of the message"
+        }
+
+        if (isMessageValid && isSubjectValid){
+            setMessageError(false)
+            setSubjectError(false)
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`);
+        }
+      }
+
+
+      
+      
 
 
 
@@ -71,7 +103,7 @@ function About() {
                                 <div className="2xl:text-[19px] xl:text-lg lg:text-base font-thin font-spectral tracking-wide text-justify 2xl:mt-18 mt-10">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
                                 <Link to="mystory"
                                     smooth={true}>
-                                    <button className="p-2 text-white mt-8 bg-[#2A6CA5] custom-shadow text-base rounded-[30px] font-poppins duration-300 ease-in-out underline-offset-[3px] hover:underline active:text-black">Learn more</button>
+                                    <button className="p-2 text-white mt-8 bg-[#2A6CA5] custom-shadow lg:text-base rounded-[30px] font-poppins duration-300 ease-in-out underline-offset-[3px] hover:underline active:text-black">Learn more</button>
                                 </Link>
                             </div>
                             <img src={selfie}
@@ -82,17 +114,21 @@ function About() {
 
                         <div className="sm:mt-[120px] md:mt-0">
                             <div className="flex md:flex-row flex-col justify-between 2xl:mr-[150px] xl:mr-[120px] lg:mr-16 2xl:mt-[280px] xl:mt-[200px] lg:mt-[180px] font-spectral">
-                                <div className="flex justify-end flex-col mb-[22px] md:mx-0 mx-auto">
-                                    <div className=" 2xl:text-[170px] lg:text-8xl md:text-[160px] text-8xl">Hi!</div>
-                                    <div className="2xl:text-[90px] xl:text-[50px] lg:text-5xl md:text-5xl sm:text-5xl text-3xl  font-thin tracking-wider md:mr-[-100px]">I'm<br className="md:block hidden"/> Peter Brunčík</div>
-                                </div>
+                                {/*Intro image for mobile*/}
                                 <img src={selfie}
-                                className="md:h-[450px] h-full aspect-auto md:mr-[-22px] mx-auto md:mt-[70px] mt-4"/>
+                                    className="h-full aspect-auto mx-auto mt-4 md:hidden block"/>
+                                <div className="flex justify-end flex-col mb-[23px]">
+                                    <div className="md:text-[140px] text-8xl">Hi!</div>
+                                    <div className="md:text-[42px] sm:text-5xl text-3xl  font-thin tracking-wider md:mr-[-100px]">I'm Peter Brunčík</div>
+                                </div>
+                                {/*Intro image for mobile*/}
+                                <img src={selfie}
+                                    className="md:h-[450px] h-full aspect-auto md:mr-[-22px] mx-auto md:mt-[70px] mt-4 md:block hidden"/>
                             </div>
                             <div className="2xl:text-[19px] xl:text-lg lg:text-base text-[17px] font-thin font-spectral tracking-wide text-justify mt-8">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
                                 <Link to="mystory"
                                     smooth={true}>
-                                    <button className="p-2 text-white mt-8 bg-[#2A6CA5] custom-shadow text-base rounded-[30px] font-poppins duration-300 ease-in-out underline-offset-[3px] hover:underline active:text-black">Learn more</button>
+                                    <button className="p-2 text-white mt-8 bg-[#2A6CA5] custom-shadow text-sm rounded-[30px] font-poppins duration-300 ease-in-out underline-offset-[3px] hover:underline active:text-black">Learn more</button>
                                 </Link>
                             
                         </div>
@@ -106,7 +142,7 @@ function About() {
 
                 {/*My story*/}
 
-                <div id="mystory" className="2xl:h-[1100px] xl:h-[870px] lg:h-[720px] md:h-[880px] sm:h-[780px] h-[500px] bg-no-repeat bg-cover mt-[-100px]"
+                <div id="mystory" className="2xl:h-[1100px] xl:h-[870px] lg:h-[720px] md:h-[880px] sm:h-[780px] h-[600px] bg-no-repeat bg-cover mt-[-100px]"
                     style={
                         {
                             backgroundImage: `${ isDesktop ? "url('/src/assets/aboutMeMyStory.png')" : isLaptopXL ? "url('/src/assets/aboutMeMyStoryLaptopXL.png')" : isLaptop ? "url('/src/assets/aboutMeMyStoryLaptop.png')" : isTablet ? "url('/src/assets/aboutMeMyStoryTablet.png')" : isMobile ? "url('/src/assets/aboutMeMyStoryBigMobile.png')"   : "url('/src/assets/aboutMeMyStoryMobile.png')" }`,
@@ -171,21 +207,21 @@ function About() {
                         className="absolute z-[-1] w-full 2xl:block hidden"/>
                     <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 lg:mt-[-350px] md:mt-[400px] mt-[650px] lg:pt-[300px] ">
 
-                        <h1 className="flex justify-center md:text-6xl text-3xl uppercase font-bold tracking-widest">My values</h1>
+                        <h1 className="flex justify-center lg:text-6xl md:text-5xl text-4xl uppercase font-bold tracking-widest">My values</h1>
 
-                        <div className="grid grid-flow-col auto-cols-fr mt-20 gap-x-2 sm:gap-x-8 md:gap-x-6 md:px-10 lg:gap-x-10 2xl:gap-x-20 2xl:px-[100px]">
+                        <div className="grid grid-flow-col auto-cols-fr xl:mt-20 lg:mt-14 md:mt-14 mt-8 gap-x-2 sm:gap-x-8 md:gap-x-6 md:px-10 lg:gap-x-10 2xl:gap-x-20 2xl:px-[100px]">
 
                             {/*Health*/}
-                            <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#ACDC6F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card">
+                            <div className="relative xl:py-5 lg:py-4 md:py-6 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#ACDC6F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card3">
                                 <img src={bottomShadow}
                                     className="absolute lg:bottom-[-38px] xl:bottom-[-55px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
-                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
+                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[75px] border border-black"></div>
                                 <img src={health}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
-                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-16 pt-12 2xl:pb-10 xl:pb-8 lg:pb-4">
+                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-[60px] pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
                                     <h1 className="2xl:text-[38px] xl:text-4xl lg:text-2xl md:text-xl text-sm font-bold">Health</h1>
                                     <a href="#healthSection">
-                                        <p className="underline underline-offset-4 mt-4 md:mt-4 lg:mt-5 xl:mt-8 2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
+                                        <p className="underline underline-offset-4 xl:mt-8 lg:mt-5 md:mt-2 mt-1  2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
                                     </a>
                                 </div>
                             </div>
@@ -193,31 +229,31 @@ function About() {
                             
 
                             {/*Movement*/}
-                            <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#DC836F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card">
+                            <div className="relative xl:py-5 lg:py-4 md:py-6 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px] bg-[#DC836F] rounded-[30px]  lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card">
                                 <img src={bottomShadow}
                                     className="absolute lg:bottom-[-38px] xl:bottom-[-55px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
-                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
+                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[75px] border border-black"></div>
                                 <img src={movement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
-                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-16 pt-12 2xl:pb-10 xl:pb-8 lg:pb-4">
+                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-14 pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
                                     <h1 className="2xl:text-[38px] xl:text-4xl lg:text-2xl md:text-xl text-sm font-bold">Movement</h1>
                                     <a href="#movementSection">
-                                        <p className="underline underline-offset-4 mt-4 md:mt-4 lg:mt-5 xl:mt-8 2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
+                                        <p className="underline underline-offset-4 xl:mt-8 lg:mt-5 md:mt-2 mt-1 2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
                                     </a>
                                 </div>
                             </div>
 
                             {/*Improvement*/}
-                            <div className="relative xl:py-5 lg:py-4 md:py-5 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px]  bg-[#6FD5DC] rounded-[30px] lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card2">
+                            <div className="relative xl:py-5 lg:py-4 md:py-6 py-4 px-2 md:px-4 xl:px-8 2xl:h-[350px]  bg-[#6FD5DC] rounded-[30px] lg:rounded-[45px] xl:rounded-[60px] 2xl:rounded-[70px] custom-shadow-card2">
                                 <img src={bottomShadow}
                                     className="absolute lg:bottom-[-38px] xl:bottom-[-55px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
-                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[85px] border border-black"></div>
+                                <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[75px] border border-black"></div>
                                 <img src={improvement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
-                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-16 pt-12 2xl:pb-10 xl:pb-8 lg:pb-4">
+                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-14 pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
                                     <h1 className="2xl:text-[38px] xl:text-4xl lg:text-2xl md:text-xl text-sm font-bold">Improvement</h1>
                                     <a href="#improvementSection">
-                                        <p className="underline underline-offset-4 mt-4 md:mt-4 lg:mt-5 xl:mt-8 2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
+                                        <p className="underline underline-offset-4 xl:mt-8 lg:mt-5 md:mt-2 mt-1 2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
                                     </a>
                                 </div>
                             </div>
@@ -293,11 +329,11 @@ function About() {
 
 
                 {/*Improvement*/}
-                <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] pt-[200px] ">
+                <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] md:pt-[250px] pt-[200px] ">
                     
-                    <h1 className="2xl:text-[110px] lg:text-7xl md:text-6xl text-4xl font-bold text-center 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
+                    <h1 className="2xl:text-[110px] lg:text-7xl md:text-5xl text-[28px] font-bold text-center 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
                     <img src={improvementIcon} className="absolute left-3 md:top-[100px] top-[115px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
-                    <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] w-[450px] 2xl:mt-20 lg:mt-10  md:mt-10 mt-8"
+                    <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] md:w-[700px] w-full 2xl:mt-20 lg:mt-10  md:mt-10 mt-8"
                         src={improvementImage}/>
 
                     <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-xl lg:text-lg md:text-lg text-base 2xl:leading-8 2xl:mt-[425px] xl:mt-[215px] lg:mt-[175px] mt-6 text-justify lg:text-left">
@@ -310,13 +346,13 @@ function About() {
 
                 {/*Contact*/}
 
-                <div className="2xl:h-[1200px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-6">
+                <div className="2xl:h-[1200px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10">
                     <div className="lg:flex lg:items-center lg:justify-between xl:space-x-[200px] lg:space-x-10">
                         <img src={contactImage}
-                            className="2xl:h-[800px] lg:h-[500px] lg:block hidden xl:mr-[-100px] mt-[-75px]"/>
+                            className="2xl:h-[800px] lg:h-[500px] xl:mr-[-100px] mt-[-75px]"/>
 
                         {/*Contact form*/}
-                        <div className="xl:w-[900px] mx-auto w-full font-cabin" id="Email">
+                        <div className="xl:w-[900px] mx-auto w-full font-cabin lg:mt-0 md:mt-12 mt-8" id="Email">
 
                             <form className="bg-white border-black  shadow-[14px_14px_5px_0px_rgba(152,131,131,0.6)] rounded-[50px] lg:px-10 px-4 py-10 mb-4  sm:text-base text-sm outline outline-[1px]">
 
@@ -330,46 +366,66 @@ function About() {
                                     <label className="block text-gray-700 text-[15px] mb-3">
                                         Subject
                                     </label>
-                                    <input type="text" name="user_Email"
+                                    <input id="subject" type="text" name="user_Email"
                                         onChange={
-                                            e => setEmail(e.target.value)
+                                            e => setSubject(e.target.value)
                                         }
-                                        className="shadow border rounded-[20px] bg-[#ECECEC] duration-200 ease-in-out w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-lg outline-none "/>
+                                        onClick={()=>{
+                                            setSubjectError(false)
+                                            if(subjectError){
+                                                document.getElementById("subject").value = ""
+                                            }
+                                            }
+                                        }
+                                        className={`shadow border rounded-[20px] bg-[#ECECEC] duration-200 ease-in-out w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-lg outline-none ${subjectError ? "animate-shake border-red-600 text-red-600": ""}`}/>
                                 </div>
 
 
                                 <div className="mb-2">
                                     <label className="block text-gray-700 text-[15px] mb-3">Message</label>
                                     <textarea rows={4}
+                                        id="message"
                                         name="message"
                                         onChange={
                                             e => setMessage(e.target.value)
                                         }
-                                        className="w-full bg-[#ECECEC] max-h-[175px] duration-200 ease-in-out px-3 py-2 rounded-[20px] shadow focus:shadow-md outline-none switchGalleryScrollbar"/>
-                                    <button onMouseEnter={
+                                        onClick={()=>{
+                                                setMessageError(false)
+                                                if(messageError){
+                                                    document.getElementById("message").value = ""
+                                                }
+                                            }
+                                        }
+
+                                        className={`w-full bg-[#ECECEC] max-h-[175px] duration-200 border ease-in-out px-3 py-2 rounded-[20px] shadow focus:shadow-md outline-none switchGalleryScrollbar ${messageError ? "animate-shake border-red-600 text-red-600": ""}`}/>
+                                    <a onMouseEnter={
                                             () => isLaptop ? setHoverOnSendButton(true) : setHoverOnSendButton(false)
                                         }
                                         onMouseLeave={
                                             () => setHoverOnSendButton(false)
                                         }
                                         onClick={
-                                            () => {
+                                            (e) => {
                                                 setClickOnSendButton(true),
                                                 setTimeout(function () {
                                                     setClickOnSendButton(false)
                                                 }, 200)
-
-                                                window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=peterbruncik700%40gmail.com&su=${email}&body=${name}-${message}`, '_blank');
-
+                                                sendMessage(e)
                                             }
                                         }
+
+                                        
                                         className="flex justify-center space-x-2 w-full bg-black duration-700 ease-in-out py-2 px-3 mt-3 text-md  rounded-[20px] text-white lg:hover:bg-white lg:hover:text-black outline outline-[1px] outline-black active:bg-white active:text-black active:shadow-xl">
                                         <p>Send</p>
                                         <img src={
                                                 hoverOnSendButton || clickOnSendButton ? paperPlaneBlack : paperPlane
                                             }
                                             className="my-auto"/>
-                                    </button>
+                                    </a>
+
+                            
+                        
+
 
 
                                 </div>

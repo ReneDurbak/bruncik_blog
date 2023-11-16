@@ -13,6 +13,8 @@ import improvementImage from "../assets/improvement.png"
 import improvementIcon from "../assets/improvementIcon.png"
 import contactImage from "../assets/contactImage.png"
 import movimpbg from "../assets/movimpbg.png"
+import myValuesBg from "../assets/myvaluesBg.png"
+import myValuesBgMobile from "../assets/myvaluesBgMobile.png"
 import healthvaluesbg from "../assets/healthvaluesbg.png"
 import healthUnderline from "../assets/healthUnderline.png"
 import hearthIcon from "../assets/hearthIcon.png"
@@ -83,7 +85,7 @@ function About() {
                 <link rel="icon" type="image/svg+xml" href="/aboutme.png"/>
             </Helmet>
 
-            <div className="mb-[300px]">
+            <div className="xl:mb-0 mb-[300x]">
                 {/*Hello intro*/}
                 <div className="bg-no-repeat bg-cover  md:h-[1000px] sm:h-[1250px] h-[1150px] w-full"
                     style={
@@ -205,7 +207,14 @@ function About() {
                 <div className="max-w-full 2xl:h-[1200px]">
                     <img src={healthvaluesbg}
                         className="absolute z-[-1] w-full 2xl:block hidden"/>
-                    <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 lg:mt-[-350px] md:mt-[400px] mt-[650px] lg:pt-[300px] ">
+                    <img src={myValuesBg}
+                        className="absolute z-[-1] w-full 2xl:hidden sm:block hidden"/>
+
+                    <img src={myValuesBgMobile}
+                        className="absolute z-[-1] w-full sm:hidden block"/>
+
+
+                    <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 lg:mt-[-350px] md:mt-[400px] mt-[650px] 2xl:pt-[300px] lg:pt-[200px] md:pt-20 pt-14">
 
                         <h1 className="flex justify-center lg:text-6xl md:text-5xl text-4xl uppercase font-bold tracking-widest">My values</h1>
 
@@ -262,11 +271,11 @@ function About() {
 
 
                         {/*Scroll down arrow*/}
-                        <div className="flex flex-col items-center mt-[180px] 2xl:bg-inherit bg-black  uppercase text-2xl">
+                        <div className="flex flex-col items-center mt-[180px] uppercase text-2xl">
                             <Link to="healthSection"
                                 smooth={true}
                                 offset={-50}>
-                                <img className=" mt-[-20px] w-[60px] duration-300 ease-in-out hover:scale-110"
+                                <img className=" 2xl:mt-[-20px] md:mt-[-130px] mt-[-150px] xl:w-[60px] md:w-[40px] w-[20px] duration-300 ease-in-out hover:scale-110"
                                     src={arrowDown}/>
                             </Link>
                         </div>
@@ -278,6 +287,8 @@ function About() {
                 {/*Movement and improvement background picture*/}
                 <img src={movimpbg}
                         className="absolute lg:top-[4800px]  2xl:top-[6300px] 2xl:block hidden w-full z-[-1]"/>
+
+                <img className=""/>
 
 
 
@@ -318,7 +329,7 @@ function About() {
                 {/*Movement*/}
                 <div id="movementSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[900px] lg:h-[800px] 2xl:pt-[100px]  xl:pt-[100px] lg:pt-[200px] pt-[200px]">
          
-                    <img src={shoeIcon} className="absolute right-3 md:top-[100px] top-[115px] rotate-[-15deg] lg:hidden block md:w-[100px] w-[60px]"/>
+                    <img src={shoeIcon} className="absolute left-3 md:top-[225px] top-[240px] rotate-[-15deg] lg:hidden block md:w-[100px] w-[60px]"/>
                     <h1 className="2xl:text-9xl lg:text-7xl md:text-6xl text-4xl text-center lg:text-left font-bold 2xl:pl-[150px] lg:pl-10 uppercase">Movement</h1>
                     <img className="lg:float-left 2xl:mt-6 xl:mt-10 mt-8 2xl:pl-[110px] 2xl:mr-16 lg:mr-10 2xl:w-auto xl:w-[650px] lg:w-[450px] mx-auto"
                         src={movementImage}/>
@@ -332,7 +343,7 @@ function About() {
                 <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] md:pt-[250px] pt-[200px] ">
                     
                     <h1 className="2xl:text-[110px] lg:text-7xl md:text-5xl text-[28px] font-bold text-center 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
-                    <img src={improvementIcon} className="absolute left-3 md:top-[100px] top-[115px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
+                    <img src={improvementIcon} className="absolute right-3 md:top-[350px] top-[300px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
                     <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] md:w-[700px] w-full 2xl:mt-20 lg:mt-10  md:mt-10 mt-8"
                         src={improvementImage}/>
 
@@ -346,7 +357,7 @@ function About() {
 
                 {/*Contact*/}
 
-                <div className="2xl:h-[1200px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10">
+                <div className="2xl:h-[1000px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10">
                     <div className="lg:flex lg:items-center lg:justify-between xl:space-x-[200px] lg:space-x-10">
                         <img src={contactImage}
                             className="2xl:h-[800px] lg:h-[500px] xl:mr-[-100px] mt-[-75px]"/>

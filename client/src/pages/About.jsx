@@ -1,4 +1,6 @@
 import selfie from "../assets/selfiePhoto.png"
+import bottomWave from "../assets/bottomWave.png"
+import bottomWaveMobile from "../assets/bottomWaveMobile.png"
 import timeline from "../assets/timeline.png"
 import timelineMobile from "../assets/timelineMobile.png"
 import timelineBg from "../assets/timelineBg.png"
@@ -85,16 +87,19 @@ function About() {
                 <link rel="icon" type="image/svg+xml" href="/aboutme.png"/>
             </Helmet>
 
+
+
+
             <div className="xl:mb-0 mb-[300x]">
                 {/*Hello intro*/}
-                <div className="bg-no-repeat bg-cover  md:h-[1000px] sm:h-[1250px] h-[1150px] w-full"
+                <div className="relative bg-no-repeat bg-cover  2xl:h-[1000px] lg:h-[900px] md:h-[860px] sm:h-[1250px] h-[1150px] w-full"
                     style={
                         {
-                            backgroundImage: isDesktop ? `url('/src/assets/aboutMeIntro.png')` : ''
+                            backgroundImage: isDesktop ? `url('/src/assets/aboutMeIntro.png')` : isLaptopXL ? `url('/src/assets/aboutMeIntroLaptopXL.png')` : isLaptop ? `url('/src/assets/aboutMeIntroLaptop.png')` : ``
                         }
                 }>
+                    <img src={bottomWave} className="absolute z-[-1] lg:hidden md:block hidden w-full bottom-0 left-[-4px]"/>
                     <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto mt-10 2xl:px-20 xl:px-10 lg:px-10 sm:px-10 px-6 font-bold not-italic">
-                        
                         {
                             isLaptop ?
 
@@ -144,29 +149,29 @@ function About() {
 
                 {/*My story*/}
 
-                <div id="mystory" className="2xl:h-[1100px] xl:h-[870px] lg:h-[720px] md:h-[880px] sm:h-[780px] h-[600px] bg-no-repeat bg-cover mt-[-100px]"
+                <div id="mystory" className="relative 2xl:h-[1100px] xl:h-[870px] lg:h-[720px] md:h-[880px] sm:h-[780px] h-[600px] bg-no-repeat bg-cover"
                     style={
                         {
                             backgroundImage: `${ isDesktop ? "url('/src/assets/aboutMeMyStory.png')" : isLaptopXL ? "url('/src/assets/aboutMeMyStoryLaptopXL.png')" : isLaptop ? "url('/src/assets/aboutMeMyStoryLaptop.png')" : isTablet ? "url('/src/assets/aboutMeMyStoryTablet.png')" : isMobile ? "url('/src/assets/aboutMeMyStoryBigMobile.png')"   : "url('/src/assets/aboutMeMyStoryMobile.png')" }`,
-                            backgroundSize: "100%"
+                            
                         }
                 }>
 
-                    <div className="mt-20">
+                    <div className="pt-0">
                         <h1 className="text-black text-3xl text-center pt-20 font-spectral uppercase tracking-[10px] font-bold">My story</h1>
 
 
                         {/*Text bubbles*/}
                         <div className="relative">
-                            <div className="bg-white p-4 2xl:w-[500px] 2xl:h-[250px] float-left 2xl:ml-20 mt-[50px] blur-xl rounded-[30px]"></div>
-                            <p className="2xl:absolute top-[90px] blur-none 2xl:w-[400px] 2xl:left-[120px] text-justify 2xl:text-base text-xs">My story begins where your story ends. Naozaj! Moja cesta transformácie začala práve vtedy, keď som sa ocitol v situácií, kde som bezprostredne videl ako mnohí moji rovesníci sa oddávajú zábave a iným nerestiam, vedú bezstarostný život a žijú zo dňa na deň. Ja som bol však v tomto
+                            <div className="relative bg-white md:p-4 p-1 2xl:w-[500px] w-[175px] 2xl:h-[250px] h-[250px] float-left 2xl:ml-20 ml-4 mt-[50px] lg:blur-xl blur-sm rounded-[30px]"></div>
+                            <p className="absolute blur-none 2xl:w-[400px] w-[150px] md:top-[90px] top-[70px] 2xl:left-[120px] left-7 md:text-justify text-center 2xl:text-base text-xs">My story begins where your story ends. Naozaj! Moja cesta transformácie začala práve vtedy, keď som sa ocitol v situácií, kde som bezprostredne videl ako mnohí moji rovesníci sa oddávajú zábave a iným nerestiam, vedú bezstarostný život a žijú zo dňa na deň. Ja som bol však v tomto
                             </p>
                         </div>
 
 
                         <div className="relative">
-                            <div className="bg-white p-4 2xl:w-[500px] 2xl:h-[300px] float-right mr-20 mt-[580px] blur-xl rounded-[30px]"></div>
-                            <p className="2xl:absolute top-[635px] blur-none 2xl:w-[400px] right-[135px] text-justify 2xl:text-base text-xs">
+                            <div className="bg-white md:p-4 2xl:w-[500px] w-[175px] 2xl:h-[300px] h-[300px] float-right md:mr-20 mr-4 2xl:mt-[580px] mt-[50px] lg:blur-xl blur-sm rounded-[30px]"></div>
+                            <p className="absolute md:top-[635px] top-16 w-[150px] blur-none 2xl:w-[400px] md:right-[135px] right-8 md:text-justify text-center 2xl:text-base text-xs">
                                 Sed molestie, quam a fringilla fringilla, nibh est interdum lectus, a pulvinar lectus lorem sit amet nisl. Aliquam consectetur, turpis quis ultrices rutrum, nisi ante aliquam libero, nec mattis augue leo eget ligula. Proin ac semper lorem. Suspendisse posuere accumsan diam sed tempor. Vivamus nunc dui, cursus sed augue eget, sodales eleifend orci. Fusce vestibulum volutpat velit.
                             </p>
                         </div>
@@ -176,7 +181,7 @@ function About() {
                 </div>
 
                 {/*Timeline*/}
-                <div className="xl:h-[1400px] lg:h-[1000px] h-[300px] relative">
+                <div className="xl:h-[1400px] lg:h-[1000px]  relative">
 
                     <img src={timelineBg}
                         className="absolute w-full"/>
@@ -189,12 +194,12 @@ function About() {
                         isMobile ?
 
                         <img src={timeline}
-                        className="absolute z-[-1] 2xl:top-[53%] xl:top-[45%] lg:top-[45%] top-[120%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] 2xl:w-[1550px] xl:w-[1100px] lg:w-[850px] md:w-[650px] w-[600px]"/>
+                        className="absolute z-[-1] 2xl:top-[53%] xl:top-[45%] lg:top-[45%] top-[190%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] 2xl:w-[1550px] xl:w-[1100px] lg:w-[850px] md:w-[650px] w-[600px]"/>
 
                         :
 
                         <img src={timelineMobile}
-                        className="absolute z-[-1] top-[80%] left-0 right-0 m-auto w-[300px]"/>
+                        className="absolute z-[-1] top-[140%] left-0 right-0 m-auto w-[300px]"/>
 
                     }
 
@@ -209,6 +214,7 @@ function About() {
                         className="absolute z-[-1] w-full 2xl:block hidden"/>
                     <img src={myValuesBg}
                         className="absolute z-[-1] w-full 2xl:hidden sm:block hidden"/>
+                  
 
                     <img src={myValuesBgMobile}
                         className="absolute z-[-1] w-full sm:hidden block"/>
@@ -288,7 +294,6 @@ function About() {
                 <img src={movimpbg}
                         className="absolute lg:top-[4800px]  2xl:top-[6300px] 2xl:block hidden w-full z-[-1]"/>
 
-                <img className=""/>
 
 
 
@@ -298,25 +303,25 @@ function About() {
 
 
                 {/*Health*/}
-                <div id="healthSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[900px] lg:h-[700px] 2xl:mt-[-25px] mt-0 lg:mt-[-100px] xl:mt-0">
+                <div id="healthSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[1100px] lg:h-[900px] 2xl:mt-[-25px] mt-0 lg:mt-[-100px] xl:mt-0">
 
-                    <div className="2xl:px-20 xl:pt-20 2xl:mt-[160px] xl:mt-[200px]">
-                        <div className="relative pt-[300px] xl:pt-10 2xl:pt-[250px]">
+                    <div className="2xl:px-20  2xl:pt-20  2xl:mt-[160px] xl:mt-[250px] lg:mt-[200px]">
+                        <div className="relative 2xl:pt-[250px] xl:pt-[550px] lg:pt-[480px]  md:pt-[300px] pt-20">
                             {/*Health Image on laptops/desktops*/}
-                            <img className="lg:float-left lg:block hidden mx-auto lg:mr-10 2xl:w-[700px] xl:w-[500px] lg:w-[300px] 2xl:mt-[-250px]" src={healthImage}/>
+                            <img className="2xl:float-left lg:block hidden mx-auto lg:mr-10 2xl:w-[700px] xl:w-[400px] lg:w-[380px] 2xl:mt-[-250px] lg:mt-[-65px] 2xl:static absolute xl:right-[250px] lg:right-0 xl:top-[90px] lg:top-4" src={healthImage}/>
                             <img src={hearthIcon}
-                                className="absolute 2xl:w-[1300px] lg:w-[400px] md:w-[500px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px]  md:top-[90px] top-[140px]  2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-165px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
+                                className="2xl:block lg:hidden block absolute 2xl:w-[1300px] lg:w-[400px] md:w-[500px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px]  md:top-[90px] top-[80px]  2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-165px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
                             
                             <div className="lg:flex lg:items-start relative">
-                              <h1 className="2xl:text-9xl lg:text-7xl md:text-8xl  text-5xl uppercase rotate-[-10deg] decoration-4  mt-4 text-center font-bold lg:text-left">Health</h1>
-                              <img src={healthUnderline} className="absolute lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 mx-auto lg:w-auto md:w-[450px] w-[220px]"/>
+                              <h1 className="2xl:text-9xl xl:text-[100px] lg:text-7xl md:text-8xl  text-5xl uppercase rotate-[-10deg] decoration-4  mt-4 text-center font-bold lg:text-left">Health</h1>
+                              <img src={healthUnderline} className="absolute lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 mx-auto 2xl:w-auto xl:w-[90%] lg:w-full md:w-[450px] w-[220px]"/>
                             </div>
                             
                             {/*Health Image on mobiles/tablets*/}
                             <img className="lg:float-left lg:hidden block mx-auto mt-20 w-[400px]" src={healthImage}/>
 
                             
-                            <div className="text-base 2xl:text-xl lg:tracking-wide 2xl:ml-[730px] lg:mt-16  mt-6 2xl:text-white 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
+                            <div className=" 2xl:text-xl xl:text-xl lg:text-lg text-base  lg:tracking-wide 2xl:ml-[730px] lg:mt-16  mt-6 2xl:text-white 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
                                 Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
                             </div>
                         </div>
@@ -327,7 +332,7 @@ function About() {
 
 
                 {/*Movement*/}
-                <div id="movementSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[900px] lg:h-[800px] 2xl:pt-[100px]  xl:pt-[100px] lg:pt-[200px] pt-[200px]">
+                <div id="movementSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[1100px] lg:h-[900px] 2xl:pt-[100px]  xl:pt-[100px] lg:pt-[200px] pt-[200px]">
          
                     <img src={shoeIcon} className="absolute left-3 md:top-[225px] top-[240px] rotate-[-15deg] lg:hidden block md:w-[100px] w-[60px]"/>
                     <h1 className="2xl:text-9xl lg:text-7xl md:text-6xl text-4xl text-center lg:text-left font-bold 2xl:pl-[150px] lg:pl-10 uppercase">Movement</h1>
@@ -357,7 +362,7 @@ function About() {
 
                 {/*Contact*/}
 
-                <div className="2xl:h-[1000px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10">
+                <div className="2xl:h-[1000px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10 2xl:mb-0 xl:mb-[200px] mb-20">
                     <div className="lg:flex lg:items-center lg:justify-between xl:space-x-[200px] lg:space-x-10">
                         <img src={contactImage}
                             className="2xl:h-[800px] lg:h-[500px] xl:mr-[-100px] mt-[-75px]"/>

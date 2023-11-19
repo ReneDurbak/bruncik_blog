@@ -57,11 +57,11 @@ function About() {
         setSubjectError(!isSubjectValid);
 
         if(!isMessageValid){
-            document.getElementById("message").value =  "Please insert your message" 
+            document.getElementById("message").value =  "Please insert your message!" 
         }
 
         if(!isSubjectValid){
-            document.getElementById("subject").value =  "Please insert your subject of the message"
+            document.getElementById("subject").value =  "Please insert your subject of the message!"
         }
 
         if (isMessageValid && isSubjectValid){
@@ -92,7 +92,7 @@ function About() {
 
             <div className="xl:mb-0 mb-[300x]">
                 {/*Hello intro*/}
-                <div className="relative bg-no-repeat bg-cover  2xl:h-[1000px] lg:h-[900px] md:h-[860px] sm:h-[1250px] h-[1150px] w-full"
+                <div className="relative bg-no-repeat bg-cover  2xl:h-[1000px] lg:h-[900px] md:h-[860px] md:mb-0 mb-16  w-full"
                     style={
                         {
                             backgroundImage: isDesktop ? `url('/src/assets/aboutMeIntro.png')` : isLaptopXL ? `url('/src/assets/aboutMeIntroLaptopXL.png')` : isLaptop ? `url('/src/assets/aboutMeIntroLaptop.png')` : ``
@@ -149,7 +149,7 @@ function About() {
 
                 {/*My story*/}
 
-                <div id="mystory" className="relative 2xl:h-[1100px] xl:h-[870px] lg:h-[720px] md:h-[880px] sm:h-[780px] h-[600px] bg-no-repeat bg-cover"
+                <div id="mystory" className="relative 2xl:h-[1100px] xl:h-[870px] lg:h-[900px] md:h-[880px] sm:h-[780px] h-[600px] bg-no-repeat bg-cover"
                     style={
                         {
                             backgroundImage: `${ isDesktop ? "url('/src/assets/aboutMeMyStory.png')" : isLaptopXL ? "url('/src/assets/aboutMeMyStoryLaptopXL.png')" : isLaptop ? "url('/src/assets/aboutMeMyStoryLaptop.png')" : isTablet ? "url('/src/assets/aboutMeMyStoryTablet.png')" : isMobile ? "url('/src/assets/aboutMeMyStoryBigMobile.png')"   : "url('/src/assets/aboutMeMyStoryMobile.png')" }`,
@@ -158,20 +158,20 @@ function About() {
                 }>
 
                     <div className="pt-0">
-                        <h1 className="text-black text-3xl text-center pt-20 font-spectral uppercase tracking-[10px] font-bold">My story</h1>
+                        <h1 className="text-black text-3xl text-center md:pt-20 pt-12 font-spectral uppercase tracking-[10px] font-bold">My story</h1>
 
 
                         {/*Text bubbles*/}
                         <div className="relative">
-                            <div className="relative bg-white md:p-4 p-1 2xl:w-[500px] w-[175px] 2xl:h-[250px] h-[250px] float-left 2xl:ml-20 ml-4 mt-[50px] lg:blur-xl blur-sm rounded-[30px]"></div>
-                            <p className="absolute blur-none 2xl:w-[400px] w-[150px] md:top-[90px] top-[70px] 2xl:left-[120px] left-7 md:text-justify text-center 2xl:text-base text-xs">My story begins where your story ends. Naozaj! Moja cesta transformácie začala práve vtedy, keď som sa ocitol v situácií, kde som bezprostredne videl ako mnohí moji rovesníci sa oddávajú zábave a iným nerestiam, vedú bezstarostný život a žijú zo dňa na deň. Ja som bol však v tomto
+                            <div className="relative bg-white md:p-4 p-1 2xl:w-[500px] lg:w-[250px] md:w-[230px] w-[175px] 2xl:h-[250px] lg:h-[260px] md:h-[240px] h-[250px] float-left xl:ml-20 md:ml-10 ml-4 mt-[50px] md:blur-xl blur-md rounded-[30px]"></div>
+                            <p className="absolute blur-none 2xl:w-[400px] lg:w-[180px] md:w-[300px] w-[150px] 2xl:top-[90px] xl:top-[70px] lg:top-[80px] md:top-[75px] top-[70px] 2xl:left-[120px] xl:left-[120px] lg:left-20 md:left-16 left-7 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">My story begins where your story ends. Naozaj! Moja cesta transformácie začala práve vtedy, keď som sa ocitol v situácií, kde som bezprostredne videl ako mnohí moji rovesníci sa oddávajú zábave a iným nerestiam, vedú bezstarostný život a žijú zo dňa na deň. Ja som bol však v tomto
                             </p>
                         </div>
 
 
                         <div className="relative">
-                            <div className="bg-white md:p-4 2xl:w-[500px] w-[175px] 2xl:h-[300px] h-[300px] float-right md:mr-20 mr-4 2xl:mt-[580px] mt-[50px] lg:blur-xl blur-sm rounded-[30px]"></div>
-                            <p className="absolute md:top-[635px] top-16 w-[150px] blur-none 2xl:w-[400px] md:right-[135px] right-8 md:text-justify text-center 2xl:text-base text-xs">
+                            <div className="bg-white md:p-4 2xl:w-[500px] xl:w-[250px] md:w-[350px] w-[175px] 2xl:h-[300px] xl:h-[325px] lg:h-[340px] md:h-[200px] h-[310px] float-right xl:mr-20 md:mr-10 mr-4 2xl:mt-[580px] lg:mt-[320px] md:mt-[500px] mt-[50px] md:blur-xl blur-md rounded-[30px]"></div>
+                            <p className="absolute blur-none 2xl:w-[400px] lg:w-[180px] md:w-[300px] w-[150px] 2xl:top-[635px] xl:top-[355px] lg:top-[365px] md:top-[550px] top-16 2xl:right-[135px] xl:right-[115px] md:right-16 right-8 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">
                                 Sed molestie, quam a fringilla fringilla, nibh est interdum lectus, a pulvinar lectus lorem sit amet nisl. Aliquam consectetur, turpis quis ultrices rutrum, nisi ante aliquam libero, nec mattis augue leo eget ligula. Proin ac semper lorem. Suspendisse posuere accumsan diam sed tempor. Vivamus nunc dui, cursus sed augue eget, sodales eleifend orci. Fusce vestibulum volutpat velit.
                             </p>
                         </div>
@@ -211,16 +211,11 @@ function About() {
 
                 <div className="max-w-full 2xl:h-[1200px]">
                     <img src={healthvaluesbg}
-                        className="absolute z-[-1] w-full 2xl:block hidden"/>
-                    <img src={myValuesBg}
-                        className="absolute z-[-1] w-full 2xl:hidden sm:block hidden"/>
-                  
-
-                    <img src={myValuesBgMobile}
-                        className="absolute z-[-1] w-full sm:hidden block"/>
+                        className="absolute z-[-1] w-full xl:block hidden"/>
+                    
 
 
-                    <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 lg:mt-[-350px] md:mt-[400px] mt-[650px] 2xl:pt-[300px] lg:pt-[200px] md:pt-20 pt-14">
+                    <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 lg:mt-[-350px] md:mt-[400px] mt-[600px] 2xl:pt-[300px] lg:pt-[200px] md:pt-20 pt-0">
 
                         <h1 className="flex justify-center lg:text-6xl md:text-5xl text-4xl uppercase font-bold tracking-widest">My values</h1>
 
@@ -310,10 +305,10 @@ function About() {
                             {/*Health Image on laptops/desktops*/}
                             <img className="2xl:float-left lg:block hidden mx-auto lg:mr-10 2xl:w-[700px] xl:w-[400px] lg:w-[380px] 2xl:mt-[-250px] lg:mt-[-65px] 2xl:static absolute xl:right-[250px] lg:right-0 xl:top-[90px] lg:top-4" src={healthImage}/>
                             <img src={hearthIcon}
-                                className="2xl:block lg:hidden block absolute 2xl:w-[1300px] lg:w-[400px] md:w-[500px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px]  md:top-[90px] top-[80px]  2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-165px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
+                                className="2xl:block lg:hidden block absolute 2xl:w-[1300px] lg:w-[400px] md:w-[500px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px]  md:top-[300px] top-[80px]  2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-165px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
                             
                             <div className="lg:flex lg:items-start relative">
-                              <h1 className="2xl:text-9xl xl:text-[100px] lg:text-7xl md:text-8xl  text-5xl uppercase rotate-[-10deg] decoration-4  mt-4 text-center font-bold lg:text-left">Health</h1>
+                              <h1 className="2xl:text-9xl xl:text-[100px] lg:text-7xl md:text-5xl  text-5xl uppercase rotate-[-10deg] decoration-4  mt-4 text-center font-bold lg:text-left">Health</h1>
                               <img src={healthUnderline} className="absolute lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 mx-auto 2xl:w-auto xl:w-[90%] lg:w-full md:w-[450px] w-[220px]"/>
                             </div>
                             
@@ -321,7 +316,7 @@ function About() {
                             <img className="lg:float-left lg:hidden block mx-auto mt-20 w-[400px]" src={healthImage}/>
 
                             
-                            <div className=" 2xl:text-xl xl:text-xl lg:text-lg text-base  lg:tracking-wide 2xl:ml-[730px] lg:mt-16  mt-6 2xl:text-white 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
+                            <div className=" 2xl:text-xl xl:text-xl lg:text-lg text-base  lg:tracking-wide 2xl:ml-[730px] lg:mt-16  mt-6 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
                                 Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
                             </div>
                         </div>
@@ -332,11 +327,11 @@ function About() {
 
 
                 {/*Movement*/}
-                <div id="movementSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[1100px] lg:h-[900px] 2xl:pt-[100px]  xl:pt-[100px] lg:pt-[200px] pt-[200px]">
+                <div id="movementSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[1100px] lg:h-[900px] 2xl:pt-[100px]  xl:pt-[100px] lg:pt-[200px] md:pt-[100px] lg:mt-0 md:mt-[150px] mt-[155px] pt-[50px]">
          
-                    <img src={shoeIcon} className="absolute left-3 md:top-[225px] top-[240px] rotate-[-15deg] lg:hidden block md:w-[100px] w-[60px]"/>
-                    <h1 className="2xl:text-9xl lg:text-7xl md:text-6xl text-4xl text-center lg:text-left font-bold 2xl:pl-[150px] lg:pl-10 uppercase">Movement</h1>
-                    <img className="lg:float-left 2xl:mt-6 xl:mt-10 mt-8 2xl:pl-[110px] 2xl:mr-16 lg:mr-10 2xl:w-auto xl:w-[650px] lg:w-[450px] mx-auto"
+                    <img src={shoeIcon} className="absolute left-3 md:top-[190px] top-[115px] rotate-[-15deg] lg:hidden block md:w-[100px] w-[60px]"/>
+                    <h1 className="2xl:text-9xl lg:text-7xl md:text-6xl text-[40px] text-center lg:text-left font-bold 2xl:pl-[150px] lg:pl-10 uppercase">Movement</h1>
+                    <img className="lg:float-left 2xl:mt-6 xl:mt-10 mt-12 2xl:pl-[110px] 2xl:mr-16 lg:mr-10 2xl:w-auto xl:w-[650px] lg:w-[450px] mx-auto"
                         src={movementImage}/>
                     <div className="2xl:pr-[150px]  2xl:text-[22px] xl:text-xl lg:text-lg text-base 2xl:leading-8 2xl:mt-8 xl:mt-10 lg:mt-10 mt-6 text-justify lg:text-left">
                         Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
@@ -345,14 +340,14 @@ function About() {
 
 
                 {/*Improvement*/}
-                <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] md:pt-[250px] pt-[200px] ">
+                <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] md:pt-[100px] lg:mt-0 md:mt-[150px] mt-[200px] pt-[10px] ">
                     
                     <h1 className="2xl:text-[110px] lg:text-7xl md:text-5xl text-[28px] font-bold text-center 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
-                    <img src={improvementIcon} className="absolute right-3 md:top-[350px] top-[300px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
+                    <img src={improvementIcon} className="absolute right-3 md:top-[200px] top-[100px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
                     <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] md:w-[700px] w-full 2xl:mt-20 lg:mt-10  md:mt-10 mt-8"
                         src={improvementImage}/>
 
-                    <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-xl lg:text-lg md:text-lg text-base 2xl:leading-8 2xl:mt-[425px] xl:mt-[215px] lg:mt-[175px] mt-6 text-justify lg:text-left">
+                    <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-xl lg:text-lg md:text-lg text-base 2xl:leading-8 2xl:mt-[330px] xl:mt-[215px] lg:mt-[175px] mt-6 text-justify lg:text-left">
                         Nunc tortor tortor, consectetur nec ultrices id, molestie at augue. Praesent dapibus nisi ut nisl pulvinar bibendum. Nam laoreet venenatis orci, at vehicula mi. Curabitur mollis tristique sem, nec tempor est sollicitudin a. Sed pharetra orci urna, tempor pellentesque odio pellentesque ut. Etiam vestibulum ipsum sit amet mi egestas pellentesque. Aenean posuere, nisi sed eleifend consectetur, magna lectus varius orci, nec consectetur metus purus vitae dui. Ut aliquam ante eget diam mattis tempus. Donec aliquet tincidunt dui.
                     </div>
                 </div>
@@ -362,7 +357,7 @@ function About() {
 
                 {/*Contact*/}
 
-                <div className="2xl:h-[1000px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10 2xl:mb-0 xl:mb-[200px] mb-20">
+                <div className="2xl:h-[1000px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[400px] mt-[225px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10 2xl:mb-0 xl:mb-[200px] lg:mb-[160px] md:mb-[140px] mb-20">
                     <div className="lg:flex lg:items-center lg:justify-between xl:space-x-[200px] lg:space-x-10">
                         <img src={contactImage}
                             className="2xl:h-[800px] lg:h-[500px] xl:mr-[-100px] mt-[-75px]"/>

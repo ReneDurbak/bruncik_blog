@@ -277,7 +277,7 @@ function About() {
                                 <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[75px] border border-black"></div>
                                 <img src={movement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
-                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-14 pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
+                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-[60px] pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
                                     <h1 className="2xl:text-[38px] xl:text-4xl lg:text-2xl md:text-xl text-sm font-bold">Movement</h1>
                                     <a href="#movementSection">
                                         <p className="underline underline-offset-4 xl:mt-8 lg:mt-5 md:mt-2 mt-1 2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
@@ -292,7 +292,7 @@ function About() {
                                 <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[75px] border border-black"></div>
                                 <img src={improvement}
                                     className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
-                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-14 pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
+                                <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-[60px] pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
                                     <h1 className="2xl:text-[38px] xl:text-4xl lg:text-2xl md:text-xl text-sm font-bold">Improvement</h1>
                                     <a href="#improvementSection">
                                         <p className="underline underline-offset-4 xl:mt-8 lg:mt-5 md:mt-2 mt-1 2xl:text-[23px] xl:text-[20px] lg:text-[17px] text-xs font-spectral">Learn more</p>
@@ -309,7 +309,7 @@ function About() {
                                 smooth={true}
                                 offset={-50}>
                                 <img className=" 2xl:mt-[-20px] md:mt-[-130px] mt-[-150px] xl:w-[60px] md:w-[40px] w-[20px] duration-300 ease-in-out hover:scale-110"
-                                    src={isTablet ? arrowDownBlack : arrowDown}/>
+                                    src={isLaptop ? arrowDown : arrowDownBlack}/>
                             </Link>
                         </div>
 
@@ -333,23 +333,23 @@ function About() {
                 {/*Health*/}
                 <div id="healthSection" className="relative max-w-full 2xl:h-[1200px] xl:h-[850px] lg:h-[780px] 2xl:mt-[-25px] xl:mt-0 lg:mt-[-100px]  mt-10">
 
-                    <div className="2xl:px-20  2xl:pt-10  2xl:mt-[160px] xl:mt-8 lg:mt-6  xl:pt-[150px] lg:pt-[150px]  md:pt-[100px] ">
+                    <div className="2xl:px-20  2xl:pt-10  2xl:mt-[160px] xl:mt-8 lg:mt-6 md:mt-[450px]  xl:pt-[150px] lg:pt-[150px]  md:pt-[100px] ">
                         <div className="relative 2xl:pt-[250px]">
                             {/*Health Image on laptops/desktops*/}
-                            <img className="lg:float-left lg:block hidden mx-auto lg:mr-10 2xl:w-[700px] xl:w-[400px] lg:w-[380px] 2xl:mt-[-250px]  lg:static absolute xl:right-[250px] lg:right-0 xl:top-[90px] lg:top-4" src={healthImage}/>
+                            <img className="lg:float-left md:block hidden mx-auto lg:mr-10 2xl:w-[700px] xl:w-[400px] lg:w-[380px] md:w-[350px] 2xl:mt-[-250px] lg:static absolute top-[-470px] right-0 " src={healthImage}/>
                             <img src={hearthIcon}
-                                className="2xl:block lg:hidden block absolute 2xl:w-[1300px] lg:w-[400px] md:w-[500px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px] 2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-165px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
+                                className="2xl:block lg:hidden block absolute 2xl:w-[1300px] lg:w-[400px] md:w-[600px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px] md:top-[-480px] 2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-150px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
                             
-                            <div className="lg:flex lg:items-start relative">
-                              <h1 className="2xl:text-9xl xl:text-[100px] lg:text-7xl md:text-5xl  text-5xl uppercase 2xl:rotate-[-10deg] lg:rotate-0 rotate-[-10deg] decoration-4  mt-4 text-center font-bold lg:text-left">Health</h1>
-                              <img src={healthUnderline} className="absolute 2xl:block lg:hidden block lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 mx-auto 2xl:w-auto  md:w-[450px] w-[220px]"/>
+                            <div className="md:flex md:items-start relative">
+                              <h1 className="2xl:text-9xl xl:text-[100px] lg:text-7xl md:text-7xl  text-5xl uppercase 2xl:rotate-[-10deg] lg:rotate-0 rotate-[-10deg] decoration-4 text-center font-bold lg:text-left">Health</h1>
+                              <img src={healthUnderline} className="absolute 2xl:block lg:hidden block lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 md:mx-0 mx-auto 2xl:w-auto  lg:w-[450px] md:w-[768px] w-[220px]"/>
                             </div>
                             
                             {/*Health Image on mobiles/tablets*/}
-                            <img className="lg:float-left lg:hidden block mx-auto mt-20 w-[400px]" src={healthImage}/>
+                            <img className="lg:float-left md:hidden block mx-auto mt-20 w-[400px]" src={healthImage}/>
 
                             
-                            <div className=" 2xl:text-xl xl:text-lg lg:text-base 2xl:px-0 lg:px-[110px] text-base  lg:tracking-wide 2xl:ml-[730px] xl:mt-16  mt-6 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
+                            <div className=" 2xl:text-xl xl:text-lg lg:text-base 2xl:px-0 lg:px-[110px] text-base  lg:tracking-wide 2xl:ml-[730px] xl:mt-16 lg:mt-6 md:mt-20  mt-6 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
                             Each of us has only one health, and we often wish for it on occasions such as birthdays and other celebrations. Unfortunately, many people neglect, risk, underestimate or completely ignore their health, especially young people. In my life, I have abstained from alcohol, never tried cigarettes, and resisted the lure of addictive substances or drugs. This may sound unbelievable, but it is true. Still, I felt that wasn't enough, so I decided to take a more active role in my health. I adopted a vegan lifestyle, cutting out meat, dairy, and other animal products. Health isn't just about avoiding substances; it also includes quality sleep, proper nutrition, and mental well-being. On this site you can learn about these and other topics.                            </div>
                         </div>
 
@@ -375,10 +375,10 @@ function About() {
                     
                     <h1 className="2xl:text-[110px] lg:text-6xl md:text-5xl text-[28px] font-bold text-center 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
                     <img src={improvementIcon} className="absolute right-3 md:top-[200px] top-[100px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
-                    <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] md:w-[700px] w-full 2xl:mt-20 lg:mt-10  md:mt-10 mt-8"
+                    <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] md:w-[700px] w-full 2xl:mt-20 lg:mt-[50px]  md:mt-10 mt-8"
                         src={improvementImage}/>
 
-                    <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-lg lg:text-base md:text-lg text-base 2xl:leading-8 2xl:mt-[330px] xl:mt-[250px] lg:mt-[225px] mt-6 text-justify lg:text-left">
+                    <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-lg lg:text-base md:text-base text-base 2xl:leading-8 2xl:mt-[330px] xl:mt-[250px] lg:mt-[250px] mt-6 text-justify lg:text-left">
                     Last but not least, I would like to emphasize another of my values - continuous improvement. Strange as it may sound, I consider this to be one of the most important and crucial values that influences other values in my life. This desire to constantly improve and move forward helps us achieve amazing results. I find the adoption of this value very beneficial and useful in the context of personal development. As the old saying goes: "You learn all your life." I don't think we will ever achieve perfection and be flawless. But one thing is for sure - every day we have the opportunity to strive to be better, one choice at a time. Every second, every minute, every day, we can work to become better people. But that process begins in our minds.                    </div>
                 </div>
 

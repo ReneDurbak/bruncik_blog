@@ -35,7 +35,7 @@ function About() {
 
 
     const isDesktop = useMediaQuery({query: '(min-width: 1538px)'})
-    const isLaptopXL = useMediaQuery({query: '(min-width: 1440px )'})
+    const isLaptopXL = useMediaQuery({query: '(min-width: 1280px )'})
     const isLaptop = useMediaQuery({query: '(min-width: 1024px )'})
     const isTablet = useMediaQuery({query: '(min-width: 768px)'})
     const isMobile = useMediaQuery({query: '(min-width: 640px)'})
@@ -77,14 +77,16 @@ function About() {
       
       
 
-      const[showMoreMyStory, setShowMoreMyStory] = useState(false)
+    const[showMoreMyStory, setShowMoreMyStory] = useState(false)
+    const[showMoreMyStoryTabletFirstBubble, setShowMoreMyStoryTabletFirstBubble] = useState(false)
+    const[showMoreMyStoryTabletSecondBubble, setShowMoreMyStoryTabletSecondBubble] = useState(false)
 
-      const showMoreStyles = {
+    const showMoreStyles = {
         WebkitLineClamp : 3,
         WebkitBoxOrient: 'vertical',
         overflow: 'hidden',
         display: '-webkit-box',
-      }
+    }
 
 
     return (
@@ -164,25 +166,28 @@ function About() {
                         }
                 }>
 
-                    <div className="pt-0">
+                    <div className=" w-full mx-auto pt-0">
                         <h1 className="text-black text-3xl text-center lg:pt-20 pt-12 font-spectral uppercase tracking-[10px] font-bold">My story</h1>
 
 
-                        {isTablet 
+                        {isLaptopXL 
                             ?
-                            <div className="grid xl:grid-cols-1">
+
+                            <div className="xl:grid flex xl:grid-flow-col flex-col justify-center items-center xl:grid-cols-2 grid-cols-1 2xl:gap-x-[250px] xl:gap-y-0 gap-y-[280px]">
                             {/*Text bubbles*/}
-                            <div className="relative flex flex-start">
-                                <div className="absolute bg-white md:p-4 p-1 2xl:w-[800px] xl:w-[600px] lg:w-[600px] md:w-[680px] w-[175px] 2xl:h-[250px] xl:h-[200px] lg:h-[220px] md:h-[160px] h-[250px] float-left xl:ml-16 lg:mr-6 md:ml-6 2xl:top-10 xl:top-8 lg:top-10 md:top-4 top-8 md:blur-xl blur-md rounded-[30px]"></div>
-                                <p className="absolute blur-none 2xl:w-[700px] xl:w-[500px] lg:w-[500px] md:w-[600px] w-[150px] 2xl:top-[90px] xl:top-[70px] lg:top-[80px] md:top-[40px] top-[70px] 2xl:left-[120px] xl:left-[120px] lg:left-20 md:left-16 left-7 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">In my young, specifically in elementary school, I began my journey by not simply wanting to conform to the normal group around me. On the contrary, I decided to actively differentiate myself and seek my own identity. I remember a time when I was the quiet boy in the dugout while the rest of my classmates were busy with soccer, girls, and games. That's when I understood that I didn't want to follow the same pattern as everyone else. I decided to be authentic, to go my own way, and to be influenced only by what was truly important to me.
-                                </p>
+                            <div className="relative flex flex-start xl:justify-center">
+                                <div className="relative">
+                                    <div className=" bg-white md:p-4 p-1 2xl:w-[800px] xl:w-[550px] lg:w-[550px] md:w-[640px] w-[175px] 2xl:h-[250px] xl:h-[170px] lg:h-[185px] md:h-[160px] h-[250px] xl:float-left xl:ml-0 lg:mr-6 md:ml-6 xl:mt-8 lg:mt-8 md:mt-4 2xl:blur-xl lg:blur-md blur-md rounded-[30px]"></div>
+                                    <p className="absolute blur-none 2xl:w-[700px] xl:w-[500px] lg:w-[500px] md:w-[600px] w-[150px] 2xl:top-[80px] xl:top-[50px] lg:top-[60px] md:top-[50px] top-[70px] 2xl:left-[50px] xl:left-[25px] lg:left-12 md:left-12 left-7 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">In my young, specifically in elementary school, I began my journey by not simply wanting to conform to the normal group around me. On the contrary, I decided to actively differentiate myself and seek my own identity. I remember a time when I was the quiet boy in the dugout while the rest of my classmates were busy with soccer, girls, and games. That's when I understood that I didn't want to follow the same pattern as everyone else. I decided to be authentic, to go my own way, and to be influenced only by what was truly important to me.
+                                    </p>
+                                </div>
                             </div>
 
 
-                            <div className="relative flex flex-start">
-                                <div className="absolute 2xl:top-[550px] xl:top-[475px] md:top-[450px] top-[500px]">
-                                    <div className="bg-white md:p-4 2xl:w-[750px] xl:w-[590px] lg:w-[580px] md:w-[680px] w-[175px] 2xl:h-[300px] xl:h-[250px] lg:h-[260px] md:h-[210px] h-[310px] float-right xl:ml-16 lg:mr-6 md:ml-6 mr-4 md:blur-xl blur-md rounded-[30px]"></div>
-                                    <p className="absolute blur-none 2xl:w-[650px] xl:w-[500px] lg:w-[500px] md:w-[600px] w-[150px]  2xl:top-14 xl:top-[50px] lg:top-[50px] md:top-[40px] top-16 2xl:left-[120px] xl:left-[120px] lg:left-20 md:left-16 left-7 right-8 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">
+                            <div className="relative flex flex-end xl:justify-center">
+                                <div className="relative 2xl:top-[600px] xl:top-[475px] md:top-[0px] top-[500px]">
+                                    <div className=" bg-white md:p-4 2xl:w-[750px] xl:w-[550px] lg:w-[550px] md:w-[650px] w-[175px] 2xl:h-[300px] xl:h-[200px] lg:h-[200px] md:h-[175px] h-[310px] float-right xl:ml-16 lg:mr-6 md:ml-6 mr-4 2xl:blur-xl  blur-md rounded-[30px]"></div>
+                                    <p className="absolute blur-none 2xl:w-[650px] xl:w-[500px] lg:w-[500px] md:w-[600px] w-[150px]  2xl:top-14 xl:top-[1s0px] lg:top-[30px] md:top-[25px] top-16 2xl:left-[110px] xl:left-[90px] lg:left-12 md:left-12 left-7 right-8 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">
                                     The influence of the values I learned in my family, especially from my father, shaped my decision to pursue a healthy lifestyle and self-development. His advice to avoid unhealthy habits inspired me to build a solid foundation for physical and mental well-being. As a result, exercise and healthy habits became an integral part of my identity. This process, however, had one driving force - love. The desire to be a better version of myself for the love of my life and for everyone around me motivated me to constantly improve and work on myself, making my life goal a clear commitment to be a good person for my loved one and for everyone around me.
                                     </p>
                                 </div>
@@ -191,7 +196,44 @@ function About() {
 
                             :
 
+                            isTablet
+                            ?
+
+                            <div className="2xl:grid flex 2xl:grid-flow-col flex-col  items-center 2xl:grid-cols-2 2xl:gap-x-[250px] 2xl:gap-y-0 gap-y-[280px]">
+                            {/*Text bubbles with less/more for tablets and small laptops*/}
+                            <div className="relative flex flex-start xl:justify-center">
+                                <div className="relative">
+                                    <div className={`bg-white md:p-4 p-1 lg:w-[550px] md:w-[645px]  ${showMoreMyStoryTabletFirstBubble ? " lg:h-[220px] md:h-[175px]" : "lg:h-[140px] md:h-[125px]"}  lg:mr-6 md:ml-6  lg:mt-8 md:mt-4  lg:blur-md blur-md rounded-[30px]`}></div>
+                                    <p  style={showMoreMyStoryTabletFirstBubble ? null : showMoreStyles} className="absolute blur-none 2xl:w-[700px] xl:w-[500px] lg:w-[500px] md:w-[600px] w-[150px] 2xl:top-[80px] xl:top-[50px] lg:top-[60px] md:top-[35px] top-[70px] 2xl:left-[50px] xl:left-[25px] lg:left-12 md:left-12 left-7 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">
+                                        In my young, specifically in elementary school, I began my journey by not simply wanting to conform to the normal group around me. On the contrary, I decided to actively differentiate myself and seek my own identity. I remember a time when I was the quiet boy in the dugout while the rest of my classmates were busy with soccer, girls, and games. That's when I understood that I didn't want to follow the same pattern as everyone else. I decided to be authentic, to go my own way, and to be influenced only by what was truly important to me.
+                                    </p>
+                                    <p className="absolute left-2 bottom-6 sm:px-10 px-8 text-[14px] underline underline-offset-4"  onClick={()=> setShowMoreMyStoryTabletFirstBubble(!showMoreMyStoryTabletFirstBubble)}>{showMoreMyStoryTabletFirstBubble ? <BiArrowToTop size={22}/>:"More..."}</p>
+
+                                </div>
+                            </div>
+
+
+                            <div className="2xl:relative absolute lg:top-[600px] md:top-[500px] flex flex-end 2xl:justify-center">
+                                <div className="relative 2xl:top-[600px] xl:top-[0px] md:top-[0px] top-[500px]">
+                                    <div className={` bg-white md:p-4 2xl:w-[750px] xl:w-[550px] lg:w-[550px] md:w-[650px] w-[175px] ${showMoreMyStoryTabletSecondBubble ? "lg:h-[230px] md:h-[210px]" : "lg:h-[140px] md:h-[130px]"} float-right xl:ml-16 lg:mr-6 md:ml-6 mr-4 2xl:blur-xl  blur-md rounded-[30px]`}></div>
+                                    <p  style={showMoreMyStoryTabletSecondBubble ? null : showMoreStyles} className="absolute blur-none lg:w-[500px] md:w-[600px] lg:top-[30px] md:top-[25px] top-16 xl:left-[50px] lg:left-12 md:left-12 left-7 right-8 md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">
+                                        The influence of the values I learned in my family, especially from my father, shaped my decision to pursue a healthy lifestyle and self-development. His advice to avoid unhealthy habits inspired me to build a solid foundation for physical and mental well-being. As a result, exercise and healthy habits became an integral part of my identity. This process, however, had one driving force - love. The desire to be a better version of myself for the love of my life and for everyone around me motivated me to constantly improve and work on myself, making my life goal a clear commitment to be a good person for my loved one and for everyone around me.
+                                    </p>
+                                    <p className="absolute left-2 bottom-6 sm:px-10 px-8 text-[14px] underline underline-offset-4"  onClick={()=> setShowMoreMyStoryTabletSecondBubble(!showMoreMyStoryTabletSecondBubble)}>{showMoreMyStoryTabletSecondBubble ? <BiArrowToTop size={22}/>:"More..."}</p>
+
+                                </div>
+                            </div>
+                            </div>
+
+
+
+
+                            :
+                            isMobile
+                            ?
+                         
                             <div className={`mt-8 sm:mx-10 mx-2 max-w-full ${showMoreMyStory ? "sm:h-[460px] h-[750px]": "h-[150px]"} relative`}>
+                                {/*text bubble less/more for mobile*/}
                                 <div className={`absolute bg-white w-full p-4 blur-md ${showMoreMyStory ? "sm:h-[460px] h-[750px]": "h-[150px]"} `}></div>
                                 <p style={showMoreMyStory ? null : showMoreStyles} className="absolute text-justify sm:text-base text-[14px]  sm:px-10 px-8 mt-8">
                                 In my young, specifically in elementary school, I began my journey by not simply wanting to conform to the normal group around me. On the contrary, I decided to actively differentiate myself and seek my own identity. I remember a time when I was the quiet boy in the dugout while the rest of my classmates were busy with soccer, girls, and games. That's when I understood that I didn't want to follow the same pattern as everyone else. I decided to be authentic, to go my own way, and to be influenced only by what was truly important to me.                                    The influence of the values I learned in my family, especially from my father, shaped my decision to pursue a healthy lifestyle and self-development. His advice to avoid unhealthy habits inspired me to build a solid foundation for physical and mental well-being. As a result, exercise and healthy habits became an integral part of my identity. This process, however, had one driving force - love. The desire to be a better version of myself for the love of my life and for everyone around me motivated me to constantly improve and work on myself, making my life goal a clear commitment to be a good person for my loved one and for everyone around me.
@@ -199,6 +241,8 @@ function About() {
                                 <p className="absolute left-0 bottom-6 sm:px-10 px-8 text-[15px] underline underline-offset-4"  onClick={()=> setShowMoreMyStory(!showMoreMyStory)}>{showMoreMyStory ? <BiArrowToTop size={22}/>:"More..."}</p>
 
                             </div>
+
+                            :null
                     
                     
                         }
@@ -237,13 +281,13 @@ function About() {
 
                 {/*My values*/}
 
-                <div className="max-w-full 2xl:h-[1200px]">
+                <div className="relative max-w-full 2xl:h-[1200px]">
                     <img src={healthvaluesbg}
                         className="absolute z-[-1] w-full 2xl:block hidden"/>
                     <img src={healthvaluesbgLaptop}
-                        className="absolute z-[-1] w-full xl:hidden lg:block hidden"/>
+                        className="absolute z-[-1] top-[110px] w-full xl:hidden lg:block hidden"/>
                     <img src={healthvaluesbgLaptopXL}
-                        className="absolute z-[-1] w-full 2xl:hidden xl:block hidden"/>
+                        className="absolute z-[-1] top-20 w-full 2xl:hidden xl:block hidden"/>
                     
 
 
@@ -291,7 +335,7 @@ function About() {
                                     className="absolute lg:bottom-[-38px] xl:bottom-[-55px] md:bottom-[-30px] bottom-[-20px] mx-auto left-0 z-[-1]"/>
                                 <div className="absolute w-[80%] 2xl:top-[220px] xl:top-[220px] lg:top-[145px] md:top-[110px] top-[75px] border border-black"></div>
                                 <img src={improvement}
-                                    className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[50px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
+                                    className="float-right 2xl:w-[125px] xl:w-[110px] lg:w-[80px] md:w-[60px] sm:w-[48px] w-[40px] 2xl:mr-4 lg:mr-3 xl:mt-4"/>
                                 <div className="lg:pr-[100px] xl:pt-[160px] lg:pt-[100px] md:pt-[60px] pt-10 2xl:pb-10 xl:pb-8 lg:pb-4">
                                     <h1 className="2xl:text-[38px] xl:text-4xl lg:text-2xl md:text-xl text-sm font-bold">Improvement</h1>
                                     <a href="#improvementSection">
@@ -309,7 +353,7 @@ function About() {
                                 smooth={true}
                                 offset={-50}>
                                 <img className=" 2xl:mt-[-20px] md:mt-[-130px] mt-[-150px] xl:w-[60px] md:w-[40px] w-[20px] duration-300 ease-in-out hover:scale-110"
-                                    src={isLaptop ? arrowDown : arrowDownBlack}/>
+                                    src={isLaptop ? arrowDown : null}/>
                             </Link>
                         </div>
 
@@ -321,7 +365,7 @@ function About() {
 
                 {/*Movement and improvement background picture*/}
                 <img src={movimpbg}
-                        className="absolute 2xl:top-[6660px] xl:top-[5050px] lg:top-[4500px]   lg:block hidden w-full aspect-auto z-[-1]"/>
+                        className="absolute 2xl:top-[6660px] xl:top-[5110px] lg:top-[4500px]   lg:block hidden w-full aspect-auto z-[-1]"/>
 
 
 
@@ -338,18 +382,18 @@ function About() {
                             {/*Health Image on laptops/desktops*/}
                             <img className="lg:float-left md:block hidden mx-auto lg:mr-10 2xl:w-[700px] xl:w-[400px] lg:w-[380px] md:w-[350px] 2xl:mt-[-250px] lg:static absolute top-[-470px] right-0 " src={healthImage}/>
                             <img src={hearthIcon}
-                                className="2xl:block lg:hidden block absolute 2xl:w-[1300px] lg:w-[400px] md:w-[600px] w-[320px] 2xl:top-[-520px] xl:top-[-150px] lg:top-[110px] md:top-[-480px] 2xl:left-[225px] xl:left-[700px] lg:left-[500px] md:left-[-150px] left-[-110px]  2xl:rotate-0 lg:rotate-[-12deg] rotate-[16deg] z-[-1]"/>
+                                className=" block absolute 2xl:w-[1300px] xl:w-[500px] lg:w-[400px] md:w-[600px] w-[320px] 2xl:top-[-520px] xl:top-[-310px] lg:top-[-225px] md:top-[-480px] 2xl:left-[225px] xl:left-[260px] lg:left-[250px] md:left-[-150px] left-[-110px] lg:rotate-[0deg]  rotate-[16deg] z-[-1]"/>
                             
                             <div className="md:flex md:items-start relative">
-                              <h1 className="2xl:text-9xl xl:text-[100px] lg:text-7xl md:text-7xl  text-5xl uppercase 2xl:rotate-[-10deg] lg:rotate-0 rotate-[-10deg] decoration-4 text-center font-bold lg:text-left">Health</h1>
-                              <img src={healthUnderline} className="absolute 2xl:block lg:hidden block lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 md:mx-0 mx-auto 2xl:w-auto  lg:w-[450px] md:w-[768px] w-[220px]"/>
+                              <h1 className="2xl:text-9xl xl:text-[100px] lg:text-7xl md:text-7xl  text-5xl uppercase md:rotate-[-10deg] rotate-0 decoration-4 text-center font-bold lg:text-left">Health</h1>
+                              <img src={healthUnderline} className="absolute md:block hidden lg:bottom-[-40px] md:bottom-[-40px] bottom-[-20px] lg:right-auto right-0 left-0 md:mx-0 mx-auto 2xl:w-auto  xl:w-[450px] lg:w-[385px] md:w-[768px] w-[220px]"/>
                             </div>
                             
                             {/*Health Image on mobiles/tablets*/}
                             <img className="lg:float-left md:hidden block mx-auto mt-20 w-[400px]" src={healthImage}/>
 
                             
-                            <div className=" 2xl:text-xl xl:text-lg lg:text-base 2xl:px-0 lg:px-[110px] text-base  lg:tracking-wide 2xl:ml-[730px] xl:mt-16 lg:mt-6 md:mt-20  mt-6 2xl:max-w-[750px] mx-auto text-justify 2xk:text-right">
+                            <div className=" 2xl:text-xl xl:text-lg lg:text-base 2xl:px-0 xl:px-[120px] lg:px-[150px] text-base  lg:tracking-wide 2xl:ml-[730px] xl:mt-16 lg:mt-16 md:mt-20  mt-6 2xl:max-w-[750px] mx-auto text-left 2xltext-justify 2xk:text-right">
                             Each of us has only one health, and we often wish for it on occasions such as birthdays and other celebrations. Unfortunately, many people neglect, risk, underestimate or completely ignore their health, especially young people. In my life, I have abstained from alcohol, never tried cigarettes, and resisted the lure of addictive substances or drugs. This may sound unbelievable, but it is true. Still, I felt that wasn't enough, so I decided to take a more active role in my health. I adopted a vegan lifestyle, cutting out meat, dairy, and other animal products. Health isn't just about avoiding substances; it also includes quality sleep, proper nutrition, and mental well-being. On this site you can learn about these and other topics.                            </div>
                         </div>
 
@@ -373,12 +417,12 @@ function About() {
                 {/*Improvement*/}
                 <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] md:pt-[100px] lg:mt-0 md:mt-[50px] mt-[100px] pt-[10px] ">
                     
-                    <h1 className="2xl:text-[110px] lg:text-6xl md:text-5xl text-[28px] font-bold text-center 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
+                    <h1 className="2xl:text-[110px] lg:text-6xl md:text-5xl text-[28px] font-bold text-center lg:text-left 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
                     <img src={improvementIcon} className="absolute right-3 md:top-[200px] top-[100px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
                     <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] md:w-[700px] w-full 2xl:mt-20 lg:mt-[50px]  md:mt-10 mt-8"
                         src={improvementImage}/>
 
-                    <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-lg lg:text-base md:text-base text-base 2xl:leading-8 2xl:mt-[330px] xl:mt-[250px] lg:mt-[250px] mt-6 text-justify lg:text-left">
+                    <div className="2xl:pr-[300px] 2xl:text-[22px] xl:text-lg lg:text-base md:text-base text-base 2xl:leading-8 2xl:mt-[330px] xl:mt-[310px] lg:mt-[250px] mt-6 text-justify lg:text-left">
                     Last but not least, I would like to emphasize another of my values - continuous improvement. Strange as it may sound, I consider this to be one of the most important and crucial values that influences other values in my life. This desire to constantly improve and move forward helps us achieve amazing results. I find the adoption of this value very beneficial and useful in the context of personal development. As the old saying goes: "You learn all your life." I don't think we will ever achieve perfection and be flawless. But one thing is for sure - every day we have the opportunity to strive to be better, one choice at a time. Every second, every minute, every day, we can work to become better people. But that process begins in our minds.                    </div>
                 </div>
 
@@ -387,7 +431,7 @@ function About() {
 
                 {/*Contact*/}
 
-                <div className="2xl:h-[1000px]  2xl:mt-[400px] xl:mt-[600px] lg:mt-[200px] md:mt-[125px] mt-[125px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10 2xl:mb-0 xl:mb-[200px] lg:mb-[160px] md:mb-[140px] mb-20">
+                <div className="2xl:h-[1000px]  2xl:mt-[400px] xl:mt-[400px] lg:mt-[200px] md:mt-[125px] mt-[125px] 2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-10 md:px-[125px] sm:px-10 px-10 2xl:mb-0 xl:mb-[200px] lg:mb-[160px] md:mb-[140px] mb-20">
                     <div className="lg:flex lg:items-center lg:justify-between xl:space-x-[200px] lg:space-x-10">
                         <img src={contactImage}
                             className="2xl:h-[800px] lg:h-[500px] xl:mr-[-100px]"/>

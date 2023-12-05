@@ -196,11 +196,46 @@ function About() {
 
                             :
 
+                            isLaptop
+                            ?
+                            
+                            <div className="grid grid-flow-col grid-cols-2">
+
+                            {/*Text bubbles with less/more for small laptops*/}
+                            <div className="relative flex flex-start">
+                                <div className="absolute top-20 left-10">
+                                    <div className={` bg-white  lg:w-[550px]  ${showMoreMyStoryTabletFirstBubble ? " lg:h-[220px] md:h-[175px]" : "lg:h-[140px] md:h-[125px]"}     mt-10  lg:blur-md blur-md rounded-[30px]`}></div>
+                                    <p  style={showMoreMyStoryTabletFirstBubble ? null : showMoreStyles} className="absolute blur-none w-[500px] top-[60px] left-6  md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">
+                                        In my young, specifically in elementary school, I began my journey by not simply wanting to conform to the normal group around me. On the contrary, I decided to actively differentiate myself and seek my own identity. I remember a time when I was the quiet boy in the dugout while the rest of my classmates were busy with soccer, girls, and games. That's when I understood that I didn't want to follow the same pattern as everyone else. I decided to be authentic, to go my own way, and to be influenced only by what was truly important to me.
+                                    </p>
+                                    <p className="absolute left-6 bottom-6 px-0 text-[14px] underline underline-offset-4"  onClick={()=> setShowMoreMyStoryTabletFirstBubble(!showMoreMyStoryTabletFirstBubble)}>{showMoreMyStoryTabletFirstBubble ? <BiArrowToTop size={22}/>:"More..."}</p>
+
+                                </div>
+                            </div>
+
+
+                            <div className="relative flex flex-end">
+                                <div className="absolute top-[500px]   right-10">
+                                    <div className={` bg-white 2xl:w-[750px] xl:w-[550px] lg:w-[550px] md:w-[650px] w-[175px] ${showMoreMyStoryTabletSecondBubble ? "lg:h-[230px] md:h-[210px]" : "lg:h-[140px] md:h-[130px]"} mt-8   blur-md rounded-[30px]`}></div>
+                                    <p  style={showMoreMyStoryTabletSecondBubble ? null : showMoreStyles} className="absolute blur-none w-[500px] top-[55px] left-6  md:text-justify text-center 2xl:text-base md:text-[13px] text-xs">
+                                        The influence of the values I learned in my family, especially from my father, shaped my decision to pursue a healthy lifestyle and self-development. His advice to avoid unhealthy habits inspired me to build a solid foundation for physical and mental well-being. As a result, exercise and healthy habits became an integral part of my identity. This process, however, had one driving force - love. The desire to be a better version of myself for the love of my life and for everyone around me motivated me to constantly improve and work on myself, making my life goal a clear commitment to be a good person for my loved one and for everyone around me.
+                                    </p>
+                                    <p className="absolute left-6 bottom-6  px-0 text-[14px] underline underline-offset-4"  onClick={()=> setShowMoreMyStoryTabletSecondBubble(!showMoreMyStoryTabletSecondBubble)}>{showMoreMyStoryTabletSecondBubble ? <BiArrowToTop size={22}/>:"More..."}</p>
+
+                                </div>
+                            </div>
+                            
+                            </div>
+
+
+
+                            :
+
                             isTablet
                             ?
 
                             <div className="2xl:grid flex 2xl:grid-flow-col flex-col  items-center 2xl:grid-cols-2 2xl:gap-x-[250px] 2xl:gap-y-0 gap-y-[280px]">
-                            {/*Text bubbles with less/more for tablets and small laptops*/}
+                            {/*Text bubbles with less/more for tablets*/}
                             <div className="relative flex flex-start xl:justify-center">
                                 <div className="relative">
                                     <div className={`bg-white md:p-4 p-1 lg:w-[550px] md:w-[645px]  ${showMoreMyStoryTabletFirstBubble ? " lg:h-[220px] md:h-[175px]" : "lg:h-[140px] md:h-[125px]"}  lg:mr-6 md:ml-6  lg:mt-8 md:mt-4  lg:blur-md blur-md rounded-[30px]`}></div>
@@ -225,12 +260,7 @@ function About() {
                             </div>
                             </div>
 
-
-
-
                             :
-                            isMobile
-                            ?
                          
                             <div className={`mt-8 sm:mx-10 mx-2 max-w-full ${showMoreMyStory ? "sm:h-[460px] h-[750px]": "h-[150px]"} relative`}>
                                 {/*text bubble less/more for mobile*/}
@@ -242,7 +272,7 @@ function About() {
 
                             </div>
 
-                            :null
+                      
                     
                     
                         }
@@ -417,7 +447,7 @@ function About() {
                 {/*Improvement*/}
                 <div id="improvementSection" className="relative max-w-full 2xl:h-[1000px] 2xl:pt-[100px] xl:pt-[100px] lg:pt-[100px] md:pt-[100px] lg:mt-0 md:mt-[50px] mt-[100px] pt-[10px] ">
                     
-                    <h1 className="2xl:text-[110px] lg:text-6xl md:text-5xl text-[28px] font-bold text-center lg:text-left 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
+                    <h1 className="2xl:text-[100px] lg:text-6xl md:text-5xl text-[28px] font-bold text-center lg:text-left 2xl:text-justify 2xl:pl-[310px] uppercase mb-2">Constant improvement</h1>
                     <img src={improvementIcon} className="absolute right-3 md:top-[200px] top-[100px] rotate-[10deg] lg:hidden block md:w-[100px] w-[60px]"/>
                     <img className="lg:float-left mx-auto 2xl:pl-[110px] 2xl:mr-16 lg:mr-8 2xl:w-[800px] xl:w-[650px] lg:w-[500px] md:w-[700px] w-full 2xl:mt-20 lg:mt-[50px]  md:mt-10 mt-8"
                         src={improvementImage}/>

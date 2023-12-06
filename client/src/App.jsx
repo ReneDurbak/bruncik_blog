@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Articles from './pages/Articles.jsx';
 import Mycourse from './pages/Mycourse.jsx';
 import Pushups from './pages/Pushups.jsx';
@@ -9,9 +9,12 @@ import SingleArticlePage from './components/SingleArticlePage.jsx';
 import ScrollToTop from './scrollToTop.jsx';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import AdminLogin from './pages/AdminLogin.jsx';
 
 
 function App() {
+
+
 
   
 
@@ -43,7 +46,7 @@ function App() {
     <>
 
     <Router>
-          <Navbar/>
+         <Navbar/>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -52,8 +55,9 @@ function App() {
         <Route path="/articles/:id" element={<SingleArticlePage articles={ListofArticles}/>}/>
         <Route path="/mycourse" element={<Mycourse />} />
         <Route path="/push-ups" element={<Pushups/>} />
+        <Route path="/admin" element={<AdminLogin/>}/>
       </Routes>  
-      <Footer/>
+       <Footer/>
     </Router>
     </>
   );

@@ -313,7 +313,7 @@ function About() {
 
                 <div className="relative max-w-full 2xl:h-[1200px]">
                     <img src={healthvaluesbg}
-                        className="absolute z-[-1] w-full 2xl:block hidden"/>
+                        className="absolute z-[-1] w-full 2xl:block hidden top-[100px]"/>
                     <img src={healthvaluesbgLaptop}
                         className="absolute z-[-1] top-[110px] w-full xl:hidden lg:block hidden"/>
                     <img src={healthvaluesbgLaptopXL}

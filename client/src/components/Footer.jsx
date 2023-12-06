@@ -1,12 +1,17 @@
 import{SiInstagram, SiTwitter, SiFacebook, SiYoutube, SiSpotify} from 'react-icons/si'
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import {AiOutlineArrowRight} from 'react-icons/ai'
 import emailjs from 'emailjs-com'
 import { useState } from 'react'
 
 
 export default function Footer(){
+  const location = useLocation();
+  const isAdminRoute = location.pathname === '/admin';
 
+  if (isAdminRoute) {
+    return null
+  }
 
   const[email,setEmail] = useState("")
   const [message, setMessage] = useState("")

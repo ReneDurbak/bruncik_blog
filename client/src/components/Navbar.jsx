@@ -1,10 +1,20 @@
 import { useState, useEffect } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import logo from "../assets/icon.png"
 
 
 function Navbar(){
+
+  const location = useLocation();
+  const isAdminRoute = location.pathname === '/admin';
+
+  if (isAdminRoute) {
+    return null
+  }
+
+
+
   const [nav,setNav] = useState(false)
 
   const handleNav=() => {

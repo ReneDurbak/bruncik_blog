@@ -1,6 +1,9 @@
 import { useState } from "react"
 
-export default function AdminLogin() {
+export default function AdminLogin({articles}) {
+
+
+  console.log(articles)
 
   const [name, setName] = useState('')
   const [pass, setPass] = useState('')
@@ -51,6 +54,14 @@ export default function AdminLogin() {
             <div className="items-end">
               <button className="rounded-lg bg-yellow-400  px-2 py-1 mb-[-1rem]">Send</button>
             </div>
+          </div>
+
+          <div>
+            {
+              articles && articles.map((article)=> (
+                <div key={article._id}>{article.title}</div>
+              ))
+            }
           </div>
         </div>
         

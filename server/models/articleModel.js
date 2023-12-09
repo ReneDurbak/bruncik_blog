@@ -18,6 +18,10 @@ const articleSchema = new Schema({
     section:{
         type: String,
         required:true
+    },
+    label:{
+        type: String,
+        required:true
     }
 }, { timestamps: true})
 

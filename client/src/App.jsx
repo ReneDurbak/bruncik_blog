@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Articles from './pages/Articles.jsx';
 import Mycourse from './pages/Mycourse.jsx';
@@ -12,9 +12,33 @@ import Footer from "./components/Footer";
 import AdminLogin from './pages/AdminLogin.jsx';
 
 
+
 function App() {
 
 
+
+  const [ListOfArticles,setListOfArticles] = useState([])
+
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/admin/articles/getAllArticles');
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const articles = await response.json();
+        setListOfArticles(articles);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   
 
@@ -51,11 +75,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/articles" element={<Articles />} />
-        <Route path="/articles/:id" element={<SingleArticlePage articles={ListofArticles}/>}/>
+        <Route path="/articles" element={<Articles  articles={ListOfArticles}/> } />
+        <Route path="/articles/:id" element={<SingleArticlePage articles={ListOfArticles}/>}/>
         <Route path="/mycourse" element={<Mycourse />} />
         <Route path="/push-ups" element={<Pushups/>} />
-        <Route path="/admin" element={<AdminLogin/>}/>
+        <Route path="/admin" element={<AdminLogin articles={ListOfArticles}/>} />
       </Routes>  
        <Footer/>
     </Router>

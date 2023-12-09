@@ -31,11 +31,11 @@ const getArticle = async(req,res) => {
 
 
 const createArticle = async(req,res) =>{
-    const {title, content, readingTime, section } = req.body
+    const {title, content, readingTime, section, label } = req.body
 
 
     try{
-        const article = await Article.create({title, content, readingTime, section})
+        const article = await Article.create({title, content, readingTime, section, label})
         res.status(200).json(article)
 
     }catch(err){

@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors')
 const express = require('express');
 const PORT = process.env.PORT
 const DATABASE = process.env.DATABASE
@@ -8,6 +9,8 @@ const articleRoutes = require('./routes/articles')
 
 
 app.use(express.json())
+app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
+
 
 
 app.use((req, res, next) => {

@@ -28,11 +28,13 @@ import exerciseWhite from "../assets/filteroptions/exercisefilterW.png"
 import nofapWhite from "../assets/filteroptions/nofapfilterW.png"
 import mindWhite from "../assets/filteroptions/mindfilterW.png"
 import inspirationWhite from "../assets/filteroptions/insipirationfilterW.png"
+{}
 
 
 
+function Articles({articles}){
 
-function Articles(){
+
 
       {/*Filter*/}
       const filterOptions = useMemo(()=>[
@@ -348,9 +350,9 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 
 <div className="xl:tracking-[4px] tracking-[1px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
   
-{ListofArticles.map((article) =>
-  <RouteLink to={`/articles/${article.id}`}>
-  <div className="w-full" key={article.id}>
+{ articles && articles.map((article) =>
+  <RouteLink  key={article._id} to={`/articles/${article._id}`}>
+  <div className="w-full">
   <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 lg:px-4 px-1 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>
   
   <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]">

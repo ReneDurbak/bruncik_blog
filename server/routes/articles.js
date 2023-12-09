@@ -11,10 +11,10 @@ const {
 const router = express.Router()
 
 
-router.get('/', getAllArticles)
+router.get('/getAllArticles', getAllArticles)
 
 
-router.get('/:id', getArticle)
+router.get('/getArticle/:id', getArticle)
 
 
 router.post('/', createArticle)

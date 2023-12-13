@@ -10,10 +10,15 @@ import ScrollToTop from './scrollToTop.jsx';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AdminLogin from './pages/AdminLogin.jsx';
+import axios from "axios"
+import AdminSidePanel from './components/AdminSidePanel.jsx';
+import AdminArticles from './pages/AdminArticles.jsx';
+import AdminPushUps from './pages/AdminPushUps.jsx';
 
 
 
 function App() {
+
 
 
 
@@ -23,13 +28,9 @@ function App() {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch('http://localhost:4000/admin/articles/getAllArticles');
+        const response = await axios.get('http://localhost:4000/admin/articles/getAllArticles');
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const articles = await response.json();
+        const articles = response.data;
         setListOfArticles(articles);
       } catch (error) {
         console.error('Error fetching articles:', error);
@@ -70,18 +71,22 @@ function App() {
     <>
 
     <Router>
-         <Navbar/>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/articles" element={<Articles  articles={ListOfArticles}/> } />
-        <Route path="/articles/:id" element={<SingleArticlePage articles={ListOfArticles}/>}/>
-        <Route path="/mycourse" element={<Mycourse />} />
-        <Route path="/push-ups" element={<Pushups/>} />
-        <Route path="/admin" element={<AdminLogin articles={ListOfArticles}/>} />
-      </Routes>  
-       <Footer/>
+      
+        <>
+
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/articles" element={<Articles  articles={ListOfArticles}/> } />
+          <Route path="/articles/:id" element={<SingleArticlePage articles={ListOfArticles}/>}/>
+          <Route path="/mycourse" element={<Mycourse />} />
+          <Route path="/push-ups" element={<Pushups/>} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles}/>}/>
+          <Route path="/admin/push-ups" element={<AdminPushUps/>}/>
+        </Routes>  
+        </>
     </Router>
     </>
   );

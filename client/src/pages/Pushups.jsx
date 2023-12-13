@@ -17,6 +17,8 @@ import {VscDebugStepBack} from "react-icons/vsc"
 import CloseButtonv2 from "../assets/closebuttonv2.png"
 import notificationBubble from "../assets/notificationBubble.png"
 import { Helmet } from 'react-helmet';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 
@@ -201,6 +203,8 @@ return(
           <link rel="icon" type="image/svg+xml" href="/pushups.png" />
       </Helmet>
         
+     
+     <Navbar/>
       {/*Push-ups intro*/}
       <div className="bg-[url('/src//assets/pushupsintrobg.png')] bg-cover xl:py-[450px] md:py-[350px] py-[300px]"/>
 
@@ -538,7 +542,7 @@ return(
 
         </div>
     </div>
-
+    <Footer/>
         </>
     )
 }

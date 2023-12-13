@@ -17,13 +17,13 @@ router.get('/getAllArticles', getAllArticles)
 router.get('/getArticle/:id', getArticle)
 
 
-router.post('/', createArticle)
+router.post('/postArticle', createArticle)
 
 
-router.delete('/:id', deleteArticle)
+router.delete('/postArticle/:id', deleteArticle)
 
 
-router.patch('/:id', updateArticle)
+router.patch('/patchArticle/:id', updateArticle)
 
 
 

@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import {BiArrowFromTop, BiArrowToTop} from 'react-icons/bi'
-import ImageComponent from "../components/ImageComponent";
 import articlemenu from "../assets/articles/articlemenu.png"
 import selfieabout from "../assets/selfieabout.png"
 import pushups1 from "../assets/push-ups/pushups1.png"
@@ -14,6 +13,8 @@ import smiley from "../assets/about/smiley.png"
 import {useState} from "react";
 import {useMediaQuery} from 'react-responsive'
 import {Helmet} from "react-helmet";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 function Home() {
@@ -57,6 +58,7 @@ function Home() {
       <link rel="icon" type="image/svg+xml" href="/icon.png"/>
     </Helmet>
 
+<Navbar/>
     {/*Intro*/ }
     <div className="2xl:text-[140px] sm:px-20 text-center mx-auto w-full  xl:text-8xl lg:text-8xl text-5xl md:text-7xl 3xl:pt-[480px] 3xl:pb-[440px] 2xl:pt-[320px] 2xl:pb-[320px]  xl:pt-[380px] xl:pb-[330px]  lg:pt-[280px] lg:pb-[230px] md:pt-[290px] md:pb-[240px] pt-[340px] pb-[345px] xl:bg-[url('/src/assets/bgImg.jpg')] md:bg-[url('/src/assets/bgImglaptop.png')] bg-[url('/src/assets/bgImgmobile.png')] bg-cover font-thin align-middle md:tracking-normal tracking-tight text-white leading-normal">
       Breath in<br/> Breath out
@@ -341,6 +343,7 @@ On this page, you'll find videos of different people, including myself ;), who h
 
       </div>
   </div>
+<Footer/>
 
   </>
    

@@ -28,6 +28,8 @@ import {Link} from "react-scroll";
 import {useMediaQuery} from 'react-responsive'
 import {useState} from "react";
 import {BiArrowToTop} from 'react-icons/bi'
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
 
 
@@ -98,7 +100,7 @@ function About() {
 
 
 
-
+        <Navbar/>
             <div className="xl:mb-0 mb-[300x]">
                 {/*Hello intro*/}
                 <div className="relative bg-no-repeat bg-cover  2xl:h-[1000px] lg:h-[900px] md:h-[860px] md:mb-0 mb-16  w-full"
@@ -552,6 +554,8 @@ function About() {
                     </div>
                                               
             </div>
+
+            <Footer/>
         </>
     )
 

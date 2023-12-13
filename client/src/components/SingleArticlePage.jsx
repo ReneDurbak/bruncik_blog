@@ -15,6 +15,12 @@ import pinterest from "../assets/pintShare.png"
 import closeButton from "../assets/closebutton.png"
 import paperPlane from "../assets/PaperPlane.png"
 import paperPlaneBlack from "../assets/PaperPlaneBlack.png"
+import axios from "axios"
+import DOMPurify from 'dompurify';
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer";
+
+
 
 
 export default function SingleArticlePage() {
@@ -289,13 +295,9 @@ export default function SingleArticlePage() {
     useEffect(() => {
         const fetchArticle = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/admin/articles/getArticle/${id}`);
+            const response = await axios.get(`http://localhost:4000/admin/articles/getArticle/${id}`);
 
-            if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const fetchedArticle = await response.json();
+            const fetchedArticle = response.data;
             console.log(fetchedArticle);
             setArticle(fetchedArticle);
         } catch (error) {
@@ -311,13 +313,9 @@ export default function SingleArticlePage() {
     useEffect(() => {
         const fetchArticles = async () => {
           try {
-            const response = await fetch('http://localhost:4000/admin/articles/getAllArticles');
-    
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-    
-            const articles = await response.json();
+            const response = await axios.get('http://localhost:4000/admin/articles/getAllArticles');
+
+            const articles = response.data;
             setOtherArticles(articles.filter((a) => a._id !== id));
           } catch (error) {
             console.error('Error fetching articles:', error);
@@ -346,6 +344,7 @@ export default function SingleArticlePage() {
             <link rel="icon" type="image/svg+xml" href="/articles.png"/>
         </Helmet>
 
+        <Navbar/>
         {/*Main container*/}
         <div className={
   `${
@@ -396,10 +395,10 @@ export default function SingleArticlePage() {
 
                 {/*Article content*/}
 
-                <div className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] text-justify leading-6 pr-2">
-                    {article.content}
-
-                </div>
+                <div
+  className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] text-justify leading-6 pr-2"
+  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }}
+></div>
 
 
                 {/*Review container*/}
@@ -937,7 +936,7 @@ export default function SingleArticlePage() {
 
             </div>
         } </div>
-
+<Footer/>
 
     </>
 

@@ -197,10 +197,7 @@ export default function SingleArticlePage() {
     }
 
     const handleSaveRating = () => {
-        console.log('Name', name)
-        console.log('Rating:', rating)
-        console.log('Comment:', comment)
-        console.log('Selected Label:', selectedLabels)
+  
 
         if (name === "") {
             document.getElementById("singleArticleInput").value = "Please insert name!"
@@ -224,9 +221,7 @@ export default function SingleArticlePage() {
     }
 
     const handleSaveComment = () => {
-        console.log('Name', name)
-        console.log('Rating:', rating)
-        console.log('Comment:', comment)
+      
 
         if (name === "") {
             document.getElementById("singleArticleInput").value = "Please insert name!"
@@ -295,11 +290,11 @@ export default function SingleArticlePage() {
     useEffect(() => {
         const fetchArticle = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/admin/articles/getArticle/${id}`);
-
+            const response = await axios.get(`http://localhost:4000/admin/articles/getArticle/${id}`);   
             const fetchedArticle = response.data;
-            console.log(fetchedArticle);
+            
             setArticle(fetchedArticle);
+            
         } catch (error) {
             console.error('Error fetching article:', error);
         }

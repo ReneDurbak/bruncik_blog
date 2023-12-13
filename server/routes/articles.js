@@ -20,7 +20,7 @@ router.get('/getArticle/:id', getArticle)
 router.post('/postArticle', createArticle)
 
 
-router.delete('/postArticle/:id', deleteArticle)
+router.delete('/deleteArticle/:id', deleteArticle)
 
 
 router.patch('/patchArticle/:id', updateArticle)

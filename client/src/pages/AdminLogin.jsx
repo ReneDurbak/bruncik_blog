@@ -17,9 +17,6 @@ export default function AdminLogin({articles}) {
  
 
   const verification = () => {
-
-    console.log(name)
-    console.log(pass)
     if(name === "Peto" && pass === "123") setVerification(true)
 }
 

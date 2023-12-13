@@ -7,13 +7,11 @@ import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import SingleArticlePage from './components/SingleArticlePage.jsx';
 import ScrollToTop from './scrollToTop.jsx';
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import AdminLogin from './pages/AdminLogin.jsx';
 import axios from "axios"
-import AdminSidePanel from './components/AdminSidePanel.jsx';
 import AdminArticles from './pages/AdminArticles.jsx';
 import AdminPushUps from './pages/AdminPushUps.jsx';
+import AdminUpdateArticle from './pages/AdminUpdateArticle.jsx';
 
 
 
@@ -84,6 +82,7 @@ function App() {
           <Route path="/push-ups" element={<Pushups/>} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles}/>}/>
+          <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle/>}/>
           <Route path="/admin/push-ups" element={<AdminPushUps/>}/>
         </Routes>  
         </>

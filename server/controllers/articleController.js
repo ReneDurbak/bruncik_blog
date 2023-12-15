@@ -6,24 +6,22 @@ const Article = require('../models/articleModel')
 const getAllArticles = async (req, res) => {
     
     try{
-        const articles = await Article.find({}).sort({createdAt: -1}) //Newest articles first
+        const articles = await Article.find({}).sort({createdAt: -1}).populate('section') 
         res.status(200).json(articles)
 
     }catch(err){
-        res.status(400).json({error: err.message})
+        res.status(400).json({error: `Cannot get articles: ${err.message}`})
     }
 }
 
 
 const getArticle = async(req,res) => {
     const {id} = req.params
-
-    
     try{
-        const article = await Article.findById(id)
+        const article = await Article.findById(id).populate('section')
         res.status(200).json(article)
     }catch(err){
-        res.status(404).json({error: 'Cannot get such article'})
+        res.status(404).json({error: `Cannot get such article: ${err.message}`})
     }
 }
 

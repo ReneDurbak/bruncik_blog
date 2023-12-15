@@ -41,28 +41,6 @@ function App() {
 
   
 
-  const ListofArticles = [
-    {
-      id: 1,
-      title: "How to start meditation (Beginners Guide)",
-      label: "Mind",
-    },
-    {
-      id: 2,
-      title: "The Wim Hof Method and Its Surprising Benefits",
-      label: "WMH",
-    },
-    {
-      id: 3,
-      title: "Vegan staple foods (must eat)",
-      label: "Go Vegan",
-    },
-    {
-      id: 4,
-      title: "TOP 3 books about Stoicism (Ryan Holiday choice)",
-      label: "Inspiration",
-    },
-  ]
 
 
   return (

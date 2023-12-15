@@ -294,6 +294,8 @@ export default function SingleArticlePage() {
             const fetchedArticle = response.data;
             
             setArticle(fetchedArticle);
+
+    
             
         } catch (error) {
             console.error('Error fetching article:', error);
@@ -366,6 +368,11 @@ export default function SingleArticlePage() {
                         {
                         article.title
                     }</div>
+
+                    <div>{article.section.title}</div>
+                
+
+    Obrazok sekcie:<img src={article.section.imageUrlClicked} className="w-[40px]" alt="Section Image" />
 
                     <div className=" flex justify-start items-center sm:space-x-4 space-x-2 xl:mt-10 xl:text-lg sm:text-[13px] text-[11px]">
                         <div className="xl:text-base md:text-[13px] text-[11px] font-spectral">written by

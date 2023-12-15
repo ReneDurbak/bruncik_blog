@@ -1,5 +1,4 @@
 const express = require('express')
-const Article = require('../models/articleModel')
 const {
     createArticle,
     getAllArticles,

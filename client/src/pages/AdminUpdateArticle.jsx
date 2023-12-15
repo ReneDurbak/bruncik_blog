@@ -71,7 +71,7 @@ export default function AdminUpdateArticle() {
       <AdminSidePanel />
 
       <div>
-        <Link to="/admin/articles">Back</Link>
+        <Link to="/admin/articles"><button className="p-2 rounded-xl bg-gray-200 hover:bg-gray-400 ease-in-out duration-300 my-2 cursor-pointer">Back</button></Link>
         {article && (
           <>
             <form

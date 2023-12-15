@@ -16,8 +16,9 @@ const articleSchema = new Schema({
         required: true
     },
     section:{
-        type: String,
-        required:true
+        type: Schema.Types.ObjectId,
+        ref: 'articleSection', 
+        required: true
     },
     label:{
         type: String,

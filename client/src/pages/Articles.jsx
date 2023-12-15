@@ -52,28 +52,9 @@ function Articles({articles}){
       
       );
 
-      const ListofArticles = [
-        {
-          id: 1,
-          title: "How to start meditation (Beginners Guide)",
-          label: filterOptions[0].name,
-        },
-        {
-          id: 2,
-          title: "The Wim Hof Method and Its Surprising Benefits",
-          label: filterOptions[1].name,
-        },
-        {
-          id: 3,
-          title: "Vegan staple foods (must eat)",
-          label: filterOptions[2].name,
-        },
-        {
-          id: 4,
-          title: "TOP 3 books about Stoicism (Ryan Holiday choice)",
-          label: filterOptions[6].name,
-        },
-      ]
+
+      
+
   
 
       {/*Filter*/}

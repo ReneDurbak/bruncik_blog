@@ -150,14 +150,15 @@ export default function AdminUpdateArticle() {
         labelId="articleSectionLabel"
         id="articleSectionSelect"
         value={section}
+        displayEmpty
         onChange={handleArticleSectionChange}
-        defaultValue={articleSection}
       >
         {articleSections.map((section) => (
           <MenuItem key={section._id} value={section._id}>
             {section.title}
           </MenuItem>
         ))}
+        <MenuItem value="">{articleSection.title}</MenuItem>
       </Select>
 
               <label>

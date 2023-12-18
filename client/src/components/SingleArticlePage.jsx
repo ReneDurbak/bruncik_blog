@@ -369,7 +369,7 @@ export default function SingleArticlePage() {
                         article.title
                     }</div>
 
-                    <div>{article.section.title}</div>
+                   <div>{article.section.title}</div>
                 
 
     Obrazok sekcie:<img src={article.section.imageUrlClicked} className="w-[40px]" alt="Section Image" />

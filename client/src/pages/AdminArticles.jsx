@@ -4,10 +4,14 @@ import JoditEditor from "jodit-react";
 import axios from "axios";
 import { useState, useRef } from "react";
 import AdminSidePanel from "../components/AdminSidePanel";
+import { Select, MenuItem, InputLabel } from "@mui/material";
 
 export default function AdminArticles() {
   
   const [articles, setArticles] = useState([]);
+  const [articleSections, setArticleSections] = useState([]);
+  const [articleSection, setArticleSection] = useState('');
+  const [section, setSection] = useState(null)
 
   
   const fetchArticles = async() => {
@@ -22,10 +26,30 @@ export default function AdminArticles() {
     } 
     
   }
+
+
+  const fetchArticleSections = async() =>{
+    try {
+      const response = await axios.get("http://localhost:4000/admin/articleSections/getAllArticleSections")
+      const articleSections = response.data
+      setArticleSections(articleSections)
+
+    } catch (error) {
+      console.error("Error fetching article sections:", error.message)
+    }
+  }
   
   useEffect(()=>{
     fetchArticles()
+    fetchArticleSections()
   },[])
+
+
+  const handleArticleSectionChange = (event) => {
+    setArticleSection(event.target.value);
+    setSection(event.target.value)
+  };
+  
   
 
 
@@ -36,13 +60,12 @@ export default function AdminArticles() {
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const [readingTime, setReadingTime] = useState("");
-  const [section, setSection] = useState("");
   const [label, setLabel] = useState("");
   const [isCreateArticle, setIsCreateArticle] = useState(false)
 
   const handleSubmit = async (e) => {
+    console.log(articleSection)
     e.preventDefault();
-
     try {
       const response = await axios.post(
         "http://localhost:4000/admin/articles/postArticle",
@@ -61,7 +84,7 @@ export default function AdminArticles() {
       setTitle("");
       setContent("");
       setReadingTime("");
-      setSection("");
+      setArticleSection("");
       setLabel("");
     } catch (error) {
       console.error("Error posting an article: ", error.message);
@@ -156,15 +179,20 @@ export default function AdminArticles() {
                 />
               </label>
 
-              <label>
-                Section:
-                <input
-                  type="text"
-                  className="outline outline-1"
-                  value={section}
-                  onChange={(e) => setSection(e.target.value)}
-                />
-              </label>
+          <InputLabel id="articleSectionLabel">Article Section</InputLabel>
+      <Select
+        labelId="articleSectionLabel"
+        id="articleSectionSelect"
+        value={articleSection}
+        onChange={handleArticleSectionChange}
+      >
+        {articleSections.map((section) => (
+          <MenuItem key={section._id} value={section._id}>
+            {section.title}
+          </MenuItem>
+        ))}
+      </Select>
+    
 
               <label>
                 Label:

@@ -3,17 +3,21 @@ import AdminSidePanel from "../components/AdminSidePanel";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import JoditEditor from "jodit-react";
+import { Select, MenuItem, InputLabel } from "@mui/material";
+
 
 export default function AdminUpdateArticle() {
   const [article, setArticle] = useState(null);
   const { id } = useParams();
   const [content, setContent] = useState("");
   const [readingTime, setReadingTime] = useState("");
-  const [section, setSection] = useState("");
   const [label, setLabel] = useState("");
   const [title, setTitle] = useState("");
+  const [articleSections, setArticleSections] = useState([]);
+  const [articleSection, setArticleSection] = useState("")
+  const [section, setSection] = useState("")
 
-  useEffect(() => {
+
     const fetchArticle = async () => {
       try {
         const response = await axios.get(
@@ -26,14 +30,44 @@ export default function AdminUpdateArticle() {
         setContent(fetchedArticle.content)
         setReadingTime(fetchedArticle.readingTime)
         setLabel(fetchedArticle.label)
-        setSection(fetchedArticle.section)
+        setArticleSection(fetchedArticle.section)
       } catch (error) {
         console.error("Error fetching article:", error);
       }
     };
 
+
+  
+
+
+  
+  const fetchArticleSections = async() =>{
+    try {
+      console.log(articleSection)
+      const response = await axios.get("http://localhost:4000/admin/articleSections/getAllArticleSections")
+      const fetchedArticleSections = response.data
+      const filteredArticleSections = fetchedArticleSections.filter((section) => section._id !== articleSection._id)
+      console.log(filteredArticleSections)
+      setArticleSections(filteredArticleSections)
+
+    } catch (error) {
+      console.error("Error fetching article sections:", error.message)
+    }
+  }
+
+
+  
+  useEffect(() => {
     fetchArticle();
-  }, []);
+    fetchArticleSections();
+  }, [id, articleSection._id]);
+  
+  
+
+
+  const handleArticleSectionChange = (event) => {
+    setSection(event.target.value)
+  };
 
 
   const editor = useRef(null);
@@ -57,7 +91,7 @@ export default function AdminUpdateArticle() {
       setTitle("");
       setContent("");
       setReadingTime("");
-      setSection("");
+      setArticleSection("");
       setLabel("");
 
       navigate("/admin/articles")
@@ -111,16 +145,20 @@ export default function AdminUpdateArticle() {
                 />
               </label>
 
-              <label>
-                Section:
-                <input
-                  type="text"
-                  className="outline outline-1"
-                  placeholder={article.section}
-                  value={section}
-                  onChange={(e) => setSection(e.target.value)}
-                />
-              </label>
+              <InputLabel id="articleSectionLabel">Article Section</InputLabel>
+      <Select
+        labelId="articleSectionLabel"
+        id="articleSectionSelect"
+        value={section}
+        onChange={handleArticleSectionChange}
+        defaultValue={articleSection}
+      >
+        {articleSections.map((section) => (
+          <MenuItem key={section._id} value={section._id}>
+            {section.title}
+          </MenuItem>
+        ))}
+      </Select>
 
               <label>
                 Label:

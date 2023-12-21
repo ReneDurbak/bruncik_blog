@@ -14,11 +14,11 @@ export default function AdminUpdateArticle() {
   const [label, setLabel] = useState("");
   const [title, setTitle] = useState("");
   const [articleSections, setArticleSections] = useState([]);
-  const [articleSection, setArticleSection] = useState("")
+  const [articleSection, setArticleSection] = useState({})
   const [section, setSection] = useState("")
 
 
-    const fetchArticle = async () => {
+    const fetchArticle = async() => {
       try {
         const response = await axios.get(
           `http://localhost:4000/admin/articles/getArticle/${id}`
@@ -31,6 +31,7 @@ export default function AdminUpdateArticle() {
         setReadingTime(fetchedArticle.readingTime)
         setLabel(fetchedArticle.label)
         setArticleSection(fetchedArticle.section)
+
       } catch (error) {
         console.error("Error fetching article:", error);
       }

@@ -51,6 +51,16 @@ export default function AdminArticles() {
   };
   
   
+  const deleteArticle = async(id) => {
+    try {
+      await axios.delete(`http://localhost:4000/admin/articles/deleteArticle/${id}`)
+      fetchArticles()
+
+    } catch (error) {
+      console.error("Error deleting an article:",error.message)
+      
+    }
+  }
 
 
 
@@ -61,10 +71,10 @@ export default function AdminArticles() {
   const [content, setContent] = useState("");
   const [readingTime, setReadingTime] = useState("");
   const [label, setLabel] = useState("");
-  const [isCreateArticle, setIsCreateArticle] = useState(false)
+  const [createArticle, setCreateArticle] = useState(false)
 
-  const handleSubmit = async (e) => {
-    console.log(articleSection)
+
+  const handleSubmitArticle = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -99,14 +109,14 @@ export default function AdminArticles() {
   
   const [articleHoverStates, setArticleHoverStates] = useState({});
 
-  const handleMouseEnter = (articleId) => {
+  const handleArticleMouseEnter = (articleId) => {
     setArticleHoverStates((prevStates) => ({
       ...prevStates,
       [articleId]: true,
     }));
   };
   
-  const handleMouseLeave = (articleId) => {
+  const handleArticleMouseLeave = (articleId) => {
     setArticleHoverStates((prevStates) => ({
       ...prevStates,
       [articleId]: false,
@@ -117,21 +127,74 @@ export default function AdminArticles() {
 
 
 
-  const deleteArticle = async(id) => {
+
+
+
+
+
+
+
+  
+
+
+  const [createArticleSection, setCreateArticleSection] = useState(false)
+  const [articleSectionTitle, setArticleSectionTitle] = useState('')
+  const [articleSectionImage, setArticleSectionImage] = useState('')
+  const [articleSectionImageClicked, setArticleSectionImageClicked] = useState('')
+
+  const [articleSectionHoverStates, setArticleSectionHoverStates] = useState({});
+  const handleArticleSectionMouseEnter = (articleId) => {
+    setArticleSectionHoverStates((prevStates) => ({
+      ...prevStates,
+      [articleId]: true,
+    }));
+  };
+  
+  const handleArticleSectionMouseLeave = (articleId) => {
+    setArticleSectionHoverStates((prevStates) => ({
+      ...prevStates,
+      [articleId]: false,
+    }));
+  };
+
+
+
+  const handleSubmitArticleSection = async(e) => {
+    e.preventDefault()
+
     try {
-      await axios.delete(`http://localhost:4000/admin/articles/deleteArticle/${id}`)
-      fetchArticles()
+      await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, {
+        title: articleSectionTitle,
+        imageUrl: articleSectionImage,
+        imageUrlClicked: articleSectionImageClicked,
+    })
+
+
+      fetchArticleSections();
+
+      
+      setArticleSectionTitle('')
+      setArticleSectionImage('')
+      setArticleSectionImageClicked('')
 
     } catch (error) {
-      console.error("Error deleting an article:",error.message)
-      
+      console.error("Error posting an article section", error.message)
+    }
+  }
+
+
+  const deleteArticleSection = async(id) => {
+    try {
+      await axios.delete(`http://localhost:4000/admin/articleSections/deleteArticleSection/${id}`)
+      fetchArticleSections()
+    } catch (error) {
+      console.error("Error deleting an article section", error.message)
     }
   }
 
 
 
 
-  const [isUpdateArticle, setIsUpdateArticle] = useState(false)
 
 
 
@@ -141,13 +204,15 @@ export default function AdminArticles() {
         <AdminSidePanel />
 
         <div className="w-full text-left  mt-10">
+        <h1 className="mt-10 mb-2 text-3xl font-bold">Articles</h1>
+          <div className="border-t-2 w-[16%] border-black"/>
           {
-            isCreateArticle ?
-            <>
-            <button className="p-2 bg-gray-200 hover:bg-gray-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>setIsCreateArticle(false)}>Back</button>
+            createArticle ?
+            <div className="mt-6">
+            <button className="p-2 bg-gray-200 hover:bg-gray-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>setCreateArticle(false)}>Back</button>
   
             <div className="space-x-4 mt-10 flex flex-row items-end">
-            <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+            <form className="flex flex-col space-y-4" onSubmit={handleSubmitArticle}>
               <label>
                 Title:
                 <input
@@ -212,30 +277,94 @@ export default function AdminArticles() {
               </button>
             </form>
           </div>
-          </>
-        : <button className="p-2 bg-green-200 hover:bg-green-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>setIsCreateArticle(true)}>Create new article +</button>
+          </div>
+        : <button className="mt-6 p-2 bg-green-200 hover:bg-green-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>setCreateArticle(true)}>Create new article +</button>
         
         }
 
-          <div className="flex space-x-4 mt-4">
+          <div className="flex space-x-4 mt-4 mb-[125px]">
+            <h2 className="flex items-end font-bold text-lg">List of articles:</h2>
             {articles &&
               articles.map((article) => (
                 <div
                   key={article._id}
-                  onMouseEnter={() => handleMouseEnter(article._id)}
-                  onMouseLeave={() => handleMouseLeave(article._id)}
+                  onMouseEnter={() => handleArticleMouseEnter(article._id)}
+                  onMouseLeave={() => handleArticleMouseLeave(article._id)}
                   className="p-2 bg-gray-200 rounded-lg cursor-pointer"
                 >
                   {article.title}
                   <div className="flex space-x-4">
-                    {articleHoverStates[article._id] && <Link  to={`/admin/updateArticle/${article._id}`}><button onClick={()=>setIsUpdateArticle(true)} className="rounded-xl bg-green-400 hover:bg-green-600 ease-in-out duration-300 cursor-pointer p-2">update</button></Link>}
+                    {articleHoverStates[article._id] && <Link  to={`/admin/updateArticle/${article._id}`}><button className="rounded-xl bg-green-400 hover:bg-green-600 ease-in-out duration-300 cursor-pointer p-2">update</button></Link>}
                     {articleHoverStates[article._id] && <button onClick={()=>{deleteArticle(article._id)}} className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2">delete</button>}
                   </div>
                 </div>
               ))}
           </div>
+
+          <h1 className="mt-10 mb-2 text-3xl font-bold">Article sections</h1>
+          <div className="border-t-2 w-[20%] border-black"/>
+        {
+          createArticleSection 
+          ?
+          <div className="mt-10">
+              <button className="mb-6 p-2 rounded-xl bg-gray-300 hover:bg-gray-400 duration-300 ease-in-out" onClick={()=> setCreateArticleSection(false)}>Back</button>
+
+            <form className="flex flex-col space-y-6" onSubmit={handleSubmitArticleSection}>
+              
+              <div  className="flex space-x-3">
+                <label>title:</label>
+                <input className="outline outline-1" value={articleSectionTitle} onChange={(e)=> setArticleSectionTitle(e.target.value)}/>
+              </div>
+   
+  
+              <div  className="flex space-x-3">
+                <label>Image url clicked:</label>
+                <input className="outline outline-1" value={articleSectionImageClicked} onChange={(e)=> setArticleSectionImageClicked(e.target.value)}/>
+              </div>
+              
+              
+
+              <div className="flex space-x-3">
+                <label>Image url: </label>
+                <input className="outline outline-1" value={articleSectionImage} onChange={(e)=> setArticleSectionImage(e.target.value)}/>
+              </div>
+              
+            <button type="submit" className="p-2 rounded-xl bg-green-400 hover:bg-green-600 w-min duration-300 ease-in-out">Submit</button>
+
+            </form>
+      
+          </div>
+          :
+          <button className="mt-6 p-2 bg-green-200 hover:bg-green-400 ease-in-out duration-300 rounded-xl" onClick={()=> setCreateArticleSection(true)}>Create article section +</button>
+        }
+
+
+        <div className="flex space-x-6 mt-6">
+          <h2 className="font-bold text-lg flex items-end">List of article sections:</h2>
+          {
+            articleSections.map((articleSection)=>(
+              <div key={articleSection._id}
+                   className="p-2 bg-gray-200 rounded-xl"
+                   onMouseEnter={()=>handleArticleSectionMouseEnter(articleSection._id)}
+                   onMouseLeave={()=>handleArticleSectionMouseLeave(articleSection._id)}
+
+              >
+                    {articleSection.title}
+                    
+                    <div className="flex space-x-2">
+                      {articleSectionHoverStates[articleSection._id] && <Link to={`/admin/updateArticleSection/${articleSection._id}`}><div className="p-2 rounded-xl bg-green-400 hover:bg-green-600 duration-300 ease-in-out">Update</div></Link>}
+                      {articleSectionHoverStates[articleSection._id] &&<div onClick={()=> deleteArticleSection(articleSection._id)} className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out">Delete</div>}
+                    </div>
+              </div>
+            ))
+          }
+        </div>
+      
+  
         </div>
       </div>
+
+     
     </>
   );
 }

@@ -9,16 +9,19 @@ const mongoose = require('mongoose')
 const articleRoutes = require('./routes/articles')
 const articleSectionRoutes = require('./routes/articleSections.js')
 
-
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json())
 app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
 
 
-
+/*
 app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
-})
+})*/
+
+
+
 
 
 

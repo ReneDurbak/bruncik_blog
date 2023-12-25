@@ -4,6 +4,7 @@ import { Link } from "react-scroll";
 import { useMediaQuery } from 'react-responsive'
 import {Link as RouteLink} from "react-router-dom"
 import { Helmet } from 'react-helmet';
+import axios from 'axios'
 import Autosuggest from 'react-autosuggest';
 import magnifier from "../assets/magnifier.png"
 import arrowDown from "../assets/arrowDown.png"
@@ -127,6 +128,25 @@ function Articles({articles}){
         },1000);
         
       },[])
+
+
+      
+  const [articleSections, setArticleSections] = useState([])
+
+  const fetchArticleSections = async() =>{
+    try {
+      const response = await axios.get("http://localhost:4000/admin/articleSections/getAllArticleSections")
+      const articleSections = response.data
+      setArticleSections(articleSections)
+
+    } catch (error) {
+      console.error("Error fetching article sections:", error.message)
+    }
+  }
+
+  useEffect(()=>{
+    fetchArticleSections()
+  },[])
 
 
     return(
@@ -295,30 +315,30 @@ I hope you'll find inspiration 💫 and practical guidance here. Thank you for y
 
 {/*Filter options*/}
 
-     {filterOptions.map((filter) => (
+     {articleSections && articleSections.map((filter) => (
         <span
-          key={filter.id}
+          key={filter._id}
           className={`shadow-lg rounded-full sm:px-4 px-2 lg:py-3 sm:py-2 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl xl:text-lg lg:text-base sm:text-[11px] text-[11px] lg:hover:scale-110 lg:hover:bg-gray-950 lg:hover:text-white hover:duration-500 ${
-            selectedFilter === filter.id
+            selectedFilter === filter._id
               ? "bg-gray-950 text-white outline-black"
               : `${checkClickFilter=== true ? "hidden" : ""}`
           }`}
-          onClick={() => handleFilterClick(filter.id)}
-          onMouseOver={() => handleFilterHover(filter.id)}
+          onClick={() => handleFilterClick(filter._id)}
+          onMouseOver={() => handleFilterHover(filter._id)}
           onMouseLeave={() => handleFilterHover(null)}
         >
        <div className="flex">
       <div className="my-auto">
         <img
           src={
-            selectedFilter === filter.id || hoveredFilter === filter.id
-            ? isLaptop ? filter.imageUrlClicked : selectedFilter === filter.id ? filter.imageUrlClicked : filter.imageUrl
-            : filter.imageUrl
+            selectedFilter === filter._id || hoveredFilter === filter._id
+            ? isLaptop ? `http://localhost:4000/public/${filter.imageClicked}`: selectedFilter === filter._id ? `http://localhost:4000/public/${filter.imageClicked}` : `http://localhost:4000/public/${filter.image}`
+            : `http://localhost:4000/public/${filter.image}`
           }
           className="2xl:w-[40px] xl:w-[38px] lg:w-[32px] sm:w-[26px] w-[20px] mr-2"
         />
       </div>
-      <div className="xl:mt-auto sm:my-auto my-auto mx-auto text-center">{filter.name}</div>
+      <div className="xl:mt-auto sm:my-auto my-auto mx-auto text-center">{filter.title}</div>
     </div>
         </span>
       ))}

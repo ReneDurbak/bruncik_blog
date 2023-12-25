@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const ArticleSection = require("../models/articleSectionModel")
 
+  
 
 const getAllArticleSections = async(req,res) => {
     try {
@@ -27,9 +28,13 @@ const getArticleSection = async(req,res) => {
 
 
 const createArticleSection = async(req,res) => {
-    const {title, image, imageClicked} = req.body
+    
+    const {image, imageClicked} = req.files
+    const { title } = req.body;
+    const imageFilename = image[0].filename
+    const imageClickedFilename = imageClicked[0].filename
     try {
-        const articleSection = await ArticleSection.create({title, image, imageClicked})
+        const articleSection = await ArticleSection.create({title, image: imageFilename, imageClicked: imageClickedFilename})
         res.status(200).json(articleSection)
     } catch (err) {
         res.status(400).json({error:err.message})

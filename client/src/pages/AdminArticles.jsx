@@ -122,18 +122,6 @@ export default function AdminArticles() {
       [articleId]: false,
     }));
   };
-
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -161,15 +149,17 @@ export default function AdminArticles() {
 
   const handleSubmitArticleSection = async(e) => {
     e.preventDefault()
-    console.log(articleSectionImage)
-    console.log(articleSectionImageClicked)
+
 
     try {
-      await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, {
-        title: articleSectionTitle,
-        image: articleSectionImage,
-        imageClicked: articleSectionImageClicked,
-    })
+      const formData = new FormData()
+      formData.append('image', articleSectionImage)
+      formData.append('imageClicked', articleSectionImageClicked)
+      formData.append('title', articleSectionTitle);
+
+      
+
+      await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, formData);
 
 
       fetchArticleSections();
@@ -359,8 +349,19 @@ export default function AdminArticles() {
                    onMouseLeave={()=>handleArticleSectionMouseLeave(articleSection._id)}
 
               >
-                    {articleSection.title}
-                    
+                    <h1 className="text-center font-bold">{articleSection.title}</h1>
+                    <div className="flex justify-center items-center space-x-3">
+                      <div className="flex items-center">
+                        <p>Image:</p>
+                        {<img src={`http://localhost:4000/public/${articleSection.image}`}/>}
+                      </div>
+                      
+                      <div className="flex items-center">
+                        <p>Image clicked:</p>
+                        {<img src={`http://localhost:4000/public/${articleSection.imageClicked}`}/>}
+                      </div>
+                    </div>
+
                     <div className="flex space-x-2">
                       {articleSectionHoverStates[articleSection._id] && <Link to={`/admin/updateArticleSection/${articleSection._id}`}><div className="p-2 rounded-xl bg-green-400 hover:bg-green-600 duration-300 ease-in-out">Update</div></Link>}
                       {articleSectionHoverStates[articleSection._id] &&<div onClick={()=> deleteArticleSection(articleSection._id)} className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out">Delete</div>}

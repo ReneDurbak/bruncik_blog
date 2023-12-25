@@ -38,8 +38,8 @@ export default function AdminUpdateArticleSection() {
         `http://localhost:4000/admin/articleSections/updateArticleSection/${id}`,
         {
           title: articleSectionTitle,
-          imageUrl: articleSectionImage,
-          imageUrlClicked: articleSectionImageClicked,
+          image: articleSectionImage,
+          imageClicked: articleSectionImageClicked,
         }
       );
 
@@ -78,22 +78,24 @@ export default function AdminUpdateArticleSection() {
           </div>
 
           <div className="flex space-x-3">
-            <label>Image url clicked:</label>
+            <label>Image clicked:</label>
             <input
+              type="file"
+              accept=".jpg, .jpeg, .png, .svg"
               className="outline outline-1"
               placeholder={articleSection.imageUrlClicked}
-              value={articleSectionImageClicked}
-              onChange={(e) => setArticleSectionImageClicked(e.target.value)}
+              onChange={(e) => setArticleSectionImageClicked(e.target.files[0])}
             />
           </div>
 
           <div className="flex space-x-3">
-            <label>Image url: </label>
+            <label>Image: </label>
             <input
+              type="file"
+              accept=".jpg, .jpeg, .png, .svg"
               className="outline outline-1"
               placeholder={articleSection.imageUrl}
-              value={articleSectionImage}
-              onChange={(e) => setArticleSectionImage(e.target.value)}
+              onChange={(e) => setArticleSectionImage(e.target.files[0])}
             />
           </div>
 

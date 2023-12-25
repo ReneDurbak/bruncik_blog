@@ -61,7 +61,7 @@ export default function AdminUpdateArticle() {
   useEffect(() => {
     fetchArticle();
     fetchArticleSections();
-  }, [id, articleSection._id]);
+  }, [id, articleSection?._id]);
   
   
 
@@ -154,12 +154,17 @@ export default function AdminUpdateArticle() {
         displayEmpty
         onChange={handleArticleSectionChange}
       >
-        {articleSections.map((section) => (
+        {articleSections && articleSections.map((section) => (
           <MenuItem key={section._id} value={section._id}>
-            {section.title}
+            {section && section.title}
           </MenuItem>
         ))}
-        <MenuItem value="">{articleSection.title}</MenuItem>
+        {
+          articleSection ?
+          <MenuItem value="">{articleSection.title}</MenuItem>
+          :
+          null
+        }
       </Select>
 
               <label>

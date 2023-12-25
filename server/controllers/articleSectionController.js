@@ -27,9 +27,9 @@ const getArticleSection = async(req,res) => {
 
 
 const createArticleSection = async(req,res) => {
-    const {title, imageUrl, imageUrlClicked} = req.body
+    const {title, image, imageClicked} = req.body
     try {
-        const articleSection = await ArticleSection.create({title, imageUrl, imageUrlClicked})
+        const articleSection = await ArticleSection.create({title, image, imageClicked})
         res.status(200).json(articleSection)
     } catch (err) {
         res.status(400).json({error:err.message})

@@ -7,11 +7,11 @@ const articleSectionSchema = new Schema({
         type: String,
         required: true
     },
-    imageUrl:{
+    image:{
         type: String,
         required: true,
     },
-    imageUrlClicked:{
+    imageClicked:{
         type: String,
         required: true,
     },

@@ -139,8 +139,8 @@ export default function AdminArticles() {
 
   const [createArticleSection, setCreateArticleSection] = useState(false)
   const [articleSectionTitle, setArticleSectionTitle] = useState('')
-  const [articleSectionImage, setArticleSectionImage] = useState('')
-  const [articleSectionImageClicked, setArticleSectionImageClicked] = useState('')
+  const [articleSectionImage, setArticleSectionImage] = useState()
+  const [articleSectionImageClicked, setArticleSectionImageClicked] = useState()
 
   const [articleSectionHoverStates, setArticleSectionHoverStates] = useState({});
   const handleArticleSectionMouseEnter = (articleId) => {
@@ -161,12 +161,14 @@ export default function AdminArticles() {
 
   const handleSubmitArticleSection = async(e) => {
     e.preventDefault()
+    console.log(articleSectionImage)
+    console.log(articleSectionImageClicked)
 
     try {
       await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, {
         title: articleSectionTitle,
-        imageUrl: articleSectionImage,
-        imageUrlClicked: articleSectionImageClicked,
+        image: articleSectionImage,
+        imageClicked: articleSectionImageClicked,
     })
 
 
@@ -318,15 +320,23 @@ export default function AdminArticles() {
    
   
               <div  className="flex space-x-3">
-                <label>Image url clicked:</label>
-                <input className="outline outline-1" value={articleSectionImageClicked} onChange={(e)=> setArticleSectionImageClicked(e.target.value)}/>
+                <label>Image clicked:</label>
+                <input 
+                  type="file"
+                  accept=".jpg, .jpeg, .png, .svg" 
+                  className="outline outline-1" 
+                  onChange={(e)=> setArticleSectionImageClicked(e.target.files[0])}/>
               </div>
               
               
 
               <div className="flex space-x-3">
-                <label>Image url: </label>
-                <input className="outline outline-1" value={articleSectionImage} onChange={(e)=> setArticleSectionImage(e.target.value)}/>
+                <label>Image: </label>
+                <input 
+                  type="file"
+                  accept=".jpg, .jpeg, .png, .svg"
+                  className="outline outline-1" 
+                  onChange={(e)=> setArticleSectionImage(e.target.files[0])}/>
               </div>
               
             <button type="submit" className="p-2 rounded-xl bg-green-400 hover:bg-green-600 w-min duration-300 ease-in-out">Submit</button>

@@ -32,7 +32,7 @@ router.get("/getArticleSection/:id", getArticleSection)
 
 router.post("/createArticleSection", upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imageClicked', maxCount: 1 }]), createArticleSection)
 
-router.patch("/updateArticleSection/:id", updateArticleSection)
+router.patch("/updateArticleSection/:id", upload.fields([{ name: 'image', maxCount: 1 }, { name: 'imageClicked', maxCount: 1 }]) ,updateArticleSection)
 
 router.delete("/deleteArticleSection/:id", deleteArticleSection)
 

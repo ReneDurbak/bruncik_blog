@@ -44,11 +44,9 @@ export default function AdminUpdateArticle() {
   
   const fetchArticleSections = async() =>{
     try {
-      console.log(articleSection)
       const response = await axios.get("http://localhost:4000/admin/articleSections/getAllArticleSections")
       const fetchedArticleSections = response.data
       const filteredArticleSections = fetchedArticleSections.filter((section) => section._id !== articleSection._id)
-      console.log(filteredArticleSections)
       setArticleSections(filteredArticleSections)
 
     } catch (error) {

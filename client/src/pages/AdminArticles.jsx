@@ -110,15 +110,13 @@ export default function AdminArticles() {
   const [articleHoverStates, setArticleHoverStates] = useState({});
 
   const handleArticleMouseEnter = (articleId) => {
-    setArticleHoverStates((prevStates) => ({
-      ...prevStates,
+    setArticleHoverStates(() => ({
       [articleId]: true,
     }));
   };
   
   const handleArticleMouseLeave = (articleId) => {
-    setArticleHoverStates((prevStates) => ({
-      ...prevStates,
+    setArticleHoverStates(() => ({
       [articleId]: false,
     }));
   };
@@ -128,19 +126,21 @@ export default function AdminArticles() {
   const [createArticleSection, setCreateArticleSection] = useState(false)
   const [articleSectionTitle, setArticleSectionTitle] = useState('')
   const [articleSectionImage, setArticleSectionImage] = useState()
+  const imageInput = useRef(null)
   const [articleSectionImageClicked, setArticleSectionImageClicked] = useState()
+  const imageInputClicked = useRef(null)
+
 
   const [articleSectionHoverStates, setArticleSectionHoverStates] = useState({});
   const handleArticleSectionMouseEnter = (articleId) => {
-    setArticleSectionHoverStates((prevStates) => ({
-      ...prevStates,
+    setArticleSectionHoverStates(() => ({    
       [articleId]: true,
     }));
+
   };
   
   const handleArticleSectionMouseLeave = (articleId) => {
-    setArticleSectionHoverStates((prevStates) => ({
-      ...prevStates,
+    setArticleSectionHoverStates(() => ({
       [articleId]: false,
     }));
   };
@@ -157,7 +157,6 @@ export default function AdminArticles() {
       formData.append('imageClicked', articleSectionImageClicked)
       formData.append('title', articleSectionTitle);
 
-      
 
       await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, formData);
 
@@ -166,8 +165,10 @@ export default function AdminArticles() {
 
       
       setArticleSectionTitle('')
-      setArticleSectionImage('')
-      setArticleSectionImageClicked('')
+      setArticleSectionImage()
+      imageInput.current.value = ""
+      setArticleSectionImageClicked()
+      imageInputClicked.current.value = ""
 
     } catch (error) {
       console.error("Error posting an article section", error.message)
@@ -314,7 +315,8 @@ export default function AdminArticles() {
                 <input 
                   type="file"
                   accept=".jpg, .jpeg, .png, .svg" 
-                  className="outline outline-1" 
+                  className="outline outline-1"
+                  ref={imageInputClicked} 
                   onChange={(e)=> setArticleSectionImageClicked(e.target.files[0])}/>
               </div>
               
@@ -325,7 +327,8 @@ export default function AdminArticles() {
                 <input 
                   type="file"
                   accept=".jpg, .jpeg, .png, .svg"
-                  className="outline outline-1" 
+                  className="outline outline-1"
+                  ref={imageInput} 
                   onChange={(e)=> setArticleSectionImage(e.target.files[0])}/>
               </div>
               

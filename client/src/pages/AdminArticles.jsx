@@ -158,7 +158,11 @@ export default function AdminArticles() {
       formData.append('title', articleSectionTitle);
 
 
-      await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, formData);
+      if ((articleSectionImage && articleSectionImageClicked && articleSectionTitle)){
+        await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, formData);
+      }else{
+        return null
+      }
 
 
       fetchArticleSections();
@@ -202,7 +206,15 @@ export default function AdminArticles() {
           {
             createArticle ?
             <div className="mt-6">
-            <button className="p-2 bg-gray-200 hover:bg-gray-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>setCreateArticle(false)}>Back</button>
+            <button className="p-2 bg-gray-200 hover:bg-gray-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>{
+              setCreateArticle(false)
+              setTitle("");
+              setContent("");
+              setReadingTime("");
+              setArticleSection("");
+              setLabel("");
+            }
+            }>Back</button>
   
             <div className="space-x-4 mt-10 flex flex-row items-end">
             <form className="flex flex-col space-y-4" onSubmit={handleSubmitArticle}>
@@ -300,7 +312,15 @@ export default function AdminArticles() {
           createArticleSection 
           ?
           <div className="mt-10">
-              <button className="mb-6 p-2 rounded-xl bg-gray-300 hover:bg-gray-400 duration-300 ease-in-out" onClick={()=> setCreateArticleSection(false)}>Back</button>
+              <button className="mb-6 p-2 rounded-xl bg-gray-300 hover:bg-gray-400 duration-300 ease-in-out" onClick={()=> {
+              setCreateArticleSection(false)
+              setArticleSectionTitle('')
+              setArticleSectionImage()
+              imageInput.current.value = ""
+              setArticleSectionImageClicked()
+              imageInputClicked.current.value = ""  
+            }
+            }>Back</button>
 
             <form className="flex flex-col space-y-6" onSubmit={handleSubmitArticleSection}>
               
@@ -355,12 +375,12 @@ export default function AdminArticles() {
                     <h1 className="text-center font-bold">{articleSection.title}</h1>
                     <div className="flex justify-center items-center space-x-3">
                       <div className="flex items-center">
-                        <p>Image:</p>
+                        <p>Image (black icon):</p>
                         {<img src={`http://localhost:4000/public/${articleSection.image}`}/>}
                       </div>
                       
                       <div className="flex items-center">
-                        <p>Image clicked:</p>
+                        <p>Image clicked (white icon):</p>
                         {<img src={`http://localhost:4000/public/${articleSection.imageClicked}`}/>}
                       </div>
                     </div>

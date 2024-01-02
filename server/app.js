@@ -25,13 +25,13 @@ app.use((req, res, next) => {
 
 
 
-app.use('/admin/articles',articleRoutes)
+app.use('/admin/articles', articleRoutes)
 app.use('/admin/articleSections', articleSectionRoutes)
 
 
 mongoose.connect(DATABASE)
-  .then(()=> {
-    app.listen(PORT,()=>{
+  .then(() => {
+    app.listen(PORT, () => {
       console.log(`Connected to database, listening on port: ${PORT}`)
     })
   })

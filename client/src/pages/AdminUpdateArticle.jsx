@@ -18,6 +18,7 @@ export default function AdminUpdateArticle() {
   const [section, setSection] = useState("")
 
 
+
     const fetchArticle = async() => {
       try {
         const response = await axios.get(
@@ -74,26 +75,27 @@ export default function AdminUpdateArticle() {
 
   const handleUpdateArticle = async (e) => {
     e.preventDefault();
-
+  
     try {
+
       await axios.patch(
         `http://localhost:4000/admin/articles/patchArticle/${id}`,
         {
           title,
           content,
           readingTime,
-          section,
+          section: articleSection,
           label,
         }
       );
-
+  
       setTitle("");
       setContent("");
       setReadingTime("");
       setArticleSection("");
       setLabel("");
-
-      navigate("/admin/articles")
+  
+      navigate("/admin/articles");
     } catch (error) {
       console.error("Error updating an article: ", error.message);
     }

@@ -52,7 +52,6 @@ export default function AdminUpdateArticleSection() {
       setArticleSectionImage();
       setArticleSectionImageClicked();
 
-
       navigate("/admin/articles");
     } catch (error) {
       console.error("Error posting an article section", error.message);
@@ -84,7 +83,7 @@ export default function AdminUpdateArticleSection() {
           </div>
 
           <div className="flex space-x-3">
-            <label>Image clicked:</label>
+            <label>Image clicked (white icon):</label>
             <input
               type="file"
               accept=".jpg, .jpeg, .png, .svg"
@@ -95,7 +94,7 @@ export default function AdminUpdateArticleSection() {
           </div>
 
           <div className="flex space-x-3">
-            <label>Image: </label>
+            <label>Image (black icon): </label>
             <input
               type="file"
               accept=".jpg, .jpeg, .png, .svg"

@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom";
 import AdminHome from "./AdminHome";
-import AdminArticles from "./AdminArticles";
-import AdminPushUps from "./AdminPushUps";
+import { SHA256 } from 'crypto-js';
+import axios from "axios";
+
 
 
 
@@ -11,15 +12,38 @@ export default function AdminLogin({articles}) {
   const location = useLocation();
   const isAdminRoute = location.pathname === '/admin';
 
-  const [name, setName] = useState('')
-  const [pass, setPass] = useState('')
+
+  const [admins, setAdmins] = useState([])
+  const [inputName, setInputName] = useState('')
+  const [inputPass, setInputPass] = useState('')
   const [verify, setVerification] = useState(false)
  
 
   const verification = () => {
-    if(name === "Peto" && pass === "123") setVerification(true)
+    const hashedInputPass = SHA256(inputPass).toString(); //hashovanie zadaneho hesla od uzivatela
+
+    const isAdmin = admins.some(admin => admin.username === inputName && admin.password === hashedInputPass); //kontrola ci sa v poli admins nachadza kombinaca mena a hesla ktore uzivatel zadal do inputu(policka)
+    setVerification(isAdmin); //funkcia some vracia true/false (boolean) a kedze stav verify je typu boolean tak mu premennu isAdmin odovzdame
 }
 
+
+const fetchAdmin = async() => {
+
+  try {
+    const response = await axios.get("http://localhost:4000/getAdminCredentials")
+    const admins = response.data
+    setAdmins(admins)
+  
+
+  } catch (err) {
+    console.error("Error fetching admin data:", err.message)
+  }
+
+}
+
+useEffect(()=>{
+  fetchAdmin()
+},[])
 
 
 
@@ -46,12 +70,12 @@ export default function AdminLogin({articles}) {
             <div className="flex justify-center flex-col space-y-4 mt-14">
               <div className="flex flex-col justify-center">
                 <p className="lg:text-base sm:text-sm text-xs" >Name</p>
-                <input id="name" type="text" onChange={e=> setName(e.target.value)} className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out" required/>
+                <input id="name" type="text" onChange={e=> setInputName(e.target.value)} className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out" required/>
               </div>
 
               <div className="flex flex-col justify-center">
                 <p className="lg:text-base sm:text-sm text-xs">Password</p>
-                <input id="password" type="password"  onChange={e=> setPass(e.target.value) } className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out" required/>
+                <input id="password" type="password"  onChange={e=> setInputPass(e.target.value) } className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out" required/>
               </div>
             </div>
 

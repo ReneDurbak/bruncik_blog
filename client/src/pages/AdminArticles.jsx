@@ -7,14 +7,14 @@ import AdminSidePanel from "../components/AdminSidePanel";
 import { Select, MenuItem, InputLabel } from "@mui/material";
 
 export default function AdminArticles() {
-  
+
   const [articles, setArticles] = useState([]);
   const [articleSections, setArticleSections] = useState([]);
   const [articleSection, setArticleSection] = useState('');
   const [section, setSection] = useState(null)
 
-  
-  const fetchArticles = async() => {
+
+  const fetchArticles = async () => {
     try {
       const response = await axios.get("http://localhost:4000/admin/articles/getAllArticles")
       const articles = response.data
@@ -22,13 +22,13 @@ export default function AdminArticles() {
       setArticles(articles)
 
     } catch (error) {
-      console.error("Error fetching articles: ",error.message)
-    } 
-    
+      console.error("Error fetching articles: ", error.message)
+    }
+
   }
 
 
-  const fetchArticleSections = async() =>{
+  const fetchArticleSections = async () => {
     try {
       const response = await axios.get("http://localhost:4000/admin/articleSections/getAllArticleSections")
       const articleSections = response.data
@@ -38,33 +38,33 @@ export default function AdminArticles() {
       console.error("Error fetching article sections:", error.message)
     }
   }
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     fetchArticles()
     fetchArticleSections()
-  },[])
+  }, [])
 
 
   const handleArticleSectionChange = (event) => {
     setArticleSection(event.target.value);
     setSection(event.target.value)
   };
-  
-  
-  const deleteArticle = async(id) => {
+
+
+  const deleteArticle = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/admin/articles/deleteArticle/${id}`)
       fetchArticles()
 
     } catch (error) {
-      console.error("Error deleting an article:",error.message)
-      
+      console.error("Error deleting an article:", error.message)
+
     }
   }
 
 
 
-  
+
 
   const [title, setTitle] = useState("");
   const editor = useRef(null);
@@ -105,8 +105,8 @@ export default function AdminArticles() {
 
 
 
-  
-  
+
+
   const [articleHoverStates, setArticleHoverStates] = useState({});
 
   const handleArticleMouseEnter = (articleId) => {
@@ -114,13 +114,13 @@ export default function AdminArticles() {
       [articleId]: true,
     }));
   };
-  
+
   const handleArticleMouseLeave = (articleId) => {
     setArticleHoverStates(() => ({
       [articleId]: false,
     }));
   };
-  
+
 
 
   const [createArticleSection, setCreateArticleSection] = useState(false)
@@ -133,12 +133,12 @@ export default function AdminArticles() {
 
   const [articleSectionHoverStates, setArticleSectionHoverStates] = useState({});
   const handleArticleSectionMouseEnter = (articleId) => {
-    setArticleSectionHoverStates(() => ({    
+    setArticleSectionHoverStates(() => ({
       [articleId]: true,
     }));
 
   };
-  
+
   const handleArticleSectionMouseLeave = (articleId) => {
     setArticleSectionHoverStates(() => ({
       [articleId]: false,
@@ -147,7 +147,7 @@ export default function AdminArticles() {
 
 
 
-  const handleSubmitArticleSection = async(e) => {
+  const handleSubmitArticleSection = async (e) => {
     e.preventDefault()
 
 
@@ -158,16 +158,16 @@ export default function AdminArticles() {
       formData.append('title', articleSectionTitle);
 
 
-      if ((articleSectionImage && articleSectionImageClicked && articleSectionTitle)){
+      if ((articleSectionImage && articleSectionImageClicked && articleSectionTitle)) {
         await axios.post(`http://localhost:4000/admin/articleSections/createArticleSection`, formData);
-      }else{
+      } else {
         return null
       }
 
 
       fetchArticleSections();
 
-      
+
       setArticleSectionTitle('')
       setArticleSectionImage()
       imageInput.current.value = ""
@@ -180,7 +180,7 @@ export default function AdminArticles() {
   }
 
 
-  const deleteArticleSection = async(id) => {
+  const deleteArticleSection = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/admin/articleSections/deleteArticleSection/${id}`)
       fetchArticleSections()
@@ -201,91 +201,91 @@ export default function AdminArticles() {
         <AdminSidePanel />
 
         <div className="w-full text-left  mt-10">
-        <h1 className="mt-10 mb-2 text-3xl font-bold">Articles</h1>
-          <div className="border-t-2 w-[16%] border-black"/>
+          <h1 className="mt-10 mb-2 text-3xl font-bold">Articles</h1>
+          <div className="border-t-2 w-[16%] border-black" />
           {
             createArticle ?
-            <div className="mt-6">
-            <button className="p-2 bg-gray-200 hover:bg-gray-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>{
-              setCreateArticle(false)
-              setTitle("");
-              setContent("");
-              setReadingTime("");
-              setArticleSection("");
-              setLabel("");
-            }
-            }>Back</button>
-  
-            <div className="space-x-4 mt-10 flex flex-row items-end">
-            <form className="flex flex-col space-y-4" onSubmit={handleSubmitArticle}>
-              <label>
-                Title:
-                <input
-                  type="text"
-                  className="outline outline-1"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </label>
+              <div className="mt-6">
+                <button className="p-2 bg-gray-200 hover:bg-gray-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={() => {
+                  setCreateArticle(false)
+                  setTitle("");
+                  setContent("");
+                  setReadingTime("");
+                  setArticleSection("");
+                  setLabel("");
+                }
+                }>Back</button>
 
-              <label>
-                Content:
-                <JoditEditor
-                  ref={editor}
-                  value={content}
-                  tabIndex={1}
-                  onBlur={(newContent) => setContent(newContent)}
-                  onChange={(newContent) => {}}
-                />
-              </label>
+                <div className="space-x-4 mt-10 flex flex-row items-end">
+                  <form className="flex flex-col space-y-4" onSubmit={handleSubmitArticle}>
+                    <label>
+                      Title:
+                      <input
+                        type="text"
+                        className="outline outline-1"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                    </label>
 
-              <label>
-                Reading Time:
-                <input
-                  type="text"
-                  className="outline outline-1"
-                  value={readingTime}
-                  onChange={(e) => setReadingTime(e.target.value)}
-                />
-              </label>
+                    <label>
+                      Content:
+                      <JoditEditor
+                        ref={editor}
+                        value={content}
+                        tabIndex={1}
+                        onBlur={(newContent) => setContent(newContent)}
+                        onChange={(newContent) => { }}
+                      />
+                    </label>
 
-          <InputLabel id="articleSectionLabel">Article Section</InputLabel>
-      <Select
-        labelId="articleSectionLabel"
-        id="articleSectionSelect"
-        value={articleSection}
-        onChange={handleArticleSectionChange}
-      >
-        {articleSections.map((section) => (
-          <MenuItem key={section._id} value={section._id}>
-            {section.title}
-          </MenuItem>
-        ))}
-      </Select>
-    
+                    <label>
+                      Reading Time:
+                      <input
+                        type="text"
+                        className="outline outline-1"
+                        value={readingTime}
+                        onChange={(e) => setReadingTime(e.target.value)}
+                      />
+                    </label>
 
-              <label>
-                Label:
-                <input
-                  type="text"
-                  className="outline outline-1"
-                  value={label}
-                  onChange={(e) => setLabel(e.target.value)}
-                />
-              </label>
+                    <InputLabel id="articleSectionLabel">Article Section</InputLabel>
+                    <Select
+                      labelId="articleSectionLabel"
+                      id="articleSectionSelect"
+                      value={articleSection}
+                      onChange={handleArticleSectionChange}
+                    >
+                      {articleSections.map((section) => (
+                        <MenuItem key={section._id} value={section._id}>
+                          {section.title}
+                        </MenuItem>
+                      ))}
+                    </Select>
 
-              <button
-                type="submit"
-                className="p-2 bg-blue-400 hover:bg-blue-500 w-min rounded-[30px]"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-          </div>
-        : <button className="mt-6 p-2 bg-green-200 hover:bg-green-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={()=>setCreateArticle(true)}>Create new article +</button>
-        
-        }
+
+                    <label>
+                      Label:
+                      <input
+                        type="text"
+                        className="outline outline-1"
+                        value={label}
+                        onChange={(e) => setLabel(e.target.value)}
+                      />
+                    </label>
+
+                    <button
+                      type="submit"
+                      className="p-2 bg-blue-400 hover:bg-blue-500 w-min rounded-[30px]"
+                    >
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </div>
+              : <button className="mt-6 p-2 bg-green-200 hover:bg-green-400 duration-300 ease-in-out rounded-xl cursor-pointer" onClick={() => setCreateArticle(true)}>Create new article +</button>
+
+          }
 
           <div className="flex space-x-4 mt-4 mb-[125px]">
             <h2 className="flex items-end font-bold text-lg">List of articles:</h2>
@@ -299,106 +299,106 @@ export default function AdminArticles() {
                 >
                   {article.title}
                   <div className="flex space-x-4">
-                    {articleHoverStates[article._id] && <Link  to={`/admin/updateArticle/${article._id}`}><button className="rounded-xl bg-green-400 hover:bg-green-600 ease-in-out duration-300 cursor-pointer p-2">update</button></Link>}
-                    {articleHoverStates[article._id] && <button onClick={()=>{deleteArticle(article._id)}} className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2">delete</button>}
+                    {articleHoverStates[article._id] && <Link to={`/admin/updateArticle/${article._id}`}><button className="rounded-xl bg-green-400 hover:bg-green-600 ease-in-out duration-300 cursor-pointer p-2">update</button></Link>}
+                    {articleHoverStates[article._id] && <button onClick={() => { deleteArticle(article._id) }} className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2">delete</button>}
                   </div>
                 </div>
               ))}
           </div>
 
           <h1 className="mt-10 mb-2 text-3xl font-bold">Article sections</h1>
-          <div className="border-t-2 w-[20%] border-black"/>
-        {
-          createArticleSection 
-          ?
-          <div className="mt-10">
-              <button className="mb-6 p-2 rounded-xl bg-gray-300 hover:bg-gray-400 duration-300 ease-in-out" onClick={()=> {
-              setCreateArticleSection(false)
-              setArticleSectionTitle('')
-              setArticleSectionImage()
-              imageInput.current.value = ""
-              setArticleSectionImageClicked()
-              imageInputClicked.current.value = ""  
-            }
-            }>Back</button>
-
-            <form className="flex flex-col space-y-6" onSubmit={handleSubmitArticleSection}>
-              
-              <div  className="flex space-x-3">
-                <label>title:</label>
-                <input className="outline outline-1" value={articleSectionTitle} onChange={(e)=> setArticleSectionTitle(e.target.value)}/>
-              </div>
-   
-  
-              <div  className="flex space-x-3">
-                <label>Image clicked:</label>
-                <input 
-                  type="file"
-                  accept=".jpg, .jpeg, .png, .svg" 
-                  className="outline outline-1"
-                  ref={imageInputClicked} 
-                  onChange={(e)=> setArticleSectionImageClicked(e.target.files[0])}/>
-              </div>
-              
-              
-
-              <div className="flex space-x-3">
-                <label>Image: </label>
-                <input 
-                  type="file"
-                  accept=".jpg, .jpeg, .png, .svg"
-                  className="outline outline-1"
-                  ref={imageInput} 
-                  onChange={(e)=> setArticleSectionImage(e.target.files[0])}/>
-              </div>
-              
-            <button type="submit" className="p-2 rounded-xl bg-green-400 hover:bg-green-600 w-min duration-300 ease-in-out">Submit</button>
-
-            </form>
-      
-          </div>
-          :
-          <button className="mt-6 p-2 bg-green-200 hover:bg-green-400 ease-in-out duration-300 rounded-xl" onClick={()=> setCreateArticleSection(true)}>Create article section +</button>
-        }
-
-
-        <div className="flex space-x-6 mt-6">
-          <h2 className="font-bold text-lg flex items-end">List of article sections:</h2>
+          <div className="border-t-2 w-[20%] border-black" />
           {
-            articleSections.map((articleSection)=>(
-              <div key={articleSection._id}
-                   className="p-2 bg-gray-200 rounded-xl"
-                   onMouseEnter={()=>handleArticleSectionMouseEnter(articleSection._id)}
-                   onMouseLeave={()=>handleArticleSectionMouseLeave(articleSection._id)}
+            createArticleSection
+              ?
+              <div className="mt-10">
+                <button className="mb-6 p-2 rounded-xl bg-gray-300 hover:bg-gray-400 duration-300 ease-in-out" onClick={() => {
+                  setCreateArticleSection(false)
+                  setArticleSectionTitle('')
+                  setArticleSectionImage()
+                  imageInput.current.value = ""
+                  setArticleSectionImageClicked()
+                  imageInputClicked.current.value = ""
+                }
+                }>Back</button>
 
-              >
-                    <h1 className="text-center font-bold">{articleSection.title}</h1>
-                    <div className="flex justify-center items-center space-x-3">
-                      <div className="flex items-center">
-                        <p>Image (black icon):</p>
-                        {<img src={`http://localhost:4000/public/${articleSection.image}`}/>}
-                      </div>
-                      
-                      <div className="flex items-center">
-                        <p>Image clicked (white icon):</p>
-                        {<img src={`http://localhost:4000/public/${articleSection.imageClicked}`}/>}
-                      </div>
-                    </div>
+                <form className="flex flex-col space-y-6" onSubmit={handleSubmitArticleSection}>
 
-                    <div className="flex space-x-2">
-                      {articleSectionHoverStates[articleSection._id] && <Link to={`/admin/updateArticleSection/${articleSection._id}`}><div className="p-2 rounded-xl bg-green-400 hover:bg-green-600 duration-300 ease-in-out">Update</div></Link>}
-                      {articleSectionHoverStates[articleSection._id] &&<div onClick={()=> deleteArticleSection(articleSection._id)} className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out">Delete</div>}
-                    </div>
+                  <div className="flex space-x-3">
+                    <label>title:</label>
+                    <input className="outline outline-1" value={articleSectionTitle} onChange={(e) => setArticleSectionTitle(e.target.value)} />
+                  </div>
+
+
+                  <div className="flex space-x-3">
+                    <label>Image clicked:</label>
+                    <input
+                      type="file"
+                      accept=".jpg, .jpeg, .png, .svg"
+                      className="outline outline-1"
+                      ref={imageInputClicked}
+                      onChange={(e) => setArticleSectionImageClicked(e.target.files[0])} />
+                  </div>
+
+
+
+                  <div className="flex space-x-3">
+                    <label>Image: </label>
+                    <input
+                      type="file"
+                      accept=".jpg, .jpeg, .png, .svg"
+                      className="outline outline-1"
+                      ref={imageInput}
+                      onChange={(e) => setArticleSectionImage(e.target.files[0])} />
+                  </div>
+
+                  <button type="submit" className="p-2 rounded-xl bg-green-400 hover:bg-green-600 w-min duration-300 ease-in-out">Submit</button>
+
+                </form>
+
               </div>
-            ))
+              :
+              <button className="mt-6 p-2 bg-green-200 hover:bg-green-400 ease-in-out duration-300 rounded-xl" onClick={() => setCreateArticleSection(true)}>Create article section +</button>
           }
-        </div>
-      
-  
+
+
+          <div className="flex space-x-6 mt-6">
+            <h2 className="font-bold text-lg flex items-end">List of article sections:</h2>
+            {
+              articleSections.map((articleSection) => (
+                <div key={articleSection._id}
+                  className="p-2 bg-gray-200 rounded-xl"
+                  onMouseEnter={() => handleArticleSectionMouseEnter(articleSection._id)}
+                  onMouseLeave={() => handleArticleSectionMouseLeave(articleSection._id)}
+
+                >
+                  <h1 className="text-center font-bold">{articleSection.title}</h1>
+                  <div className="flex justify-center items-center space-x-3">
+                    <div className="flex items-center">
+                      <p>Image (black icon):</p>
+                      {<img src={`http://localhost:4000/public/${articleSection.image}`} />}
+                    </div>
+
+                    <div className="flex items-center">
+                      <p>Image clicked (white icon):</p>
+                      {<img src={`http://localhost:4000/public/${articleSection.imageClicked}`} />}
+                    </div>
+                  </div>
+
+                  <div className="flex space-x-2">
+                    {articleSectionHoverStates[articleSection._id] && <Link to={`/admin/updateArticleSection/${articleSection._id}`}><div className="p-2 rounded-xl bg-green-400 hover:bg-green-600 duration-300 ease-in-out">Update</div></Link>}
+                    {articleSectionHoverStates[articleSection._id] && <div onClick={() => deleteArticleSection(articleSection._id)} className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out">Delete</div>}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+
         </div>
       </div>
 
-     
+
     </>
   );
 }

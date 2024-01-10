@@ -10,6 +10,7 @@ const mongoose = require('mongoose')
 const articleRoutes = require('./routes/articles')
 const articleSectionRoutes = require('./routes/articleSections.js')
 const AdminCredentialsModel = require('./models/adminCredentialsModel')
+const userRoutes = require('./routes/userRoutes.js')
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json())
@@ -25,7 +26,7 @@ app.use((req, res, next) => {
 
 
 
-
+app.use('/api/users', userRoutes)
 app.use('/admin/articles', articleRoutes)
 app.use('/admin/articleSections', articleSectionRoutes)
 

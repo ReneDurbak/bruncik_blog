@@ -70,6 +70,7 @@
     "execa": "^0.7.0",
     "expand-brackets": "^2.1.4",
     "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
     "extend-shallow": "^2.0.1",
     "extglob": "^2.0.4",
     "fill-range": "^4.0.0",

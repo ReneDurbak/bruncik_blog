@@ -11,11 +11,16 @@ const articleRoutes = require('./routes/articles')
 const articleSectionRoutes = require('./routes/articleSections.js')
 const AdminCredentialsModel = require('./models/adminCredentialsModel')
 const userRoutes = require('./routes/userRoutes.js')
+const {notFound, errorHandler} = require('./middleware/errorMiddleware.js')
+const cookieParser = require('cookie-parser')
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
 
+
+app.use(cookieParser())
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
@@ -24,12 +29,38 @@ app.use((req, res, next) => {
 
 
 
-
-
-app.use('/api/users', userRoutes)
+app.use('/users', userRoutes)
 app.use('/admin/articles', articleRoutes)
 app.use('/admin/articleSections', articleSectionRoutes)
+app.use(notFound);
+app.use(errorHandler);
 
+
+
+app.get('/getAdminCredentials', async(req, res)=>{
+
+  try {
+    const adminCredentials = await AdminCredentialsModel.find({}).sort({createdAt: -1})
+
+    res.status(200).json(adminCredentials)
+  } catch (err) {
+    res.status(400).json({error: err.message})
+  }
+})
+
+
+app.post('/postAdminCredentials', async(req, res)=>{
+
+  const {password, username} = req.body
+
+  try {
+    const adminCredentials = await AdminCredentialsModel.create({password, username})
+
+    res.status(200).json(adminCredentials)
+  } catch (err) {
+    res.status(400).json({error: err.message})
+  }
+})
 
 
 mongoose.connect(DATABASE)
@@ -43,30 +74,6 @@ mongoose.connect(DATABASE)
   })
 
 
-  app.get('/getAdminCredentials', async(req, res)=>{
-
-    try {
-      const adminCredentials = await AdminCredentialsModel.find({}).sort({createdAt: -1})
-  
-      res.status(200).json(adminCredentials)
-    } catch (err) {
-      res.status(400).json({error: err.message})
-    }
-  })
-  
-  
-  app.post('/postAdminCredentials', async(req, res)=>{
-  
-    const {password, username} = req.body
-  
-    try {
-      const adminCredentials = await AdminCredentialsModel.create({password, username})
-  
-      res.status(200).json(adminCredentials)
-    } catch (err) {
-      res.status(400).json({error: err.message})
-    }
-  })
-  
+ 
 
 

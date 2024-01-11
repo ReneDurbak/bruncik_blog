@@ -23,9 +23,8 @@ import Footer from "../components/Footer";
 
 
 
-export default function SingleArticlePage() {
+export default function SingleArticlePage({articles}) {
 
-  
 
     const labelsForArticleReview = [
         {
@@ -285,7 +284,9 @@ export default function SingleArticlePage() {
 
     const { id } = useParams();
     const [article, setArticle] = useState(null);
-    const [otherArticles, setOtherArticles] = useState([]);
+
+    
+
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -304,29 +305,16 @@ export default function SingleArticlePage() {
 
         fetchArticle();
     }, [id]);
-
-
-
-    useEffect(() => {
-        const fetchArticles = async () => {
-          try {
-            const response = await axios.get('http://localhost:4000/admin/articles/getAllArticles');
-
-            const articles = response.data;
-            setOtherArticles(articles.filter((a) => a._id !== id));
-          } catch (error) {
-            console.error('Error fetching articles:', error);
-
-          }
-        };
     
-        fetchArticles();
-      }, [id]);
+
+
+
+
 
 
     const currentURL = `peterbruncik.com/articles/${id}`
 
-    if (article === null) {
+    if (article === null && articles.length === 0) {
         return <p className="py-20">Loading...</p>;
     }
 
@@ -620,7 +608,7 @@ export default function SingleArticlePage() {
                             <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">Read next</h1>
                             <div className="divide-y-2 divide-gray-300 mt-2">
                                 {
-                                otherArticles.map((article) => <div key={
+                                articles && articles.filter((article)=> article._id !== id).map((article) => <div key={
                                     article._id
                                 }>
                                     <RouteLink to={
@@ -900,7 +888,7 @@ export default function SingleArticlePage() {
                         <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">Read next</h1>
                         <div className="divide-y-2 divide-gray-300 mt-2">
                             {
-                            otherArticles.map((article) => <div key={
+                            articles && articles.filter((article)=> article._id !== id).map((article) => <div key={
                                 article._id
                             }>
                                 <RouteLink to={

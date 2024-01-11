@@ -32,8 +32,7 @@ app.use((req, res, next) => {
 app.use('/users', userRoutes)
 app.use('/admin/articles', articleRoutes)
 app.use('/admin/articleSections', articleSectionRoutes)
-app.use(notFound);
-app.use(errorHandler);
+
 
 
 
@@ -62,6 +61,9 @@ app.post('/postAdminCredentials', async(req, res)=>{
   }
 })
 
+
+app.use(notFound);
+app.use(errorHandler);
 
 mongoose.connect(DATABASE)
   .then(() => {

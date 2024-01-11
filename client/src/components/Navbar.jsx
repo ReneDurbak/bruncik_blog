@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import logo from "../assets/icon.png"
+import { IoIosLogIn } from "react-icons/io";
+
 
 
 function Navbar(){
@@ -53,7 +55,7 @@ function Navbar(){
 return(
     <>
     <header className={`w-full z-[5] bg-[#2A6CA5] text-white sm:fixed sticky transition-all duration-500 ${scrollDirection === "down" ? "top-[-100px]" : "top-0"}`}> 
-  <div className=" 2xl:p-5 xl:p-6 sm:p-[18px] p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px]  mx-auto 2xl:px-20 xl:px-[70px] lg:px-10 sm:px-10 px-6">
+  <div className="relative 2xl:p-5 xl:p-6 sm:p-[18px] p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px]  mx-auto 2xl:px-20 xl:px-[70px] lg:px-10 sm:px-10 px-6">
     <div className="flex items-center justify-between w-full md:w-auto">
       <h1 className="text-white 2xl:text-[32px] xl:text-3xl lg:text-[26px] md:text-2xl sm:text-2xl  text-[25px] font-hurricane cursor-pointer"><Link to="/"><div className="flex space-x-2"><img src={logo} className='xl:w-[32px] lg:w-[26px] md:w-[24px] w-[24px]  my-auto'/><div>Peter Brunčík</div></div></Link></h1>
       <div onClick={handleNav} className="block md:hidden">
@@ -67,9 +69,10 @@ return(
       <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm xl:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/articles">Articles</NavLink></li>
       <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm xl:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/mycourse">My Course</NavLink></li>
       <li className="sm:ml-0 md:ml-3 lg:ml-4 xl:ml-5  md:text-sm xl:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/about">About Me</NavLink></li>
+      <Link to="/login"><IoIosLogIn className='ml-8 duration-300 ease-in-out hover:scale-125' size={25}/></Link>
+
     </ul>
 
-    
   </div>
 
   {/* ----mobile version------ */}

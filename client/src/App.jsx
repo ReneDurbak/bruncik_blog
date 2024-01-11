@@ -13,6 +13,7 @@ import AdminArticles from './pages/AdminArticles.jsx';
 import AdminPushUps from './pages/AdminPushUps.jsx';
 import AdminUpdateArticle from './pages/AdminUpdateArticle.jsx';
 import AdminUpdateArticleSection from './pages/AdminUpdateArticleSection.jsx';
+import Login from './pages/Login.jsx';
 
 
 
@@ -64,6 +65,7 @@ function App() {
           <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle/>}/>
           <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection/>}/>
           <Route path="/admin/push-ups" element={<AdminPushUps/>}/>
+          <Route path="/login" element={<Login/>}/>
         </Routes>  
         </>
     </Router>

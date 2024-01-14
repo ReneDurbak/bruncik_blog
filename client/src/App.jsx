@@ -14,6 +14,9 @@ import AdminPushUps from './pages/AdminPushUps.jsx';
 import AdminUpdateArticle from './pages/AdminUpdateArticle.jsx';
 import AdminUpdateArticleSection from './pages/AdminUpdateArticleSection.jsx';
 import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx'
+import Profile from './components/Profile.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx';
 
 
 
@@ -54,18 +57,24 @@ function App() {
 
         <ScrollToTop />
         <Routes>
+        <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles}/>}/>
+          <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle/>}/>
+          <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection/>}/>
+          <Route path="/admin/push-ups" element={<AdminPushUps/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
+          {/*Private routes*/}
+          <Route path="" element={<PrivateRoute/>}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/articles" element={<Articles  articles={ListOfArticles}/> } />
           <Route path="/articles/:id" element={<SingleArticlePage articles={ListOfArticles}/>}/>
           <Route path="/mycourse" element={<Mycourse />} />
           <Route path="/push-ups" element={<Pushups/>} />
-          <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles}/>}/>
-          <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle/>}/>
-          <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection/>}/>
-          <Route path="/admin/push-ups" element={<AdminPushUps/>}/>
-          <Route path="/login" element={<Login/>}/>
+            <Route path="/profile" element={<Profile/>}/>
+          </Route>
+      
         </Routes>  
         </>
     </Router>

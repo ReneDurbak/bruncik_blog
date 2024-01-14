@@ -60,7 +60,7 @@ function App() {
           <Routes>
             <Route path="/admin" element={<AdminLogin />} />
 
-            <Route path="" element={<AdminPrivateRoutes/>}>
+            <Route path="/admin" element={<AdminPrivateRoutes/>}>
               <Route path="/admin/home" element={<AdminHome/>}/>
               <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles} />} />
               <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle />} />

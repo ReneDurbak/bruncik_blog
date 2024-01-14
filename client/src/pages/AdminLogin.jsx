@@ -6,6 +6,7 @@ import axios from "axios";
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthStatus } from '../slices/adminAuthSlice';
+import { toast, ToastContainer } from 'react-toastify'
 
 
 
@@ -19,9 +20,6 @@ export default function AdminLogin({ articles }) {
   const [verify, setVerification] = useState(false);
   const dispatch = useDispatch();
 
-  const isAuthenticated = useSelector((state) => state.adminAuth.isAuthenticated);
-
-
   const verification = (e) => {
     e.preventDefault();
 
@@ -32,6 +30,9 @@ export default function AdminLogin({ articles }) {
     if (isAdmin) {
       dispatch(setAuthStatus(true));
       setVerification(true);
+    }else{
+      toast.error('Incorrect credentials')
+
     }
   };
 
@@ -56,6 +57,8 @@ export default function AdminLogin({ articles }) {
   return (
     <>
       {  isAdminRoute && (
+        <>
+        <ToastContainer/>
           <div className="flex justify-center items-center h-screen bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300 px-6">
             <div className="flex flex-col  px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
               <h1 className="text-center text-2xl md:text-4xl lg:text-5xl font-bold mt-8">Login for Admin</h1>
@@ -80,6 +83,8 @@ export default function AdminLogin({ articles }) {
               </form>
             </div>
           </div>
+      
+          </>
         )
       }
     </>

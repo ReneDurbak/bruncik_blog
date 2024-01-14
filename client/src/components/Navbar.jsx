@@ -93,7 +93,7 @@ function Navbar() {
 
             {
               userInfo ? (
-                <>
+                <div className="mx-2">
 
                   <Dropdown label={`${userInfo.name}`}>
                     <Link to="/profile">
@@ -106,7 +106,7 @@ function Navbar() {
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={() => logoutHandler()}>Sign out</Dropdown.Item>
                   </Dropdown>
-                </>
+                </div>
               )
                 : (
                   <>

@@ -3,6 +3,11 @@ import { useLocation } from "react-router-dom";
 import AdminHome from "./AdminHome";
 import { SHA256 } from 'crypto-js';
 import axios from "axios";
+import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthStatus } from '../slices/adminAuthSlice';
+
+
 
 export default function AdminLogin({ articles }) {
   const location = useLocation();
@@ -12,15 +17,23 @@ export default function AdminLogin({ articles }) {
   const [inputName, setInputName] = useState('');
   const [inputPass, setInputPass] = useState('');
   const [verify, setVerification] = useState(false);
+  const dispatch = useDispatch();
+
+  const isAuthenticated = useSelector((state) => state.adminAuth.isAuthenticated);
+
 
   const verification = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
 
     const hashedInputPass = SHA256(inputPass).toString();
 
-    const isAdmin = admins.some(admin => admin.username === inputName && admin.password === hashedInputPass);
-    setVerification(isAdmin);
-  }
+    const isAdmin = admins.some((admin) => admin.username === inputName && admin.password === hashedInputPass);
+
+    if (isAdmin) {
+      dispatch(setAuthStatus(true));
+      setVerification(true);
+    }
+  };
 
   const fetchAdmin = async () => {
     try {
@@ -36,14 +49,13 @@ export default function AdminLogin({ articles }) {
     fetchAdmin()
   }, [])
 
+  if (isAdminRoute && verify) {
+    return <Navigate to='/admin/home' />;
+  }
+
   return (
     <>
-      {isAdminRoute && verify ? (
-        <div className="flex space-x-6">
-          <AdminHome />
-        </div>
-      ) : (
-        isAdminRoute && (
+      {  isAdminRoute && (
           <div className="flex justify-center items-center h-screen bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300 px-6">
             <div className="flex flex-col  px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
               <h1 className="text-center text-2xl md:text-4xl lg:text-5xl font-bold mt-8">Login for Admin</h1>
@@ -69,7 +81,7 @@ export default function AdminLogin({ articles }) {
             </div>
           </div>
         )
-      )}
+      }
     </>
   )
 }

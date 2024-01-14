@@ -34,16 +34,15 @@ app.use('/admin/articles', articleRoutes)
 app.use('/admin/articleSections', articleSectionRoutes)
 
 
-app.use(notFound);
-app.use(errorHandler);
+
 
 
 app.get('/getAdminCredentials', async(req, res)=>{
 
   try {
     const adminCredentials = await AdminCredentialsModel.find({}).sort({createdAt: -1})
-
     res.status(200).json(adminCredentials)
+
   } catch (err) {
     res.status(400).json({error: err.message})
   }
@@ -62,6 +61,10 @@ app.post('/postAdminCredentials', async(req, res)=>{
     res.status(400).json({error: err.message})
   }
 })
+
+
+app.use(notFound);
+app.use(errorHandler);
 
 
 

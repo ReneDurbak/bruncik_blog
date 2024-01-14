@@ -23,7 +23,7 @@ import Footer from "../components/Footer";
 
 
 
-export default function SingleArticlePage({articles}) {
+export default function SingleArticlePage() {
 
 
     const labelsForArticleReview = [
@@ -305,6 +305,26 @@ export default function SingleArticlePage({articles}) {
 
         fetchArticle();
     }, [id]);
+
+
+    const [articles,setArticles] = useState([])
+
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/admin/articles/getAllArticles');
+
+        const articles = response.data;
+        setArticles(articles);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+
+      }
+    };
+
+    fetchArticles();
+  }, []);
     
 
 
@@ -314,7 +334,7 @@ export default function SingleArticlePage({articles}) {
 
     const currentURL = `peterbruncik.com/articles/${id}`
 
-    if (article === null && articles.length === 0) {
+    if (article === null) {
         return <p className="py-20">Loading...</p>;
     }
 

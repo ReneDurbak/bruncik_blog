@@ -19,6 +19,7 @@ import notificationBubble from "../assets/notificationBubble.png"
 import { Helmet } from 'react-helmet';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import axios from 'axios'
 
 
 
@@ -193,6 +194,28 @@ function Pushups(){
 
 
   },[])
+
+
+
+  const [videos, setVideos] = useState([])
+
+  const fetchVideos = async() => {
+    try {
+      const response = await axios.get("http://localhost:4000/admin/videos/getAllVideos")
+      const fetchedVideos = response.data
+
+      setVideos(fetchedVideos)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(()=> {
+    fetchVideos()
+  }, [])
+
+
+
 
 
 
@@ -479,62 +502,22 @@ return(
 <div className=" 2xl:pt-4 md:pt-10 pt-4 font-poppins">
     <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
 
+    { videos &&
+            videos.map((video)=> (
+              <div className="relative" key={video._id}>
+              <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src={`${video.url_link}`} allowFullScreen/>
+              <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
+                <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY {video.day_count}</div>
+                <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
+              </div>
+            </div>
+                
+        ))
 
-      <div className="relative">
-        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/TAGCf_QzbBw" title="Mafia 2 Radio Soundtrack - Billy Merman - 900 miles" allowFullScreen/>
-        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-      </div>
+    }
 
-      <div className="relative">
-        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/v6HBZC9pZHQ" title="Baby Keem, Kendrick Lamar - family ties (Official Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen/>
-        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-      </div>
+   
 
-      <div className="relative">
-        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/4B4pgDet6jo" title="𝐌𝐮𝐬𝐢𝐜 𝐒𝐨𝐮𝐧𝐝𝐬 𝐁𝐞𝐭𝐭𝐞𝐫 𝐖𝐢𝐭𝐡 𝐘𝐨𝐮 (Slowed) (Wolf Of Wallstreet) (Music VIdeo)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen/>
-        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-      </div>
-
-      <div className="relative">
-        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/TAGCf_QzbBw" title="Mafia 2 Radio Soundtrack - Billy Merman - 900 miles" allowFullScreen/>
-        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-      </div>
-
-      <div className="relative">
-      <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/w2uKoytemDo" title="Amnesia GoGo - House of Creep 7 - [Sk-Cz] - Part.1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-      </div>
-
-      <div className="relative">
-        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/lB_OdxptWxE" title="Sam Butera &amp; The Witnesses - Let The Good Times Roll (Mafia II soundtrack)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-      </div>
-
-      <div className="relative">
-        <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src="https://www.youtube.com/embed/hIq4UTgqDAc" title="Mobb Deep - Survival of the Fittest (Official HD Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
-          <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY 1</div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
-        </div>
-      </div>
 
         </div>
 </div>

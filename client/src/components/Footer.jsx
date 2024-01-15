@@ -111,7 +111,7 @@ return(
   </div>
 
   <div className="bottom-0 align-bottom text-white text-center sm:mt-12 sm:text-sm text-xs mb-[-55px] ">
-    <p>Made by ©René Durbák</p>
+    <p>Made by ©René Durbák and @Peter Brunčík</p>
   </div>
 </footer>
 

@@ -11,6 +11,7 @@ const articleRoutes = require('./routes/articles')
 const articleSectionRoutes = require('./routes/articleSections.js')
 const AdminCredentialsModel = require('./models/adminCredentialsModel')
 const userRoutes = require('./routes/userRoutes.js')
+const videoRoutes = require('./routes/videos')
 const {notFound, errorHandler} = require('./middleware/errorMiddleware.js')
 const cookieParser = require('cookie-parser')
 
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
 app.use('/users', userRoutes)
 app.use('/admin/articles', articleRoutes)
 app.use('/admin/articleSections', articleSectionRoutes)
-
+app.use('/admin/videos', videoRoutes)
 
 
 

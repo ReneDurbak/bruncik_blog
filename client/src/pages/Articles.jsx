@@ -79,36 +79,9 @@ function Articles({ articles }) {
 
 
   {/*Search*/ }
-  const [searchQuery, setSearchQuery] = useState(""); // State to store the search query
-  const [suggestions, setSuggestions] = useState([]); // State to store search suggestions
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Function to handle search input change
-  const handleSearchChange = (event, { newValue }) => {
-    setSearchQuery(newValue);
-  };
-
-  // Function to fetch suggestions based on the input value
-  const getSuggestions = (value) => {
-    // Fetch suggestions from your backend based on the input value
-    // Update the suggestions state with fetched suggestions
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      handleSearchSubmit();
-    }
-  };
-
-  // Autosuggest input properties
-  const inputProps = {
-    value: searchQuery,
-    onChange: handleSearchChange,
-    onKeyPress: handleKeyPress,
-    id: "searchInput",
-    placeholder: "Search...",
-    className: "outline-none sm:pt-2 lg:pt-3 pt-1 sm:pb-1 lg:pb-2 xl:pb-2 pb-1  2xl:text-[23px] xl:text-[26px] lg:text-xl sm:text-[17px] text-[16px] w-full ease-in-out duration-500 flex font-normal block px-3 pr-4 xl:text-[25px] tracking-wide"
-  };
+  
 
 
   //Media queries
@@ -147,6 +120,16 @@ function Articles({ articles }) {
   useEffect(() => {
     fetchArticleSections()
   }, [])
+
+
+  const [filteredArticles, setFilteredArticles] = useState(articles)
+  useEffect(() => {
+    setFilteredArticles(articles.filter(item => {
+      return item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    }))
+
+    console.log(articles)
+  },[searchQuery])
 
 
   return (
@@ -297,16 +280,7 @@ function Articles({ articles }) {
 
           <div className="shadow-lg flex justify-between outline 2xl:outline-[2px] outline-[1px] rounded-full focus:outline-black sm:mx-0 lg:mx-6 sm:px-1 lg:px-2 mx-12 mt-4 sm:mt-0 lg:mt-2 lg:mb-1 mb-1 sm:mb-0 w-full sm:w-auto">
             <div className="my-auto flex-grow">
-              <Autosuggest
-                suggestions={suggestions}
-                onSuggestionsFetchRequested={({ value }) => getSuggestions(value)}
-                onSuggestionsClearRequested={() => setSuggestions([])}
-                getSuggestionValue={(suggestion) => suggestion.name}
-                renderSuggestion={(suggestion) => <div>{suggestion.name}</div>}
-                inputProps={inputProps}
-
-
-              />
+              <input value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)} placeholder="Search..." className="placeholder:not-italic outline-none sm:pt-2 lg:pt-3 pt-1 sm:pb-1 lg:pb-2 xl:pb-2 pb-1  2xl:text-[23px] xl:text-[26px] lg:text-xl sm:text-[17px] text-[16px] w-full ease-in-out duration-500 flex font-normal block px-3 pr-4 xl:text-[25px] tracking-wide"/>
             </div>
 
             <span className="px-2 my-auto"><img src={magnifier} className="text-black 2xl:w-[30px] xl:w-[28px] lg:w-[24px] sm:w-[20px] w-[20px] md:mx-0 mx-1" /> </span>
@@ -353,7 +327,7 @@ function Articles({ articles }) {
 
       <div className="xl:tracking-[4px] tracking-[1px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
 
-        {articles && articles.map((article) =>
+        {filteredArticles && filteredArticles.map((article) =>
           <RouteLink key={article._id} to={`/articles/${article._id}`}>
             <div className="w-full">
               <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 lg:px-4 px-1 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>

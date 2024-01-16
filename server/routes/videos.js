@@ -3,13 +3,15 @@ const {
     getAllVideos,
     updateVideo,
     deleteVideo,
-    createVideo
+    createVideo,
+    getVideo
 } = require('../controllers/videoController')
 
 const router = express.Router()
 
 
 router.get('/getAllVideos', getAllVideos)
+router.get('/getVideo/:id', getVideo)
 router.post('/postVideo', createVideo)
 router.patch('/patchVideo/:id', updateVideo)
 router.delete('/deleteVideo/:id', deleteVideo)

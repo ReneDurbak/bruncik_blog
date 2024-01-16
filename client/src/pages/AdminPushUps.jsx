@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import AdminSidePanel from '../components/AdminSidePanel'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default function AdminPushUps() {
 
@@ -57,6 +58,16 @@ export default function AdminPushUps() {
     }
   }
 
+  const deleteVideo = async(id) => {
+    try {
+      const deletedVideo = await axios.delete(`http://localhost:4000/admin/videos/deleteVideo/${id}`)
+      fetchVideos()
+
+    } catch (error) {
+      console.error(error)
+    } 
+  }
+
 
 
 
@@ -103,13 +114,13 @@ export default function AdminPushUps() {
                 <div><strong>video link:</strong> {video.url_link}</div>
                 <p><strong>day count:</strong> {video.day_count}</p>
                 
-                <div className="flex space-x-4 absolute top-[80px]">
+                <div className="flex space-x-4">
                   {
-                    videoHoverStates[video._id] && <div className="p-2 cursor-pointer rounded-xl bg-green-200 duration-300 ease-in-out hover:bg-green-400">Update</div>
+                    videoHoverStates[video._id] && <Link to={`/admin/updateVideo/${video._id}`}><div className="p-2 cursor-pointer rounded-xl bg-green-200 duration-300 ease-in-out hover:bg-green-400">Update</div></Link> 
                   }
                   
                   {videos.slice(-1)[0]._id === video._id && videoHoverStates[video._id] && (
-                  <div className="p-2 cursor-pointer rounded-xl bg-red-200 duration-300 ease-in-out hover:bg-red-400">Delete</div>
+                  <div onClick={()=> deleteVideo(video._id)} className="p-2 cursor-pointer rounded-xl bg-red-200 duration-300 ease-in-out hover:bg-red-400">Delete</div>
                 )}
                   
                 

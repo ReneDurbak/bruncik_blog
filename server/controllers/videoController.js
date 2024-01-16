@@ -10,6 +10,17 @@ const getAllVideos = async(req, res) => {
     }
 }
 
+const getVideo = async(req, res) => {
+    const {id} = req.params
+
+    try {
+        const videos = await Video.findById(id)
+        res.status(200).json(videos)
+    } catch (error) {
+        res.status(400).json({erro:`Cannot fetch video: ${error.message}`})
+    }
+}
+
 const createVideo = async(req, res) => {
     const {url_link} = req.body
     try {
@@ -42,9 +53,11 @@ const updateVideo = async(req, res) => {
     }
 }
 
+
 module.exports = {
     getAllVideos,
     createVideo,
     deleteVideo,
-    updateVideo
+    updateVideo,
+    getVideo
 }

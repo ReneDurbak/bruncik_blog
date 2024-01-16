@@ -19,6 +19,7 @@ import Profile from './components/Profile.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
 import AdminPrivateRoutes from './components/AdminPrivateRoutes.jsx';
 import AdminHome from './pages/AdminHome.jsx';
+import AdminUpdateVideo from './pages/AdminUpdateVideo.jsx';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
               <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle />} />
               <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection />} />
               <Route path="/admin/push-ups" element={<AdminPushUps />} />
+              <Route path="/admin/updateVideo/:id" element={<AdminUpdateVideo/>}/>
             </Route>
             
             <Route path="/login" element={<Login />} />

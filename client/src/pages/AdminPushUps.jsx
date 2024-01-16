@@ -31,7 +31,7 @@ export default function AdminPushUps() {
 
       setVideos(fetchedVideos)
     } catch (error) {
-      console.error(error)
+      console.error('Cannot fetch videos:', error)
     }
   }
 
@@ -54,7 +54,7 @@ export default function AdminPushUps() {
       setIsCreateVideo(false)
 
     } catch (error) {
-      console.error(error)
+      console.error('Cannot create a video:', error)
     }
   }
 
@@ -64,7 +64,7 @@ export default function AdminPushUps() {
       fetchVideos()
 
     } catch (error) {
-      console.error(error)
+      console.error('Cannot delete video:', error)
     } 
   }
 

@@ -19,7 +19,7 @@ export default function AdminUpdateVideo() {
             setVideo(fetchedVideo)
             setUrlLink(fetchedVideo.url_link)
         } catch (error) {
-            console.error(error)
+            console.error('Cannot fetch a video:', error)
         }
     }
 

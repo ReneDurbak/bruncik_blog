@@ -45,7 +45,6 @@ export default function AdminUpdateArticleSection() {
       formData.append('imageClicked', articleSectionImageClicked)
       formData.append('title', articleSectionTitle);
 
-      
       await axios.patch(`http://localhost:4000/admin/articleSections/updateArticleSection/${id}`, formData);
 
       setArticleSectionTitle("");

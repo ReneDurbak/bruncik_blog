@@ -15,6 +15,7 @@ export default function AdminUpdateArticle() {
   const [title, setTitle] = useState("");
   const [articleSections, setArticleSections] = useState([]);
   const [articleSection, setArticleSection] = useState({})
+  const [selectedArticleSection, setSelectedArticleSection] = useState({})
   const [section, setSection] = useState("")
 
 
@@ -31,7 +32,7 @@ export default function AdminUpdateArticle() {
         setContent(fetchedArticle.content)
         setReadingTime(fetchedArticle.readingTime)
         setLabel(fetchedArticle.label)
-        setArticleSection(fetchedArticle.section)
+        setSection(fetchedArticle.section._id)
 
       } catch (error) {
         console.error("Error fetching article:", error);
@@ -41,14 +42,14 @@ export default function AdminUpdateArticle() {
 
   
 
-
+    console.log(section)
   
   const fetchArticleSections = async() =>{
     try {
       const response = await axios.get("http://localhost:4000/admin/articleSections/getAllArticleSections")
       const fetchedArticleSections = response.data
       const filteredArticleSections = fetchedArticleSections.filter((section) => section._id !== articleSection._id)
-      setArticleSections(filteredArticleSections)
+      setArticleSections(fetchedArticleSections)
 
     } catch (error) {
       console.error("Error fetching article sections:", error.message)
@@ -65,9 +66,20 @@ export default function AdminUpdateArticle() {
   
 
 
-  const handleArticleSectionChange = (event) => {
-    setSection(event.target.value)
+  const handleArticleSectionChange = (sectionId) => {
+    setSection(sectionId)
+
   };
+
+  const handleSetArticleSection= (sectionId) => {
+  setSelectedArticleSection(
+  articleSections.filter((articleSection) => {
+    if(articleSection._id === sectionId){
+      return articleSection
+    }
+  })
+  )
+}
 
 
   const editor = useRef(null);
@@ -84,7 +96,7 @@ export default function AdminUpdateArticle() {
           title,
           content,
           readingTime,
-          section: articleSection,
+          section: selectedArticleSection[0],
           label,
         }
       );
@@ -126,13 +138,16 @@ export default function AdminUpdateArticle() {
 
               <label>
                 Content:
+                <div className="w-[1000px]">
                 <JoditEditor
                   ref={editor}
                   value={content}
                   tabIndex={1}
                   onBlur={(newContent) => setContent(newContent)}
                   onChange={(newContent) => {}}
+                  
                 />
+                </div>
               </label>
 
               <label>
@@ -152,19 +167,14 @@ export default function AdminUpdateArticle() {
         id="articleSectionSelect"
         value={section}
         displayEmpty
-        onChange={handleArticleSectionChange}
+        onChange={(e) => {handleArticleSectionChange(e.target.value); handleSetArticleSection(e.target.value)}}
       >
         {articleSections && articleSections.map((section) => (
           <MenuItem key={section._id} value={section._id}>
             {section && section.title}
           </MenuItem>
         ))}
-        {
-          articleSection ?
-          <MenuItem value="">{articleSection.title}</MenuItem>
-          :
-          null
-        }
+        
       </Select>
 
               <label>

@@ -60,11 +60,19 @@ function Articles({ articles }) {
 
   {/*Filter*/ }
   const [selectedFilter, setSelectedFilter] = useState(null);
-  const [checkClickFilter, setcheckClickFilter] = useState(false)
+  const [checkClickFilter, setCheckClickFilter] = useState(false)
+  const [selectedFilterId, setSelectedFilterId] = useState(null)
 
   const handleFilterClick = (filter) => {
     setSelectedFilter(selectedFilter === filter ? null : filter);
-    setcheckClickFilter(!checkClickFilter)
+
+    if (checkClickFilter === false){
+      setSelectedFilterId(filter)
+    }else{
+      setSelectedFilterId(null)
+    }
+
+    setCheckClickFilter(!checkClickFilter)
   };
 
 
@@ -122,14 +130,24 @@ function Articles({ articles }) {
   }, [])
 
 
-  const [filteredArticles, setFilteredArticles] = useState(articles)
-  useEffect(() => {
-    setFilteredArticles(articles.filter(item => {
-      return item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    }))
 
-    console.log(articles)
-  },[searchQuery])
+  const [filteredArticles, setFilteredArticles] = useState([])
+
+  useEffect(()=> {
+    setFilteredArticles(articles)
+
+  },[articles])
+
+
+  useEffect(() => {
+    setFilteredArticles(articles.filter(article => {
+      const titleMatches = article.title.toLowerCase().includes(searchQuery.toLowerCase());
+      const sectionMatches = selectedFilterId === null || (article.section && article.section._id === selectedFilterId);
+
+      return titleMatches && sectionMatches;
+    }));
+  }, [searchQuery, selectedFilterId]);
+  
 
 
   return (

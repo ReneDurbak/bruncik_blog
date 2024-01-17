@@ -287,23 +287,26 @@ export default function AdminArticles() {
 
           }
 
-          <div className="flex space-x-4 mt-4 mb-[125px]">
+          <div className="mt-4 mb-[125px]">
             <h2 className="flex items-end font-bold text-lg">List of articles:</h2>
+            <div className="flex space-x-4 w-[1000px] overflow-x-scroll border-4 p-2 rounded-xl">
             {articles &&
               articles.map((article) => (
                 <div
                   key={article._id}
                   onMouseEnter={() => handleArticleMouseEnter(article._id)}
                   onMouseLeave={() => handleArticleMouseLeave(article._id)}
-                  className="p-2 bg-gray-200 rounded-lg cursor-pointer"
+                  className="p-2 bg-gray-200 rounded-lg cursor-pointer min-w-[250px] min-h-[90px]"
                 >
-                  {article.title}
-                  <div className="flex space-x-4">
+                  <strong>{article.title} </strong><br/>
+                  <i>{article.section.title}</i>
+                  <div className="flex space-x-4 mt-2">
                     {articleHoverStates[article._id] && <Link to={`/admin/updateArticle/${article._id}`}><button className="rounded-xl bg-green-400 hover:bg-green-600 ease-in-out duration-300 cursor-pointer p-2">update</button></Link>}
                     {articleHoverStates[article._id] && <button onClick={() => { deleteArticle(article._id) }} className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2">delete</button>}
                   </div>
                 </div>
               ))}
+              </div>
           </div>
 
           <h1 className="mt-10 mb-2 text-3xl font-bold">Article sections</h1>
@@ -362,12 +365,13 @@ export default function AdminArticles() {
           }
 
 
-          <div className="flex space-x-6 mt-6">
+          <div className="mt-6">
             <h2 className="font-bold text-lg flex items-end">List of article sections:</h2>
+            <div className="flex space-x-6 w-[1000px] overflow-x-scroll border-4 p-2 rounded-xl">
             {
               articleSections.map((articleSection) => (
                 <div key={articleSection._id}
-                  className="p-2 bg-gray-200 rounded-xl"
+                  className="p-2 bg-gray-200 rounded-xl min-w-[400px] min-h-[150px]"
                   onMouseEnter={() => handleArticleSectionMouseEnter(articleSection._id)}
                   onMouseLeave={() => handleArticleSectionMouseLeave(articleSection._id)}
 
@@ -385,13 +389,14 @@ export default function AdminArticles() {
                     </div>
                   </div>
 
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-2 mt-4">
                     {articleSectionHoverStates[articleSection._id] && <Link to={`/admin/updateArticleSection/${articleSection._id}`}><div className="p-2 rounded-xl bg-green-400 hover:bg-green-600 duration-300 ease-in-out">Update</div></Link>}
                     {articleSectionHoverStates[articleSection._id] && <div onClick={() => deleteArticleSection(articleSection._id)} className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out">Delete</div>}
                   </div>
                 </div>
               ))
             }
+            </div>
           </div>
 
 

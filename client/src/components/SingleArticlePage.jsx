@@ -316,7 +316,7 @@ export default function SingleArticlePage() {
         const response = await axios.get('http://localhost:4000/admin/articles/getAllArticles');
 
         const articles = response.data;
-        setArticles(articles);
+        setArticles(articles.slice(0,4));
       } catch (error) {
         console.error('Error fetching articles:', error);
 

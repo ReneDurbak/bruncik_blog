@@ -20,6 +20,7 @@ import { Helmet } from 'react-helmet';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import axios from 'axios'
+import { Select, MenuItem, InputLabel, FormControl} from "@mui/material"
 
 
 
@@ -40,27 +41,8 @@ function Pushups(){
     },
   ]
 
-  const filterOptions = [
-    {
-      name: "Newest",
-      id: 1
-    },
-    {
-      name: "Oldest",
-      id: 2
-    },
-    {
-      name: "Recent",
-      id: 3
-    },
-    {
-      name: "Popular",
-      id: 4
-    },
-  ]
 
   //Filter variables
-  const [selected, setSelected] = useState("")
   const [openSwitchGalleryGenres,setOpenSwitchGalleryGenres] = useState(false)
 
   //Pop-ups variables
@@ -94,8 +76,6 @@ function Pushups(){
 
   //Gallery switch variables
   const [switchGallery, setSwitchGallery] = useState(false)
- 
-
 
 
 
@@ -197,6 +177,20 @@ function Pushups(){
 
 
 
+
+  const filterOptions = [
+    {
+      name: "Newest",
+      id: 1
+    },
+    {
+      name: "Oldest",
+      id: 2
+    },
+  ]
+
+  const [selected, setSelected] = useState(1);
+  const [prevSelected, setPrevSelected] = useState(1);
   const [videos, setVideos] = useState([])
 
   const fetchVideos = async() => {
@@ -213,6 +207,13 @@ function Pushups(){
   useEffect(()=> {
     fetchVideos()
   }, [])
+
+  useEffect(() => {
+    if (selected !== prevSelected) {
+      setVideos((prevVideos) => [...prevVideos].reverse());
+      setPrevSelected(selected);
+    }
+  }, [selected, prevSelected]);
 
 
 
@@ -471,29 +472,23 @@ return(
         {/*Filter*/}
         <div className="flex lg:space-x-6 md:space-x-4 space-x-3">
           <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] md:block hidden ">Filter</div> 
-        
-        {/*Actual fitler*/}
-        <div id="switchGalleryGenresTrigger" className={`${openSwitchGalleryGenres ? "" :"duration-500 ease-in-out hover:scale-110 cursor-pointer"}`} onClick={()=>{setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)}}>
-        <div className="bg-white xl:rounded-2xl sm:rounded-xl rounded-[10px] shadow-lg max-w-full 2xl:w-[125px] xl:w-[110px] md:w-[95px] xl:py-3 md:py-2  px-2 py-1  flex items-center justify-center 2xl:text-[17px] xl:text-[15px] lg:text-md md:text-sm text-[12px]">
-          <div className="mr-2">{selected ? selected : "Newest"}</div> <MdKeyboardDoubleArrowDown size={18} className="hover:scale-125 duration-300 ease-in-out xl:w-auto lg:w-[16px] w-[14px]"/></div>
-          
-          <div id="switchGalleryGenres" className= {`absolute z-[1] top-10 right-0 2xl:w-[125px] xl:w-[110px] md:w-[95px] w-[90px]  rounded-2xl 2xl:text-[17px] xl:text-md md:text-sm text-[12px]   bg-white ${openSwitchGalleryGenres? "" : "hidden"}`}>
-          {filterOptions.map((filteroption) => 
-          <div 
-            key={filteroption.id} 
-            className="flex items-center justify-center px-4 py-[12px] first:rounded-t-2xl last:rounded-b-2xl  hover:bg-[#777777] active:bg-[#5e5d5d] cursor-pointer"
-            onClick={()=>{
-              setSelected(filteroption.name)
-              setOpenSwitchGalleryGenres(!openSwitchGalleryGenres)
-              console.log(filteroption)
-            }}
-            >
-              {filteroption.name}
-              </div>
-              ) }
-          </div>
-          
-          </div>
+          <Select
+  id="pushUpsSelect"
+  value={selected}
+  onChange={(e) => {
+    {setSelected(e.target.value);}
+
+  }}
+>
+  {filterOptions.map((filter) => (
+    <MenuItem key={filter.id} value={filter.id}>
+      {filter.name}
+    </MenuItem>
+  ))}
+</Select>
+
+
+       
         </div>
 
         </div>
@@ -508,7 +503,7 @@ return(
               <iframe className="aspect-[4/7] w-full rounded-t-[30px]" src={`${video.url_link}`} allowFullScreen/>
               <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
                 <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">DAY {video.day_count}</div>
-                <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>
+                {/*<div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>*/}
               </div>
             </div>
                 

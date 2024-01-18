@@ -133,6 +133,7 @@ function Articles({ articles }) {
 
   const [filteredArticles, setFilteredArticles] = useState([])
 
+
   useEffect(()=> {
     setFilteredArticles(articles)
 
@@ -147,6 +148,9 @@ function Articles({ articles }) {
       return titleMatches && sectionMatches;
     }));
   }, [searchQuery, selectedFilterId]);
+
+
+
   
 
 

@@ -70,11 +70,10 @@ export default function AdminPushUps() {
 
 
 
-
-
   useEffect(()=>{
     fetchVideos()
   }, [])
+
 
 
   return (
@@ -102,11 +101,12 @@ export default function AdminPushUps() {
           : null
         }
 
-        <div className='flex space-x-6 mt-10'>
+        <div className='mt-10'>
           <h1>List of videos: </h1>
+          <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll">
           { videos &&
             videos.map((video)=> (
-              <div className='relative rounded-lg bg-gray-200 p-4' 
+              <div className='relative rounded-lg bg-gray-200 p-4 min-h-[150px]' 
                 key={video._id} 
                 onMouseEnter={() => handleVideoMouseEnter(video._id)}
                 onMouseLeave={() => handleVideoMouseLeave(video._id)}
@@ -114,7 +114,7 @@ export default function AdminPushUps() {
                 <div><strong>video link:</strong> {video.url_link}</div>
                 <p><strong>day count:</strong> {video.day_count}</p>
                 
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 mt-2">
                   {
                     videoHoverStates[video._id] && <Link to={`/admin/updateVideo/${video._id}`}><div className="p-2 cursor-pointer rounded-xl bg-green-200 duration-300 ease-in-out hover:bg-green-400">Update</div></Link> 
                   }
@@ -122,13 +122,14 @@ export default function AdminPushUps() {
                   {videos.slice(-1)[0]._id === video._id && videoHoverStates[video._id] && (
                   <div onClick={()=> deleteVideo(video._id)} className="p-2 cursor-pointer rounded-xl bg-red-200 duration-300 ease-in-out hover:bg-red-400">Delete</div>
                 )}
-                  
+                  </div>
                 
                 </div>
-              </div>
             ))
           }
         </div>
+        </div>
+
        </div>
     </div>
   )

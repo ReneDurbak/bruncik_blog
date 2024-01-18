@@ -121,7 +121,7 @@ function Articles({ articles }) {
 
 
 
-  const articlesPerPage = 2; 
+  const articlesPerPage = 3; 
   const [searchParams, setSearchParams] = useSearchParams(); ;
   const [currentPage, setCurrentPage] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
@@ -148,7 +148,6 @@ function Articles({ articles }) {
       return titleMatches && sectionMatches;
     }));
     setCurrentPage(0);
-    navigate(`?page=${1}`);
  
   }, [searchQuery, selectedFilterId]);
 

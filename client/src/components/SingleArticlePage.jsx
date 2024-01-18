@@ -1,6 +1,7 @@
 import {useParams, Link as RouteLink} from "react-router-dom"
 import {useEffect, useState} from "react"
 import {useMediaQuery} from 'react-responsive'
+import { useSelector } from "react-redux"
 import {Link} from "react-router-dom"
 import {FacebookShareButton, PinterestShareButton, TwitterShareButton} from "react-share"
 import {BiHorizontalLeft, BiHorizontalRight} from "react-icons/bi"
@@ -24,6 +25,7 @@ import Footer from "../components/Footer";
 
 
 export default function SingleArticlePage() {
+
 
 
     const labelsForArticleReview = [
@@ -142,8 +144,9 @@ export default function SingleArticlePage() {
 
     const [hideNameInput, setHideNameInput] = useState(false)
 
+    const { userInfo } = useSelector((state) => state.auth)
 
-    const [name, setName] = useState("")
+    const [name, setName] = useState(userInfo.name)
     const [rating, setRating] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [comment, setComment] = useState("")
@@ -727,7 +730,7 @@ export default function SingleArticlePage() {
 
                         <div className="text-bold md:text-2xl text-xl font-bold">Write a comment</div>
 
-                        <div className={
+                        {/*<div className={
                             `${
                                 hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"
                             }`
@@ -765,7 +768,7 @@ export default function SingleArticlePage() {
                             }/>
                         <div className="font-bold md:text-base text-xs mt-[14px] sm:mt-[10px]">Stay anonymous</div>
                     </div>
-
+                        */}
                     <div className="mt-8 md:text-base text-sm">
                         <p className="font-bold md:text-base text-xs">Your thoughts on this article:</p>
                         <textarea type="text" id="singleArticleTextArea" name="feedbackInput" placeholder="Write a comment... "

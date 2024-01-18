@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-scroll";
 import { useMediaQuery } from 'react-responsive'
-import { Link as RouteLink } from "react-router-dom"
+import { Link as RouteLink,  useNavigate, useSearchParams} from "react-router-dom"
 import { Helmet } from 'react-helmet';
 import axios from 'axios'
 import Autosuggest from 'react-autosuggest';
@@ -11,6 +11,10 @@ import arrowDown from "../assets/arrowDown.png"
 import NewsletterPopup from "../components/NewsletterPopup";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import emailjs from 'emailjs-com'
+import ReactPaginate from 'react-paginate';
+
+
 
 {/*Icons - unchecked filter option*/ }
 import meditation from "../assets/filteroptions/meditationFilter.png"
@@ -36,24 +40,6 @@ import inspirationWhite from "../assets/filteroptions/insipirationfilterW.png"
 
 
 function Articles({ articles }) {
-
-
-
-  {/*Filter*/ }
-  const filterOptions = useMemo(() => [
-    { name: "MEDITATION", id: 1, imageUrl: meditation, imageUrlClicked: meditationWhite },
-    { name: "WHM - WIM HOF METHOD", id: 2, imageUrl: wmh, imageUrlClicked: wmhWhite },
-    { name: "GO VEGAN", id: 3, imageUrl: vegan, imageUrlClicked: veganWhite },
-    { name: "EXERCISE", id: 4, imageUrl: exercise, imageUrlClicked: exerciseWhite },
-    { name: "NOFAP", id: 5, imageUrl: nofap, imageUrlClicked: nofapWhite },
-    { name: "MIND & SOUL", id: 6, imageUrl: mind, imageUrlClicked: mindWhite },
-    { name: "INSPIRATION", id: 7, imageUrl: inspiration, imageUrlClicked: inspirationWhite },
-  ],
-    []
-
-  );
-
-
 
 
 
@@ -131,26 +117,93 @@ function Articles({ articles }) {
 
 
 
-  const [filteredArticles, setFilteredArticles] = useState([])
 
 
-  useEffect(()=> {
-    setFilteredArticles(articles)
 
-  },[articles])
+
+  const articlesPerPage = 2; 
+  const [searchParams, setSearchParams] = useSearchParams(); ;
+  const [currentPage, setCurrentPage] = useState(0);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
 
   useEffect(() => {
-    setFilteredArticles(articles.filter(article => {
+    setFilteredArticles(articles);
+
+    const pageQueryParam = parseInt(searchParams.get('page')) || 1;
+    setCurrentPage(pageQueryParam - 1);
+
+    const pageCount = Math.ceil(filteredArticles.length / articlesPerPage);
+    const offset = currentPage * articlesPerPage;
+    const currentArticles = filteredArticles.slice(offset, offset + articlesPerPage);
+  }, [articles]);
+
+
+  useEffect(() => {
+    setFilteredArticles(articles.filter((article) => {
       const titleMatches = article.title.toLowerCase().includes(searchQuery.toLowerCase());
       const sectionMatches = selectedFilterId === null || (article.section && article.section._id === selectedFilterId);
 
       return titleMatches && sectionMatches;
     }));
+    setCurrentPage(0);
+    navigate(`?page=${1}`);
+ 
   }, [searchQuery, selectedFilterId]);
 
 
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+    navigate(`?page=${selected + 1}`);
 
+  };
+
+
+  const pageCount = Math.ceil(filteredArticles.length / articlesPerPage);
+  const offset = currentPage * articlesPerPage;
+  const currentArticles = filteredArticles.slice(offset, offset + articlesPerPage);
+
+
+
+
+
+
+
+  const[email,setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [error, setError] = useState(true)
+
+  function sendEmail(e){
+    e.preventDefault()
+    const rgExp = /^[a-zA-Z0-9._]+@[a-z]+\.[a-z]{2,6}$/
+
+
+    if(rgExp.test(email)){
+      setError(false)
+      setMessage("Message was sent succesfully")
+      emailjs.sendForm(
+        'test123',
+         'template_nbi58c7',
+          e.target,
+          '6Rv8j2Hq5xEQ8kKOX'
+          ).then(res=>{
+            console.log(res)
+          }).catch(err=> console.error(err))
+        
+    } else if(email === ""){
+      setError(true)
+      setMessage("Please Enter email")
+  
+    } else if(!rgExp.test(email)){
+      setError(true)
+      setMessage("Email is not valid")
+    
+    }else {
+      setMessage("")
+  
+    }
+  }
   
 
 
@@ -198,7 +251,7 @@ function Articles({ articles }) {
 
 
             <div className="sm:mt-[-105px]  max-w-[350px]  sm:px-0 px-6 ">
-              <div>
+              <form  onSubmit={sendEmail}>
                 <div className="bg-white rounded-2xl sm:px-6 px-4 sm:py-5 py-3 text-center font-spectral">
                   <div className="w-full py-2">
                     <div className="mx-0">
@@ -208,26 +261,26 @@ function Articles({ articles }) {
                       </section>
 
                       <section>
-                        <input className="bg-white rounded-xl italic mt-2 mb-1 outline-1 outline outline-offset-1 outline-black focus:outline focus:shadow-lg sm:py-[10px] py-[6px]  text-black text-center w-full sm:text-base text-sm" placeholder="My email address is..." />
+                        <input onChange={(e)=> setEmail(e.target.value)} className="bg-white rounded-xl italic mt-2 mb-1 outline-1 outline outline-offset-1 outline-black focus:outline focus:shadow-lg sm:py-[10px] py-[6px]  text-black text-center w-full sm:text-base text-sm" placeholder="My email address is..." />
                       </section>
 
                       <section>
                         <input type="submit" value="Subscribe" className="active:bg-white active:text-black italic bg-slate-950 rounded-xl mt-2 hover:shadow-xl ease-in-out duration-300 sm:py-3 py-[10px] text-white text-center w-full sm:text-base text-sm" placeholder="My email address is..." />
                       </section>
-
+                      <div className={`${error ? 'text-red-400' : 'text-green-400'}`}>{message}</div>
                       <div className="text-black mt-4  text-[11px] italic">"Zero spam. Only the finest ideas you'll discover online."</div>
 
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </NewsletterPopup>
 
 
           {/*Newsletter*/}
           <div className="xl:mt-[-75px] lg:mt-[-45px] md:mt-[-50px] max-w-[350px] md:max-w-[265px] xl:max-w-[325px] lg:max-w-[285px] 2xl:max-w-full lg:block md:px-0 hidden">
-            <div className="border-l-2">
+            <form onSubmit={sendEmail} className="border-l-2">
               <div className="bg-white rounded-2xl px-6  xl:px-4 md:px-5 2xl:pt-5 2xl:pb-2 xl:py-3 md:py-1 ml-4 text-center font-spectral">
                 <div className="lg:max-w-[320px] w-full py-2">
                   <div className="mx-0">
@@ -237,19 +290,19 @@ function Articles({ articles }) {
                     </section>
 
                     <section>
-                      <input className="bg-white rounded-xl mt-2 mb-1 outline-2 outline outline-offset-1 outline-black focus:outline focus:shadow-lg 2xl:py-[10px] xl:py-[8px] md:py-[4px] sm:py-[2px] py-[2px] text-black text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..." />
+                      <input  onChange={(e)=> setEmail(e.target.value)} className="bg-white rounded-xl mt-2 mb-1 outline-2 outline outline-offset-1 outline-black focus:outline focus:shadow-lg 2xl:py-[10px] xl:py-[8px] md:py-[4px] sm:py-[2px] py-[2px] text-black text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..." />
                     </section>
 
                     <section>
                       <input type="submit" value="Subscribe" className="active:bg-white active:text-black italic bg-slate-950 rounded-xl mt-2 hover:shadow-xl ease-in-out duration-300  2xl:py-3 xl:py-[8px] md:py-[6px] sm:py-[4px] py-[5px] text-white text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..." />
                     </section>
-
+                    <div className={`${error ? 'text-red-400' : 'text-green-400'}`}>{message}</div>
                     <div className="text-black xl:mt-4 sm:mt-3 mt-2 2xl:text-[13px] xl:text-[12px] md:text-[11px] text-[11px] italic">"Zero spam. Only the finest ideas you'll discover online."</div>
 
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
 
 
           </div>
@@ -349,20 +402,38 @@ function Articles({ articles }) {
 
       <div className="xl:tracking-[4px] tracking-[1px] 2xl:px-20 sm:px-10 px-4 2xl:max-w-[1680px] max-w-[1380px] mx-auto grid md:grid-cols-3 sm:grid-cols-2  grid-cols-2 2xl:gap-x-[110px] lg:gap-x-[20px] md:gap-x-[15px] sm:gap-x-[25px]  sm:gap-y-12 gap-y-10 gap-x-8 mb-20 font-spectral 2xl:text-base lg:text-xs md:text-[11px] sm:text-xs text-[8px] font-thin">
 
-        {filteredArticles && filteredArticles.map((article) =>
+      {currentArticles.map((article) => (
           <RouteLink key={article._id} to={`/articles/${article._id}`}>
-            <div className="w-full">
-              <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 lg:px-4 px-1 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>
+          <div className="w-full">
+            <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 lg:px-4 px-1 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>
 
-              <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]">
-                {article.title}
-              </div>
+            <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]">
+              {article.title}
             </div>
-          </RouteLink>
-        )
-        }
+          </div>
+        </RouteLink>
+      ))}
+
+
+
+
 
       </div>
+
+      <ReactPaginate
+  pageCount={pageCount}
+  pageRangeDisplayed={5}
+  marginPagesDisplayed={2}
+  previousLabel={'Previous'}
+  nextLabel={'Next'}
+  breakLabel={'...'}
+  onPageChange={handlePageChange}
+  containerClassName={'flex justify-center list-none p-4 space-x-2 mb-[150px]'}
+  activeClassName={'bg-blue-300'}
+  pageLinkClassName={'px-2 py-2 border text-black'}
+  breakClassName={'px-2 py-2 border text-gray-500'} // Adjust styling for ellipsis
+  forcePage={currentPage}
+/>
       <Footer />
 
     </>

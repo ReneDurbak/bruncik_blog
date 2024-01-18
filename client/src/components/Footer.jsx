@@ -34,7 +34,7 @@ export default function Footer(){
         setMessage("Message was sent succesfully")
         emailjs.sendForm(
           'test123',
-           'tempEmail',
+           'template_nbi58c7',
             e.target,
             '6Rv8j2Hq5xEQ8kKOX'
             ).then(res=>{
@@ -72,16 +72,18 @@ return(
 
       <form className="my-2 sm:w-[450px] w-full mx-auto"   onSubmit={sendEmail} >
         < div className="flex items-center">
-          <input type="email" name="user_Email" onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className=" px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white md:border-l-4 border-l-[2px] border-r-[50px] md:border-y-4 border-y-[2px] mr-[-30px] border-white" />
+          <input type="email" name="user_Email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className=" px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white md:border-l-4 border-l-[2px] border-r-[50px] md:border-y-4 border-y-[2px] mr-[-30px] border-white" />
           
           <div className="float-left bg-white py-auto mb-4 h-full">
-          <AiOutlineArrowRight className="sm:text-xs xl:text-base text-sm text-black" type="submit" />  
+          <button className="my-auto sm:text-xs xl:text-base text-sm text-black" type="submit" > <AiOutlineArrowRight className='mt-2'/> </button>  
           </div>
 
-
         </div>
+        <div className={`${error ? 'text-red-400' : 'text-green-400'}`}>{message}</div>
       </form>
+
     </div>
+
 
     {/* Menu */}
     <div className="2xl:basis-1/5 xl:basis-1/6 xl:border-l-4 xl:border-white">

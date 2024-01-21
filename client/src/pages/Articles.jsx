@@ -173,6 +173,11 @@ function Articles({ articles }) {
   const [message, setMessage] = useState("")
   const [error, setError] = useState(true)
 
+  function handleChange(e){
+    e.preventDefault()
+    setEmail(e.target.value)
+  }
+
   function sendEmail(e){
     e.preventDefault()
     const rgExp = /^[a-zA-Z0-9._]+@[a-z]+\.[a-z]{2,6}$/
@@ -260,7 +265,7 @@ function Articles({ articles }) {
                       </section>
 
                       <section>
-                        <input onChange={(e)=> setEmail(e.target.value)} className="bg-white rounded-xl italic mt-2 mb-1 outline-1 outline outline-offset-1 outline-black focus:outline focus:shadow-lg sm:py-[10px] py-[6px]  text-black text-center w-full sm:text-base text-sm" placeholder="My email address is..." />
+                        <input type="email"  name="user_Email" value={email} onChange={(e)=> setEmail(e.target.value)} className="bg-white rounded-xl italic mt-2 mb-1 outline-1 outline outline-offset-1 outline-black focus:outline focus:shadow-lg sm:py-[10px] py-[6px]  text-black text-center w-full sm:text-base text-sm" placeholder="My email address is..." />
                       </section>
 
                       <section>
@@ -289,12 +294,12 @@ function Articles({ articles }) {
                     </section>
 
                     <section>
-                      <input  onChange={(e)=> setEmail(e.target.value)} className="bg-white rounded-xl mt-2 mb-1 outline-2 outline outline-offset-1 outline-black focus:outline focus:shadow-lg 2xl:py-[10px] xl:py-[8px] md:py-[4px] sm:py-[2px] py-[2px] text-black text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..." />
+                      <input  type="email"  name="user_Email" onChange={(e) => setEmail(e.target.value)} className="bg-white rounded-xl mt-2 mb-1 outline-2 outline outline-offset-1 outline-black focus:outline focus:shadow-lg 2xl:py-[10px] xl:py-[8px] md:py-[4px] sm:py-[2px] py-[2px] text-black text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..." />
                     </section>
 
-                    <section>
+                 
                       <input type="submit" value="Subscribe" className="active:bg-white active:text-black italic bg-slate-950 rounded-xl mt-2 hover:shadow-xl ease-in-out duration-300  2xl:py-3 xl:py-[8px] md:py-[6px] sm:py-[4px] py-[5px] text-white text-center w-full 2xl:text-base sm:text-sm text-[13px]" placeholder="My email address is..." />
-                    </section>
+                
                     <div className={`${error ? 'text-red-400' : 'text-green-400'}`}>{message}</div>
                     <div className="text-black xl:mt-4 sm:mt-3 mt-2 2xl:text-[13px] xl:text-[12px] md:text-[11px] text-[11px] italic">"Zero spam. Only the finest ideas you'll discover online."</div>
 

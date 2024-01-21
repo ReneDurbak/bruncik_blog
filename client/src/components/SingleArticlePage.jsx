@@ -109,8 +109,7 @@ export default function SingleArticlePage() {
       setNameError(false);
     }*/
     if (comment === "" && selectedLabels.length === 0) {
-      document.getElementById("singleArticleTextArea").value =
-        "Please write some text!";
+      document.getElementById("singleArticleTextArea").value ="Please write some text!";
       setCommentError(true);
     } else {
       setCommentError(false);

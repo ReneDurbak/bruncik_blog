@@ -9,7 +9,7 @@ import {
   TwitterShareButton,
 } from "react-share";
 import { BiHorizontalLeft, BiHorizontalRight } from "react-icons/bi";
-import { Rating, Checkbox, SvgIcon } from "@mui/material";
+import { Rating, /*Checkbox,*/ SvgIcon } from "@mui/material";
 import { Helmet } from "react-helmet";
 import commentIcon from "../assets/commentIcon.png";
 import arrowRight from "../assets/Allarticlesarrow.png";
@@ -77,10 +77,17 @@ export default function SingleArticlePage() {
   ];
 
   const [selectedLabels, setSelectedLabels] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reviews, setReviews] = useState([])
+
 
   const handleLabelClick = (labelID) => {
     if (selectedLabels.includes(labelID)) {
       setSelectedLabels(selectedLabels.filter((id) => id !== labelID));
+
+
     } else {
       setSelectedLabels([...selectedLabels, labelID]);
     }
@@ -90,6 +97,82 @@ export default function SingleArticlePage() {
   const labelsToShow = showMoreLabels
     ? labelsForArticleReview
     : labelsForArticleReview.slice(0, 3);
+
+
+    
+  const handleSaveRating = () => {
+    /*if (name === "") {
+      document.getElementById("singleArticleInput").value =
+        "Please insert name!";
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }*/
+    if (comment === "" && selectedLabels.length === 0) {
+      document.getElementById("singleArticleTextArea").value =
+        "Please write some text!";
+      setCommentError(true);
+    } else {
+      setCommentError(false);
+      
+    
+
+      handleCloseReviewWindow();
+      
+     
+    }
+
+    /*if (
+      name !== "" &&
+      (comment !== "" || (comment === "" && selectedLabels.length !== 0))
+    ) {
+      handleCloseReviewWindow();
+    }*/
+  };
+
+
+
+  const fetchRatings = async() => {
+    try {
+      const response = await axios.get("http://localhost:4000/reviews/getAllReviews")
+      const fetchedReviews = response.data
+      const filteredReviews = fetchedReviews.filter((review) => {
+        return review.articleId === id;
+      });
+      setReviews(filteredReviews)
+    } catch (error) {
+      console.error("Cannot get all ratings: ", error.message)  
+    }
+  }
+
+
+  const handleSubmitReview = async(e) => {
+    e.preventDefault()
+ 
+    console.log(id)
+    try {
+      const response = await axios.post("http://localhost:4000/reviews/postReview", {
+        rating,
+        labels: labelsForArticleReview
+        .filter((label) => selectedLabels.includes(label.id))
+        .map((label) => label.labelTitle),
+        comment,
+        articleId: id 
+      })
+      
+
+      handleSaveRating()
+      fetchRatings()
+
+
+    } catch (error) {
+      console.error("Cannot post rating: ", error.message)  
+    }
+  } 
+
+
+
+
 
   const isMobile = useMediaQuery({ query: "(min-width: 640px)" });
   const isTabletAboutMe = useMediaQuery({ query: "(max-width: 767px )" });
@@ -196,18 +279,39 @@ export default function SingleArticlePage() {
   const { userInfo } = useSelector((state) => state.auth);
 
   const [userId, setUserId] = useState(userInfo._id);
-  const [name, setName] = useState("");
-  const [rating, setRating] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [comment, setComment] = useState("");
-  const [nameError, setNameError] = useState(false);
+  /* const [name, setName] = useState("");*/
+  // const [nameError, setNameError] = useState(false);
   const [commentError, setCommentError] = useState(false);
 
   const [comments, setComments] = useState([]);
   const [isUpdateComment, setIsUpdateComment] = useState(false);
   const [updateCommentText, setUpdateCommentText] = useState("");
   const [updateCommentId, setUpdateCommentId] = useState("");
-  console.log(updateCommentId)
+  const [isCommentsWindow, setIsCommentsWindow] = useState(true);
+
+
+
+
+  const handleSaveComment = () => {
+    /*if (name === "") {
+      document.getElementById("singleArticleInput").value =
+        "Please insert name!";
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }*/
+    if (comment === "") {
+      document.getElementById("singleArticleTextArea").value =
+        "Please write some text!";
+      setCommentError(true);
+    } else {
+      setCommentError(false);
+    }
+    if (comment !== "") {
+      //(comment !== "" name !== "")
+      handleCloseCommentWindow();
+    }
+  };
 
   const fetchComments = async () => {
     try {
@@ -218,7 +322,6 @@ export default function SingleArticlePage() {
       const filteredComments = fetchedComments.filter((comment) => {
         return comment.articleId === id;
       });
-      console.log(filteredComments);
       setComments(filteredComments);
     } catch (error) {
       console.error("Cannot fetch comments", error.message);
@@ -227,12 +330,12 @@ export default function SingleArticlePage() {
 
   useEffect(() => {
     fetchComments();
+    fetchRatings();
   }, []);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
     handleSaveComment();
-    console.log(comment, article._id, userId);
     try {
       const response = await axios.post(
         "http://localhost:4000/comments/postComment",
@@ -243,7 +346,6 @@ export default function SingleArticlePage() {
           comment,
         }
       );
-      console.log(response);
       fetchComments();
       setComment("");
     } catch (error) {
@@ -278,7 +380,7 @@ export default function SingleArticlePage() {
     }
   };
 
-  const handleAnonymousCheckboxCLick = () => {
+  /*const handleAnonymousCheckboxCLick = () => {
     setName("Anonymous");
   };
 
@@ -286,7 +388,7 @@ export default function SingleArticlePage() {
     if (nameError === true) {
       document.getElementById("singleArticleInput").value = "";
     }
-  };
+  };*/
 
   const handleClickOnTextArea = () => {
     if (commentError === true) {
@@ -303,70 +405,30 @@ export default function SingleArticlePage() {
     setIsModalOpen(false);
     setHideNameInput(false);
     setRating(0);
-    setName("");
+    //setName("");
     setComment("");
     setSelectedLabels([]);
-    setNameError(false);
+    //setNameError(false);
     setCommentError(false);
-    document.getElementById("singleArticleInput").value = "";
+   // document.getElementById("singleArticleInput").value = "";
     document.getElementById("singleArticleTextArea").value = "";
   };
 
   const handleCloseCommentWindow = () => {
     setOpenWriteCommentWindow(false);
     setHideNameInput(false);
-    setName("");
+    //setName("");
     setComment("");
-    setNameError(false);
+    //setNameError(false);
     setCommentError(false);
     //document.getElementById("singleArticleInput").value = "";
     document.getElementById("singleArticleTextArea").value = "";
   };
 
-  const handleSaveRating = () => {
-    if (name === "") {
-      document.getElementById("singleArticleInput").value =
-        "Please insert name!";
-      setNameError(true);
-    } else {
-      setNameError(false);
-    }
-    if (comment === "" && selectedLabels.length === 0) {
-      document.getElementById("singleArticleTextArea").value =
-        "Please write some text!";
-      setCommentError(true);
-    } else {
-      setCommentError(false);
-    }
 
-    if (
-      name !== "" &&
-      (comment !== "" || (comment === "" && selectedLabels.length !== 0))
-    ) {
-      handleCloseReviewWindow();
-    }
-  };
 
-  const handleSaveComment = () => {
-    /*if (name === "") {
-      document.getElementById("singleArticleInput").value =
-        "Please insert name!";
-      setNameError(true);
-    } else {
-      setNameError(false);
-    }*/
-    if (comment === "") {
-      document.getElementById("singleArticleTextArea").value =
-        "Please write some text!";
-      setCommentError(true);
-    } else {
-      setCommentError(false);
-    }
-    if (comment !== "") {
-      //(comment !== "" name !== "")
-      handleCloseCommentWindow();
-    }
-  };
+
+
 
   useEffect(() => {
     const handleCLickOutsideReviewWindow = (event) => {
@@ -546,7 +608,8 @@ export default function SingleArticlePage() {
               {/*Rate this article window*/}
               {isModalOpen ? (
                 <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center">
-                  <div
+                  <form
+                    onSubmit={handleSubmitReview}
                     id="reviewWindow"
                     className="relative md:px-6 px-4 py-6 sm:w-[750px] w-[400px] lg:mx-0 md:mx-10 sm:mx-8 mx-4  bg-white rounded-[30px]"
                   >
@@ -560,7 +623,7 @@ export default function SingleArticlePage() {
                         onClick={() => handleCloseReviewWindow()}
                       />
                     </div>
-                    <div
+                    {/*<div
                       className={`${
                         hideNameInput
                           ? "invisible"
@@ -608,6 +671,7 @@ export default function SingleArticlePage() {
                         Stay anonymous
                       </div>
                     </div>
+                    */}
                     <h1 className="text-left md:text-xs text-[10px] italic md:mt-3 mt-4 font-bold">
                       Choose tags that fit this article:
                     </h1>
@@ -688,13 +752,7 @@ export default function SingleArticlePage() {
                     {/*Send button rating*/}
                     <div className="text-right md:mt-2 mt-3 mb-[-10px]">
                       <button
-                        onClick={() => {
-                          handleSaveRating(),
-                            setClickOnPaperPlane(true),
-                            setTimeout(function () {
-                              setClickOnPaperPlane(false);
-                            }, 200);
-                        }}
+                        type="submit"
                         variant="contained"
                         onMouseEnter={() =>
                           isLaptop
@@ -721,7 +779,7 @@ export default function SingleArticlePage() {
                         </div>
                       </button>
                     </div>
-                  </div>
+                  </form>
                 </div>
               ) : (
                 ""
@@ -835,7 +893,18 @@ export default function SingleArticlePage() {
             </h1>
 
             <div className="flex space-x-6 uppercase mt-6 2xl:text-[19px] xl:text-lg text-xs xl:mt-8">
-              <div className="my-auto ">Comments</div>
+              <div
+                className="my-auto hover:cursor-pointer duration-300 ease-in-out p-2 rounded-xl hover:bg-gray-200"
+                onClick={() => setIsCommentsWindow(true)}
+              >
+                Comments
+              </div>
+              <div
+                className="my-auto hover:cursor-pointer duration-300 ease-in-out p-2 rounded-xl hover:bg-gray-200"
+                onClick={() => setIsCommentsWindow(false)}
+              >
+                Reviews
+              </div>
 
               <div className="flex space-x-2 duration-500 ease-in-out  2xl:border-2 border-[1px] border-white   py-1 px-3 rounded-3xl lg:hover:border-black active:border-black hover:cursor-pointer ">
                 <div className="my-auto">
@@ -852,147 +921,212 @@ export default function SingleArticlePage() {
               </div>
             </div>
 
-            <div className="flex xl:text-2xl md:text-[18px] text-base mt-8 font-bold">
-              {comments.length}{" "}
-              {comments.length === 1 ? (
-                <div className="mx-2"> thougth on:</div>
-              ) : (
-                <div className="mx-2"> thougths on: </div>
-              )}{" "}
-              "{article.title}"
-            </div>
+            {isCommentsWindow ? (
+              <div>
+                <div className="flex xl:text-2xl md:text-[18px] text-base mt-8 font-bold">
+                  {comments.length}{" "}
+                  {comments.length === 1 ? (
+                    <div className="mx-2"> thougth on:</div>
+                  ) : (
+                    <div className="mx-2"> thougths on: </div>
+                  )}{" "}
+                  "{article.title}"
+                </div>
 
-            {/*{
-                comments &&
-                comments.map((comment) => (
-                  <div key={comment._id}>{comment.comment}</div>
-                ))
-              }*/}
+          
 
-            {/*Comments*/}
-            {comments &&
-              comments.map((comment) => (
-                <div key={comment._id} value={comment.userId} className="mt-10">
-                  <div className="my-12">
-                    <div>
-                      <h1 className="font-bold xl:text-lg text-sm">
-                        {comment.userName}
-                      </h1>
-                      <div className="xl:text-sm text-[11px] text-[#757575] mt-2">
-                        {new Date(comment.createdAt).toLocaleString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                          hour: "numeric",
-                          minute: "numeric",
-                          hour12: true,
-                        })}
-                      </div>
-                    </div>
+                {/*Comments*/}
+                {comments &&
+                  comments.map((comment) => (
+                    <div
+                      key={comment._id}
+                      value={comment.userId}
+                      className="mt-10"
+                    >
+                      <div className="my-12">
+                        <div>
+                          <h1 className="font-bold xl:text-lg text-sm">
+                            {comment.userName}
+                          </h1>
+                          <div className="xl:text-sm text-[11px] text-[#757575] mt-2">
+                            {new Date(comment.createdAt).toLocaleString(
+                              "en-US",
+                              {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric",
+                                hour: "numeric",
+                                minute: "numeric",
+                                hour12: true,
+                              }
+                            )}
+                          </div>
+                        </div>
 
-                    <div className="xl:pl-20 pl-8 pr-7">
-                      <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] mt-6 xl:p-4 p-3">
-                        {comment.userId === userId ? (
-                          <>
-                            {isUpdateComment ? (
+                        <div className="xl:pl-20 pl-8 pr-7">
+                          <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] mt-6 xl:p-4 p-3">
+                            {comment.userId === userId ? (
                               <>
-                              {updateCommentId === comment._id ? (
-                                <>
-                                <div className=" absolute top-2 right-2">
-                                  <div
-                                    onClick={() => setIsUpdateComment(false)}
-                                    size={14}
-                                    className="hover:scale-125 ease-in-out duration-300 hover:cursor-pointer"
-                                  >
-                                    <MdOutlineCancel
-                                      size={18}
-                                      className="hover:scale-105 ease-in-out duration-300"
-                                      onClick={()=> {setUpdateCommentId(''); setUpdateCommentText('')}}
-                                    />
-                                  </div>
-                                </div>
-                                
-                                  <form
-                                    onSubmit={(e) =>
-                                      handleUpdateComment(e, comment._id)
-                                    }
-                                    className="flex flex-col "
-                                  >
-                                    <label className="text-sm mb-1 text-gray-500">
-                                      Comment
-                                    </label>
-                                    <textarea
-                                      defaultValue={comment.comment}
-                                      className="w-[80%] h-[175px] overflow-hidden rounded-lg placeholder:font-normal"
-                                      placeholder="Update a comment..."
-                                      onChange={(e) =>
-                                        setUpdateCommentText(e.target.value)
-                                      }
-                                    />
-                                    <button
-                                      type="submit"
-                                      className="self-start mt-2 rounded-xl bg-green-300 p-2 duration-300 ease-in-out hover:bg-green-500"
-                                    >
-                                      Update
-                                    </button>
-                                  </form>
+                                {isUpdateComment ? (
+                                  <>
+                                    {updateCommentId === comment._id ? (
+                                      <>
+                                        <div className=" absolute top-2 right-2">
+                                          <div
+                                            onClick={() =>
+                                              setIsUpdateComment(false)
+                                            }
+                                            size={14}
+                                            className="hover:scale-125 ease-in-out duration-300 hover:cursor-pointer"
+                                          >
+                                            <MdOutlineCancel
+                                              size={18}
+                                              className="hover:scale-105 ease-in-out duration-300"
+                                              onClick={() => {
+                                                setUpdateCommentId("");
+                                                setUpdateCommentText("");
+                                              }}
+                                            />
+                                          </div>
+                                        </div>
+
+                                        <form
+                                          onSubmit={(e) =>
+                                            handleUpdateComment(e, comment._id)
+                                          }
+                                          className="flex flex-col "
+                                        >
+                                          <label className="text-sm mb-1 text-gray-500">
+                                            Comment
+                                          </label>
+                                          <textarea
+                                            defaultValue={comment.comment}
+                                            className="w-[80%] h-[175px] overflow-hidden rounded-lg placeholder:font-normal"
+                                            placeholder="Update a comment..."
+                                            onChange={(e) =>
+                                              setUpdateCommentText(
+                                                e.target.value
+                                              )
+                                            }
+                                          />
+                                          <button
+                                            type="submit"
+                                            className="self-start mt-2 rounded-xl bg-green-300 p-2 duration-300 ease-in-out hover:bg-green-500"
+                                          >
+                                            Update
+                                          </button>
+                                        </form>
+                                      </>
+                                    ) : (
+                                      <div className="xl:text-sm text-xs">
+                                        {comment.comment}
+                                        <div className="flex  space-x-2 absolute top-2 right-2">
+                                          <FaPen
+                                            onClick={() => {
+                                              setIsUpdateComment(true);
+                                              setUpdateCommentId(comment._id);
+                                            }}
+                                            size={14}
+                                            className="hover:scale-125 ease-in-out duration-300"
+                                          />
+                                          <RiDeleteBin5Line
+                                            onClick={() =>
+                                              deleteComment(comment._id)
+                                            }
+                                            size={16}
+                                            className="hover:scale-125 ease-in-out duration-300"
+                                          />
+                                        </div>
+                                      </div>
+                                    )}
                                   </>
                                 ) : (
-                                 
-                            
-
                                   <div className="xl:text-sm text-xs">
-                                {comment.comment}
-                                <div className="flex  space-x-2 absolute top-2 right-2">
-                                  <FaPen
-                                    onClick={() => {
-                                      setIsUpdateComment(true);
-                                      setUpdateCommentId(comment._id);
-                                    }}
-                                    size={14}
-                                    className="hover:scale-125 ease-in-out duration-300"
-                                  />
-                                  <RiDeleteBin5Line
-                                    onClick={() => deleteComment(comment._id)}
-                                    size={16}
-                                    className="hover:scale-125 ease-in-out duration-300"
-                                  />
-                                </div>
-                              </div>
-                            
+                                    {comment.comment}
+                                    <div className="flex  space-x-2 absolute top-2 right-2">
+                                      <FaPen
+                                        onClick={() => {
+                                          setIsUpdateComment(true);
+                                          setUpdateCommentId(comment._id);
+                                        }}
+                                        size={14}
+                                        className="hover:scale-125 ease-in-out duration-300"
+                                      />
+                                      <RiDeleteBin5Line
+                                        onClick={() =>
+                                          deleteComment(comment._id)
+                                        }
+                                        size={16}
+                                        className="hover:scale-125 ease-in-out duration-300"
+                                      />
+                                    </div>
+                                  </div>
                                 )}
                               </>
                             ) : (
                               <div className="xl:text-sm text-xs">
                                 {comment.comment}
-                                <div className="flex  space-x-2 absolute top-2 right-2">
-                                  <FaPen
-                                    onClick={() => {
-                                      setIsUpdateComment(true);
-                                      setUpdateCommentId(comment._id);
-                                    }}
-                                    size={14}
-                                    className="hover:scale-125 ease-in-out duration-300"
-                                  />
-                                  <RiDeleteBin5Line
-                                    onClick={() => deleteComment(comment._id)}
-                                    size={16}
-                                    className="hover:scale-125 ease-in-out duration-300"
-                                  />
-                                </div>
                               </div>
                             )}
-                          </>
-                        ) : (
-                          <div className="xl:text-sm text-xs">
-                            {comment.comment}
                           </div>
-                        )}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
+              </div>
+            ) : (
+              <div>
+                <div className="flex xl:text-2xl md:text-[18px] text-base mt-8 font-bold">
+                  {reviews.length}{" "}
+                  {reviews.length === 1 ? (
+                    <div className="mx-2"> review on:</div>
+                  ) : (
+                    <div className="mx-2"> reviews on: </div>
+                  )}{" "}
+                  "{article.title}"
                 </div>
-              ))}
+
+            
+              {
+                reviews && reviews.map((review) => (
+                  <div className="px-2 border border-gray-200 my-4 w-[70%]">
+                  <div className="my-8" key={review._id}>
+                  <Rating
+                    value={review.rating}
+                    readOnly
+                    style={{
+                      fontSize: isDesktop
+                        ? 62
+                        : isLaptopXl
+                        ? 55
+                        : isTablet
+                        ? 55
+                        : 45,
+                    }}
+                  />
+                    <div className="mt-2"><strong>Comment: </strong>{review.comment}</div>
+
+
+                  </div>
+
+                  <div className="mb-6 flex space-x-4">
+                  {
+                    review.labels && review.labels.map((label) => (
+                   
+                      <div className="p-2 bg-black text-white rounded-lg" key={label}>{label}</div>
+                    
+                    ))
+                  }
+                </div>
+
+
+                  </div>
+
+                 
+                ))
+              }
+              </div>
+            )}
           </div>
           {/*Write a comment window*/}
           {openWriteCommentWindow ? (

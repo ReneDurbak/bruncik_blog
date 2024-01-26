@@ -29,6 +29,10 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
 
 export default function SingleArticlePage() {
+
+  const { id } = useParams();
+
+  
   const labelsForArticleReview = [
     {
       id: 1,
@@ -330,7 +334,7 @@ export default function SingleArticlePage() {
   useEffect(() => {
     fetchComments();
     fetchRatings();
-  }, []);
+  }, [id]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -477,7 +481,6 @@ export default function SingleArticlePage() {
     };
   }, []);
 
-  const { id } = useParams();
   const [article, setArticle] = useState(null);
 
   useEffect(() => {

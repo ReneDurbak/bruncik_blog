@@ -32,7 +32,7 @@ export default function SingleArticlePage() {
 
   const { id } = useParams();
 
-  
+
   const labelsForArticleReview = [
     {
       id: 1,
@@ -151,7 +151,7 @@ export default function SingleArticlePage() {
 
   const handleSubmitReview = async(e) => {
     e.preventDefault()
- 
+    console.log(rating)
     console.log(id)
     try {
       const response = await axios.post("http://localhost:4000/reviews/postReview", {
@@ -547,8 +547,15 @@ export default function SingleArticlePage() {
         <div className="2xl:max-w-[1100px] col-span-2 xl:mt-0 sm:mt-[-40px] mt-[-120px]">
           <div className="col-span-2">
             <div className="flex justify-start items-center space-x-4 mt-16 font-regular  xl:text-[12px] md:text-[10px] sm:text-[9px] text-[8px]">
-              <div>16.AUGUST 2023, 12:45</div>
-              <div className="text-gray-400">Reading time: 2:00</div>
+            <div>{new Date(article.createdAt).toLocaleString('en-US', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false
+})}</div>
+              <div className="text-gray-400">{article.readingTime} minutes</div>
               {/*npm modul na zobrazovanie casu -> date-fns*/}{" "}
             </div>
 
@@ -1096,6 +1103,7 @@ export default function SingleArticlePage() {
                   <Rating
                     value={review.rating}
                     readOnly
+                    precision={0.5}
                     style={{
                       fontSize: isDesktop
                         ? 62

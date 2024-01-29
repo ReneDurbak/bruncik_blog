@@ -874,7 +874,7 @@ export default function SingleArticlePage() {
                               </div>
                             </RouteLink>
                           </div>
-                        ))}{" "}
+                        )).sort(() => Math.random() - 0.5)}{" "}
                   </div>
 
                   <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 flex xl:space-x-4 md:space-x-3 space-x-2">
@@ -1372,7 +1372,7 @@ export default function SingleArticlePage() {
                             <div className="xl:py-6 py-4">{article.title} </div>
                           </RouteLink>
                         </div>
-                      ))}{" "}
+                      )).sort(() => Math.random() - 0.5)}{" "}
                 </div>
 
                 <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 pb-[100px] flex xl:space-x-4 md:space-x-3 space-x-2">

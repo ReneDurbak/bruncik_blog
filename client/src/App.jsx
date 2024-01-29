@@ -20,6 +20,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import AdminPrivateRoutes from './components/AdminPrivateRoutes.jsx';
 import AdminHome from './pages/AdminHome.jsx';
 import AdminUpdateVideo from './pages/AdminUpdateVideo.jsx';
+import PageNotFound from './pages/NotFound.jsx';
 
 
 function App() {
@@ -83,6 +84,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
             </Route>
 
+
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </>
       </Router>

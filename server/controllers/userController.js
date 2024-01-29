@@ -4,7 +4,7 @@ const User = require('../models/userModel')
 
 
 
-//route     POST /api/users/auth
+//route     POST users/auth
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
 
@@ -27,7 +27,7 @@ const authUser = asyncHandler(async (req, res) => {
 
 
 
-//route     POST /api/users
+//route     POST users
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
 
@@ -61,7 +61,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 
 
-//route     POST /api/users/logout
+//route     POST users/logout
 const logoutUser = asyncHandler(async (req, res) => {
     res.cookie('jwt', '', {
         httpOnly: true,
@@ -74,7 +74,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 
 
-//route     GET /api/users/profile
+//route     GET users/profile
 const getUserProfile = asyncHandler(async (req, res) => {
     const user = {
         _id: req.user._id,
@@ -88,7 +88,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
 
 
-//route     PUT /api/users/profile
+//route     PUT users/profile
 const updateUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id)
     console.log(user)

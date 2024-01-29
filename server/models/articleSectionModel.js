@@ -5,7 +5,9 @@ const Schema = mongoose.Schema
 const articleSectionSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
+
     },
     image:{
         type: String,

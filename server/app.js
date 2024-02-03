@@ -16,6 +16,12 @@ const commentsRoutes = require('./routes/comments')
 const reviewRoutes = require('./routes/reviews.js')
 const {notFound, errorHandler} = require('./middleware/errorMiddleware.js')
 const cookieParser = require('cookie-parser')
+const http = require('http');
+const {Server} = require('socket.io')
+const Notification = require('./models/notificationsModel.js')
+
+
+
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json())
@@ -25,11 +31,45 @@ app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
 
 app.use(cookieParser())
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
+})*/
+
+
+//Socket setup
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:5173'
+  }
 })
 
+io.on('connection', (socket) => {
+
+  socket.on('videoCreated', (data) => {
+    socket.broadcast.emit("receiveNotification", data)
+    Notification.create({message: data.message })
+
+  })
+
+  socket.on('disconnect', () => {
+    console.log('User left.')
+  })
+})
+
+
+
+app.get('/notifications/getAllNotifications', async(req, res)=> {
+    
+  try {
+    const getAllNotifications = await Notification.find({}).sort({createdAt: -1})
+    res.status(200).json(getAllNotifications)
+
+  } catch (error) {
+    res.status(400).json({error: `Cannot fetch all notifications ${error.message}`})
+  }
+})
 
 
 app.use('/users', userRoutes)
@@ -41,10 +81,16 @@ app.use('/reviews', reviewRoutes)
 
 
 
+
+
+
+
+
+
 app.get('/getAdminCredentials', async(req, res)=>{
 
   try {
-    const adminCredentials = await AdminCredentialsModel.find({}).sort({createdAt: -1})
+    const adminCredentials = await AdminCredentialsModel.find({})
     res.status(200).json(adminCredentials)
 
   } catch (err) {
@@ -74,7 +120,7 @@ app.use(errorHandler);
 
 mongoose.connect(DATABASE)
   .then(() => {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`Connected to database, listening on port: ${PORT}`)
     })
   })

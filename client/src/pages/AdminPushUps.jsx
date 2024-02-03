@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import AdminSidePanel from '../components/AdminSidePanel'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import {io} from 'socket.io-client'
+
 
 export default function AdminPushUps() {
 
@@ -37,6 +39,22 @@ export default function AdminPushUps() {
 
 
 
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    // Establish the socket connection when the component mounts
+    const newSocket = io('http://localhost:4000');
+    setSocket(newSocket);
+
+    // Clean up the socket connection when the component is unmounted
+    return () => {
+      if (newSocket) {
+        newSocket.disconnect();
+      }
+    };
+  }, []);
+
+
   const handleCreateVideo = async(e) => {
     e.preventDefault()
 
@@ -48,8 +66,11 @@ export default function AdminPushUps() {
         }
       )
 
-
       fetchVideos()
+
+      if (socket) {
+        socket.emit('videoCreated', { message: `New video posted! On day count: ${videos.slice(-1)[0].day_count}!`,  createdAt: new Date() });
+      }
       setUrlLink('')
       setIsCreateVideo(false)
 
@@ -57,6 +78,8 @@ export default function AdminPushUps() {
       console.error('Cannot create a video:', error)
     }
   }
+
+
 
   const deleteVideo = async(id) => {
     try {
@@ -73,6 +96,7 @@ export default function AdminPushUps() {
   useEffect(()=>{
     fetchVideos()
   }, [])
+
 
 
 

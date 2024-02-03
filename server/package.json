@@ -213,6 +213,7 @@
     "snapdragon": "^0.8.2",
     "snapdragon-node": "^2.1.1",
     "snapdragon-util": "^3.0.1",
+    "socket.io": "^4.7.4",
     "source-map": "^0.5.7",
     "source-map-resolve": "^0.5.3",
     "source-map-url": "^0.4.1",

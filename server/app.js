@@ -52,10 +52,6 @@ io.on('connection', (socket) => {
     Notification.create({message: data.message })
 
   })
-
-  socket.on('disconnect', () => {
-    console.log('User left.')
-  })
 })
 
 

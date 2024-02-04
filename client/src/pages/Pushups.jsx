@@ -15,7 +15,6 @@ import TwitterIcon from "../assets/Twitter.png";
 import SwitchGalleryIcon from "../assets/Switchgalleryicon.png";
 import { VscDebugStepBack } from "react-icons/vsc";
 import CloseButtonv2 from "../assets/closebuttonv2.png";
-import notificationBubble from "../assets/notificationBubble.png";
 import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -411,10 +410,14 @@ function Pushups() {
                   }}
                   id="notificationsTrigger"
                 />
-                <img
-                  src={notificationBubble}
-                  className="absolute xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[30px] lg:w-[24px] md:w-[20px] w-[18px]"
-                />
+              
+                  <div
+                    className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[20px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[20px]"
+                  >
+                  <div className="xl:text-base md:text-sm text-xs text-white">{notifications.length}</div>
+                 
+                  
+                </div>
                 {/*Notification window*/}
                 {notificationsTransition((style, item) =>
                   item ? (
@@ -464,8 +467,8 @@ function Pushups() {
                           </div>
 
                           <div className="flex flex-col mt-4 pr-8 max-h-[150px] overflow-y-scroll">
-                          {notifications && notifications.map((notification) => (
-                                  <div className="flex space-x-4 my-2" key={notification._id}>
+                          {notifications && notifications.map((notification, index) => (
+                                  <div key={index} className="flex space-x-4 my-2" >
                                   <div>
                                     <img
                                       src={profilepicture2}

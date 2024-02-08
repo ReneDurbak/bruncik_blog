@@ -302,11 +302,9 @@ function Pushups() {
 
 
   useEffect(() => {
-    // Establish the socket connection when the component mounts
     const newSocket = io('http://localhost:4000');
     setSocket(newSocket);
 
-    // Clean up the socket connection when the component is unmounted
     return () => {
       if (newSocket) {
         newSocket.disconnect();

@@ -78,7 +78,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/articles" element={<Articles articles={ListOfArticles} />} />
-              <Route path="/articles/:id" element={<SingleArticlePage articles={ListOfArticles} />} />
+              <Route path="/articles/:id" element={<SingleArticlePage />} />
               <Route path="/mycourse" element={<Mycourse />} />
               <Route path="/push-ups" element={<Pushups />} />
               <Route path="/profile" element={<Profile />} />

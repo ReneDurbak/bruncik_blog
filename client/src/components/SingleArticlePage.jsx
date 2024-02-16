@@ -151,8 +151,8 @@ export default function SingleArticlePage() {
 
   const handleSubmitReview = async(e) => {
     e.preventDefault()
-    console.log(rating)
-    console.log(id)
+    // console.log(rating)
+    // console.log(id)
     try {
       const response = await axios.post("http://localhost:4000/reviews/postReview", {
         rating,
@@ -501,6 +501,11 @@ export default function SingleArticlePage() {
   }, [id]);
 
   const [articles, setArticles] = useState([]);
+  const [readNextArticles, setReadNextArticles] = useState([])
+  const shuffleArticles = (articles) => {
+    return articles.slice().sort(() => Math.random() - 0.5).slice(0, 4);
+  };
+
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -510,7 +515,16 @@ export default function SingleArticlePage() {
         );
 
         const articles = response.data;
-        setArticles(articles.slice(0, 4));
+        const sortedArticles = shuffleArticles(articles.filter((article) => article._id !== id));        
+        setReadNextArticles(sortedArticles.map((article) => (
+          <div key={article._id}>
+            <RouteLink to={`/articles/${article._id}`}>
+              <div className="xl:py-6 py-4">{article.title}</div>
+            </RouteLink>
+          </div>
+        )))
+
+
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
@@ -518,6 +532,12 @@ export default function SingleArticlePage() {
 
     fetchArticles();
   }, []);
+
+
+
+
+
+
 
   const currentURL = `peterbruncik.com/articles/${id}`;
 
@@ -863,18 +883,7 @@ export default function SingleArticlePage() {
                     Read next
                   </h1>
                   <div className="divide-y-2 divide-gray-300 mt-2">
-                    {articles &&
-                      articles
-                        .filter((article) => article._id !== id)
-                        .map((article) => (
-                          <div key={article._id}>
-                            <RouteLink to={`/articles/${article._id}`}>
-                              <div className="xl:py-6 py-4">
-                                {article.title}{" "}
-                              </div>
-                            </RouteLink>
-                          </div>
-                        )).sort(() => Math.random() - 0.5)}{" "}
+                    {articles && readNextArticles}
                   </div>
 
                   <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 flex xl:space-x-4 md:space-x-3 space-x-2">
@@ -1363,16 +1372,7 @@ export default function SingleArticlePage() {
                   Read next
                 </h1>
                 <div className="divide-y-2 divide-gray-300 mt-2">
-                  {articles &&
-                    articles
-                      .filter((article) => article._id !== id)
-                      .map((article) => (
-                        <div key={article._id}>
-                          <RouteLink to={`/articles/${article._id}`}>
-                            <div className="xl:py-6 py-4">{article.title} </div>
-                          </RouteLink>
-                        </div>
-                      )).sort(() => Math.random() - 0.5)}{" "}
+                  {articles && readNextArticles}
                 </div>
 
                 <div className="xl:pt-8 lg:pt-4 md:pt-4 pt-4 pb-[100px] flex xl:space-x-4 md:space-x-3 space-x-2">

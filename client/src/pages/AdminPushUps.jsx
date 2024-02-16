@@ -104,35 +104,62 @@ export default function AdminPushUps() {
 
 
 
+  const [videoGallery, setVideoGallery] = useState([])
+
+
+  const fetchVideoGalleries = async() => {
+    try {
+      const response = await axios.get("http://localhost:4000/admin/videoGalleries/getAllVideoGalleries")
+      const fetchedVideoGalleries = response.data
+
+      setVideoGallery(fetchedVideoGalleries)
+    } catch (error) {
+      console.error('Cannot fetch videos:', error)
+    }
+  }
+
+  useEffect(()=>{
+    fetchVideoGalleries()
+  }, [])
+
+
+
+
+
+
 
   return (
     <div className='flex space-x-6'>
       <AdminSidePanel/>
        <div className="w-full mt-10">
 
-        <button className={`${isCreateVideo ? 'hidden' : 'block'} p-2 bg-green-400 rounded-xl`} onClick={()=> setIsCreateVideo(true)}>Add video</button>
 
-        {
-          isCreateVideo
-          ?
-          <>
-            <form onSubmit={handleCreateVideo} className="flex space-x-4 mt-8">
-              <label className='my-auto'>Url link:</label>
-              <input name="video_url" type='text' value={urlLink} onChange={(e)=>setUrlLink(e.target.value)} />
-            
 
-            <div className="flex space-x-2 mt-8">
-              <button onClick={()=> {setIsCreateVideo(false); setUrlLink('')} } className="p-2 rounded-xl bg-gray-200">cancel</button>
-              <button type='submit' className="p-2 rounded-xl bg-green-200">send</button>
-            </div>
-            </form>
-          </>
-          : null
-        }
 
-        <div className='mt-10'>
-          <h1>List of videos: </h1>
-          <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll">
+
+        <div className="mt-10">
+          <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
+          <div className="border-t-2 w-[20%] border-black" /> 
+
+          <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
+            {
+              videoGallery.map((videoGallery) => (
+                <div key={videoGallery._id}> {videoGallery.title}</div>
+              ))
+            }
+          </div>
+
+        </div>
+
+
+
+
+        <div className='mt-20'>
+        
+        <h1 className="mt-10 mb-2 text-3xl font-bold">Videos</h1>
+        <div className="border-t-2 w-[20%] border-black" />
+
+          <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
           { videos &&
             videos.map((video)=> (
               <div className='relative rounded-lg bg-gray-200 p-4 min-h-[150px]' 
@@ -157,7 +184,29 @@ export default function AdminPushUps() {
             ))
           }
         </div>
+
+        <button className={`${isCreateVideo ? 'hidden' : 'block'} p-2 bg-green-400 rounded-xl`} onClick={()=> setIsCreateVideo(true)}>Add video</button>
+
+{
+  isCreateVideo
+  ?
+  <>
+    <form onSubmit={handleCreateVideo} className="flex space-x-4 mt-8">
+      <label className='my-auto'>Url link:</label>
+      <input name="video_url" type='text' value={urlLink} onChange={(e)=>setUrlLink(e.target.value)} />
+    
+
+    <div className="flex space-x-2 mt-8">
+      <button onClick={()=> {setIsCreateVideo(false); setUrlLink('')} } className="p-2 rounded-xl bg-gray-200">cancel</button>
+      <button type='submit' className="p-2 rounded-xl bg-green-200">send</button>
+    </div>
+    </form>
+  </>
+  : null
+}
         </div>
+
+
 
        </div>
     </div>

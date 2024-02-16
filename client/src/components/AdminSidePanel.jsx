@@ -9,9 +9,9 @@ export default function AdminSidePanel() {
         <ul className="flex flex-col items-start mt-8 space-y-4">
         <li className="text-xl font-bold">Admin Mode</li>
         <li><Link to="/admin/articles">Articles</Link></li>
-        <li><Link to="/admin/push-ups">Push up videos</Link></li>
+        <li><Link to="/admin/push-ups">Push-ups gallery</Link></li>
         </ul>
-
+{/*
 
         <div>
         <div className="flex justify-between">
@@ -20,6 +20,7 @@ export default function AdminSidePanel() {
             <div className="flex-end">od</div>
         </div>
         </div>
+  */}
     </div>
       
     </>

@@ -112,12 +112,12 @@ export default function AdminUpdateArticleSection() {
                     <div className="flex justify-center items-center space-x-3">
                       <div className="flex items-center">
                         <p>Image:</p>
-                        {<img src={articleSection.image && `http://localhost:4000/public/${articleSection.image}`}/>}
+                        {<img className="w-[50px]" src={articleSection.image && `http://localhost:4000/public/${articleSection.image}`}/>}
                       </div>
                       
                       <div className="flex items-center">
                         <p>Image clicked:</p>
-                        {<img src={articleSection.imageClicked && `http://localhost:4000/public/${articleSection.imageClicked}`}/>}
+                        {<img className="w-[50px]" src={articleSection.imageClicked && `http://localhost:4000/public/${articleSection.imageClicked}`}/>}
                       </div>
                     </div>
 

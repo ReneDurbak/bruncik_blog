@@ -418,6 +418,7 @@ export default function AdminArticles() {
                       <p>Image (black icon):</p>
                       {
                         <img
+                          className="w-[50px]"
                           src={`http://localhost:4000/public/${articleSection.image}`}
                         />
                       }
@@ -427,6 +428,7 @@ export default function AdminArticles() {
                       <p>Image clicked (white icon):</p>
                       {
                         <img
+                          className="w-[50px]"
                           src={`http://localhost:4000/public/${articleSection.imageClicked}`}
                         />
                       }

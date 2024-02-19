@@ -3,7 +3,7 @@ const Video = require('../models/videosModel.js');
 
 const getAllVideos = async(req, res) => {
     try {
-        const videos = await Video.find({}).sort({createdAt: -1})
+        const videos = await Video.find({}).sort({createdAt: -1}).populate('video_gallery')
         res.status(200).json(videos)
     } catch (error) {
         res.status(400).json({erro:`Cannot fetch videos: ${error.message}`})
@@ -14,7 +14,7 @@ const getVideo = async(req, res) => {
     const {id} = req.params
 
     try {
-        const videos = await Video.findById(id)
+        const videos = await Video.findById(id).populate('video_gallery')
         res.status(200).json(videos)
     } catch (error) {
         res.status(400).json({erro:`Cannot fetch video: ${error.message}`})

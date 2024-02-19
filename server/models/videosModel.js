@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema
+
+
 const videosSchema = mongoose.Schema({
     url_link: {
         type: String,
@@ -8,7 +11,13 @@ const videosSchema = mongoose.Schema({
     day_count: {
         type: Number,
         default: 1 
+    },
+    video_gallery: {
+        type: Schema.Types.ObjectId,
+        ref: 'videoGallery',
+
     }
+
 });
 
 videosSchema.pre('save', async function (next) {

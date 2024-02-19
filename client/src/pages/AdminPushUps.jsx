@@ -185,7 +185,7 @@ export default function AdminPushUps() {
           }
         </div>
 
-        <button className={`${isCreateVideo ? 'hidden' : 'block'} p-2 bg-green-400 rounded-xl`} onClick={()=> setIsCreateVideo(true)}>Add video</button>
+        <button className={`${isCreateVideo ? 'hidden' : 'block'} p-2 bg-green-400 rounded-xl mt-4`} onClick={()=> setIsCreateVideo(true)}>Add video</button>
 
 {
   isCreateVideo

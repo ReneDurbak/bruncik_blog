@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const videoGallerySchema = mongoose.Schema({
     title:{
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     image:{
         type: String,

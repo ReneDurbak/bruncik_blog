@@ -21,6 +21,8 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 import {io} from 'socket.io-client'
+import DOMPurify from 'dompurify';
+
 
 
 function Pushups() {
@@ -320,6 +322,14 @@ function Pushups() {
     })
 
   },[socket])
+
+
+  const useSafeHtml = (html) => {
+    return DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ['iframe'],
+      ALLOWED_ATTR: ['src', 'allow', 'allowfullscreen', 'frameborder', 'height', 'width', 'title']
+    });
+  };
 
   if ((videos || notifications) === null) {
     return <p className="py-20">Loading...</p>;
@@ -813,12 +823,14 @@ function Pushups() {
             <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
               {videos &&
                 videos.map((video) => (
-                  <div className="relative" key={video._id}>
-                    <iframe
+                  <div  className="relative aspect-[4/7] w-full rounded-t-[30px]" key={video._id}>
+                   <iframe
                       className="aspect-[4/7] w-full rounded-t-[30px]"
-                      src={`${video.url_link}`}
+                      src={video.url_link}
                       allowFullScreen
                     />
+                  
+
                     <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
                       <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
                         DAY {video.day_count}

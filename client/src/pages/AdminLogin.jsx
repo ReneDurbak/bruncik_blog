@@ -51,7 +51,7 @@ export default function AdminLogin({ articles }) {
   }, [])
 
   if (isAdminRoute && verify) {
-    return <Navigate to='/admin/home' />;
+    return <Navigate to='/admin/articles' />;
   }
 
   return (

@@ -18,7 +18,6 @@ import Register from './pages/Register.jsx'
 import Profile from './components/Profile.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
 import AdminPrivateRoutes from './components/AdminPrivateRoutes.jsx';
-import AdminHome from './pages/AdminHome.jsx';
 import AdminUpdateVideo from './pages/AdminUpdateVideo.jsx';
 import PageNotFound from './pages/NotFound.jsx';
 
@@ -63,7 +62,6 @@ function App() {
             <Route path="/admin" element={<AdminLogin />} />
 
             <Route path="/admin" element={<AdminPrivateRoutes/>}>
-              <Route path="/admin/home" element={<AdminHome/>}/>
               <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles} />} />
               <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle />} />
               <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection />} />

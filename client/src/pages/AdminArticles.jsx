@@ -73,7 +73,7 @@ export default function AdminArticles() {
         {
           title,
           content,
-          readingTime,
+          //readingTime,
           section,
           label,
         }
@@ -83,7 +83,7 @@ export default function AdminArticles() {
 
       setTitle("");
       setContent("");
-      setReadingTime("");
+      //setReadingTime("");
       setArticleSection("");
       setLabel("");
     } catch (error) {
@@ -178,7 +178,7 @@ export default function AdminArticles() {
       <div className="flex space-x-6">
         <AdminSidePanel />
 
-        <div className="w-full text-left  mt-10">
+        <div className="max-h-[1000px] overflow-y-auto w-full text-left  mt-10">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Articles</h1>
           <div className="border-t-2 w-[16%] border-black" />
           {createArticle ? (
@@ -189,7 +189,7 @@ export default function AdminArticles() {
                   setCreateArticle(false);
                   setTitle("");
                   setContent("");
-                  setReadingTime("");
+                  //setReadingTime("");
                   setArticleSection("");
                   setLabel("");
                 }}
@@ -206,7 +206,7 @@ export default function AdminArticles() {
                     Title:
                     <input
                       type="text"
-                      className="outline outline-1"
+                      className="rounded-md ml-2"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                     />
@@ -223,15 +223,15 @@ export default function AdminArticles() {
                     />
                   </label>
 
-                  <label>
+                  {/*<label>
                     Reading Time:
                     <input
                       type="text"
-                      className="outline outline-1"
+                      className="rounded-md ml-2"
                       value={readingTime}
                       onChange={(e) => setReadingTime(e.target.value)}
                     />
-                  </label>
+                  </label>*/}
 
                   <InputLabel id="articleSectionLabel">
                     Article Section
@@ -253,7 +253,7 @@ export default function AdminArticles() {
                     Label:
                     <input
                       type="text"
-                      className="outline outline-1"
+                      className="rounded-md ml-2"
                       value={label}
                       onChange={(e) => setLabel(e.target.value)}
                     />
@@ -261,7 +261,7 @@ export default function AdminArticles() {
 
                   <button
                     type="submit"
-                    className="p-2 bg-blue-400 hover:bg-blue-500 w-min rounded-[30px]"
+                    className="p-2 bg-green-400 hover:bg-green-500 w-min rounded-[30px]"
                   >
                     Submit
                   </button>
@@ -288,11 +288,13 @@ export default function AdminArticles() {
                     key={article._id}
                     onMouseEnter={() => handleArticleMouseEnter(article._id)}
                     onMouseLeave={() => handleArticleMouseLeave(article._id)}
-                    className="p-2 bg-gray-200 rounded-lg cursor-pointer min-w-[250px] min-h-[90px]"
+                    className="p-2 bg-gray-200 rounded-lg cursor-pointer min-w-[300px] min-h-[120px]"
                   >
                     <strong>{article.title} </strong>
                     <br />
-                    <i>{article.section.title}</i>
+                    <div>{article.section.title}</div>
+
+
                     <div className="flex space-x-4 mt-2">
                       {articleHoverStates[article._id] && (
                         <Link to={`/admin/updateArticle/${article._id}`}>
@@ -312,8 +314,11 @@ export default function AdminArticles() {
                         </button>
                       )}
                     </div>
+                   
                   </div>
+                  
                 ))}
+                
             </div>
           </div>
 
@@ -340,16 +345,16 @@ export default function AdminArticles() {
                 onSubmit={handleSubmitArticleSection}
               >
                 <div className="flex space-x-3">
-                  <label>title:</label>
+                  <label className="my-auto">title:</label>
                   <input
-                    className="outline outline-1"
+                    className="outline outline-1 rounded-md p-2"
                     value={articleSectionTitle}
                     onChange={(e) => setArticleSectionTitle(e.target.value)}
                   />
                 </div>
 
                 <div className="flex space-x-3">
-                  <label>Image clicked:</label>
+                  <label className="my-auto">Image clicked:</label>
                   <input
                     type="file"
                     accept=".jpg, .jpeg, .png, .svg"
@@ -362,7 +367,7 @@ export default function AdminArticles() {
                 </div>
 
                 <div className="flex space-x-3">
-                  <label>Image: </label>
+                  <label className="my-auto">Image: </label>
                   <input
                     type="file"
                     accept=".jpg, .jpeg, .png, .svg"
@@ -397,7 +402,7 @@ export default function AdminArticles() {
               {articleSections.map((articleSection) => (
                 <div
                   key={articleSection._id}
-                  className="p-2 bg-gray-200 rounded-xl min-w-[400px] min-h-[150px]"
+                  className="relative p-2 bg-gray-200 rounded-xl min-w-[400px] min-h-[150px]"
                   onMouseEnter={() =>
                     handleArticleSectionMouseEnter(articleSection._id)
                   }
@@ -428,7 +433,7 @@ export default function AdminArticles() {
                     </div>
                   </div>
 
-                  <div className="flex space-x-2 mt-4">
+                  <div className=" flex space-x-2 mt-4">
                     {articleSectionHoverStates[articleSection._id] && (
                       <Link
                         to={`/admin/updateArticleSection/${articleSection._id}`}

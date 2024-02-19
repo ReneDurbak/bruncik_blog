@@ -575,7 +575,7 @@ export default function SingleArticlePage() {
   minute: 'numeric',
   hour12: false
 })}</div>
-              <div className="text-gray-400">{article.readingTime} minutes</div>
+              {/*<div className="text-gray-400">{article.readingTime} minutes</div>*/}
               {/*npm modul na zobrazovanie casu -> date-fns*/}{" "}
             </div>
 
@@ -1128,7 +1128,7 @@ export default function SingleArticlePage() {
 
                   </div>
 
-                  <div className="mb-6 flex space-x-4">
+                  <div className="mb-6 flex space-x-4 max-w-full overflow-x-auto">
                   {
                     review.labels && review.labels.map((label) => (
                    

@@ -30,7 +30,7 @@ export default function AdminUpdateArticle() {
         setArticle(fetchedArticle);
         setTitle(fetchedArticle.title)
         setContent(fetchedArticle.content)
-        setReadingTime(fetchedArticle.readingTime)
+        //setReadingTime(fetchedArticle.readingTime)
         setLabel(fetchedArticle.label)
         setSection(fetchedArticle.section._id)
 
@@ -95,7 +95,7 @@ export default function AdminUpdateArticle() {
         {
           title,
           content,
-          readingTime,
+          //readingTime,
           section: selectedArticleSection[0],
           label,
         }
@@ -103,7 +103,7 @@ export default function AdminUpdateArticle() {
   
       setTitle("");
       setContent("");
-      setReadingTime("");
+      //setReadingTime("");
       setArticleSection("");
       setLabel("");
   
@@ -150,7 +150,7 @@ export default function AdminUpdateArticle() {
                 </div>
               </label>
 
-              <label>
+             {/* <label>
                 Reading Time:
                 <input
                   type="text"
@@ -159,7 +159,7 @@ export default function AdminUpdateArticle() {
                   value={readingTime}
                   onChange={(e) => setReadingTime(e.target.value)}
                 />
-              </label>
+              </label>*/}
 
               <InputLabel id="articleSectionLabel">Article Section</InputLabel>
       <Select

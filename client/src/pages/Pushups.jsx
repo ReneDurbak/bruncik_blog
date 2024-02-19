@@ -331,6 +331,21 @@ function Pushups() {
     });
   };
 
+  function extractVideoSrcFromIframe(iframeTag) {
+    const srcRegex = /src="([^"]*)"/;
+    
+    const match = iframeTag.match(srcRegex);
+  
+    if (match && match[1]) {
+      return match[1];
+    } else {
+      return null;
+    }
+  }
+  
+  
+
+
   if ((videos || notifications) === null) {
     return <p className="py-20">Loading...</p>;
   }
@@ -588,7 +603,7 @@ function Pushups() {
                   item ? (
                     <animated.div
                       style={style}
-                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl xl:top-[-5px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]"
+                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl xl:top-[-10px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]"
                     >
                       <div id="pushupsgallery">
                         <div
@@ -779,7 +794,9 @@ function Pushups() {
                                 <div>Milan</div>
                               </div>
                             </div>
+
                           </div>
+                          
                         </div>
                       </div>
                     </animated.div>
@@ -826,12 +843,12 @@ function Pushups() {
                   <div  className="relative aspect-[4/7] w-full rounded-t-[30px]" key={video._id}>
                    <iframe
                       className="aspect-[4/7] w-full rounded-t-[30px]"
-                      src={video.url_link}
+                      src={ extractVideoSrcFromIframe(video.url_link)}
                       allowFullScreen
                     />
                   
 
-                    <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 bg-[#242424] roun rounded-b-[30px]">
+                    <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#242424] rounded-b-[30px]">
                       <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
                         DAY {video.day_count}
                       </div>

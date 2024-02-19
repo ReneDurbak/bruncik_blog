@@ -13,7 +13,6 @@ const articleSchema = new Schema({
     },
     readingTime: {
         type: Number,
-        required: true
     },
     section:{
         type: Schema.Types.ObjectId,

@@ -9,7 +9,6 @@ const videoGallerySchema = mongoose.Schema({
     },
     image:{
         type: String,
-        require: true
     }
 }, {timestamps: true})
 

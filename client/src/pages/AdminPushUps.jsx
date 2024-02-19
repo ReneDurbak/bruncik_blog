@@ -9,7 +9,10 @@ export default function AdminPushUps() {
 
   const [videos, setVideos] = useState([])
   const [urlLink, setUrlLink] = useState('')
+  const [galleryUrlLink , setGalleryUrlLink] = useState('')
   const [isCreateVideo, setIsCreateVideo] = useState(false)
+  const [isCreateVideoGallery, setIsCreateVideoGallery] = useState(false)
+
 
   const [videoHoverStates, setVideoHoverStates] = useState({});
 
@@ -123,6 +126,24 @@ export default function AdminPushUps() {
   }, [])
 
 
+  const createVideoGallery = async(e) => {
+    e.preventDefault()
+    
+    try {
+      const response = await axios.post("http://localhost:4000/admin/videoGalleries/createVideoGallery", {
+        title:galleryUrlLink
+      })
+      fetchVideoGalleries()
+      setGalleryUrlLink('')
+
+ 
+    } catch (error) {
+      console.error('Cannot create video gallery:', error)
+
+    }
+  }
+
+
 
 
 
@@ -131,11 +152,9 @@ export default function AdminPushUps() {
   return (
     <div className='flex space-x-6'>
       <AdminSidePanel/>
-       <div className="w-full mt-10">
 
 
-
-
+       <div className="w-full mt-10 max-h-[1000px] overflow-y-auto">
 
         <div className="mt-10">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
@@ -149,7 +168,24 @@ export default function AdminPushUps() {
             }
           </div>
 
+          <button className={`${isCreateVideoGallery ? 'hidden' : 'block'} p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-4`} onClick={()=> setIsCreateVideoGallery(true)}>Add video gallery</button>
+        
+            <form onSubmit={createVideoGallery} className={`${isCreateVideoGallery ? 'block' : 'hidden'} flex justify-start mt-10 space-x-4`}>
+            
+            <div className='flex space-x-4'>
+              <label className='my-auto'>video gallery name:</label>
+            <input className='outline outline-2 px-2 rounded-md' onChange={(e) => setGalleryUrlLink(e.target.value)}/>
+            </div>
+
+            <div className='flex space-x-2'>
+            <button className='p-2 rounded-xl bg-gray-300 hover:bg-gray-400 ease-in-out duration-300' onClick={()=> setIsCreateVideoGallery(false)}>back</button>
+            <button type='submit' className='p-2 rounded-xl bg-green-400 hover:bg-green-500 ease-in-out duration-300' onClick={()=> setIsCreateVideoGallery(false)}>send</button>
+            </div>
+
+            </form>
+           
         </div>
+
 
 
 
@@ -162,7 +198,7 @@ export default function AdminPushUps() {
           <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
           { videos &&
             videos.map((video)=> (
-              <div className='relative rounded-lg bg-gray-200 p-4 min-h-[150px]' 
+              <div className='relative rounded-lg bg-gray-200 p-4 min-h-[150px] max-w-[400px]' 
                 key={video._id} 
                 onMouseEnter={() => handleVideoMouseEnter(video._id)}
                 onMouseLeave={() => handleVideoMouseLeave(video._id)}
@@ -185,7 +221,7 @@ export default function AdminPushUps() {
           }
         </div>
 
-        <button className={`${isCreateVideo ? 'hidden' : 'block'} p-2 bg-green-400 rounded-xl mt-4`} onClick={()=> setIsCreateVideo(true)}>Add video</button>
+        <button className={`${isCreateVideo ? 'hidden' : 'block'} p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-4`} onClick={()=> setIsCreateVideo(true)}>Add video</button>
 
 {
   isCreateVideo
@@ -193,7 +229,7 @@ export default function AdminPushUps() {
   <>
     <form onSubmit={handleCreateVideo} className="flex space-x-4 mt-8">
       <label className='my-auto'>Url link:</label>
-      <input name="video_url" type='text' value={urlLink} onChange={(e)=>setUrlLink(e.target.value)} />
+      <input  className='rounded-md' name="video_url" type='text' value={urlLink} onChange={(e)=>setUrlLink(e.target.value)} />
     
 
     <div className="flex space-x-2 mt-8">

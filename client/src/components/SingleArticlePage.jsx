@@ -1128,11 +1128,11 @@ export default function SingleArticlePage() {
 
                   </div>
 
-                  <div className="mb-6 flex space-x-4 max-w-full overflow-x-auto">
+                  <div className="mb-6 flex space-x-4 max-w-full overflow-x-auto py-4">
                   {
                     review.labels && review.labels.map((label) => (
                    
-                      <div className="p-2 bg-black text-white rounded-lg" key={label}>{label}</div>
+                      <div className="p-2 bg-black text-white rounded-lg whitespace-nowrap" key={label}>{label}</div>
                     
                     ))
                   }

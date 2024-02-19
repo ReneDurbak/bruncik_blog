@@ -796,7 +796,7 @@ function Pushups() {
                             </div>
 
                           </div>
-                          
+
                         </div>
                       </div>
                     </animated.div>
@@ -819,6 +819,9 @@ function Pushups() {
                 Filter
               </div>
               <Select
+               MenuProps={{
+                disableScrollLock: true,
+              }}
                 id="pushUpsSelect"
                 value={selected}
                 onChange={(e) => {

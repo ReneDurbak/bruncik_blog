@@ -68,7 +68,6 @@ export default function AdminUpdateArticle() {
 
   const handleArticleSectionChange = (sectionId) => {
     setSection(sectionId)
-
   };
 
   const handleSetArticleSection= (sectionId) => {
@@ -117,19 +116,19 @@ export default function AdminUpdateArticle() {
     <div className="flex space-x-6">
       <AdminSidePanel />
 
-      <div>
+      <div className="mt-8 w-full max-h-[1027px] overflow-y-auto">
         <Link to="/admin/articles"><button className="p-2 rounded-xl bg-gray-200 hover:bg-gray-400 ease-in-out duration-300 my-2 cursor-pointer">Back</button></Link>
         {article && (
           <>
             <form
-              className="flex flex-col space-y-4"
+              className="flex flex-col space-y-4 mt-8"
               onSubmit={handleUpdateArticle}
             >
               <label>
                 Title:
                 <input
                   type="text"
-                  className="outline outline-1"
+                  className="rounded-md ml-2 w-[25%]"
                   placeholder={article.title}
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -168,6 +167,7 @@ export default function AdminUpdateArticle() {
         value={section}
         displayEmpty
         onChange={(e) => {handleArticleSectionChange(e.target.value); handleSetArticleSection(e.target.value)}}
+        className='w-[25%]'
       >
         {articleSections && articleSections.map((section) => (
           <MenuItem key={section._id} value={section._id}>
@@ -181,7 +181,7 @@ export default function AdminUpdateArticle() {
                 Label:
                 <input
                   type="text"
-                  className="outline outline-1"
+                  className="ml-2 rounded-md"
                   placeholder={article.label}
                   value={label}
                   onChange={(e) => setLabel(e.target.value)}

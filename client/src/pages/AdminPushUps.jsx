@@ -1,18 +1,16 @@
-import {useState, useEffect} from 'react'
-import AdminSidePanel from '../components/AdminSidePanel'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-import {io} from 'socket.io-client'
-
+import { useState, useEffect } from "react";
+import AdminSidePanel from "../components/AdminSidePanel";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { io } from "socket.io-client";
+import { Select, InputLabel, MenuItem } from "@mui/material";
 
 export default function AdminPushUps() {
-
-  const [videos, setVideos] = useState([])
-  const [urlLink, setUrlLink] = useState('')
-  const [galleryUrlLink , setGalleryUrlLink] = useState('')
-  const [isCreateVideo, setIsCreateVideo] = useState(false)
-  const [isCreateVideoGallery, setIsCreateVideoGallery] = useState(false)
-
+  const [videos, setVideos] = useState([]);
+  const [urlLink, setUrlLink] = useState("");
+  const [galleryUrlLink, setGalleryUrlLink] = useState("");
+  const [isCreateVideo, setIsCreateVideo] = useState(false);
+  const [isCreateVideoGallery, setIsCreateVideoGallery] = useState(false);
 
   const [videoHoverStates, setVideoHoverStates] = useState({});
 
@@ -28,22 +26,23 @@ export default function AdminPushUps() {
     }));
   };
 
-  const fetchVideos = async() => {
+  const fetchVideos = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/admin/videos/getAllVideos")
-      const fetchedVideos = response.data
+      const response = await axios.get(
+        "http://localhost:4000/admin/videos/getAllVideos"
+      );
+      const fetchedVideos = response.data;
 
-      setVideos(fetchedVideos)
+      setVideos(fetchedVideos);
     } catch (error) {
-      console.error('Cannot fetch videos:', error)
+      console.error("Cannot fetch videos:", error);
     }
-  }
-
+  };
 
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:4000');
+    const newSocket = io("http://localhost:4000");
     setSocket(newSocket);
 
     return () => {
@@ -55,94 +54,125 @@ export default function AdminPushUps() {
 
   const sendToSocket = () => {
     if (socket) {
-      const message = videos.length > 0
-        ? `New video posted! On day count: ${videos.slice(-1)[0].day_count + 1}!`
-        : 'New video posted! On day count: 1!';
-      socket.emit('videoCreated', { message, createdAt: new Date() });
+      const message =
+        videos.length > 0
+          ? `New video posted! On day count: ${
+              videos.slice(-1)[0].day_count + 1
+            }!`
+          : "New video posted! On day count: 1!";
+      socket.emit("videoCreated", { message, createdAt: new Date() });
     }
-  }
+  };
+
+  const [videoGallerySelect, setVideoGallerySelect] = useState(null);
+
+  const handleGallerySelectChange = (event) => {
+    setVideoGallerySelect(event.target.value);
+  };
 
 
-  const handleCreateVideo = async(e) => {
-    e.preventDefault()
+  const handleCreateVideo = async (e) => {
+    e.preventDefault();
 
     try {
       const response = await axios.post(
-        'http://localhost:4000/admin/videos/postVideo', 
+        "http://localhost:4000/admin/videos/postVideo",
         {
           url_link: urlLink,
+          video_gallery: videoGallerySelect,
         }
-      )
+      );
 
-      fetchVideos() 
+      fetchVideos();
 
-      setUrlLink('')
-      setIsCreateVideo(false)
+      setUrlLink("");
+      setVideoGallerySelect(null)
+      setIsCreateVideo(false);
 
-      sendToSocket()
-
-
+      sendToSocket();
     } catch (error) {
-      console.error('Cannot create a video:', error)
+      console.error("Cannot create a video:", error);
     }
-  }
+  };
 
-
-
-  const deleteVideo = async(id) => {
+  const deleteVideo = async (id) => {
     try {
-      const deletedVideo = await axios.delete(`http://localhost:4000/admin/videos/deleteVideo/${id}`)
-      fetchVideos()
-
+      const deletedVideo = await axios.delete(
+        `http://localhost:4000/admin/videos/deleteVideo/${id}`
+      );
+      fetchVideos();
     } catch (error) {
-      console.error('Cannot delete video:', error)
-    } 
-  }
-
-
-
-  useEffect(()=>{
-    fetchVideos()
-  }, [])
-
-
-
-  const [videoGallery, setVideoGallery] = useState([])
-
-
-  const fetchVideoGalleries = async() => {
-    try {
-      const response = await axios.get("http://localhost:4000/admin/videoGalleries/getAllVideoGalleries")
-      const fetchedVideoGalleries = response.data
-
-      setVideoGallery(fetchedVideoGalleries)
-    } catch (error) {
-      console.error('Cannot fetch videos:', error)
+      console.error("Cannot delete video:", error);
     }
-  }
+  };
 
-  useEffect(()=>{
-    fetchVideoGalleries()
-  }, [])
+  useEffect(() => {
+    fetchVideos();
+  }, []);
+
+  const [videoGallery, setVideoGallery] = useState([]);
+
+  const fetchVideoGalleries = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:4000/admin/videoGalleries/getAllVideoGalleries"
+      );
+      const fetchedVideoGalleries = response.data;
+
+      setVideoGallery(fetchedVideoGalleries);
+    } catch (error) {
+      console.error("Cannot fetch videos:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchVideoGalleries();
+  }, []);
+
+  const handleCreateVideoGallery = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/admin/videoGalleries/createVideoGallery",
+        {
+          title: galleryUrlLink,
+        }
+      );
+
+      setGalleryUrlLink("");
+      fetchVideoGalleries();
+  
+    } catch (error) {
+      console.error("Cannot create video gallery:", error);
+    }
+  };
+
+  const [videoGalleryHoverStates, setVideoGalleryHoverStates] = useState({});
+
+  const handleVideoGalleryMouseEnter = (id) => {
+    setVideoGalleryHoverStates(() => ({
+      [id]: true,
+    }));
+  };
+
+  const handleVideoGalleryMouseLeave = (id) => {
+    setVideoGalleryHoverStates(() => ({
+      [id]: false,
+    }));
+  };
 
 
-  const createVideoGallery = async(e) => {
-    e.preventDefault()
+  const deleteVideoGallery = async(id) => {
     
     try {
-      const response = await axios.post("http://localhost:4000/admin/videoGalleries/createVideoGallery", {
-        title:galleryUrlLink
-      })
+      const response = await axios.delete(`http://localhost:4000/admin/videoGalleries/deleteVideoGallery/${id}`)
       fetchVideoGalleries()
-      setGalleryUrlLink('')
 
- 
     } catch (error) {
-      console.error('Cannot create video gallery:', error)
-
+      console.error(`error deleting video gallery: ${error.message}`)
     }
   }
-
 
 
 
@@ -150,103 +180,221 @@ export default function AdminPushUps() {
 
 
   return (
-    <div className='flex space-x-6'>
-      <AdminSidePanel/>
+    <div className="flex space-x-6">
+      <AdminSidePanel />
 
-
-       <div className="w-full mt-10 max-h-[1000px] overflow-y-auto">
-
+      <div className="w-full mt-10 max-h-[1000px] overflow-y-auto">
         <div className="mt-10">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
-          <div className="border-t-2 w-[20%] border-black" /> 
+          <div className="border-t-2 w-[20%] border-black" />
 
           <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
-            {
+            {videoGallery &&
               videoGallery.map((videoGallery) => (
-                <div key={videoGallery._id}> {videoGallery.title}</div>
-              ))
-            }
+                <div
+                  className="bg-gray-200 rounded-md p-2  min-h-[65px]"
+                  key={videoGallery._id}
+                  onMouseEnter={() =>
+                    handleVideoGalleryMouseEnter(videoGallery._id)
+                  }
+                  onMouseLeave={() =>
+                    handleVideoGalleryMouseLeave(videoGallery._id)
+                  }
+                >
+                  <span className="whitespace-nowrap flex space-x-2">
+                    <div>
+                      <strong>Gallery name:</strong>
+                    </div>{" "}
+                    <div>{videoGallery.title}</div>
+                  </span>
+
+                  
+                  <div className="flex space-x-4">
+                  {videoGalleryHoverStates[videoGallery._id] && (
+                    <Link to={`/admin/updateVideoGallery/${videoGallery._id}`}>
+                      <button className="p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-2">
+                        update
+                      </button>
+                    </Link>
+                  )}
+
+                  {videoGalleryHoverStates[videoGallery._id] && (
+                    <div>
+                      <button onClick={() => {deleteVideoGallery(videoGallery._id)} } className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-2">
+                        delete
+                      </button>
+                    </div>
+                  )}
+                  </div>
+
+
+                </div>
+              ))}
           </div>
 
-          <button className={`${isCreateVideoGallery ? 'hidden' : 'block'} p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-4`} onClick={()=> setIsCreateVideoGallery(true)}>Add video gallery</button>
-        
-            <form onSubmit={createVideoGallery} className={`${isCreateVideoGallery ? 'block' : 'hidden'} flex justify-start mt-10 space-x-4`}>
-            
-            <div className='flex space-x-4'>
-              <label className='my-auto'>video gallery name:</label>
-            <input className='outline outline-2 px-2 rounded-md' onChange={(e) => setGalleryUrlLink(e.target.value)}/>
+          <button
+            className={`${
+              isCreateVideoGallery ? "hidden" : "block"
+            } p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-4`}
+            onClick={() => setIsCreateVideoGallery(true)}
+          >
+            Add video gallery
+          </button>
+
+          <form
+            onSubmit={handleCreateVideoGallery}
+            className={`${
+              isCreateVideoGallery ? "block" : "hidden"
+            } flex justify-start mt-10 space-x-4`}
+          >
+            <div className="flex space-x-4">
+              <label className="my-auto">video gallery name:</label>
+              <input
+                className="outline outline-2 px-2 rounded-md"
+                value={galleryUrlLink}
+                onChange={(e) => setGalleryUrlLink(e.target.value)}
+              />
             </div>
 
-            <div className='flex space-x-2'>
-            <button className='p-2 rounded-xl bg-gray-300 hover:bg-gray-400 ease-in-out duration-300' onClick={()=> setIsCreateVideoGallery(false)}>back</button>
-            <button type='submit' className='p-2 rounded-xl bg-green-400 hover:bg-green-500 ease-in-out duration-300' onClick={()=> setIsCreateVideoGallery(false)}>send</button>
-            </div>
+            <div className="flex space-x-2">
+              <div
+                className="p-2 rounded-xl bg-gray-300 hover:bg-gray-400 ease-in-out duration-300"
+                onClick={() => {setIsCreateVideoGallery(false); setGalleryUrlLink('')}}
+              >
+                cancel
+              </div>
 
-            </form>
-           
+
+              <button
+                type="submit"
+                className="p-2 rounded-xl bg-green-400 hover:bg-green-500 ease-in-out duration-300"
+                onClick={() => setIsCreateVideoGallery(false)}
+              >
+                send
+              </button>
+            </div>
+          </form>
         </div>
 
-
-
-
-
-        <div className='mt-20'>
-        
-        <h1 className="mt-10 mb-2 text-3xl font-bold">Videos</h1>
-        <div className="border-t-2 w-[20%] border-black" />
+        <div className="mt-20">
+          <h1 className="mt-10 mb-2 text-3xl font-bold">Videos</h1>
+          <div className="border-t-2 w-[20%] border-black" />
 
           <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
-          { videos &&
-            videos.map((video)=> (
-              <div className='relative rounded-lg bg-gray-200 p-4 min-h-[150px] max-w-[400px]' 
-                key={video._id} 
-                onMouseEnter={() => handleVideoMouseEnter(video._id)}
-                onMouseLeave={() => handleVideoMouseLeave(video._id)}
-              >
-                <div><strong>video link:</strong> {video.url_link}</div>
-                <p><strong>day count:</strong> {video.day_count}</p>
-                
-                <div className="flex space-x-4 mt-2">
-                  {
-                    videoHoverStates[video._id] && <Link to={`/admin/updateVideo/${video._id}`}><div className="p-2 cursor-pointer rounded-xl bg-green-200 duration-300 ease-in-out hover:bg-green-400">Update</div></Link> 
-                  }
-                  
-                  {videos.slice(-1)[0]._id === video._id && videoHoverStates[video._id] && (
-                  <div onClick={()=> deleteVideo(video._id)} className="p-2 cursor-pointer rounded-xl bg-red-200 duration-300 ease-in-out hover:bg-red-400">Delete</div>
-                )}
+            {videos &&
+              videos.map((video) => (
+                <div
+                  className="relative rounded-lg bg-gray-200 p-4 min-h-[150px] max-w-[400px]"
+                  key={video._id}
+                  onMouseEnter={() => handleVideoMouseEnter(video._id)}
+                  onMouseLeave={() => handleVideoMouseLeave(video._id)}
+                >
+                  <div>
+                    <strong>video link:</strong> {video.url_link}
                   </div>
-                
+                  <p>
+                    <strong>day count:</strong> {video.day_count}
+                  </p>
+                  <div className={`${video.video_gallery ? 'text-black' : 'text-red-400'}`}>
+                    <strong>Video Gallery: </strong>
+                    {
+                      video.video_gallery && videoGallery && videoGallery.find(
+                        (gallery) => gallery._id === video.video_gallery._id
+                      )?.title 
+                    }
+
+                    
+                      {video.video_gallery ? null : <div className="text-red-400">Missing video gallery!</div>}
+                    
+                  </div>
+
+                  <div className="flex space-x-4 mt-2">
+                    {videoHoverStates[video._id] && (
+                      <Link to={`/admin/updateVideo/${video._id}`}>
+                        <button className="p-2 cursor-pointer rounded-xl bg-green-400  hover:bg-green-600 duration-300 ease-in-out ">
+                          Update
+                        </button>
+                      </Link>
+                    )}
+
+                    {videos.slice(-1)[0]._id === video._id &&
+                      videoHoverStates[video._id] && (
+                        <div
+                          onClick={() => deleteVideo(video._id)}
+                          className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out "
+                        >
+                          Delete
+                        </div>
+                      )}
+                  </div>
                 </div>
-            ))
-          }
+              ))}
+          </div>
+
+          <button
+            className={`${
+              isCreateVideo ? "hidden" : "block"
+            } p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-4`}
+            onClick={() => setIsCreateVideo(true)}
+          >
+            Add video
+          </button>
+
+          {isCreateVideo ? (
+            <>
+              <form
+                onSubmit={handleCreateVideo}
+                className="mt-8 space-y-4 w-[250px]"
+              >
+                <div className="flex flex-col space-y-2">
+                  <div className="my-auto">Url link:</div>
+                  <input
+                    className="rounded-md"
+                    name="video_url"
+                    type="text"
+                    value={urlLink}
+                    onChange={(e) => setUrlLink(e.target.value)}
+                  />
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <label className="">Video gallery:</label>
+                  <Select
+                    id="videoGallerySelect"
+                    value={videoGallerySelect}
+                    onChange={handleGallerySelectChange}
+                  >
+                    {videoGallery &&
+                      videoGallery.map((videoGallery) => (
+                        <MenuItem
+                          key={videoGallery._id}
+                          value={videoGallery._id}
+                        >
+                          {videoGallery.title}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </div>
+
+                <div className="flex space-x-2 mt-8">
+                  <button
+                    onClick={() => {
+                      setIsCreateVideo(false);
+                      setUrlLink("");
+                    }}
+                    className="p-2 rounded-xl bg-gray-200"
+                  >
+                    cancel
+                  </button>
+                  <button type="submit" className="p-2 rounded-xl bg-green-200">
+                    send
+                  </button>
+                </div>
+              </form>
+            </>
+          ) : null}
         </div>
-
-        <button className={`${isCreateVideo ? 'hidden' : 'block'} p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-4`} onClick={()=> setIsCreateVideo(true)}>Add video</button>
-
-{
-  isCreateVideo
-  ?
-  <>
-    <form onSubmit={handleCreateVideo} className="flex space-x-4 mt-8">
-      <label className='my-auto'>Url link:</label>
-      <input  className='rounded-md' name="video_url" type='text' value={urlLink} onChange={(e)=>setUrlLink(e.target.value)} />
-    
-
-    <div className="flex space-x-2 mt-8">
-      <button onClick={()=> {setIsCreateVideo(false); setUrlLink('')} } className="p-2 rounded-xl bg-gray-200">cancel</button>
-      <button type='submit' className="p-2 rounded-xl bg-green-200">send</button>
+      </div>
     </div>
-    </form>
-  </>
-  : null
-}
-        </div>
-
-
-
-       </div>
-    </div>
-  )
-
-
+  );
 }

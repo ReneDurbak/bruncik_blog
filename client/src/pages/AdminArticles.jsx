@@ -9,7 +9,6 @@ import { Select, MenuItem, InputLabel } from "@mui/material";
 export default function AdminArticles() {
   const [articles, setArticles] = useState([]);
   const [articleSections, setArticleSections] = useState([]);
-  const [articleSection, setArticleSection] = useState("");
   const [section, setSection] = useState(null);
 
   const fetchArticles = async () => {
@@ -43,7 +42,6 @@ export default function AdminArticles() {
   }, []);
 
   const handleArticleSectionChange = (event) => {
-    setArticleSection(event.target.value);
     setSection(event.target.value);
   };
 
@@ -84,8 +82,10 @@ export default function AdminArticles() {
       setTitle("");
       setContent("");
       //setReadingTime("");
-      setArticleSection("");
+
+      setSection(null)
       setLabel("");
+      setCreateArticle(false)
     } catch (error) {
       console.error("Error posting an article: ", error.message);
     }
@@ -157,6 +157,7 @@ export default function AdminArticles() {
       imageInput.current.value = "";
       setArticleSectionImageClicked();
       imageInputClicked.current.value = "";
+      setCreateArticleSection(false)
     } catch (error) {
       console.error("Error posting an article section", error.message);
     }
@@ -239,7 +240,7 @@ export default function AdminArticles() {
                   <Select
                     labelId="articleSectionLabel"
                     id="articleSectionSelect"
-                    value={articleSection}
+                    value={section}
                     onChange={handleArticleSectionChange}
                   >
                     {articleSections.map((section) => (
@@ -290,9 +291,10 @@ export default function AdminArticles() {
                     onMouseLeave={() => handleArticleMouseLeave(article._id)}
                     className="p-2 bg-gray-200 rounded-lg cursor-pointer min-w-[300px] min-h-[120px]"
                   >
-                    <strong>{article.title} </strong>
+                    <strong  className={`${article.section ? 'text-black' : 'text-red-400'}`}>{article.title} </strong>
+                    {article.section ? null : <div className="text-red-400">Missing article section!</div>}
                     <br />
-                    <div>{article.section.title}</div>
+                    <div>{article.section && article.section.title}</div>
 
 
                     <div className="flex space-x-4 mt-2">

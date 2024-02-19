@@ -13,6 +13,7 @@ import AdminArticles from './pages/AdminArticles.jsx';
 import AdminPushUps from './pages/AdminPushUps.jsx';
 import AdminUpdateArticle from './pages/AdminUpdateArticle.jsx';
 import AdminUpdateArticleSection from './pages/AdminUpdateArticleSection.jsx';
+import AdminUpdateVideoGallery from './pages/AdminUpdateVideoGallery.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx'
 import Profile from './components/Profile.jsx'
@@ -67,6 +68,7 @@ function App() {
               <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection />} />
               <Route path="/admin/push-ups" element={<AdminPushUps />} />
               <Route path="/admin/updateVideo/:id" element={<AdminUpdateVideo/>}/>
+              <Route path="/admin/updateVideoGallery/:id" element={<AdminUpdateVideoGallery/>}/>
             </Route>
             
             <Route path="/login" element={<Login />} />

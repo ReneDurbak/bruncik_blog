@@ -15,10 +15,10 @@ const videosSchema = mongoose.Schema({
     video_gallery: {
         type: Schema.Types.ObjectId,
         ref: 'videoGallery',
-
+        required: true
     }
 
-});
+},{timestamps: true});
 
 videosSchema.pre('save', async function (next) {
     const highestDayCount = await this.constructor.findOne({}).sort('-day_count').exec();

@@ -9,7 +9,7 @@ const videoGallerySchema = mongoose.Schema({
     },
     image:{
         type: String,
-    }
+    },
 }, {timestamps: true})
 
 const videoGallery = mongoose.model('videoGallery', videoGallerySchema)

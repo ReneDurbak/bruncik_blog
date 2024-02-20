@@ -1,4 +1,6 @@
 const VideoGallery = require('../models/videoGallery')
+const fs = require('fs');
+const path = require('path');
 
 
 const getAllVideoGalleries = async(req, res) => {
@@ -51,10 +53,37 @@ const createVideoGallery = async(req, res) => {
 
 const updateVideoGallery = async(req, res) => {
     const {id} = req.params
+    const {title, goal} = req.body
+    const {filename} = req.file
+    const imageFilename = filename
+
+    const updateData = {}
+
+    updateData.title = title
+    updateData.goal = goal
+
 
     try {
 
-        const updatedVideoGallery = await VideoGallery.findOneAndUpdate({_id: id},{ ...req.body})
+        const currentVideoGallery = await VideoGallery.findById(id)
+
+        if(!currentVideoGallery){
+            res.status(404).json({error: `Video  gallery not found`})
+        }
+
+        if(imageFilename){
+            updateData.image = imageFilename
+
+            if(currentVideoGallery.image){
+                const imagePath = path.join('public/videoGallery', currentVideoGallery.image)
+                fs.unlinkSync(imagePath)
+            }
+        }
+
+        const updatedVideoGallery = await VideoGallery.findOneAndUpdate(
+            {_id: id}, 
+            updateData
+            )
 
         res.status(200).json(updatedVideoGallery)
 
@@ -69,6 +98,22 @@ const deleteVideoGallery = async(req, res) => {
     const {id} = req.params
 
     try {
+
+        const currentVideoGallery = await VideoGallery.findById(id)
+
+        if(!currentVideoGallery){
+            res.status(404).json({error: `Video  gallery not found`})
+        }
+
+
+
+            if(currentVideoGallery.image){
+                const imagePath = path.join('public/videoGallery', currentVideoGallery.image)
+                fs.unlinkSync(imagePath)
+            }
+
+        
+
         const deletedVideoGallery = await VideoGallery.findOneAndDelete({_id: id})
         res.status(200).json(deletedVideoGallery)
 

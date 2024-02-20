@@ -232,10 +232,10 @@ export default function AdminPushUps() {
 
 
   return (
-    <div className="flex space-x-6">
+    <div className="flex space-x-[300px]">
       <AdminSidePanel />
 
-      <div className="w-full mt-10 max-h-[900px] overflow-y-auto">
+      <div className="w-full mt-10">
         <div className="mt-10">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
           <div className="border-t-2 w-[20%] border-black" />
@@ -266,6 +266,10 @@ export default function AdminPushUps() {
                     </div>{" "}
                     <div>{videoGallery.goal}</div>
                   </span>
+
+                  <div className="">
+                    <img className="w-[50px] h-460px] rounded-[45%]" src={`http://localhost:4000/public/videoGallery/${videoGallery.image}`}/>
+                  </div>
 
                   
                   <div className="flex space-x-4">
@@ -389,7 +393,7 @@ export default function AdminPushUps() {
             {videos &&
               videos.map((video) => (
                 <div
-                  className="relative rounded-lg bg-gray-200 p-4  "
+                  className="relative rounded-lg bg-gray-200 p-4  max-w-[700px]"
                   key={video._id}
                   onMouseEnter={() => handleVideoMouseEnter(video._id)}
                   onMouseLeave={() => handleVideoMouseLeave(video._id)}

@@ -26,6 +26,8 @@ import DOMPurify from "dompurify";
 function Pushups() {
   const [PushUpsGallery, setPushUpsGallery] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null)
+  const [goal, setGoal] = useState(0)
+
 
   useEffect(() => {
     const fetchPushUpsGalleries = async () => {
@@ -36,6 +38,7 @@ function Pushups() {
         const fetchedVideoGalleries = response.data;
         setPushUpsGallery(fetchedVideoGalleries)
         setSelectedGallery(fetchedVideoGalleries && fetchedVideoGalleries[0]._id)
+        setGoal(fetchedVideoGalleries[0].goal)
 
       } catch (error) {
         console.error(`Cannot fetch push ups galleries: ${error.message}`);
@@ -252,7 +255,12 @@ function Pushups() {
       );
       const fetchedVideos = response.data;
 
+      const filteredGallery =  PushUpsGallery.filter((gallery) => gallery._id === selectedGallery)
+      console.log(filteredGallery)
+
       setVideos(selectedGallery.length === 0 ? fetchedVideos : fetchedVideos.filter((video) => video.video_gallery._id === selectedGallery));
+      setGoal( filteredGallery[0].goal)
+
 
     } catch (error) {
       console.error(error);
@@ -431,7 +439,7 @@ function Pushups() {
       </PushupsPopup>
 
       {/*Push-ups videos*/}
-      <div className=" 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 font-poppins">
+      <div className="relative 2xl:max-w-[1680px] py-[100px] max-w-[1380px] mx-auto 2xl:px-20 sm:px-10 px-6 font-poppins">
         <div className="bg-[url('/src/assets/pushupsvideosbg.png')] bg-cover xl:px-12 lg:px-8  sm:px-6 px-3 md:pt-14 pt-6 pb-10 lg:rounded-[50px] rounded-[20px]">
           {/*Notification and Push ups gallery container*/}
           <div className="flex justify-between ">
@@ -440,6 +448,7 @@ function Pushups() {
                 Explore
               </h1>
             </div>
+            <div className="font-bold text-5xl rotate-[-10deg] mt-4">Goal: {goal}</div>
             <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-8 space-x-4">
               {/*Notifications button*/}
               <div className="relative my-auto">

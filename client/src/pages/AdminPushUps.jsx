@@ -9,6 +9,7 @@ export default function AdminPushUps() {
   const [videos, setVideos] = useState([]);
   const [urlLink, setUrlLink] = useState("");
   const [galleryUrlLink, setGalleryUrlLink] = useState("");
+  const [goal, setGoal] = useState("");
   const [isCreateVideo, setIsCreateVideo] = useState(false);
   const [isCreateVideoGallery, setIsCreateVideoGallery] = useState(false);
 
@@ -170,10 +171,12 @@ export default function AdminPushUps() {
         "http://localhost:4000/admin/videoGalleries/createVideoGallery",
         {
           title: galleryUrlLink,
+          goal
         }
       );
 
       setGalleryUrlLink("");
+      setGoal("")
       fetchVideoGalleries();
   
     } catch (error) {
@@ -245,6 +248,13 @@ export default function AdminPushUps() {
                     <div>{videoGallery.title}</div>
                   </span>
 
+                  <span className="whitespace-nowrap flex space-x-2">
+                    <div>
+                      <strong>Goal:</strong>
+                    </div>{" "}
+                    <div>{videoGallery.goal}</div>
+                  </span>
+
                   
                   <div className="flex space-x-4">
                   {videoGalleryHoverStates[videoGallery._id] && (
@@ -282,14 +292,23 @@ export default function AdminPushUps() {
             onSubmit={handleCreateVideoGallery}
             className={`${
               isCreateVideoGallery ? "block" : "hidden"
-            } flex justify-start mt-10 space-x-4`}
+            } flex flex-col mt-8 space-y-4`}
           >
             <div className="flex space-x-4">
               <label className="my-auto">video gallery name:</label>
               <input
-                className="outline outline-2 px-2 rounded-md"
+                className="outline outline-2 p-1 rounded-md"
                 value={galleryUrlLink}
                 onChange={(e) => setGalleryUrlLink(e.target.value)}
+              />
+            </div>
+
+            <div className="flex space-x-4">
+              <label className="my-auto">goal(number of days):</label>
+              <input
+                className="outline outline-2 p-1 rounded-md"
+                value={goal}
+                onChange={(e) => setGoal(e.target.value)}
               />
             </div>
 

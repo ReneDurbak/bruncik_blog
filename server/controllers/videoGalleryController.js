@@ -27,12 +27,13 @@ const getVideoGallery = async(req, res) => {
 
 
 const createVideoGallery = async(req, res) => {
-    const {title, image} = req.body
+    const {title, image, goal} = req.body
 
     try {
         const postedVideoGallery = await VideoGallery.create({
             title,
-            image
+            image,
+            goal
         })
 
         res.status(200).json(postedVideoGallery)

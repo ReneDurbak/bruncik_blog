@@ -257,7 +257,8 @@ function Pushups() {
       const fetchedVideos = response.data;
 
       const filteredGallery =  PushUpsGallery.filter((gallery) => gallery._id === selectedGallery)
-
+      
+      setImage(filteredGallery[0].image)
       setVideos(selectedGallery.length === 0 ? fetchedVideos : fetchedVideos.filter((video) => video.video_gallery._id === selectedGallery));
       setGoal( filteredGallery[0].goal)
 
@@ -618,11 +619,12 @@ function Pushups() {
                 )}
               </div>
 
+   
               {/*Push-ups gallery button*/}
               <div className="relative my-auto">
                 <img
                   src={`http://localhost:4000/public/videoGallery/${image}`}
-                  className="xl:w-[70px] lg:w-[54px] md:w-[50px] w-[36px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
+                  className="xl:w-[60px]  h-[55px]  lg:w-[54px] md:w-[50px] w-[36px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
                   onClick={() => setPushupsGalleryVisible(true)}
                   id="triggerpushupsgallery"
                 />
@@ -643,24 +645,25 @@ function Pushups() {
                               : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"
                           }`}
                         >
-                          {PushUpsGallery && PushUpsGallery.slice(0, 2).map((PushUpsGallery) => (
+                          {PushUpsGallery && PushUpsGallery.slice(0, 2).map((gallery) => (
                             <div
-                              key={PushUpsGallery._id}
+                              key={gallery._id}
                               onClick={() => {
                                 setPushupsGalleryVisible(false);
                                 setSwitchGallery(false);
-                                setSelectedGallery(PushUpsGallery._id)
+                                setSelectedGallery(gallery._id)
+                 
                               }}
                               className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-700 ease-in-out last:rounded-b-[30px]"
                             >
                               <div className="absolute sm:left-7 left-4">
                                 <img
-                                  src={`http://localhost:4000/public/videoGallery/${PushUpsGallery.image}`}
+                                  src={`http://localhost:4000/public/videoGallery/${gallery.image}`}
                                   className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px] rounded-[45%]"
                                 />
                               </div>
                               <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">
-                                {PushUpsGallery.title}
+                                {gallery.title}
                               </div>
                             </div>
                           ))}
@@ -711,12 +714,12 @@ function Pushups() {
                                   onClick={() => {
                                     setPushupsGalleryVisible(false);
                                     setSwitchGallery(false);
-                                    setSelectedGallery(PushUpsGallery._id)
+                                    setSelectedGallery(gallery._id)
                                   }}
                                 >
                          
                                   <img 
-                                    src={`http://localhost:4000/public/videoGallery/${PushUpsGallery[0].image}`} 
+                                    src={`http://localhost:4000/public/videoGallery/${gallery.image}`} 
                                     className="xl:w-[40px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[45%] " 
                                   />
                                   <div className="my-auto">{gallery.title}</div>
@@ -767,7 +770,7 @@ function Pushups() {
           </div>
 
           <div className=" 2xl:pt-4 md:pt-10 pt-4 font-poppins">
-            <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
+            <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:min-h-[520px] 2xl:max-h-[800px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
               {videos &&
                 videos.map((video) => (
                   <div

@@ -101,6 +101,8 @@ const deleteArticleSection = async (req, res) => {
 
     try {
         const currentArticleSection = await ArticleSection.findById(id)
+       
+       
         if (!currentArticleSection) {
             return res.status(404).json({ error: "Article section not found" });
         }

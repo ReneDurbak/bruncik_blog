@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 
 router.get('/getAllVideoGalleries', getAllVideoGalleries)
 router.get('/getVideoGallery/:id', getVideoGallery)
-router.patch('/updateVideoGallery/:id', updateVideoGallery)
+router.patch('/updateVideoGallery/:id', upload.single("image"), updateVideoGallery)
 router.delete('/deleteVideoGallery/:id', deleteVideoGallery)
 router.post('/createVideoGallery', upload.single("image") ,createVideoGallery)
 

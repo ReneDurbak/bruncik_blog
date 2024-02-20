@@ -25,7 +25,7 @@ import DOMPurify from "dompurify";
 
 function Pushups() {
   const [PushUpsGallery, setPushUpsGallery] = useState([]);
-  const [selectedGallery, setSelectedGallery] = useState('')
+  const [selectedGallery, setSelectedGallery] = useState(null)
 
   useEffect(() => {
     const fetchPushUpsGalleries = async () => {
@@ -35,6 +35,7 @@ function Pushups() {
         );
         const fetchedVideoGalleries = response.data;
         setPushUpsGallery(fetchedVideoGalleries)
+        setSelectedGallery(fetchedVideoGalleries && fetchedVideoGalleries[0]._id)
 
       } catch (error) {
         console.error(`Cannot fetch push ups galleries: ${error.message}`);

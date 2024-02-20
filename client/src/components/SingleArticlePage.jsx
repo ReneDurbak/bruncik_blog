@@ -1123,7 +1123,7 @@ export default function SingleArticlePage() {
                         : 45,
                     }}
                   />
-                    <div className="mt-2"><strong>Comment: </strong>{review.comment}</div>
+                    <div className="mt-2"><strong>{review.comment.length === 0 ? '' : 'Comment:'} </strong>{review.comment}</div>
 
 
                   </div>

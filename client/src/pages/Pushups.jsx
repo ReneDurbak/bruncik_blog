@@ -624,7 +624,7 @@ function Pushups() {
               <div className="relative my-auto">
                 <img
                   src={`http://localhost:4000/public/videoGallery/${image}`}
-                  className="xl:w-[60px]  h-[55px]  lg:w-[54px] md:w-[50px] w-[36px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
+                  className="xl:w-[55px]  h-[55px]  lg:w-[54px] md:w-[50px] w-[36px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
                   onClick={() => setPushupsGalleryVisible(true)}
                   id="triggerpushupsgallery"
                 />

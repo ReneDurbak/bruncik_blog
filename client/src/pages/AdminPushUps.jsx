@@ -26,6 +26,8 @@ export default function AdminPushUps() {
     }));
   };
 
+  const [allVideos, setAllVideos] = useState([])
+
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
@@ -33,11 +35,17 @@ export default function AdminPushUps() {
       );
       const fetchedVideos = response.data;
 
-      setVideos(fetchedVideos);
+      setAllVideos(fetchedVideos)
+      setVideos(fetchedVideos.filter((video) => video.video_gallery._id === videoGallerySelect) );
+      
+
+
     } catch (error) {
       console.error("Cannot fetch videos:", error);
     }
   };
+
+  
 
   const [socket, setSocket] = useState(null);
 
@@ -64,20 +72,21 @@ export default function AdminPushUps() {
     }
   };
 
-  const [videoGallerySelect, setVideoGallerySelect] = useState(null);
 
-  const handleGallerySelectChange = (event) => {
-    setVideoGallerySelect(event.target.value);
-  };
 
 
   const [videoGallerySelectFilter, setVideoGallerySelectFilter] = useState(null);
-  console.log(videoGallerySelect)
 
   const handleGallerySelectFilterChange = (event) => {
     setVideoGallerySelectFilter(event.target.value);
   };
 
+
+  const [videoGallerySelect, setVideoGallerySelect] = useState(null);
+
+  const handleGallerySelectChange = (event) => {
+    setVideoGallerySelect(event.target.value);
+  };
 
 
 
@@ -92,14 +101,14 @@ export default function AdminPushUps() {
         "http://localhost:4000/admin/videos/postVideo",
         {
           url_link: urlLink,
-          video_gallery: videoGallerySelect,
+          video_gallery: videoGallerySelectFilter,
         }
       );
 
       fetchVideos();
 
       setUrlLink("");
-      setVideoGallerySelect(null)
+      setVideoGallerySelectFilter(null)
       setIsCreateVideo(false);
 
       sendToSocket();
@@ -121,7 +130,10 @@ export default function AdminPushUps() {
 
   useEffect(() => {
     fetchVideos();
-  }, []);
+  }, [videoGallerySelect]);
+
+
+
 
   const [videoGallery, setVideoGallery] = useState([]);
 
@@ -134,12 +146,15 @@ export default function AdminPushUps() {
 
 
       setVideoGallery(fetchedVideoGalleries);
-      setVideoGallerySelectFilter(fetchedVideoGalleries[0]._id)
+      //setVideoGallerySelect(fetchedVideoGalleries[0]._id)
 
     } catch (error) {
       console.error("Cannot fetch videos:", error);
     }
   };
+
+
+
 
 
 
@@ -183,6 +198,9 @@ export default function AdminPushUps() {
 
   const deleteVideoGallery = async(id) => {
     
+    const numberOfAssociatedVideos = allVideos.some((video) => (video.video_gallery._id === id))
+    
+    if(numberOfAssociatedVideos === false){
     try {
       const response = await axios.delete(`http://localhost:4000/admin/videoGalleries/deleteVideoGallery/${id}`)
       fetchVideoGalleries()
@@ -190,6 +208,7 @@ export default function AdminPushUps() {
     } catch (error) {
       console.error(`error deleting video gallery: ${error.message}`)
     }
+  }
   }
 
 
@@ -201,7 +220,7 @@ export default function AdminPushUps() {
     <div className="flex space-x-6">
       <AdminSidePanel />
 
-      <div className="w-full mt-10 max-h-[850px] overflow-y-auto">
+      <div className="w-full mt-10 max-h-[900px] overflow-y-auto">
         <div className="mt-10">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
           <div className="border-t-2 w-[20%] border-black" />
@@ -318,7 +337,7 @@ export default function AdminPushUps() {
             {videos &&
               videos.map((video) => (
                 <div
-                  className="relative rounded-lg bg-gray-200 p-4 min-h-[150px] max-w-[400px]"
+                  className="relative rounded-lg bg-gray-200 p-4  "
                   key={video._id}
                   onMouseEnter={() => handleVideoMouseEnter(video._id)}
                   onMouseLeave={() => handleVideoMouseLeave(video._id)}

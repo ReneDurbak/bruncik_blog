@@ -4,6 +4,8 @@ const ArticleSection = require("../models/articleSectionModel")
 
 
 
+
+
 const getAllArticleSections = async (req, res) => {
     try {
         const articleSections = await ArticleSection.find({}).sort({ createdAt: -1 })

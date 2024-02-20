@@ -27,12 +27,17 @@ const getVideoGallery = async(req, res) => {
 
 
 const createVideoGallery = async(req, res) => {
-    const {title, image, goal} = req.body
+    const {title, goal} = req.body
+    const {filename} = req.file
+    const imageFilename = filename
+
 
     try {
+
+
         const postedVideoGallery = await VideoGallery.create({
             title,
-            image,
+            image: imageFilename,
             goal
         })
 
@@ -48,9 +53,8 @@ const updateVideoGallery = async(req, res) => {
     const {id} = req.params
 
     try {
-        const updatedVideoGallery = await VideoGallery.findOneAndUpdate({_id: id}, {
-            ...req.body
-        })
+
+        const updatedVideoGallery = await VideoGallery.findOneAndUpdate({_id: id},{ ...req.body})
 
         res.status(200).json(updatedVideoGallery)
 

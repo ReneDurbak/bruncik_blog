@@ -11,7 +11,7 @@ const videoGallerySchema = mongoose.Schema({
         type: String,
     },
     goal:{
-        type: Number,
+        type: String,
         required: true
     }
 }, {timestamps: true})

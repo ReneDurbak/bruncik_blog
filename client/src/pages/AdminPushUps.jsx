@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AdminSidePanel from "../components/AdminSidePanel";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import { Select, InputLabel, MenuItem } from "@mui/material";
 
@@ -12,6 +12,8 @@ export default function AdminPushUps() {
   const [goal, setGoal] = useState("");
   const [isCreateVideo, setIsCreateVideo] = useState(false);
   const [isCreateVideoGallery, setIsCreateVideoGallery] = useState(false);
+  const imageInput = useRef(null)
+  const [image, setImage] = useState()
 
   const [videoHoverStates, setVideoHoverStates] = useState({});
 
@@ -167,17 +169,27 @@ export default function AdminPushUps() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:4000/admin/videoGalleries/createVideoGallery",
-        {
-          title: galleryUrlLink,
-          goal
-        }
-      );
+      const formData = new FormData()
 
+      formData.append("title", galleryUrlLink)
+      formData.append("image", image)
+      formData.append("goal", goal)
+
+
+      if(galleryUrlLink && goal && image){
+      await axios.post(
+        "http://localhost:4000/admin/videoGalleries/createVideoGallery",
+        formData,
+      );
+      }else{
+        return null
+      }
+
+
+      fetchVideoGalleries();
       setGalleryUrlLink("");
       setGoal("")
-      fetchVideoGalleries();
+      setImage()
   
     } catch (error) {
       console.error("Cannot create video gallery:", error);
@@ -306,11 +318,27 @@ export default function AdminPushUps() {
             <div className="flex space-x-4">
               <label className="my-auto">goal(number of days):</label>
               <input
+                type="number"
                 className="outline outline-2 p-1 rounded-md"
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
               />
             </div>
+
+
+            <div className="flex space-x-4">
+              <label className="my-auto">image:</label>
+              <input
+                className="outline outline-2 p-1 rounded-md"
+                type="file"
+                accept=".jpg, .jpeg, .png, .svg"
+                ref={imageInput}
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </div>
+
+
+
 
             <div className="flex space-x-2">
               <div
@@ -336,6 +364,8 @@ export default function AdminPushUps() {
           <h1 className="mt-10 mb-2 text-3xl font-bold">Videos</h1>
           <div className="border-t-2 mb-10 w-[20%] border-black" />
 
+          <div className="flex space-x-4">
+            <p className="my-auto">Choose gallery:</p>
           <Select
                     id="videoGallerySelect"
                     value={videoGallerySelect}
@@ -351,6 +381,9 @@ export default function AdminPushUps() {
                         </MenuItem>
                       ))}
                   </Select>
+                
+
+          </div>
 
           <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
             {videos &&

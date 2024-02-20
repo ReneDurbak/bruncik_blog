@@ -25,6 +25,8 @@ const Notification = require('./models/notificationsModel.js')
 
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/public/videoGallery', express.static(path.join(__dirname, 'public')));
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));

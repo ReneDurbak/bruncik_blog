@@ -144,7 +144,8 @@ export default function AdminArticles() {
       ) {
         await axios.post(
           `http://localhost:4000/admin/articleSections/createArticleSection`,
-          formData
+          formData,
+     
         );
       } else {
         return null;

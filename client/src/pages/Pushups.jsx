@@ -26,8 +26,8 @@ import DOMPurify from "dompurify";
 function Pushups() {
   const [PushUpsGallery, setPushUpsGallery] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null)
-  const [goal, setGoal] = useState(0)
-
+  const [goal, setGoal] = useState('')
+  const [image, setImage] = useState('')
 
   useEffect(() => {
     const fetchPushUpsGalleries = async () => {
@@ -39,6 +39,7 @@ function Pushups() {
         setPushUpsGallery(fetchedVideoGalleries)
         setSelectedGallery(fetchedVideoGalleries && fetchedVideoGalleries[0]._id)
         setGoal(fetchedVideoGalleries[0].goal)
+        setImage(fetchedVideoGalleries[0].image)
 
       } catch (error) {
         console.error(`Cannot fetch push ups galleries: ${error.message}`);
@@ -256,7 +257,6 @@ function Pushups() {
       const fetchedVideos = response.data;
 
       const filteredGallery =  PushUpsGallery.filter((gallery) => gallery._id === selectedGallery)
-      console.log(filteredGallery)
 
       setVideos(selectedGallery.length === 0 ? fetchedVideos : fetchedVideos.filter((video) => video.video_gallery._id === selectedGallery));
       setGoal( filteredGallery[0].goal)
@@ -619,11 +619,10 @@ function Pushups() {
               </div>
 
               {/*Push-ups gallery button*/}
-
               <div className="relative my-auto">
                 <img
-                  src={profilepicture}
-                  className="xl:w-[64px] lg:w-[54px] md:w-[50px] w-[36px] hover:scale-105 duration-300 ease-in-out cursor-pointer"
+                  src={`http://localhost:4000/public/videoGallery/${image}`}
+                  className="xl:w-[70px] lg:w-[54px] md:w-[50px] w-[36px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
                   onClick={() => setPushupsGalleryVisible(true)}
                   id="triggerpushupsgallery"
                 />
@@ -655,10 +654,10 @@ function Pushups() {
                               className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-700 ease-in-out last:rounded-b-[30px]"
                             >
                               <div className="absolute sm:left-7 left-4">
-                                {/* <img
-                                  src={PushUpsGallery.photo}
-                                  className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px]"
-                                />*/}
+                                <img
+                                  src={`http://localhost:4000/public/videoGallery/${PushUpsGallery.image}`}
+                                  className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px] rounded-[45%]"
+                                />
                               </div>
                               <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">
                                 {PushUpsGallery.title}
@@ -715,8 +714,12 @@ function Pushups() {
                                     setSelectedGallery(PushUpsGallery._id)
                                   }}
                                 >
-                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969]" />
-                                  <div>{gallery.title}</div>
+                         
+                                  <img 
+                                    src={`http://localhost:4000/public/videoGallery/${PushUpsGallery[0].image}`} 
+                                    className="xl:w-[40px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[45%] " 
+                                  />
+                                  <div className="my-auto">{gallery.title}</div>
                                 </div>
                               </div>
                             ))}

@@ -20,24 +20,29 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import axios from "axios";
 import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
-import {io} from 'socket.io-client'
-import DOMPurify from 'dompurify';
-
-
+import { io } from "socket.io-client";
+import DOMPurify from "dompurify";
 
 function Pushups() {
-  const PushupsGallery = [
-    {
-      name: "Peter's Push Ups Gallery",
-      id: 1,
-      photo: profilepicture,
-    },
-    {
-      name: "Teodor's Push Ups Gallery",
-      id: 2,
-      photo: profilepicture2,
-    },
-  ];
+  const [PushUpsGallery, setPushUpsGallery] = useState([]);
+  const [selectedGallery, setSelectedGallery] = useState('')
+
+  useEffect(() => {
+    const fetchPushUpsGalleries = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/admin/videoGalleries/getAllVideoGalleries"
+        );
+        const fetchedVideoGalleries = response.data;
+        setPushUpsGallery(fetchedVideoGalleries)
+
+      } catch (error) {
+        console.error(`Cannot fetch push ups galleries: ${error.message}`);
+      }
+    };
+
+    fetchPushUpsGalleries();
+  }, []);
 
   //Filter variables
   const [openSwitchGalleryGenres, setOpenSwitchGalleryGenres] = useState(false);
@@ -246,7 +251,8 @@ function Pushups() {
       );
       const fetchedVideos = response.data;
 
-      setVideos(fetchedVideos);
+      setVideos(selectedGallery.length === 0 ? fetchedVideos : fetchedVideos.filter((video) => video.video_gallery._id === selectedGallery));
+
     } catch (error) {
       console.error(error);
     }
@@ -254,7 +260,7 @@ function Pushups() {
 
   useEffect(() => {
     fetchVideos();
-  }, []);
+  }, [selectedGallery]);
 
   useEffect(() => {
     if (selected !== prevSelected) {
@@ -263,48 +269,57 @@ function Pushups() {
     }
   }, [selected, prevSelected]);
 
-
-
-
-
   function formatTime(dateString) {
     const date = new Date(dateString);
-    return `${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    return `${date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}`;
   }
-  
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     const monthNames = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
     const month = monthNames[date.getMonth()];
     const day = date.getDate();
     const year = date.getFullYear();
     return `${month} ${day}, ${year}`;
   }
-  
-  const [socket, setSocket] = useState(null)
-  const [notifications, setNotifications] = useState([]);
 
+  const [socket, setSocket] = useState(null);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/notifications/getAllNotifications');
+        const response = await axios.get(
+          "http://localhost:4000/notifications/getAllNotifications"
+        );
         const notifications = response.data;
         setNotifications(notifications);
       } catch (error) {
-        console.error('Error fetching notifications:', error);
+        console.error("Error fetching notifications:", error);
       }
     };
-  
-    fetchNotifications();
-  },[])
 
+    fetchNotifications();
+  }, []);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:4000');
+    const newSocket = io("http://localhost:4000");
     setSocket(newSocket);
 
     return () => {
@@ -314,37 +329,39 @@ function Pushups() {
     };
   }, []);
 
-
   useEffect(() => {
-    if(!socket) return
+    if (!socket) return;
     socket.on("receiveNotification", (data) => {
-      setNotifications((prevNotifications) => [data, ...prevNotifications ]);
-    })
-
-  },[socket])
-
+      setNotifications((prevNotifications) => [data, ...prevNotifications]);
+    });
+  }, [socket]);
 
   const useSafeHtml = (html) => {
     return DOMPurify.sanitize(html, {
-      ALLOWED_TAGS: ['iframe'],
-      ALLOWED_ATTR: ['src', 'allow', 'allowfullscreen', 'frameborder', 'height', 'width', 'title']
+      ALLOWED_TAGS: ["iframe"],
+      ALLOWED_ATTR: [
+        "src",
+        "allow",
+        "allowfullscreen",
+        "frameborder",
+        "height",
+        "width",
+        "title",
+      ],
     });
   };
 
   function extractVideoSrcFromIframe(iframeTag) {
     const srcRegex = /src="([^"]*)"/;
-    
+
     const match = iframeTag.match(srcRegex);
-  
+
     if (match && match[1]) {
       return match[1];
     } else {
       return null;
     }
   }
-  
-  
-
 
   if ((videos || notifications) === null) {
     return <p className="py-20">Loading...</p>;
@@ -361,7 +378,7 @@ function Pushups() {
       {/*Push-ups intro*/}
       <div className="bg-[url('/src//assets/pushupsintrobg.png')] bg-cover xl:py-[450px] md:py-[350px] py-[300px]" />
 
-     {/* {/*Popup*/}
+      {/* {/*Popup*/}
       <PushupsPopup trigger={timedPopup} setTrigger={setTimedPopup}>
         <div className="bg-white border-black xl:border-2 border-[1px] md:rounded-[35px] rounded-3xl xl:text-2xl lg:text-xl sm:text-[16px] text-[15px] flex justify-center items-center">
           <div className="max-w-full mx-auto lg:px-6 sm:px-6  px-4 lg:py-10 sm:py-6 pb-8  pt-8 text-center ">
@@ -433,13 +450,11 @@ function Pushups() {
                   }}
                   id="notificationsTrigger"
                 />
-              
-                  <div
-                    className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[20px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[20px]"
-                  >
-                  <div className="xl:text-base md:text-sm text-xs text-white">{notifications.length}</div>
-                 
-                  
+
+                <div className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[20px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[20px]">
+                  <div className="xl:text-base md:text-xs text-xs text-white">
+                    {notifications.length}
+                  </div>
                 </div>
                 {/*Notification window*/}
                 {notificationsTransition((style, item) =>
@@ -490,26 +505,32 @@ function Pushups() {
                           </div>
 
                           <div className="flex flex-col mt-4 pr-8 max-h-[150px] overflow-y-scroll">
-                          {notifications && notifications.map((notification, index) => (
-                                  <div key={index} className="flex space-x-4 my-2" >
+                            {notifications &&
+                              notifications.map((notification, index) => (
+                                <div
+                                  key={index}
+                                  className="flex space-x-4 my-2"
+                                >
                                   <div>
                                     <img
                                       src={profilepicture2}
                                       className="2xl:w-[48px] md:w-[40px] w-[32px] "
                                     />
                                   </div>
-    
+
                                   <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
                                     <div>{notification.message}</div>
                                     <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
-                                    <div>{formatTime(notification.createdAt)}</div>
-                                    <div>{formatDate(notification.createdAt)}</div>
+                                      <div>
+                                        {formatTime(notification.createdAt)}
+                                      </div>
+                                      <div>
+                                        {formatDate(notification.createdAt)}
+                                      </div>
                                     </div>
                                   </div>
-    
-                                
                                 </div>
-                                ))}
+                              ))}
                             {/*<div className="flex space-x-4 my-2">
                               <div>
                                 <img
@@ -603,7 +624,7 @@ function Pushups() {
                   item ? (
                     <animated.div
                       style={style}
-                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px]  shadow-2xl xl:top-[-10px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]"
+                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px] xl:top-[-10px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]"
                     >
                       <div id="pushupsgallery">
                         <div
@@ -613,41 +634,47 @@ function Pushups() {
                               : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"
                           }`}
                         >
-                          {PushupsGallery.map((PushupsGallery) => (
+                          {PushUpsGallery && PushUpsGallery.slice(0, 2).map((PushUpsGallery) => (
                             <div
-                              key={PushupsGallery.id}
+                              key={PushUpsGallery._id}
                               onClick={() => {
                                 setPushupsGalleryVisible(false);
                                 setSwitchGallery(false);
+                                setSelectedGallery(PushUpsGallery._id)
                               }}
-                              className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-700 ease-in-out"
+                              className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-700 ease-in-out last:rounded-b-[30px]"
                             >
                               <div className="absolute sm:left-7 left-4">
-                                <img
-                                  src={PushupsGallery.photo}
+                                {/* <img
+                                  src={PushUpsGallery.photo}
                                   className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px]"
-                                />
+                                />*/}
                               </div>
                               <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">
-                                {PushupsGallery.name}
+                                {PushUpsGallery.title}
                               </div>
                             </div>
                           ))}
-                          <div
-                            className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center md:rounded-b-[30px] rounded-b-[15px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-700 ease-in-out"
-                            onClick={() => {
-                              setSwitchGallery(true);
-                            }}
-                          >
-                            <img
-                              src={SwitchGalleryIcon}
-                              className="absolute sm:left-9 left-5 hover:scale-110 duration-300 ease-in-out xl:w-[58px] lg:w-[44px] sm:w-[36px] w-[20px]"
-                            />
-                            <div className="absolute lg:left-[90px] sm:left-[50px] left-[15px]">
-                              Switch to another gallery
+                          {PushUpsGallery.length > 2 ? (
+                            <div
+                              className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center md:rounded-b-[30px] rounded-b-[15px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-700 ease-in-out"
+                              onClick={() => {
+                                setSwitchGallery(true);
+                              }}
+                            >
+                              <img
+                                src={SwitchGalleryIcon}
+                                className="absolute sm:left-9 left-5 hover:scale-110 duration-300 ease-in-out xl:w-[58px] lg:w-[44px] sm:w-[36px] w-[20px]"
+                              />
+
+                              <div className="absolute lg:left-[90px] sm:left-[50px] left-[15px]">
+                                Switch to another gallery
+                              </div>
                             </div>
-                          </div>
+                          ) : null}
                         </div>
+
+
 
                         <div
                           className={`${
@@ -665,138 +692,25 @@ function Pushups() {
                                 }
                               }}
                             />
-                            <div className=" cursor-pointer">
+                            {PushUpsGallery && PushUpsGallery.slice(2).map((gallery) => (
                               <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
+                                key={gallery._id}
+                                className=" cursor-pointer"
                               >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969]" />
-                                <div>Milan</div>
+                                <div
+                                  className="flex md:space-x-2 space-x-1"
+                                  onClick={() => {
+                                    setPushupsGalleryVisible(false);
+                                    setSwitchGallery(false);
+                                    setSelectedGallery(PushUpsGallery._id)
+                                  }}
+                                >
+                                  <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969]" />
+                                  <div>{gallery.title}</div>
+                                </div>
                               </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div
-                                className="flex md:space-x-2 space-x-1"
-                                onClick={() => {
-                                  setPushupsGalleryVisible(false);
-                                  setSwitchGallery(false);
-                                }}
-                              >
-                                <div className="accent-gray-400 xl:w-[25px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[30px] bg-[#696969] cursor-pointer" />
-                                <div>Milan</div>
-                              </div>
-                            </div>
-
+                            ))}
                           </div>
-
                         </div>
                       </div>
                     </animated.div>
@@ -819,9 +733,9 @@ function Pushups() {
                 Filter
               </div>
               <Select
-               MenuProps={{
-                disableScrollLock: true,
-              }}
+                MenuProps={{
+                  disableScrollLock: true,
+                }}
                 id="pushUpsSelect"
                 value={selected}
                 onChange={(e) => {
@@ -843,13 +757,15 @@ function Pushups() {
             <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:max-h-[700px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
               {videos &&
                 videos.map((video) => (
-                  <div  className="relative aspect-[4/7] w-full rounded-t-[30px]" key={video._id}>
-                   <iframe
+                  <div
+                    className="relative aspect-[4/7] w-full rounded-t-[30px]"
+                    key={video._id}
+                  >
+                    <iframe
                       className="aspect-[4/7] w-full rounded-t-[30px]"
-                      src={ extractVideoSrcFromIframe(video.url_link)}
+                      src={extractVideoSrcFromIframe(video.url_link)}
                       allowFullScreen
                     />
-                  
 
                     <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#242424] rounded-b-[30px]">
                       <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">

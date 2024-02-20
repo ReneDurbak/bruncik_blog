@@ -71,6 +71,19 @@ export default function AdminPushUps() {
   };
 
 
+  const [videoGallerySelectFilter, setVideoGallerySelectFilter] = useState(null);
+  console.log(videoGallerySelect)
+
+  const handleGallerySelectFilterChange = (event) => {
+    setVideoGallerySelectFilter(event.target.value);
+  };
+
+
+
+
+
+
+
   const handleCreateVideo = async (e) => {
     e.preventDefault();
 
@@ -119,11 +132,16 @@ export default function AdminPushUps() {
       );
       const fetchedVideoGalleries = response.data;
 
+
       setVideoGallery(fetchedVideoGalleries);
+      setVideoGallerySelectFilter(fetchedVideoGalleries[0]._id)
+
     } catch (error) {
       console.error("Cannot fetch videos:", error);
     }
   };
+
+
 
   useEffect(() => {
     fetchVideoGalleries();
@@ -183,7 +201,7 @@ export default function AdminPushUps() {
     <div className="flex space-x-6">
       <AdminSidePanel />
 
-      <div className="w-full mt-10 max-h-[1000px] overflow-y-auto">
+      <div className="w-full mt-10 max-h-[850px] overflow-y-auto">
         <div className="mt-10">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
           <div className="border-t-2 w-[20%] border-black" />
@@ -278,7 +296,23 @@ export default function AdminPushUps() {
 
         <div className="mt-20">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Videos</h1>
-          <div className="border-t-2 w-[20%] border-black" />
+          <div className="border-t-2 mb-10 w-[20%] border-black" />
+
+          <Select
+                    id="videoGallerySelect"
+                    value={videoGallerySelect}
+                    onChange={handleGallerySelectChange}
+                  >
+                    {videoGallery &&
+                      videoGallery.map((videoGallery) => (
+                        <MenuItem
+                          key={videoGallery._id}
+                          value={videoGallery._id}
+                        >
+                          {videoGallery.title}
+                        </MenuItem>
+                      ))}
+                  </Select>
 
           <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
             {videos &&
@@ -361,8 +395,9 @@ export default function AdminPushUps() {
                   <label className="">Video gallery:</label>
                   <Select
                     id="videoGallerySelect"
-                    value={videoGallerySelect}
-                    onChange={handleGallerySelectChange}
+                    value={videoGallerySelectFilter}
+                    onChange={handleGallerySelectFilterChange}
+                    displayEmpty
                   >
                     {videoGallery &&
                       videoGallery.map((videoGallery) => (

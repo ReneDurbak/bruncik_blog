@@ -58,7 +58,7 @@ export default function AdminUpdateArticleSection() {
   };
 
   return (
-    <div className="flex space-x-6">
+    <div className="flex space-x-[300px]">
       <AdminSidePanel />
       <div className="w-full">
         <Link to="/admin/articles">

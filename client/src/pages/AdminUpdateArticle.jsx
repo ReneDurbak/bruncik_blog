@@ -113,10 +113,10 @@ export default function AdminUpdateArticle() {
   };
 
   return (
-    <div className="flex space-x-6">
+    <div className="flex space-x-[300px]">
       <AdminSidePanel />
 
-      <div className="mt-8 w-full max-h-[1027px] overflow-y-auto">
+      <div className="mt-8 w-full ">
         <Link to="/admin/articles"><button className="p-2 rounded-xl bg-gray-200 hover:bg-gray-400 ease-in-out duration-300 my-2 cursor-pointer">Back</button></Link>
         {article && (
           <>

@@ -22,6 +22,8 @@ export default function AdminUpdateVideoGallery() {
       setVideoGallery(fetchedVideoGallery);
       setGalleryTitle(fetchedVideoGallery.title);
       setGoal(parseInt(fetchedVideoGallery.goal));
+      setImage(fetchedVideoGallery.image)
+
 
 
     } catch (error) {

@@ -54,14 +54,17 @@ const createVideoGallery = async(req, res) => {
 const updateVideoGallery = async(req, res) => {
     const {id} = req.params
     const {title, goal} = req.body
-    const {filename} = req.file
-    const imageFilename = filename
+    let imageFilename 
 
     const updateData = {}
 
-    updateData.title = title
-    updateData.goal = goal
-
+    
+    if (title) {
+        updateData.title = title;
+    }
+    if (goal) {
+        updateData.goal = goal;
+    }
 
     try {
 
@@ -71,6 +74,10 @@ const updateVideoGallery = async(req, res) => {
             res.status(404).json({error: `Video  gallery not found`})
         }
 
+        if(req.file){
+            imageFilename = req.file.filename
+            updateData.image = imageFilename
+            
         if(imageFilename){
             updateData.image = imageFilename
 
@@ -80,9 +87,12 @@ const updateVideoGallery = async(req, res) => {
             }
         }
 
+    }
+
         const updatedVideoGallery = await VideoGallery.findOneAndUpdate(
             {_id: id}, 
-            updateData
+            updateData,
+            {new: true}
             )
 
         res.status(200).json(updatedVideoGallery)

@@ -180,7 +180,7 @@ export default function AdminArticles() {
       <div className="flex space-x-[300px]">
         <AdminSidePanel />
 
-        <div className="overflow-y-auto w-full text-left  mt-10">
+        <div className="overflow-y-auto w-full text-left  mt-10 mb-20">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Articles</h1>
           <div className="border-t-2 w-[16%] border-black" />
           {createArticle ? (

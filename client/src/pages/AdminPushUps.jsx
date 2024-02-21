@@ -235,7 +235,7 @@ export default function AdminPushUps() {
     <div className="flex space-x-[300px]">
       <AdminSidePanel />
 
-      <div className="w-full mt-10">
+      <div className="w-full mt-10 mb-20">
         <div className="mt-10">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
           <div className="border-t-2 w-[20%] border-black" />

@@ -441,7 +441,7 @@ function About() {
                     <h1 className="2xl:text-9xl lg:text-7xl md:text-6xl text-[40px] text-center lg:text-left font-bold 2xl:pl-[150px] lg:pl-10 uppercase">Movement</h1>
                     <img className="lg:float-left 2xl:mt-6 xl:mt-10 mt-12 2xl:pl-[110px] 2xl:mr-16 lg:mr-10 2xl:w-auto xl:w-[650px] lg:w-[450px] md:w-[700px] mx-auto"
                         src={movementImage}/>
-                    <div className="2xl:pr-[150px]  2xl:text-[22px] xl:text-lg lg:text-base text-base 2xl:leading-8 2xl:mt-8 xl:mt-10 lg:mt-10 mt-6 text-justify lg:text-left">
+                    <div className="2xl:pr-[0px]  2xl:text-[20px] xl:text-lg lg:text-base text-base 2xl:leading-8 2xl:mt-8 xl:mt-10 lg:mt-10 mt-6 text-justify lg:text-left">
                     Movement is definitely one of my values. But why movement? And what do we mean by it? Some might ask: 'Why movement? We move all the time, isn't that a normal part of our lives? So why should it be something special? Personally, I think yes, you're right, movement should be a natural part of our lives. However, I know from personal experience that we move much less these days than our ancestors did. Although our fast-paced and hectic lives bring us many conveniences that make our lives easier, we often don't even have to get out of our seats. However, in this section I want to focus on developing your physical health. To focus more on how we can live a more active and fulfilling life and how we can work on ourselves. This section is going to be full of movement, excitement, tips and tricks on how to improve your physical fitness, put on muscle or ultimately feel much better in your body.                    </div>
                 </div>
 

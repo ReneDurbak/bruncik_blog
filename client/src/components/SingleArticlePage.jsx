@@ -531,7 +531,7 @@ export default function SingleArticlePage() {
     };
 
     fetchArticles();
-  }, []);
+  }, [id]);
 
 
 

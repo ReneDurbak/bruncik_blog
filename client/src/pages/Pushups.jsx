@@ -449,8 +449,8 @@ function Pushups() {
                 Explore
               </h1>
             </div>
-            <div className="font-bold text-5xl rotate-[-10deg] mt-4">Goal: {goal}</div>
-            <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-8 space-x-4">
+            <div className="md:block hidden font-bold xl:text-5xl lg:text-3xl md:text-2xl text-sm rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">Goal: {goal}</div>
+            <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-6 space-x-4">
               {/*Notifications button*/}
               <div className="relative my-auto">
                 <img
@@ -462,8 +462,8 @@ function Pushups() {
                   id="notificationsTrigger"
                 />
 
-                <div className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[20px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[20px]">
-                  <div className="xl:text-base md:text-xs text-xs text-white">
+                <div className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[18px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[18px]">
+                  <div className="xl:text-base md:text-xs text-[10px] text-white">
                     {notifications.length}
                   </div>
                 </div>
@@ -624,7 +624,7 @@ function Pushups() {
               <div className="relative my-auto">
                 <img
                   src={`http://localhost:4000/public/videoGallery/${image}`}
-                  className="xl:w-[55px]  h-[55px]  lg:w-[54px] md:w-[50px] w-[36px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
+                  className="xl:w-[55px]  lg:w-[54px] md:w-[40px] w-[34px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
                   onClick={() => setPushupsGalleryVisible(true)}
                   id="triggerpushupsgallery"
                 />
@@ -738,13 +738,17 @@ function Pushups() {
             </div>
           </div>
 
-          <div className="pt-10 pb-2 flex justify-between relative font-poppins">
+          {/*Goal on mobile*/}
+          <div className="md:hidden block text-sm  mt-2">Goal: {goal}</div>
+
+
+          <div className="md:pt-10 pt-6 pb-2 flex justify-between relative font-poppins">
             <div className="underline underline-offset-[3px] font-spectral xl:text-[18px] lg:text-[15px] sm:text-[13px] text-[10px] font-regular 2xl:tracking-normal md:tracking-wider my-auto">
               <Link to="/articles">Learn more about 100 club challenge </Link>{" "}
             </div>
 
             {/*Filter*/}
-            <div className="flex lg:space-x-6 md:space-x-4 space-x-3">
+            <div className="flex lg:space-x-6 md:space-x-2 space-x-3">
               <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] md:block hidden ">
                 Filter
               </div>
@@ -754,6 +758,7 @@ function Pushups() {
                 }}
                 id="pushUpsSelect"
                 value={selected}
+                className="lg:scale-100 md:scale-75 scale-[0.7]"
                 onChange={(e) => {
                   {
                     setSelected(e.target.value);

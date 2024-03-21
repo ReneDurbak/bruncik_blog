@@ -29,9 +29,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
 
 export default function SingleArticlePage() {
-
   const { id } = useParams();
-
 
   const labelsForArticleReview = [
     {
@@ -84,14 +82,11 @@ export default function SingleArticlePage() {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [reviews, setReviews] = useState([])
-
+  const [reviews, setReviews] = useState([]);
 
   const handleLabelClick = (labelID) => {
     if (selectedLabels.includes(labelID)) {
       setSelectedLabels(selectedLabels.filter((id) => id !== labelID));
-
-
     } else {
       setSelectedLabels([...selectedLabels, labelID]);
     }
@@ -102,8 +97,6 @@ export default function SingleArticlePage() {
     ? labelsForArticleReview
     : labelsForArticleReview.slice(0, 3);
 
-
-    
   const handleSaveRating = () => {
     /*if (name === "") {
       document.getElementById("singleArticleInput").value =
@@ -113,16 +106,13 @@ export default function SingleArticlePage() {
       setNameError(false);
     }*/
     if (comment === "" && selectedLabels.length === 0) {
-      document.getElementById("singleArticleTextArea").value ="Please write some text!";
+      document.getElementById("singleArticleTextArea").value =
+        "Please write some text!";
       setCommentError(true);
     } else {
       setCommentError(false);
-      
-    
 
       handleCloseReviewWindow();
-      
-     
     }
 
     /*if (
@@ -133,49 +123,44 @@ export default function SingleArticlePage() {
     }*/
   };
 
-
-
-  const fetchRatings = async() => {
+  const fetchRatings = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/reviews/getAllReviews")
-      const fetchedReviews = response.data
+      const response = await axios.get(
+        "http://localhost:4000/reviews/getAllReviews"
+      );
+      const fetchedReviews = response.data;
       const filteredReviews = fetchedReviews.filter((review) => {
         return review.articleId === id;
       });
-      setReviews(filteredReviews)
+      setReviews(filteredReviews);
     } catch (error) {
-      console.error("Cannot get all ratings: ", error.message)  
+      console.error("Cannot get all ratings: ", error.message);
     }
-  }
+  };
 
-
-  const handleSubmitReview = async(e) => {
-    e.preventDefault()
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
     // console.log(rating)
     // console.log(id)
     try {
-      const response = await axios.post("http://localhost:4000/reviews/postReview", {
-        rating,
-        labels: labelsForArticleReview
-        .filter((label) => selectedLabels.includes(label.id))
-        .map((label) => label.labelTitle),
-        comment,
-        articleId: id 
-      })
-      
+      const response = await axios.post(
+        "http://localhost:4000/reviews/postReview",
+        {
+          rating,
+          labels: labelsForArticleReview
+            .filter((label) => selectedLabels.includes(label.id))
+            .map((label) => label.labelTitle),
+          comment,
+          articleId: id,
+        }
+      );
 
-      handleSaveRating()
-      fetchRatings()
-
-
+      handleSaveRating();
+      fetchRatings();
     } catch (error) {
-      console.error("Cannot post rating: ", error.message)  
+      console.error("Cannot post rating: ", error.message);
     }
-  } 
-
-
-
-
+  };
 
   const isMobile = useMediaQuery({ query: "(min-width: 640px)" });
   const isTabletAboutMe = useMediaQuery({ query: "(max-width: 767px )" });
@@ -291,9 +276,6 @@ export default function SingleArticlePage() {
   const [updateCommentText, setUpdateCommentText] = useState("");
   const [updateCommentId, setUpdateCommentId] = useState("");
   const [isCommentsWindow, setIsCommentsWindow] = useState(true);
-
-
-
 
   const handleSaveComment = () => {
     /*if (name === "") {
@@ -413,7 +395,7 @@ export default function SingleArticlePage() {
     setSelectedLabels([]);
     //setNameError(false);
     setCommentError(false);
-   // document.getElementById("singleArticleInput").value = "";
+    // document.getElementById("singleArticleInput").value = "";
     document.getElementById("singleArticleTextArea").value = "";
   };
 
@@ -427,11 +409,6 @@ export default function SingleArticlePage() {
     //document.getElementById("singleArticleInput").value = "";
     document.getElementById("singleArticleTextArea").value = "";
   };
-
-
-
-
-
 
   useEffect(() => {
     const handleCLickOutsideReviewWindow = (event) => {
@@ -501,11 +478,13 @@ export default function SingleArticlePage() {
   }, [id]);
 
   const [articles, setArticles] = useState([]);
-  const [readNextArticles, setReadNextArticles] = useState([])
+  const [readNextArticles, setReadNextArticles] = useState([]);
   const shuffleArticles = (articles) => {
-    return articles.slice().sort(() => Math.random() - 0.5).slice(0, 4);
+    return articles
+      .slice()
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4);
   };
-
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -515,16 +494,18 @@ export default function SingleArticlePage() {
         );
 
         const articles = response.data;
-        const sortedArticles = shuffleArticles(articles.filter((article) => article._id !== id));        
-        setReadNextArticles(sortedArticles.map((article) => (
-          <div key={article._id}>
-            <RouteLink to={`/articles/${article._id}`}>
-              <div className="xl:py-6 py-4">{article.title}</div>
-            </RouteLink>
-          </div>
-        )))
-
-
+        const sortedArticles = shuffleArticles(
+          articles.filter((article) => article._id !== id)
+        );
+        setReadNextArticles(
+          sortedArticles.map((article) => (
+            <div key={article._id}>
+              <RouteLink to={`/articles/${article._id}`}>
+                <div className="xl:py-6 py-4">{article.title}</div>
+              </RouteLink>
+            </div>
+          ))
+        );
       } catch (error) {
         console.error("Error fetching articles:", error);
       }
@@ -532,12 +513,6 @@ export default function SingleArticlePage() {
 
     fetchArticles();
   }, [id]);
-
-
-
-
-
-
 
   const currentURL = `peterbruncik.com/articles/${id}`;
 
@@ -559,22 +534,24 @@ export default function SingleArticlePage() {
           isTabletAboutMe
             ? "max-w-[1380px] mx-auto grid-flow-col grid-cols-2 gap-x-3 mt-[120px] grid sm:px-10 px-4"
             : closeSideBar
-            ? "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 px-7"
-            : "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-10 gap-x-3 mt-[120px] grid 2xl:pl-20 lg:pl-20 sm:pl-10 pl-4"
+            ? "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-6 gap-x-3 mt-[120px] grid  px-7"
+            : "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-6 gap-x-3 mt-[120px] grid px-7"
         }`}
       >
         {/*Article container*/}
         <div className="2xl:max-w-[1100px] col-span-2 xl:mt-0 sm:mt-[-40px] mt-[-120px]">
           <div className="col-span-2">
             <div className="flex justify-start items-center space-x-4 mt-16 font-regular  xl:text-[12px] md:text-[10px] sm:text-[9px] text-[8px]">
-            <div>{new Date(article.createdAt).toLocaleString('en-US', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-  hour12: false
-})}</div>
+              <div>
+                {new Date(article.createdAt).toLocaleString("en-US", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: false,
+                })}
+              </div>
               {/*<div className="text-gray-400">{article.readingTime} minutes</div>*/}
               {/*npm modul na zobrazovanie casu -> date-fns*/}{" "}
             </div>
@@ -905,20 +882,20 @@ export default function SingleArticlePage() {
             ""
           )}
           {/*Comments container*/}
-          <div className="md:mt-[125px] lg:mt-[200px] mt-[100px] xl:mb-[225px] md:mb-[150px] md:pr-0 pr-4">
+          <div className="lg:mt-[200px] md:mt-[125px] mt-[100px] md:mb-[150px] mb-[100px]  md:pr-0 pr-4">
             <h1 className="xl:text-4xl md:text-2xl text-xl font-bold">
               Comments and reviews
             </h1>
 
             <div className="flex space-x-6 uppercase mt-6 2xl:text-[19px] xl:text-lg text-xs xl:mt-8">
               <div
-                className="my-auto hover:cursor-pointer duration-300 ease-in-out p-2 rounded-xl hover:bg-gray-200"
+                className="my-auto hover:cursor-pointer duration-300 ease-in-out p-2 rounded-xl lg:hover:bg-gray-200 active:bg-gray-200"
                 onClick={() => setIsCommentsWindow(true)}
               >
                 Comments
               </div>
               <div
-                className="my-auto hover:cursor-pointer duration-300 ease-in-out p-2 rounded-xl hover:bg-gray-200"
+                className="my-auto hover:cursor-pointer duration-300 ease-in-out p-2 rounded-xl lg:hover:bg-gray-200 active:bg-gray-200"
                 onClick={() => setIsCommentsWindow(false)}
               >
                 Reviews
@@ -941,17 +918,15 @@ export default function SingleArticlePage() {
 
             {isCommentsWindow ? (
               <div>
-                <div className="flex xl:text-2xl md:text-[18px] text-base mt-8 font-bold">
+                <div className="flex xl:text-2xl md:text-[18px] text-xs mt-8 font-bold">
                   {comments.length}{" "}
                   {comments.length === 1 ? (
-                    <div className="mx-2"> thougth on:</div>
+                    <div className="md:mx-2 mx-1"> thougth on:</div>
                   ) : (
-                    <div className="mx-2"> thougths on: </div>
+                    <div className="md:mx-2 mx-1"> thougths on: </div>
                   )}{" "}
                   "{article.title}"
                 </div>
-
-          
 
                 {/*Comments*/}
                 {comments &&
@@ -982,7 +957,7 @@ export default function SingleArticlePage() {
                         </div>
 
                         <div className="xl:pl-20 pl-8 pr-7">
-                          <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] mt-6 xl:p-4 p-3">
+                          <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] md:mt-6 mt-2 xl:p-4 p-3">
                             {comment.userId === userId ? (
                               <>
                                 {isUpdateComment ? (
@@ -1094,56 +1069,52 @@ export default function SingleArticlePage() {
               </div>
             ) : (
               <div>
-                <div className="flex xl:text-2xl md:text-[18px] text-base mt-8 font-bold">
+                <div className="flex xl:text-2xl md:text-[18px] text-xs mt-8 font-bold">
                   {reviews.length}{" "}
                   {reviews.length === 1 ? (
-                    <div className="mx-2"> review on:</div>
+                    <div className="md:mx-2 mx-1"> review on:</div>
                   ) : (
-                    <div className="mx-2"> reviews on: </div>
+                    <div className="md:mx-2 mx-1"> reviews on: </div>
                   )}{" "}
                   "{article.title}"
                 </div>
 
-            
-              {
-                reviews && reviews.map((review) => (
-                  <div className="px-2 border border-gray-200 my-4 w-[70%]">
-                  <div className="my-8" key={review._id}>
-                  <Rating
-                    value={review.rating}
-                    readOnly
-                    precision={0.5}
-                    style={{
-                      fontSize: isDesktop
-                        ? 62
-                        : isLaptopXl
-                        ? 55
-                        : isTablet
-                        ? 55
-                        : 45,
-                    }}
-                  />
-                    <div className="mt-2"><strong>{review.comment.length === 0 ? '' : 'Comment:'} </strong>{review.comment}</div>
+                {reviews &&
+                  reviews.map((review) => (
+                    <div className="xl:px-4 px-2 border border-gray-200 my-4 xl:w-[70%] w-full">
+                      <div className="my-8" key={review._id}>
+                        <Rating
+                          value={review.rating}
+                          readOnly
+                          precision={0.5}
+                          style={{
+                            fontSize: isDesktop
+                              ? 62
+                              : isLaptopXl
+                              ? 55
+                              : isTablet
+                              ? 55
+                              : 45,
+                          }}
+                        />
+                        <div className="xl:text-base md:text-sm text-xs mt-4">
+                          {review.comment}
+                        </div>
+                      </div>
 
-
-                  </div>
-
-                  <div className="mb-6 flex space-x-4 max-w-full overflow-x-auto py-4">
-                  {
-                    review.labels && review.labels.map((label) => (
-                   
-                      <div className="p-2 bg-black text-white rounded-lg whitespace-nowrap" key={label}>{label}</div>
-                    
-                    ))
-                  }
-                </div>
-
-
-                  </div>
-
-                 
-                ))
-              }
+                      <div className="xl:mb-6 mb-4 flex space-x-4 max-w-full overflow-x-auto">
+                        {review.labels &&
+                          review.labels.map((label) => (
+                            <div
+                              className="xl:text-base lg:text-sm text-xs p-2 bg-black text-white rounded-lg whitespace-nowrap"
+                              key={label}
+                            >
+                              {label}
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  ))}
               </div>
             )}
           </div>
@@ -1261,6 +1232,8 @@ export default function SingleArticlePage() {
             ""
           )}{" "}
         </div>
+
+
         {/*About the author side panel*/}
         {closeSideBar ? (
           <div
@@ -1271,7 +1244,7 @@ export default function SingleArticlePage() {
             }`}
             onClick={() => setCloseSideBar(false)}
           >
-            <BiHorizontalLeft size={20} />
+            <BiHorizontalLeft size={20} className="mt-6"/>
           </div>
         ) : (
           <div
@@ -1287,7 +1260,7 @@ export default function SingleArticlePage() {
                 isLaptop ? "hidden" : "absolute sm:left-2 sm:top-[60px] top-5"
               }`}
             >
-              <BiHorizontalRight size={20} />
+              <BiHorizontalRight size={20} className="mt-6" />
             </div>
             <div className="lg:mt-[210px] md:mt-[150px] sm:mt-[180px] mt-[100px]">
               <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">

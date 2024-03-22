@@ -928,6 +928,7 @@ export default function SingleArticlePage() {
                   "{article.title}"
                 </div>
 
+
                 {/*Comments*/}
                 {comments &&
                   comments.map((comment) => (
@@ -957,7 +958,7 @@ export default function SingleArticlePage() {
                         </div>
 
                         <div className="xl:pl-20 pl-8 pr-7">
-                          <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] md:mt-6 mt-2 xl:p-4 p-3">
+                          <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] h-auto xl:mt-4 mt-2 xl:p-4 p-3">
                             {comment.userId === userId ? (
                               <>
                                 {isUpdateComment ? (
@@ -1012,7 +1013,7 @@ export default function SingleArticlePage() {
                                       </>
                                     ) : (
                                       <div className="xl:text-sm text-xs">
-                                        {comment.comment}
+                                       <div> {comment.comment}</div>
                                         <div className="flex  space-x-2 absolute top-2 right-2">
                                           <FaPen
                                             onClick={() => {
@@ -1034,9 +1035,9 @@ export default function SingleArticlePage() {
                                     )}
                                   </>
                                 ) : (
-                                  <div className="xl:text-sm text-xs">
-                                    {comment.comment}
-                                    <div className="flex  space-x-2 absolute top-2 right-2">
+                                  <>
+
+                                 <div className="flex  space-x-2 absolute top-2 right-2">
                                       <FaPen
                                         onClick={() => {
                                           setIsUpdateComment(true);
@@ -1053,11 +1054,16 @@ export default function SingleArticlePage() {
                                         className="hover:scale-125 ease-in-out duration-300"
                                       />
                                     </div>
+                                    
+                                    <div className="overflow-hidden break-words lg:text-sm text-xs mt-3">
+                                   <div> {comment.comment}</div>
                                   </div>
+                             
+                                  </>
                                 )}
                               </>
                             ) : (
-                              <div className="xl:text-sm text-xs">
+                              <div className="overflow-hidden break-words xl:text-sm text-xs">
                                 {comment.comment}
                               </div>
                             )}

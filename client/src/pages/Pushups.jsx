@@ -449,7 +449,18 @@ function Pushups() {
                 Explore
               </h1>
             </div>
-            <div className="md:block hidden font-bold xl:text-5xl lg:text-3xl md:text-2xl text-sm rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">Goal: {goal}</div>
+            <div className="md:block hidden font-bold xl:text-5xl lg:text-3xl md:text-2xl text-sm rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">
+             
+             {
+              videos.length === Number(goal)
+              ?
+              <div>👏Goal completed!👏</div>
+              :
+              <div> Goal: {goal}</div>
+
+             }
+              
+              </div>
             <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-6 space-x-4">
               {/*Notifications button*/}
               <div className="relative my-auto">
@@ -635,7 +646,7 @@ function Pushups() {
                   item ? (
                     <animated.div
                       style={style}
-                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[190px] xl:top-[-10px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-150px]    z-[2]"
+                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[250px] xl:top-[-10px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-210px]    z-[2]"
                     >
                       <div id="pushupsgallery">
                         <div
@@ -739,7 +750,16 @@ function Pushups() {
           </div>
 
           {/*Goal on mobile*/}
-          <div className="md:hidden block text-sm  mt-2">Goal: {goal}</div>
+          <div className="md:hidden block text-sm mt-2"> 
+            {
+            
+            videos.length === Number(goal) ?
+              <div>Goal completed! 👏</div>
+              :
+              <div>Goal: {goal}</div>
+            }
+</div>
+
 
 
           <div className="md:pt-10 pt-6 pb-2 flex justify-between relative font-poppins">
@@ -775,7 +795,7 @@ function Pushups() {
           </div>
 
           <div className=" 2xl:pt-4 md:pt-10 pt-4 font-poppins">
-            <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:min-h-[520px] 2xl:max-h-[800px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[350px]  overflow-y-scroll pushupsScroll">
+            <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:min-h-[520px] 2xl:max-h-[800px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[450px]  overflow-y-scroll pushupsScroll">
               {videos &&
                 videos.map((video) => (
                   <div

@@ -13,6 +13,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import emailjs from 'emailjs-com'
 import ReactPaginate from 'react-paginate';
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+
+
 
 
 
@@ -51,6 +55,8 @@ function Articles({ articles }) {
 
   const handleFilterClick = (filter) => {
     setSelectedFilter(selectedFilter === filter ? null : filter);
+    navigate(`?page=1`);
+
 
     if (checkClickFilter === false){
       setSelectedFilterId(filter)
@@ -80,6 +86,7 @@ function Articles({ articles }) {
 
   //Media queries
   const isLaptop = useMediaQuery({ query: '(min-width: 1024px )' })
+  const isTablet = useMediaQuery({query: '(min-width: 768px )'})
 
 
 
@@ -117,11 +124,7 @@ function Articles({ articles }) {
 
 
 
-
-
-
-
-  const articlesPerPage = 3; 
+  const articlesPerPage = isTablet ? 3 : 4; 
   const [searchParams, setSearchParams] = useSearchParams(); ;
   const [currentPage, setCurrentPage] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
@@ -132,7 +135,8 @@ function Articles({ articles }) {
     setFilteredArticles(articles);
 
     const pageQueryParam = parseInt(searchParams.get('page')) || 1;
-    setCurrentPage(pageQueryParam - 1);
+    setCurrentPage(pageQueryParam-1);
+ 
 
     const pageCount = Math.ceil(filteredArticles.length / articlesPerPage);
     const offset = currentPage * articlesPerPage;
@@ -185,7 +189,7 @@ function Articles({ articles }) {
 
     if(rgExp.test(email)){
       setError(false)
-      setMessage("Message was sent succesfully")
+      setMessage("Message was sent successfully")
       emailjs.sendForm(
         'test123',
          'template_nbi58c7',
@@ -371,7 +375,7 @@ function Articles({ articles }) {
           {articleSections && articleSections.map((filter) => (
             <span
               key={filter._id}
-              className={`shadow-lg rounded-full sm:px-4 px-2 lg:py-3 sm:py-2 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl xl:text-lg lg:text-base sm:text-[11px] text-[11px] lg:hover:scale-110 lg:hover:bg-gray-950 lg:hover:text-white hover:duration-500 ${selectedFilter === filter._id
+              className={`shadow-lg rounded-full sm:px-4 px-2 lg:py-3 sm:py-2 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl xl:text-lg lg:text-base sm:text-sm text-[11px] text-[11px] lg:hover:scale-110 lg:hover:bg-gray-950 lg:hover:text-white hover:duration-500 ${selectedFilter === filter._id
                   ? "bg-gray-950 text-white outline-black"
                   : `${checkClickFilter === true ? "hidden" : ""}`
                 }`}
@@ -428,14 +432,25 @@ function Articles({ articles }) {
   pageCount={pageCount}
   pageRangeDisplayed={5}
   marginPagesDisplayed={2}
-  previousLabel={'Previous'}
-  nextLabel={'Next'}
+  previousLabel={
+    <span className="flex items-center justify-center mx-1 bg-blue-200 lg:hover:bg-blue-300 rounded-lg md:w-9 w-7 md:h-9 h-7 duration-300 ease-in-out">
+          <MdKeyboardArrowLeft/>
+
+    </span>
+ 
+  }
+  nextLabel={
+    <span className="flex items-center justify-center mx-1 bg-blue-200 lg:hover:bg-blue-300 rounded-lg md:w-9 w-7 md:h-9 h-7 duration-300 ease-in-out">
+    <MdKeyboardArrowRight/>
+    </span>
+  }
   breakLabel={'...'}
   onPageChange={handlePageChange}
-  containerClassName={'flex justify-center list-none p-4 space-x-2 mb-[150px]'}
-  activeClassName={'bg-blue-300'}
-  pageLinkClassName={'px-2 py-2 border text-black'}
-  breakClassName={'px-2 py-2 border text-gray-500'} // Adjust styling for ellipsis
+  containerClassName={'flex justify-center list-none  space-x-2 mb-[150px] p-4'}
+  pageClassName={'border border-solid border-blue-200 lg:hover:bg-blue-300 lg:hover:border-blue-300 md:w-8 w-6 md:h-9 h-7 md:text-base text-sm flex items-center justify-center rounded-lg duration-300 ease-in-out'}
+  activeClassName={'bg-blue-200 '}
+  pageLinkClassName={'p-2  text-black '}
+  breakClassName={'px-2 py-2 border text-gray-500 '}
   forcePage={currentPage}
 />
       <Footer />

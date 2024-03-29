@@ -1,6 +1,7 @@
 import{SiInstagram, SiTwitter, SiFacebook, SiYoutube, SiSpotify} from 'react-icons/si'
 import { Link, useLocation } from "react-router-dom"
 import {AiOutlineArrowRight} from 'react-icons/ai'
+import arrowRight from '../assets/arrowRight.png'
 import emailjs from 'emailjs-com'
 import { useState } from 'react'
 
@@ -74,8 +75,8 @@ return(
         < div className="flex items-center">
           <input type="email" name="user_Email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter your email address" className=" px-2 2xl:py-[14px] sm:py-[13px] py-[12px] mb-6 mt-2 w-full focus:outline-none focus:shadow-xl outline-none bg-black float-left text-white md:border-l-4 border-l-[2px] border-r-[50px] md:border-y-4 border-y-[2px] mr-[-30px] border-white" />
           
-          <div className="float-left bg-white py-auto mb-4 h-full">
-          <button className="my-auto sm:text-xs xl:text-base text-sm text-black" type="submit" > <AiOutlineArrowRight className='mt-2'/> </button>  
+          <div className="float-left py-auto mb-4 h-full">
+          <button className="my-auto sm:text-xs xl:text-base text-sm text-black" type="submit" > <img src={arrowRight} className='mt-2 md:w-[10px] w-[9px]'/> </button>  
           </div>
 
         </div>

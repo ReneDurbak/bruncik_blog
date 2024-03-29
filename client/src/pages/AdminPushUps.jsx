@@ -398,9 +398,7 @@ export default function AdminPushUps() {
                   onMouseEnter={() => handleVideoMouseEnter(video._id)}
                   onMouseLeave={() => handleVideoMouseLeave(video._id)}
                 >
-                  <div>
-                    <strong>video link:</strong> {video.url_link}
-                  </div>
+                 
                   <p>
                     <strong>day count:</strong> {video.day_count}
                   </p>

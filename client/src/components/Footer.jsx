@@ -1,6 +1,5 @@
 import{SiInstagram, SiTwitter, SiFacebook, SiYoutube, SiSpotify} from 'react-icons/si'
 import { Link, useLocation } from "react-router-dom"
-import {AiOutlineArrowRight} from 'react-icons/ai'
 import arrowRight from '../assets/arrowRight.png'
 import emailjs from 'emailjs-com'
 import { useState } from 'react'

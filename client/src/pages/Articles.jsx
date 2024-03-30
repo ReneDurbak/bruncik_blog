@@ -128,13 +128,14 @@ function Articles({ articles }) {
   const [searchParams, setSearchParams] = useSearchParams(); ;
   const [currentPage, setCurrentPage] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate(); 
 
 
   useEffect(() => {
     setFilteredArticles(articles);
 
     const pageQueryParam = parseInt(searchParams.get('page')) || 1;
+    pageQueryParam === 1 ?  navigate(`?page=1`) : null
     setCurrentPage(pageQueryParam-1);
  
 

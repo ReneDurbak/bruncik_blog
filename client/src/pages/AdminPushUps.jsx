@@ -4,6 +4,10 @@ import axios from "axios";
 import { Form, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import { Select, InputLabel, MenuItem } from "@mui/material";
+import Slider from "react-slick";
+import "../slick.css"
+import "../slick-theme.css"
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 export default function AdminPushUps() {
   const [videos, setVideos] = useState([]);
@@ -149,7 +153,7 @@ export default function AdminPushUps() {
 
 
       setVideoGallery(fetchedVideoGalleries);
-      //setVideoGallerySelect(fetchedVideoGalleries[0]._id)
+      setVideoGallerySelect(fetchedVideoGalleries[0] === undefined ? null : fetchedVideoGalleries[0]._id)
 
     } catch (error) {
       console.error("Cannot fetch videos:", error);
@@ -229,6 +233,107 @@ export default function AdminPushUps() {
 
 
 
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div>
+      <FaChevronRight className=" rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
+      </div>
+    );
+  }
+  
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div>
+        <FaChevronLeft className=" rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
+        </div>
+    );
+  }
+
+  
+  
+  
+  
+    var settings = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      initialSlide:0,
+      swipeToSlide: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
+
+
+
+    var settings_V2 = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 2,
+      initialSlide:0,
+      swipeToSlide: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
+
+
 
 
   return (
@@ -240,7 +345,10 @@ export default function AdminPushUps() {
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
           <div className="border-t-2 w-[20%] border-black" />
 
-          <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
+          <Slider 
+              {...settings}
+              className="w-[75%]  border-4 p-2  rounded-xl mt-6"
+          >
             {videoGallery &&
               videoGallery.map((videoGallery) => (
                 <div
@@ -293,7 +401,8 @@ export default function AdminPushUps() {
 
                 </div>
               ))}
-          </div>
+              </Slider>
+
 
           <button
             className={`${
@@ -389,7 +498,10 @@ export default function AdminPushUps() {
 
           </div>
 
-          <div className="flex space-x-6 max-w-[1000px] border-2 p-2 rounded-xl overflow-x-scroll mt-6">
+          <Slider 
+              {...settings_V2}
+              className="w-[50%]  border-4 p-2  rounded-xl mt-6"
+          >
             {videos &&
               videos.map((video) => (
                 <div
@@ -436,7 +548,7 @@ export default function AdminPushUps() {
                   </div>
                 </div>
               ))}
-          </div>
+          </Slider>
 
           <button
             className={`${

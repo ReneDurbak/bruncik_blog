@@ -27,6 +27,10 @@ import Footer from "../components/Footer";
 import { FaPen } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
+import Slider from "react-slick";
+import "../slick.css";
+import "../slick-theme.css";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 export default function SingleArticlePage() {
   const { id } = useParams();
@@ -516,6 +520,71 @@ export default function SingleArticlePage() {
 
   const currentURL = `peterbruncik.com/articles/${id}`;
 
+  console.log();
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+
+    return (
+      <div>
+        <FaChevronRight
+          className="rounded-2xl text-black z-[10] cursor-pointer absolute xl:right-[-25px] right-[-15px]  xl:top-[35%] top-[30%]"
+          size={12}
+          style={{ ...style }}
+          onClick={onClick}
+        />
+      </div>
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div>
+        <FaChevronLeft
+          className=" rounded-2xl text-black z-[10] cursor-pointer absolute xl:left-[-25px]  left-[-15px]  xl:top-[35%] top-[30%]"
+          size={12}
+          style={{ ...style }}
+          onClick={onClick}
+        />
+      </div>
+    );
+  }
+
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    swipeToSlide: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow:  <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
+
   if (article === null) {
     return <p className="py-20">Loading...</p>;
   }
@@ -928,7 +997,6 @@ export default function SingleArticlePage() {
                   "{article.title}"
                 </div>
 
-
                 {/*Comments*/}
                 {comments &&
                   comments.map((comment) => (
@@ -1013,7 +1081,7 @@ export default function SingleArticlePage() {
                                       </>
                                     ) : (
                                       <div className="xl:text-sm text-xs">
-                                       <div> {comment.comment}</div>
+                                        <div> {comment.comment}</div>
                                         <div className="flex  space-x-2 absolute top-2 right-2">
                                           <FaPen
                                             onClick={() => {
@@ -1036,8 +1104,7 @@ export default function SingleArticlePage() {
                                   </>
                                 ) : (
                                   <>
-
-                                 <div className="flex  space-x-2 absolute top-2 right-2">
+                                    <div className="flex  space-x-2 absolute top-2 right-2">
                                       <FaPen
                                         onClick={() => {
                                           setIsUpdateComment(true);
@@ -1054,11 +1121,10 @@ export default function SingleArticlePage() {
                                         className="hover:scale-125 ease-in-out duration-300"
                                       />
                                     </div>
-                                    
+
                                     <div className="overflow-hidden break-words lg:text-sm text-xs mt-3">
-                                   <div> {comment.comment}</div>
-                                  </div>
-                             
+                                      <div> {comment.comment}</div>
+                                    </div>
                                   </>
                                 )}
                               </>
@@ -1087,7 +1153,7 @@ export default function SingleArticlePage() {
 
                 {reviews &&
                   reviews.map((review) => (
-                    <div className="xl:px-4 px-2 border border-gray-200 my-4 xl:w-[70%] w-full">
+                    <div className="xl:px-8 px-4 border border-gray-200 my-4 xl:w-[70%] w-full">
                       <div className="my-8" key={review._id}>
                         <Rating
                           value={review.rating}
@@ -1108,17 +1174,20 @@ export default function SingleArticlePage() {
                         </div>
                       </div>
 
-                      <div className="xl:mb-6 mb-4 flex space-x-4 max-w-full overflow-x-auto">
+                      <Slider
+                        className="xl:mb-6 mb-4 max-w-full overflow-x"
+                        {...settings}
+                      >
                         {review.labels &&
                           review.labels.map((label) => (
                             <div
-                              className="xl:text-base lg:text-sm text-xs p-2 bg-black text-white rounded-lg whitespace-nowrap"
+                              className="xl:text-base lg:text-sm text-xs p-2 bg-black text-white rounded-lg whitespace-nowrap text-center"
                               key={label}
                             >
                               {label}
                             </div>
                           ))}
-                      </div>
+                      </Slider>
                     </div>
                   ))}
               </div>
@@ -1238,8 +1307,6 @@ export default function SingleArticlePage() {
             ""
           )}{" "}
         </div>
-
-
         {/*About the author side panel*/}
         {closeSideBar ? (
           <div
@@ -1250,7 +1317,7 @@ export default function SingleArticlePage() {
             }`}
             onClick={() => setCloseSideBar(false)}
           >
-            <BiHorizontalLeft size={20} className="mt-6"/>
+            <BiHorizontalLeft size={20} className="mt-6" />
           </div>
         ) : (
           <div

@@ -5,6 +5,11 @@ import axios from "axios";
 import { useState, useRef } from "react";
 import AdminSidePanel from "../components/AdminSidePanel";
 import { Select, MenuItem, InputLabel } from "@mui/material";
+import Slider from "react-slick";
+import "../slick.css"
+import "../slick-theme.css"
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+
 
 export default function AdminArticles() {
   const [articles, setArticles] = useState([]);
@@ -175,12 +180,80 @@ export default function AdminArticles() {
     }
   };
 
+
+
+
+
+
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div>
+    <FaChevronRight className=" rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
+    </div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div>
+      <FaChevronLeft className=" rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
+      </div>
+  );
+}
+
+  
+
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    initialSlide:0,
+    swipeToSlide: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
+
+
+
+
   return (
     <>
-      <div className="flex space-x-[300px]">
+      <div className="flex space-x-[280px]">
         <AdminSidePanel />
 
-        <div className="overflow-y-auto w-full text-left  mt-10 mb-20">
+        <div className="overflow-y-auto w-full text-left  mt-10 mb-20 p-8">
           <h1 className="mt-10 mb-2 text-3xl font-bold">Articles</h1>
           <div className="border-t-2 w-[16%] border-black" />
           {createArticle ? (
@@ -283,14 +356,23 @@ export default function AdminArticles() {
             <h2 className="flex items-end font-bold text-lg">
               List of articles:
             </h2>
-            <div className="flex space-x-4 w-[1000px] overflow-x-scroll border-4 p-2 rounded-xl">
-              {articles &&
-                articles.map((article) => (
+     
+           
+       
+
+            <Slider 
+              {...settings}
+              className="w-[75%]  border-4 p-2  rounded-xl"
+          >
+            
+             {articles &&
+                articles.map((article, index) => (
                   <div
                     key={article._id}
                     onMouseEnter={() => handleArticleMouseEnter(article._id)}
                     onMouseLeave={() => handleArticleMouseLeave(article._id)}
-                    className="p-2 bg-gray-200 rounded-lg cursor-pointer min-w-[300px] min-h-[120px]"
+                    className={`p-2 bg-gray-200 rounded-lg cursor-pointer min-h-[120px]`} 
+
                   >
                     <strong  className={`${article.section ? 'text-black' : 'text-red-400'}`}>{article.title} </strong>
                     {article.section ? null : <div className="text-red-400">Missing article section!</div>}
@@ -320,9 +402,16 @@ export default function AdminArticles() {
                    
                   </div>
                   
-                ))}
-                
-            </div>
+                ))} 
+
+         
+
+
+            </Slider>
+          
+
+         
+       
           </div>
 
           <h1 className="mt-10 mb-2 text-3xl font-bold">Article sections</h1>
@@ -401,7 +490,10 @@ export default function AdminArticles() {
             <h2 className="font-bold text-lg flex items-end">
               List of article sections:
             </h2>
-            <div className="flex space-x-6 w-[1000px] overflow-x-scroll border-4 p-2 rounded-xl">
+            <Slider 
+              {...settings}
+              className="w-[75%]  border-4 p-2  rounded-xl"
+          >
               {articleSections.map((articleSection) => (
                 <div
                   key={articleSection._id}
@@ -459,7 +551,8 @@ export default function AdminArticles() {
                   </div>
                 </div>
               ))}
-            </div>
+        
+            </Slider>
           </div>
         </div>
       </div>

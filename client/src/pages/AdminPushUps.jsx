@@ -5,9 +5,9 @@ import { Form, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 import { Select, InputLabel, MenuItem, sliderClasses } from "@mui/material";
 import Slider from "react-slick";
-import "../slick.css"
-import "../slick-theme.css"
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import "../slick.css";
+import "../slick-theme.css";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 export default function AdminPushUps() {
   const [videos, setVideos] = useState([]);
@@ -16,8 +16,8 @@ export default function AdminPushUps() {
   const [goal, setGoal] = useState("");
   const [isCreateVideo, setIsCreateVideo] = useState(false);
   const [isCreateVideoGallery, setIsCreateVideoGallery] = useState(false);
-  const imageInput = useRef(null)
-  const [image, setImage] = useState()
+  const imageInput = useRef(null);
+  const [image, setImage] = useState();
 
   const [videoHoverStates, setVideoHoverStates] = useState({});
 
@@ -33,7 +33,7 @@ export default function AdminPushUps() {
     }));
   };
 
-  const [allVideos, setAllVideos] = useState([])
+  const [allVideos, setAllVideos] = useState([]);
 
   const fetchVideos = async () => {
     try {
@@ -42,17 +42,16 @@ export default function AdminPushUps() {
       );
       const fetchedVideos = response.data;
 
-      setAllVideos(fetchedVideos)
-      setVideos(fetchedVideos.filter((video) => video.video_gallery._id === videoGallerySelect) );
-      
-
-
+      setAllVideos(fetchedVideos);
+      setVideos(
+        fetchedVideos.filter(
+          (video) => video.video_gallery._id === videoGallerySelect
+        )
+      );
     } catch (error) {
       console.error("Cannot fetch videos:", error);
     }
   };
-
-  
 
   const [socket, setSocket] = useState(null);
 
@@ -79,26 +78,18 @@ export default function AdminPushUps() {
     }
   };
 
-
-
-
-  const [videoGallerySelectFilter, setVideoGallerySelectFilter] = useState(null);
+  const [videoGallerySelectFilter, setVideoGallerySelectFilter] =
+    useState(null);
 
   const handleGallerySelectFilterChange = (event) => {
     setVideoGallerySelectFilter(event.target.value);
   };
-
 
   const [videoGallerySelect, setVideoGallerySelect] = useState(null);
 
   const handleGallerySelectChange = (event) => {
     setVideoGallerySelect(event.target.value);
   };
-
-
-
-
-
 
   const handleCreateVideo = async (e) => {
     e.preventDefault();
@@ -115,7 +106,7 @@ export default function AdminPushUps() {
       fetchVideos();
 
       setUrlLink("");
-      setVideoGallerySelectFilter(null)
+      setVideoGallerySelectFilter(null);
       setIsCreateVideo(false);
 
       sendToSocket();
@@ -139,9 +130,6 @@ export default function AdminPushUps() {
     fetchVideos();
   }, [videoGallerySelect]);
 
-
-
-
   const [videoGallery, setVideoGallery] = useState([]);
 
   const fetchVideoGalleries = async () => {
@@ -151,19 +139,16 @@ export default function AdminPushUps() {
       );
       const fetchedVideoGalleries = response.data;
 
-
       setVideoGallery(fetchedVideoGalleries);
-      setVideoGallerySelect(fetchedVideoGalleries[0] === undefined ? null : fetchedVideoGalleries[0]._id)
-
+      setVideoGallerySelect(
+        fetchedVideoGalleries[0] === undefined
+          ? null
+          : fetchedVideoGalleries[0]._id
+      );
     } catch (error) {
       console.error("Cannot fetch videos:", error);
     }
   };
-
-
-
-
-
 
   useEffect(() => {
     fetchVideoGalleries();
@@ -173,28 +158,25 @@ export default function AdminPushUps() {
     e.preventDefault();
 
     try {
-      const formData = new FormData()
+      const formData = new FormData();
 
-      formData.append("title", galleryUrlLink)
-      formData.append("image", image)
-      formData.append("goal", goal)
+      formData.append("title", galleryUrlLink);
+      formData.append("image", image);
+      formData.append("goal", goal);
 
-
-      if(galleryUrlLink && goal && image){
-      await axios.post(
-        "http://localhost:4000/admin/videoGalleries/createVideoGallery",
-        formData,
-      );
-      }else{
-        return null
+      if (galleryUrlLink && goal && image) {
+        await axios.post(
+          "http://localhost:4000/admin/videoGalleries/createVideoGallery",
+          formData
+        );
+      } else {
+        return null;
       }
-
 
       fetchVideoGalleries();
       setGalleryUrlLink("");
-      setGoal("")
-      setImage()
-  
+      setGoal("");
+      setImage();
     } catch (error) {
       console.error("Cannot create video gallery:", error);
     }
@@ -214,164 +196,176 @@ export default function AdminPushUps() {
     }));
   };
 
+  const deleteVideoGallery = async (id) => {
+    const numberOfAssociatedVideos = allVideos.some(
+      (video) => video.video_gallery._id === id
+    );
 
-  const deleteVideoGallery = async(id) => {
-    
-    const numberOfAssociatedVideos = allVideos.some((video) => (video.video_gallery._id === id))
-    
-    if(numberOfAssociatedVideos === false){
-    try {
-      const response = await axios.delete(`http://localhost:4000/admin/videoGalleries/deleteVideoGallery/${id}`)
-      fetchVideoGalleries()
-
-    } catch (error) {
-      console.error(`error deleting video gallery: ${error.message}`)
+    if (numberOfAssociatedVideos === false) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:4000/admin/videoGalleries/deleteVideoGallery/${id}`
+        );
+        fetchVideoGalleries();
+      } catch (error) {
+        console.error(`error deleting video gallery: ${error.message}`);
+      }
     }
-  }
-  }
-
-
-
-
+  };
 
   function NextArrowVideoGalleries(props) {
     const { className, style, onClick } = props;
     const totalSlides = videoGallery.length;
-    const slidesToShow = settings.slidesToShow;
-    const isLastSlide = currentSlideVideoGalleries >= totalSlides - slidesToShow;
+    const slidesToShow = slideSettingsVideoGalleries.slidesToShow;
+    const isLastSlide =
+      currentSlideVideoGalleries >= totalSlides - slidesToShow;
 
     return (
       <div>
-      <FaChevronRight className={`${ isLastSlide ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]  `} size={24} style={{ ...style }}   onClick={onClick}/>
+        <FaChevronRight
+          className={`${
+            isLastSlide ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]  `}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
       </div>
     );
   }
-  
+
   function PrevArrowVideoGalleries(props) {
     const { className, style, onClick } = props;
     return (
       <div>
-        <FaChevronLeft className={`${currentSlideVideoGalleries === 0 ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`} size={24} style={{ ...style }}   onClick={onClick}/>
-        </div>
-    );
-  }
-
-
-
-  function NextArrowVideos(props) {
-    const { className, style, onClick } = props;
-    const totalSlides = videos.length;
-    const slidesToShow = settings_V2.slidesToShow;
-    const isLastSlide = currentSlideVideos >= totalSlides - slidesToShow;
-
-    console.log(totalSlides)
-    console.log(slidesToShow)
-    console.log(currentSlideVideos)
-    console.log(isLastSlide)
-
-    return (
-      <div>
-      <FaChevronRight className={`${ isLastSlide ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]  `} size={24} style={{ ...style }}   onClick={onClick}/>
+        <FaChevronLeft
+          className={`${
+            currentSlideVideoGalleries === 0 ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
       </div>
     );
   }
 
+  function NextArrowVideos(props) {
+    const { className, style, onClick } = props;
+    const totalSlides = videos.length;
+    const slidesToShow = slideSettingsVideos.slidesToShow;
+    const isLastSlide = currentSlideVideos >= totalSlides - slidesToShow;
 
-  
+    return (
+      <div>
+        <FaChevronRight
+          className={`${
+            isLastSlide ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]  `}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
+      </div>
+    );
+  }
+
   function PrevArrowVideos(props) {
     const { className, style, onClick } = props;
     return (
       <div>
-        <FaChevronLeft className={`${currentSlideVideos === 0 ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`} size={24} style={{ ...style }}   onClick={onClick}/>
-        </div>
+        <FaChevronLeft
+          className={`${
+            currentSlideVideos === 0 ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
+      </div>
     );
   }
 
-  
-  const [currentSlideVideoGalleries, setCurrentSlideVideoGalleries] = useState(0);
-  
+  const [currentSlideVideoGalleries, setCurrentSlideVideoGalleries] =
+    useState(0);
 
-    var settings = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      initialSlide: 0,
-      swipeToSlide: true,
-      nextArrow: <NextArrowVideoGalleries />,
-      prevArrow: <PrevArrowVideoGalleries />,
-      afterChange: (current) => setCurrentSlideVideoGalleries(current),
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 3,
-            dots: true
-          }
+  var slideSettingsVideoGalleries = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    swipeToSlide: true,
+    nextArrow: <NextArrowVideoGalleries />,
+    prevArrow: <PrevArrowVideoGalleries />,
+    afterChange: (current) => setCurrentSlideVideoGalleries(current),
+    responsive: [
+      {
+        breakpoint: 1024,
+        slideSettingsVideoGalleries: {
+          slidesToShow: 2,
+          slidesToScroll: 3,
+          dots: true,
         },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
+      },
+      {
+        breakpoint: 600,
+        slideSettingsVideoGalleries: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+          initialSlide: 2,
         },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
-    };
-  
-
-    const [currentSlideVideos, setCurrentSlideVideos] = useState(0);
-
-    var settings_V2 = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 2,
-      initialSlide:0,
-      swipeToSlide: true,
-      nextArrow: <NextArrowVideos />,
-      prevArrow: <PrevArrowVideos />,
-      afterChange: (current) => setCurrentSlideVideos(current),
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 3,
-            dots: true
-          }
+      },
+      {
+        breakpoint: 480,
+        slideSettingsVideoGalleries: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
         },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
+      },
+    ],
+  };
+
+  const [currentSlideVideos, setCurrentSlideVideos] = useState(0);
+
+  var slideSettingsVideos = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    swipeToSlide: true,
+    nextArrow: <NextArrowVideos />,
+    prevArrow: <PrevArrowVideos />,
+    afterChange: (current) => setCurrentSlideVideos(current),
+    responsive: [
+      {
+        breakpoint: 1024,
+        slideSettingsVideos: {
+          slidesToShow: 2,
+          slidesToScroll: 3,
+          dots: true,
         },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
-    };
-
-
-
+      },
+      {
+        breakpoint: 600,
+        slideSettingsVideos: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        slideSettingsVideos: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="flex space-x-[300px]">
@@ -382,9 +376,9 @@ export default function AdminPushUps() {
           <h1 className="mt-10 mb-2 text-3xl font-bold">Video galleries</h1>
           <div className="border-t-2 w-[20%] border-black" />
 
-          <Slider 
-              {...settings}
-              className="w-[75%]  border-4 p-2  rounded-xl mt-6"
+          <Slider
+            {...slideSettingsVideoGalleries}
+            className="w-[75%]  border-4 p-2  rounded-xl mt-6"
           >
             {videoGallery &&
               videoGallery.map((videoGallery) => (
@@ -413,33 +407,39 @@ export default function AdminPushUps() {
                   </span>
 
                   <div className="">
-                    <img className="w-[50px] h-460px] rounded-[45%]" src={`http://localhost:4000/public/videoGallery/${videoGallery.image}`}/>
+                    <img
+                      className="w-[50px] h-460px] rounded-[45%]"
+                      src={`http://localhost:4000/public/videoGallery/${videoGallery.image}`}
+                    />
                   </div>
 
-                  
                   <div className="flex space-x-4">
-                  {videoGalleryHoverStates[videoGallery._id] && (
-                    <Link to={`/admin/updateVideoGallery/${videoGallery._id}`}>
-                      <button className="p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-2">
-                        update
-                      </button>
-                    </Link>
-                  )}
+                    {videoGalleryHoverStates[videoGallery._id] && (
+                      <Link
+                        to={`/admin/updateVideoGallery/${videoGallery._id}`}
+                      >
+                        <button className="p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-2">
+                          update
+                        </button>
+                      </Link>
+                    )}
 
-                  {videoGalleryHoverStates[videoGallery._id] && (
-                    <div>
-                      <button onClick={() => {deleteVideoGallery(videoGallery._id)} } className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-2">
-                        delete
-                      </button>
-                    </div>
-                  )}
+                    {videoGalleryHoverStates[videoGallery._id] && (
+                      <div>
+                        <button
+                          onClick={() => {
+                            deleteVideoGallery(videoGallery._id);
+                          }}
+                          className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-2"
+                        >
+                          delete
+                        </button>
+                      </div>
+                    )}
                   </div>
-
-
                 </div>
               ))}
-              </Slider>
-
+          </Slider>
 
           <button
             className={`${
@@ -475,7 +475,6 @@ export default function AdminPushUps() {
               />
             </div>
 
-
             <div className="flex space-x-4">
               <label className="my-auto">image:</label>
               <input
@@ -487,17 +486,16 @@ export default function AdminPushUps() {
               />
             </div>
 
-
-
-
             <div className="flex space-x-2">
               <div
                 className="p-2 rounded-xl bg-gray-300 hover:bg-gray-400 ease-in-out duration-300"
-                onClick={() => {setIsCreateVideoGallery(false); setGalleryUrlLink('')}}
+                onClick={() => {
+                  setIsCreateVideoGallery(false);
+                  setGalleryUrlLink("");
+                }}
               >
                 cancel
               </div>
-
 
               <button
                 type="submit"
@@ -516,28 +514,23 @@ export default function AdminPushUps() {
 
           <div className="flex space-x-4">
             <p className="my-auto">Choose gallery:</p>
-          <Select
-                    id="videoGallerySelect"
-                    value={videoGallerySelect}
-                    onChange={handleGallerySelectChange}
-                  >
-                    {videoGallery &&
-                      videoGallery.map((videoGallery) => (
-                        <MenuItem
-                          key={videoGallery._id}
-                          value={videoGallery._id}
-                        >
-                          {videoGallery.title}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                
-
+            <Select
+              id="videoGallerySelect"
+              value={videoGallerySelect}
+              onChange={handleGallerySelectChange}
+            >
+              {videoGallery &&
+                videoGallery.map((videoGallery) => (
+                  <MenuItem key={videoGallery._id} value={videoGallery._id}>
+                    {videoGallery.title}
+                  </MenuItem>
+                ))}
+            </Select>
           </div>
 
-          <Slider 
-              {...settings_V2}
-              className="w-[50%]  border-4 p-2  rounded-xl mt-6"
+          <Slider
+            {...slideSettingsVideos}
+            className="w-[50%]  border-4 p-2  rounded-xl mt-6"
           >
             {videos &&
               videos.map((video) => (
@@ -547,21 +540,24 @@ export default function AdminPushUps() {
                   onMouseEnter={() => handleVideoMouseEnter(video._id)}
                   onMouseLeave={() => handleVideoMouseLeave(video._id)}
                 >
-                 
                   <p>
                     <strong>day count:</strong> {video.day_count}
                   </p>
-                  <div className={`${video.video_gallery ? 'text-black' : 'text-red-400'}`}>
+                  <div
+                    className={`${
+                      video.video_gallery ? "text-black" : "text-red-400"
+                    }`}
+                  >
                     <strong>Video Gallery: </strong>
-                    {
-                      video.video_gallery && videoGallery && videoGallery.find(
+                    {video.video_gallery &&
+                      videoGallery &&
+                      videoGallery.find(
                         (gallery) => gallery._id === video.video_gallery._id
-                      )?.title 
-                    }
+                      )?.title}
 
-                    
-                      {video.video_gallery ? null : <div className="text-red-400">Missing video gallery!</div>}
-                    
+                    {video.video_gallery ? null : (
+                      <div className="text-red-400">Missing video gallery!</div>
+                    )}
                   </div>
 
                   <div className="flex space-x-4 mt-2">

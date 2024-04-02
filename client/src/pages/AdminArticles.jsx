@@ -189,7 +189,7 @@ export default function AdminArticles() {
   function NextArrowArticles(props) {
     const { className, style, onClick } = props;
     const totalSlides = articles.length;
-    const slidesToShow = settings.slidesToShow;
+    const slidesToShow = slideSettingsArticles.slidesToShow;
     const isLastSlide = currentSlideArticles >= totalSlides - slidesToShow;
 
     return (
@@ -228,7 +228,7 @@ export default function AdminArticles() {
   function NextArrowArticlesSection(props) {
     const { className, style, onClick } = props;
     const totalSlides = articleSections.length;
-    const slidesToShow = settings_v2.slidesToShow;
+    const slidesToShow = slideSettingsArticleSections.slidesToShow;
     const isLastSlide = currentSlideArticleSections >= totalSlides - slidesToShow;
 
     return (
@@ -267,7 +267,7 @@ export default function AdminArticles() {
 
   const [currentSlideArticles, setCurrentSlideArticles] = useState(0);
 
-  var settings = {
+  var slideSettingsArticles = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -311,7 +311,7 @@ export default function AdminArticles() {
 
   const [currentSlideArticleSections, setCurrentSlideArticleSections] = useState(0);
 
-  var settings_v2 = {
+  var slideSettingsArticleSections = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -459,7 +459,7 @@ export default function AdminArticles() {
               List of articles:
             </h2>
 
-            <Slider {...settings} className="w-[75%]  border-4 p-2  rounded-xl">
+            <Slider {...slideSettingsArticles} className="w-[75%]  border-4 p-2  rounded-xl">
               {articles &&
                 articles.map((article, index) => (
                   <div
@@ -584,7 +584,7 @@ export default function AdminArticles() {
               List of article sections:
             </h2>
             <Slider
-              {...settings_v2}
+              {...slideSettingsArticleSections}
               className="w-[75%]  border-4 p-2  rounded-xl"
             >
               {articleSections.map((articleSection) => (

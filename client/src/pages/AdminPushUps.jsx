@@ -3,7 +3,7 @@ import AdminSidePanel from "../components/AdminSidePanel";
 import axios from "axios";
 import { Form, Link } from "react-router-dom";
 import { io } from "socket.io-client";
-import { Select, InputLabel, MenuItem } from "@mui/material";
+import { Select, InputLabel, MenuItem, sliderClasses } from "@mui/material";
 import Slider from "react-slick";
 import "../slick.css"
 import "../slick-theme.css"
@@ -233,45 +233,81 @@ export default function AdminPushUps() {
 
 
 
-  function SampleNextArrow(props) {
+
+  function NextArrowVideoGalleries(props) {
     const { className, style, onClick } = props;
+    const totalSlides = videoGallery.length;
+    const slidesToShow = settings.slidesToShow;
+    const isLastSlide = currentSlideVideoGalleries >= totalSlides - slidesToShow;
+
     return (
       <div>
-      <FaChevronRight className=" rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
+      <FaChevronRight className={`${ isLastSlide ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]  `} size={24} style={{ ...style }}   onClick={onClick}/>
       </div>
     );
   }
   
-  function SamplePrevArrow(props) {
+  function PrevArrowVideoGalleries(props) {
     const { className, style, onClick } = props;
     return (
       <div>
-        <FaChevronLeft className=" rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
+        <FaChevronLeft className={`${currentSlideVideoGalleries === 0 ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`} size={24} style={{ ...style }}   onClick={onClick}/>
+        </div>
+    );
+  }
+
+
+
+  function NextArrowVideos(props) {
+    const { className, style, onClick } = props;
+    const totalSlides = videos.length;
+    const slidesToShow = settings_V2.slidesToShow;
+    const isLastSlide = currentSlideVideos >= totalSlides - slidesToShow;
+
+    console.log(totalSlides)
+    console.log(slidesToShow)
+    console.log(currentSlideVideos)
+    console.log(isLastSlide)
+
+    return (
+      <div>
+      <FaChevronRight className={`${ isLastSlide ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]  `} size={24} style={{ ...style }}   onClick={onClick}/>
+      </div>
+    );
+  }
+
+
+  
+  function PrevArrowVideos(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div>
+        <FaChevronLeft className={`${currentSlideVideos === 0 ? 'invisible' : ''} rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`} size={24} style={{ ...style }}   onClick={onClick}/>
         </div>
     );
   }
 
   
+  const [currentSlideVideoGalleries, setCurrentSlideVideoGalleries] = useState(0);
   
-  
-  
+
     var settings = {
       dots: true,
       infinite: false,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
-      initialSlide:0,
+      initialSlide: 0,
       swipeToSlide: true,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
+      nextArrow: <NextArrowVideoGalleries />,
+      prevArrow: <PrevArrowVideoGalleries />,
+      afterChange: (current) => setCurrentSlideVideoGalleries(current),
       responsive: [
         {
           breakpoint: 1024,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 3,
-            infinite: true,
             dots: true
           }
         },
@@ -292,8 +328,9 @@ export default function AdminPushUps() {
         }
       ]
     };
+  
 
-
+    const [currentSlideVideos, setCurrentSlideVideos] = useState(0);
 
     var settings_V2 = {
       dots: true,
@@ -303,15 +340,15 @@ export default function AdminPushUps() {
       slidesToScroll: 2,
       initialSlide:0,
       swipeToSlide: true,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
+      nextArrow: <NextArrowVideos />,
+      prevArrow: <PrevArrowVideos />,
+      afterChange: (current) => setCurrentSlideVideos(current),
       responsive: [
         {
           breakpoint: 1024,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 3,
-            infinite: true,
             dots: true
           }
         },

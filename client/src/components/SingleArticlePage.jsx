@@ -31,6 +31,7 @@ import Slider from "react-slick";
 import "../slick.css";
 import "../slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import ReviewLabelsSlider from "./ReviewLabelsSlider";
 
 export default function SingleArticlePage() {
   const { id } = useParams();
@@ -519,71 +520,6 @@ export default function SingleArticlePage() {
   }, [id]);
 
   const currentURL = `peterbruncik.com/articles/${id}`;
-
-  console.log();
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-
-    return (
-      <div>
-        <FaChevronRight
-          className="rounded-2xl text-black z-[10] cursor-pointer absolute xl:right-[-25px] right-[-15px]  xl:top-[35%] top-[30%]"
-          size={12}
-          style={{ ...style }}
-          onClick={onClick}
-        />
-      </div>
-    );
-  }
-
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div>
-        <FaChevronLeft
-          className=" rounded-2xl text-black z-[10] cursor-pointer absolute xl:left-[-25px]  left-[-15px]  xl:top-[35%] top-[30%]"
-          size={12}
-          style={{ ...style }}
-          onClick={onClick}
-        />
-      </div>
-    );
-  }
-
-  var settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 2,
-    initialSlide: 0,
-    swipeToSlide: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow:  <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-    ],
-  };
 
   if (article === null) {
     return <p className="py-20">Loading...</p>;
@@ -1174,20 +1110,11 @@ export default function SingleArticlePage() {
                         </div>
                       </div>
 
-                      <Slider
-                        className="xl:mb-6 mb-4 max-w-full overflow-x"
-                        {...settings}
-                      >
-                        {review.labels &&
-                          review.labels.map((label) => (
-                            <div
-                              className="xl:text-base lg:text-sm text-xs p-2 bg-black text-white rounded-lg whitespace-nowrap text-center"
-                              key={label}
-                            >
-                              {label}
-                            </div>
-                          ))}
-                      </Slider>
+                      {review.labels.length === 0 ? (
+                        ""
+                      ) : (
+                        <ReviewLabelsSlider review={review} />
+                      )}
                     </div>
                   ))}
               </div>

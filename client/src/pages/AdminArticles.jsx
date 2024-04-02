@@ -6,10 +6,9 @@ import { useState, useRef } from "react";
 import AdminSidePanel from "../components/AdminSidePanel";
 import { Select, MenuItem, InputLabel } from "@mui/material";
 import Slider from "react-slick";
-import "../slick.css"
-import "../slick-theme.css"
-import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
-
+import "../slick.css";
+import "../slick-theme.css";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 export default function AdminArticles() {
   const [articles, setArticles] = useState([]);
@@ -88,9 +87,9 @@ export default function AdminArticles() {
       setContent("");
       //setReadingTime("");
 
-      setSection(null)
+      setSection(null);
       setLabel("");
-      setCreateArticle(false)
+      setCreateArticle(false);
     } catch (error) {
       console.error("Error posting an article: ", error.message);
     }
@@ -149,8 +148,7 @@ export default function AdminArticles() {
       ) {
         await axios.post(
           `http://localhost:4000/admin/articleSections/createArticleSection`,
-          formData,
-     
+          formData
         );
       } else {
         return null;
@@ -163,7 +161,7 @@ export default function AdminArticles() {
       imageInput.current.value = "";
       setArticleSectionImageClicked();
       imageInputClicked.current.value = "";
-      setCreateArticleSection(false)
+      setCreateArticleSection(false);
     } catch (error) {
       console.error("Error posting an article section", error.message);
     }
@@ -186,36 +184,100 @@ export default function AdminArticles() {
 
 
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div>
-    <FaChevronRight className=" rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
-    </div>
-  );
-}
 
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div>
-      <FaChevronLeft className=" rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]" size={24} style={{ ...style }}   onClick={onClick}/>
+
+  function NextArrowArticles(props) {
+    const { className, style, onClick } = props;
+    const totalSlides = articles.length;
+    const slidesToShow = settings.slidesToShow;
+    const isLastSlide = currentSlideArticles >= totalSlides - slidesToShow;
+
+    return (
+      <div>
+        <FaChevronRight
+          className={`${
+            isLastSlide ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]`}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
       </div>
-  );
-}
+    );
+  }
 
-  
+  function PrevArrowArticles(props) {
+    const { className, style, onClick } = props;
+
+    return (
+      <div>
+        <FaChevronLeft
+          className={`${
+            currentSlideArticles === 0 ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
+      </div>
+    );
+  }
+
+
+
+  function NextArrowArticlesSection(props) {
+    const { className, style, onClick } = props;
+    const totalSlides = articleSections.length;
+    const slidesToShow = settings_v2.slidesToShow;
+    const isLastSlide = currentSlideArticleSections >= totalSlides - slidesToShow;
+
+    return (
+      <div>
+        <FaChevronRight
+          className={`${
+            isLastSlide ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute right-[-40px] top-[40%]`}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
+      </div>
+    );
+  }
+
+
+
+  function PrevArrowArticlesSection(props) {
+    const { className, style, onClick } = props;
+
+    return (
+      <div>
+        <FaChevronLeft
+          className={`${
+            currentSlideArticleSections === 0 ? "invisible" : ""
+          } rounded-2xl text-black z-[10] cursor-pointer absolute left-[-40px] top-[40%]`}
+          size={24}
+          style={{ ...style }}
+          onClick={onClick}
+        />
+      </div>
+    );
+  }
+
+
+  const [currentSlideArticles, setCurrentSlideArticles] = useState(0);
 
   var settings = {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 2,
-    initialSlide:0,
+    initialSlide: 0,
     swipeToSlide: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrowArticles />,
+    prevArrow: <PrevArrowArticles />,
+    afterChange: (current) => setCurrentSlideArticles(current),
     responsive: [
       {
         breakpoint: 1024,
@@ -223,30 +285,70 @@ function SamplePrevArrow(props) {
           slidesToShow: 2,
           slidesToScroll: 3,
           infinite: true,
-          dots: true
-        }
+          dots: true,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 2,
-          initialSlide: 2
-        }
+          initialSlide: 2,
+        },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
 
 
 
+  const [currentSlideArticleSections, setCurrentSlideArticleSections] = useState(0);
+
+  var settings_v2 = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    swipeToSlide: true,
+    nextArrow: <NextArrowArticlesSection />,
+    prevArrow: <PrevArrowArticlesSection />,
+    afterChange: (current) => setCurrentSlideArticleSections(current),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <>
@@ -356,29 +458,30 @@ function SamplePrevArrow(props) {
             <h2 className="flex items-end font-bold text-lg">
               List of articles:
             </h2>
-     
-           
-       
 
-            <Slider 
-              {...settings}
-              className="w-[75%]  border-4 p-2  rounded-xl"
-          >
-            
-             {articles &&
+            <Slider {...settings} className="w-[75%]  border-4 p-2  rounded-xl">
+              {articles &&
                 articles.map((article, index) => (
                   <div
                     key={article._id}
                     onMouseEnter={() => handleArticleMouseEnter(article._id)}
                     onMouseLeave={() => handleArticleMouseLeave(article._id)}
-                    className={`p-2 bg-gray-200 rounded-lg cursor-pointer min-h-[120px]`} 
-
+                    className={`p-2 bg-gray-200 rounded-lg cursor-pointer min-h-[120px]`}
                   >
-                    <strong  className={`${article.section ? 'text-black' : 'text-red-400'}`}>{article.title} </strong>
-                    {article.section ? null : <div className="text-red-400">Missing article section!</div>}
+                    <strong
+                      className={`${
+                        article.section ? "text-black" : "text-red-400"
+                      }`}
+                    >
+                      {article.title}{" "}
+                    </strong>
+                    {article.section ? null : (
+                      <div className="text-red-400">
+                        Missing article section!
+                      </div>
+                    )}
                     <br />
                     <div>{article.section && article.section.title}</div>
-
 
                     <div className="flex space-x-4 mt-2">
                       {articleHoverStates[article._id] && (
@@ -399,19 +502,9 @@ function SamplePrevArrow(props) {
                         </button>
                       )}
                     </div>
-                   
                   </div>
-                  
-                ))} 
-
-         
-
-
+                ))}
             </Slider>
-          
-
-         
-       
           </div>
 
           <h1 className="mt-10 mb-2 text-3xl font-bold">Article sections</h1>
@@ -490,10 +583,10 @@ function SamplePrevArrow(props) {
             <h2 className="font-bold text-lg flex items-end">
               List of article sections:
             </h2>
-            <Slider 
-              {...settings}
+            <Slider
+              {...settings_v2}
               className="w-[75%]  border-4 p-2  rounded-xl"
-          >
+            >
               {articleSections.map((articleSection) => (
                 <div
                   key={articleSection._id}
@@ -551,7 +644,6 @@ function SamplePrevArrow(props) {
                   </div>
                 </div>
               ))}
-        
             </Slider>
           </div>
         </div>

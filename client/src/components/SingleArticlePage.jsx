@@ -1101,7 +1101,7 @@ export default function SingleArticlePage() {
                               : isLaptopXl
                               ? 55
                               : isTablet
-                              ? 55
+                              ? 45
                               : 45,
                           }}
                         />

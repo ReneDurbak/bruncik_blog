@@ -19,7 +19,7 @@ export default function ReviewLabelsSlider({ review }) {
         <FaChevronRight
           className={` ${
             isLastSlide ? "invisible" : ""
-          } rounded-2xl text-black z-[10] cursor-pointer absolute xl:right-[-25px] right-[-15px]  xl:top-[25%] top-[30%]`}
+          } rounded-2xl text-black z-[10] cursor-pointer absolute xl:right-[-25px] right-[-15px]  xl:top-[25%] top-[18%]`}
           size={12}
           style={{ ...style }}
           onClick={onClick}
@@ -35,7 +35,7 @@ export default function ReviewLabelsSlider({ review }) {
         <FaChevronLeft
           className={`${
             currentSlide === 0 ? "invisible" : ""
-          } rounded-2xl text-black z-[10] cursor-pointer absolute xl:left-[-25px]  left-[-15px]  xl:top-[25%] top-[30%]`}
+          } rounded-2xl text-black z-[10] cursor-pointer absolute xl:left-[-25px]  left-[-15px]  xl:top-[25%] top-[18%]`}
           size={12}
           style={{ ...style }}
           onClick={onClick}

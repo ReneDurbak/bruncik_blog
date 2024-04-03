@@ -590,7 +590,7 @@ export default function AdminArticles() {
               {articleSections.map((articleSection) => (
                 <div
                   key={articleSection._id}
-                  className="relative p-2 bg-gray-200 rounded-xl min-w-[400px] min-h-[150px]"
+                  className="relative p-2 bg-gray-200 rounded-xl min-h-[150px]"
                   onMouseEnter={() =>
                     handleArticleSectionMouseEnter(articleSection._id)
                   }

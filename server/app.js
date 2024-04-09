@@ -20,6 +20,12 @@ const cookieParser = require('cookie-parser')
 const http = require('http');
 const {Server} = require('socket.io')
 const Notification = require('./models/notificationsModel.js')
+const User = require("./models/userModel");
+const jwt = require("jsonwebtoken");
+const generateToken = require('./utils/generateToken'); 
+
+
+
 
 
 
@@ -112,9 +118,43 @@ app.post('/postAdminCredentials', async(req, res)=>{
 })
 
 
+
+app.get('/verify', async (req, res) => {
+  const { token } = req.query;
+
+
+  if (!token) {
+    return res.status(400).send('Token is required');
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.EMAIL_SECRET);
+
+    const userId = decoded.userId;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(404);
+      throw new Error('User not found');
+    }
+
+    user.confirmation = true;
+    await user.save();
+    generateToken(res, user._id);
+
+
+    res.status(200).send('Verification successful');
+  } catch (error) {
+    console.error('Error verifying token:', error);
+    res.status(400).send('Invalid or expired token');
+  }
+});
+
+
+
+
 app.use(notFound);
 app.use(errorHandler);
-
 
 
 mongoose.connect(DATABASE)

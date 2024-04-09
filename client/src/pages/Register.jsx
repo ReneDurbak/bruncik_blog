@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { Spinner } from 'flowbite-react';
 import { toast, ToastContainer } from 'react-toastify'
@@ -15,7 +15,6 @@ export default function Register(){
   const [confirmPassword, setConfirmPassword] = useState('')
   const [email, setEmail] = useState('')
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [register, { isLoading }] = useRegisterMutation()
@@ -23,11 +22,6 @@ export default function Register(){
   const { userInfo } = useSelector((state) => state.auth)
 
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/')
-    }
-  }, [navigate, userInfo])
 
   const handleRegister = async(e) => {
     e.preventDefault()
@@ -37,7 +31,7 @@ export default function Register(){
       try {
         const res = await register({ name, email, password }).unwrap()//unwraps the promise
         dispatch(setCredentials({ ...res }))
-        navigate('/')
+        toast.success('Registration successful. Please check your email for verification.')
       } catch (error) {
         toast.error(error?.data?.message || error.error)
       }

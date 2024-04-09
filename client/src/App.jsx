@@ -21,6 +21,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import AdminPrivateRoutes from './components/AdminPrivateRoutes.jsx';
 import AdminUpdateVideo from './pages/AdminUpdateVideo.jsx';
 import PageNotFound from './pages/NotFound.jsx';
+import Verify from './components/Verify.jsx';
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
             
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/verify" element={<Verify/>}/>
             {/*Private routes*/}
             <Route path="" element={<PrivateRoute />}>
               <Route path="/" element={<Home />} />

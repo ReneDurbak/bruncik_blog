@@ -53,6 +53,7 @@
     "cors": "^2.8.5",
     "create-error-class": "^3.0.2",
     "cross-spawn": "^5.1.0",
+    "crypto-js": "^4.2.0",
     "crypto-random-string": "^1.0.0",
     "debug": "^2.6.9",
     "decode-uri-component": "^0.2.2",

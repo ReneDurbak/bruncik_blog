@@ -64,18 +64,18 @@ function App() {
             <Route path="/admin" element={<AdminLogin />} />
 
             <Route path="/admin" element={<AdminPrivateRoutes/>}>
-              <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles} />} />
-              <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle />} />
-              <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection />} />
-              <Route path="/admin/push-ups" element={<AdminPushUps />} />
-              <Route path="/admin/updateVideo/:id" element={<AdminUpdateVideo/>}/>
-              <Route path="/admin/updateVideoGallery/:id" element={<AdminUpdateVideoGallery/>}/>
+            <Route path="/admin/articles" element={<AdminArticles articles={ListOfArticles} />} />
+            <Route path="/admin/updateArticle/:id" element={<AdminUpdateArticle />} />
+            <Route path="/admin/updateArticleSection/:id" element={<AdminUpdateArticleSection />} />
+            <Route path="/admin/push-ups" element={<AdminPushUps />} />
+            <Route path="/admin/updateVideo/:id" element={<AdminUpdateVideo/>}/>
+            <Route path="/admin/updateVideoGallery/:id" element={<AdminUpdateVideoGallery/>}/>
             </Route>
             
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/verify" element={<Verify/>}/>
-            {/*Private routes*/}
+            
             <Route path="" element={<PrivateRoute />}>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

@@ -67,7 +67,7 @@ app.get("/notifications/getAllNotifications", async (req, res) => {
   }
 });
 
-app.use("/admin", adminRoutes);
+app.use("/admins", adminRoutes);
 app.use("/users", userRoutes);
 app.use("/admin/articles", articleRoutes);
 app.use("/admin/articleSections", articleSectionRoutes);

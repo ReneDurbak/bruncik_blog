@@ -97,7 +97,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {   
     const token = generateVerificationToken(user._id);
     sendVerificationEmail(email, token);
-
+    generateToken(res, user._id);
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -133,7 +133,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //route     PUT users/profile
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
-  console.log(user);
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;

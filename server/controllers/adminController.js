@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 const generateAdminToken = require("../utils/generateAdminToken");
 
 const authAdmin = asyncHandler(async (req, res) => {
-  const { username } = req.body;
+  const { username, password } = req.body;
 
   const admin = await Admin.findOne({ username });
 
@@ -12,10 +12,18 @@ const authAdmin = asyncHandler(async (req, res) => {
     throw new Error("Admin does not exist");
   }
 
-  if (admin) {
+  if (admin && (await admin.comparePassword(password))) {
     generateAdminToken(res, admin._id);
-    res.status(201).json({ message: "Authorized" });
+    res.status(201).json({
+      _id: admin._id,
+      username: admin.username,
+    });
+  }else{
+
+  res.status(401);
+  throw new Error('Invalid username or password')
   }
+
 });
 
 const logoutAdmin = asyncHandler(async (req, res) => {

@@ -9,8 +9,9 @@ const app = express();
 const mongoose = require("mongoose");
 const articleRoutes = require("./routes/articles");
 const articleSectionRoutes = require("./routes/articleSections.js");
-const AdminCredentialsModel = require("./models/adminCredentialsModel");
+const Admin = require("./models/adminModel");
 const userRoutes = require("./routes/userRoutes.js");
+const adminRoutes = require("./routes/adminRoutes.js");
 const videoRoutes = require("./routes/videos");
 const commentsRoutes = require("./routes/comments");
 const reviewRoutes = require("./routes/reviews.js");
@@ -22,7 +23,6 @@ const { Server } = require("socket.io");
 const Notification = require("./models/notificationsModel.js");
 const User = require("./models/userModel");
 const jwt = require("jsonwebtoken");
-const generateToken = require("./utils/generateToken");
 const asyncHandler = require("express-async-handler");
 
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -67,6 +67,7 @@ app.get("/notifications/getAllNotifications", async (req, res) => {
   }
 });
 
+app.use("/admin", adminRoutes);
 app.use("/users", userRoutes);
 app.use("/admin/articles", articleRoutes);
 app.use("/admin/articleSections", articleSectionRoutes);
@@ -77,7 +78,7 @@ app.use("/reviews", reviewRoutes);
 
 app.get("/getAdminCredentials", async (req, res) => {
   try {
-    const adminCredentials = await AdminCredentialsModel.find({});
+    const adminCredentials = await Admin.find({});
     res.status(200).json(adminCredentials);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -88,7 +89,7 @@ app.post("/postAdminCredentials", async (req, res) => {
   const { password, username } = req.body;
 
   try {
-    const adminCredentials = await AdminCredentialsModel.create({
+    const adminCredentials = await Admin.create({
       password,
       username,
     });

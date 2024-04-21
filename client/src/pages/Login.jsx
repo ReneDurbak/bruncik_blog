@@ -19,6 +19,8 @@ export default function Login() {
 
   const { userInfo } = useSelector((state) => state.auth);
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,6 +32,13 @@ export default function Login() {
       toast.error(error?.data?.message || error.error);
     }
   };
+
+
+  useEffect(() => {
+    if(userInfo && userInfo.confirmed === true){
+      navigate('/')
+    }
+  }, [navigate, userInfo])
 
   return (
     <>

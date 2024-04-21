@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { Spinner } from 'flowbite-react';
 import { toast, ToastContainer } from 'react-toastify'
-import {useRegisterMutation} from '../slices/usersApiSlice'
-import { setCredentials } from '../slices/authSlice'
+import {useRegisterMutation} from '../slices/user/usersApiSlice'
+import { setCredentials } from '../slices/user/authSlice'
 
 
 

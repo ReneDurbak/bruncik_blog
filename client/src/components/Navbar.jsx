@@ -4,8 +4,8 @@ import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from "../assets/icon.png"
 import { IoIosLogIn } from "react-icons/io";
 import { useSelector, useDispatch } from 'react-redux'
-import { useLogoutMutation } from '../slices/usersApiSlice';
-import { logout } from '../slices/authSlice'
+import { useLogoutMutation } from '../slices/user/usersApiSlice';
+import { logout } from '../slices/user/authSlice'
 import { Dropdown } from 'flowbite-react';
 
 
@@ -66,7 +66,6 @@ function Navbar() {
   const logoutHandler = async () => {
     try {
       await logoutApiCall().unwrap();
-      dispatch(logout())
       navigate('/')
     } catch (error) {
       console.log(error)

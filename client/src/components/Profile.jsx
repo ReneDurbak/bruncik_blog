@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { Spinner } from 'flowbite-react';
 import { toast, ToastContainer } from 'react-toastify'
-import { setCredentials } from '../slices/authSlice'
-import { useUpdateUserMutation} from '../slices/usersApiSlice'
+import { setCredentials } from '../slices/user/authSlice'
+import { useUpdateUserMutation} from '../slices/user/usersApiSlice'
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 

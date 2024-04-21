@@ -4,9 +4,9 @@ import { SHA256 } from "crypto-js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setAdminCredentials } from "../slices/adminAuthSlice";
+import { setAdminCredentials } from "../slices/admin/adminAuthSlice";
 import { toast, ToastContainer } from "react-toastify";
-import { useLoginMutation } from "../slices/adminsApiSlice";
+import { useLoginMutation } from "../slices/admin/adminsApiSlice";
 
 export default function AdminLogin({ articles }) {
   const location = useLocation();

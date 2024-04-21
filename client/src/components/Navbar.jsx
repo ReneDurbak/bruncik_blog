@@ -66,6 +66,7 @@ function Navbar() {
   const logoutHandler = async () => {
     try {
       await logoutApiCall().unwrap();
+      dispatch(logout())
       navigate('/')
     } catch (error) {
       console.log(error)

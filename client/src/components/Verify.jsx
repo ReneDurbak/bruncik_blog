@@ -16,6 +16,11 @@ const Verify = () => {
           `http://localhost:4000/verify?token=${token}`
         );
         setMessage(response.data.message);
+        const userInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
+        localStorage.setItem(
+          "userInfo",
+          JSON.stringify({ ...userInfo, confirmed: true })
+        );
         navigate("/");
         setIsLoading(false);
       } catch (error) {

@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
 const User = require("../models/userModel");
@@ -13,8 +13,8 @@ const transporter = nodemailer.createTransport({
   },
   secure: false,
   tls: {
-    rejectUnauthorized: false
-}
+    rejectUnauthorized: false,
+  },
 });
 
 const generateVerificationToken = (userId) => {
@@ -26,7 +26,7 @@ const sendVerificationEmail = (email, token) => {
 
   transporter.sendMail(
     {
-      from:  process.env.EMAIL_CONFIRM,
+      from: process.env.EMAIL_CONFIRM,
       to: email,
       subject: "Email Verification",
       html: `
@@ -44,36 +44,33 @@ const sendVerificationEmail = (email, token) => {
   );
 };
 
-
-
 //route     POST users/auth
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
-  if(!user){
+  if (!user) {
     res.status(401); //401 code status - Unauthorized
-    throw new Error('User does not exist');
+    throw new Error("User does not exist");
   }
-  
+
   if (!user.confirmation) {
     res.status(401); //401 code status - Unauthorized
     throw new Error("Please confirm your email to login");
-  }
-
-  if (user && (await user.matchPassword(password))) {
-    generateToken(res, user._id);
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-    });
   } else {
-
-
-    res.status(401); //401 code status - Unauthorized
-    throw new Error("Invalid email or password");
+    if (user && (await user.matchPassword(password))) {
+      generateToken(res, user._id);
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        confirmed: true,
+      });
+    } else {
+      res.status(401); //401 code status - Unauthorized
+      throw new Error("Invalid email or password");
+    }
   }
 });
 
@@ -94,7 +91,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
   });
 
-  if (user) {   
+  if (user) {
     const token = generateVerificationToken(user._id);
     sendVerificationEmail(email, token);
     generateToken(res, user._id);
@@ -153,11 +150,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 });
-
-
-
-
-
 
 module.exports = {
   authUser,

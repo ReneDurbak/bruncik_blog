@@ -383,7 +383,7 @@ export default function AdminPushUps() {
             {videoGallery &&
               videoGallery.map((videoGallery) => (
                 <div
-                  className="bg-gray-200 rounded-md p-2  min-h-[65px]"
+                  className="bg-gray-200 rounded-md p-2  min-h-[165px]"
                   key={videoGallery._id}
                   onMouseEnter={() =>
                     handleVideoGalleryMouseEnter(videoGallery._id)
@@ -530,12 +530,12 @@ export default function AdminPushUps() {
 
           <Slider
             {...slideSettingsVideos}
-            className="w-[50%]  border-4 p-2  rounded-xl mt-6"
+            className="w-[60%]  border-4 p-2  rounded-xl mt-6"
           >
             {videos &&
               videos.map((video) => (
                 <div
-                  className="relative rounded-lg bg-gray-200 p-4  max-w-[700px]"
+                  className="relative rounded-lg bg-gray-200 p-4 max-w-[700px] min-h-[160px]"
                   key={video._id}
                   onMouseEnter={() => handleVideoMouseEnter(video._id)}
                   onMouseLeave={() => handleVideoMouseLeave(video._id)}

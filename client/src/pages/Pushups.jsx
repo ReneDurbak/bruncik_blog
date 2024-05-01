@@ -646,7 +646,7 @@ function Pushups() {
                   item ? (
                     <animated.div
                       style={style}
-                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[250px] xl:top-[-10px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-210px]    z-[2]"
+                      className="absolute xl:w-[400px] lg:w-[350px] sm:w-[300px] w-[250px] xl:top-[-15px] md:top-[-2px] top-[-5px] 2xl:left-[-335px] xl:left-[-320px] lg:left-[-290px] sm:left-[-245px] left-[-210px]    z-[2]"
                     >
                       <div id="pushupsgallery">
                         <div

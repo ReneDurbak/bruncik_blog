@@ -95,7 +95,7 @@ function Navbar() {
               userInfo ? (
                 <div className="mx-2">
 
-                  <Dropdown label={`${userInfo.name}`}>
+                  <Dropdown label={`${userInfo.name}`} style={{ backgroundColor: 'black' }}>
                     <Link to="/profile">
                       <Dropdown.Header>
                         <span className="block text-sm">{userInfo.name}</span>

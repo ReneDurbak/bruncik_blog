@@ -93,7 +93,7 @@ function Navbar() {
 
             {
               userInfo ? (
-                <div className="mx-2">
+                <div className="ml-6">
 
                   <Dropdown label={`${userInfo.name}`} style={{ backgroundColor: 'black' }}>
                     <Link to="/profile">

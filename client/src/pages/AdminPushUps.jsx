@@ -53,33 +53,8 @@ export default function AdminPushUps() {
     }
   };
 
-  const [socket, setSocket] = useState(null);
 
-  useEffect(() => {
-    const newSocket = io("http://localhost:4000");
-    setSocket(newSocket);
-
-    return () => {
-      if (newSocket) {
-        newSocket.disconnect();
-      }
-    };
-  }, []);
-
-  const sendToSocket = () => {
-    if (socket) {
-      const message =
-        videos.length > 0
-          ? `New video posted! On day count: ${
-              videos.slice(-1)[0].day_count + 1
-            }!`
-          : "New video posted! On day count: 1!";
-      socket.emit("videoCreated", { message, createdAt: new Date() });
-    }
-  };
-
-  const [videoGallerySelectFilter, setVideoGallerySelectFilter] =
-    useState(null);
+  const [videoGallerySelectFilter, setVideoGallerySelectFilter] = useState(null);
 
   const handleGallerySelectFilterChange = (event) => {
     setVideoGallerySelectFilter(event.target.value);
@@ -91,29 +66,7 @@ export default function AdminPushUps() {
     setVideoGallerySelect(event.target.value);
   };
 
-  const handleCreateVideo = async (e) => {
-    e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/admin/videos/postVideo",
-        {
-          url_link: urlLink,
-          video_gallery: videoGallerySelectFilter,
-        }
-      );
-
-      fetchVideos();
-
-      setUrlLink("");
-      setVideoGallerySelectFilter(null);
-      setIsCreateVideo(false);
-
-      sendToSocket();
-    } catch (error) {
-      console.error("Cannot create a video:", error);
-    }
-  };
 
   const deleteVideo = async (id) => {
     try {
@@ -182,6 +135,58 @@ export default function AdminPushUps() {
     }
   };
 
+
+  
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = io("http://localhost:4000");
+    setSocket(newSocket);
+
+    return () => {
+      if (newSocket) {
+        newSocket.disconnect();
+      }
+    };
+  }, []);
+
+  const sendToSocket = () => {
+    if (socket) {
+      const selectedVideoGallery = videoGallery.find((videoGallery) => videoGallery._id === videoGallerySelectFilter)
+      const message =
+        videos.length > 0
+          ? `New video posted from ${selectedVideoGallery.title}! On day count: ${
+              videos.slice(-1)[0].day_count + 1
+            }!`
+          : `New video posted from ${selectedVideoGallery.title}! On day count: 1!`;
+      socket.emit("videoCreated", { message, createdAt: new Date() });
+    }
+  };
+
+  const handleCreateVideo = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/admin/videos/postVideo",
+        {
+          url_link: urlLink,
+          video_gallery: videoGallerySelectFilter,
+        }
+      );
+
+      fetchVideos();
+
+      setUrlLink("");
+      setVideoGallerySelectFilter(null);
+      setIsCreateVideo(false);
+
+      sendToSocket();
+    } catch (error) {
+      console.error("Cannot create a video:", error);
+    }
+  };
+
   const [videoGalleryHoverStates, setVideoGalleryHoverStates] = useState({});
 
   const handleVideoGalleryMouseEnter = (id) => {
@@ -219,6 +224,8 @@ export default function AdminPushUps() {
     const slidesToShow = slideSettingsVideoGalleries.slidesToShow;
     const isLastSlide =
       currentSlideVideoGalleries >= totalSlides - slidesToShow;
+
+
 
     return (
       <div>
@@ -515,9 +522,9 @@ export default function AdminPushUps() {
           <div className="flex space-x-4">
             <p className="my-auto">Choose gallery:</p>
             <Select
-            MenuProps={{
-              disableScrollLock: true,
-            }}
+              MenuProps={{
+                disableScrollLock: true,
+              }}
               id="videoGallerySelect"
               value={videoGallerySelect}
               onChange={handleGallerySelectChange}

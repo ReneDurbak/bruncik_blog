@@ -62,9 +62,6 @@ export default function AdminPushUps() {
 
   const [videoGallerySelect, setVideoGallerySelect] = useState(null);
 
-  const handleGallerySelectChange = (event) => {
-    setVideoGallerySelect(event.target.value);
-  };
 
 
 
@@ -124,9 +121,13 @@ export default function AdminPushUps() {
     };
   }, []);
 
+
+
+
   const sendToSocketVideo = () => {
     if (socket) {
       const selectedVideoGallery = videoGallery.find((videoGallery) => videoGallery._id === videoGallerySelectFilter)
+      const videos = allVideos.filter((video) => video.video_gallery._id === selectedVideoGallery._id)
       const message =
         videos.length > 0
           ? `New video posted from ${selectedVideoGallery.title}! On day count: ${
@@ -354,6 +355,20 @@ export default function AdminPushUps() {
   };
 
   const [currentSlideVideos, setCurrentSlideVideos] = useState(0);
+  const sliderRef = useRef(0); 
+
+
+  const handleGallerySelectChange = (event) => {
+    setVideoGallerySelect(event.target.value);
+    setCurrentSlideVideos(0)
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0); 
+    }
+  };
+
+  
+
+  
 
   var slideSettingsVideos = {
     dots: true,
@@ -362,7 +377,7 @@ export default function AdminPushUps() {
     slidesToShow: 4,
     slidesToScroll: 2,
     initialSlide: 0,
-    swipeToSlide: true,
+    swipeToSlide: false,
     nextArrow: <NextArrowVideos />,
     prevArrow: <PrevArrowVideos />,
     afterChange: (current) => setCurrentSlideVideos(current),
@@ -404,7 +419,7 @@ export default function AdminPushUps() {
 
           <Slider
             {...slideSettingsVideoGalleries}
-            className="max-w-[65%]  border-4 p-2  rounded-xl mt-6"
+            className="min-w-[65%] max-w-[65%]  border-4 p-2  rounded-xl mt-6"
           >
             {videoGallery &&
               videoGallery.map((videoGallery) => (
@@ -564,7 +579,8 @@ export default function AdminPushUps() {
 
           <Slider
             {...slideSettingsVideos}
-            className="max-w-[65%]  border-4 p-2  rounded-xl mt-6"
+            className="w-[50%] border-4 p-2  rounded-xl mt-6"
+            ref={sliderRef}
           >
             {videos &&
               videos.map((video) => (

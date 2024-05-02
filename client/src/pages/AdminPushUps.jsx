@@ -515,6 +515,9 @@ export default function AdminPushUps() {
           <div className="flex space-x-4">
             <p className="my-auto">Choose gallery:</p>
             <Select
+            MenuProps={{
+              disableScrollLock: true,
+            }}
               id="videoGallerySelect"
               value={videoGallerySelect}
               onChange={handleGallerySelectChange}
@@ -616,6 +619,9 @@ export default function AdminPushUps() {
                     value={videoGallerySelectFilter}
                     onChange={handleGallerySelectFilterChange}
                     displayEmpty
+                    MenuProps={{
+                      disableScrollLock: true,
+                    }}
                   >
                     {videoGallery &&
                       videoGallery.map((videoGallery) => (

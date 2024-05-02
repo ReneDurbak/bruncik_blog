@@ -12,7 +12,7 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 export default function AdminPushUps() {
   const [videos, setVideos] = useState([]);
   const [urlLink, setUrlLink] = useState("");
-  const [galleryUrlLink, setGalleryUrlLink] = useState("");
+  const [galleryName, setGalleryName] = useState("");
   const [goal, setGoal] = useState("");
   const [isCreateVideo, setIsCreateVideo] = useState(false);
   const [isCreateVideoGallery, setIsCreateVideoGallery] = useState(false);
@@ -107,33 +107,7 @@ export default function AdminPushUps() {
     fetchVideoGalleries();
   }, []);
 
-  const handleCreateVideoGallery = async (e) => {
-    e.preventDefault();
 
-    try {
-      const formData = new FormData();
-
-      formData.append("title", galleryUrlLink);
-      formData.append("image", image);
-      formData.append("goal", goal);
-
-      if (galleryUrlLink && goal && image) {
-        await axios.post(
-          "http://localhost:4000/admin/videoGalleries/createVideoGallery",
-          formData
-        );
-      } else {
-        return null;
-      }
-
-      fetchVideoGalleries();
-      setGalleryUrlLink("");
-      setGoal("");
-      setImage();
-    } catch (error) {
-      console.error("Cannot create video gallery:", error);
-    }
-  };
 
 
   
@@ -150,7 +124,7 @@ export default function AdminPushUps() {
     };
   }, []);
 
-  const sendToSocket = () => {
+  const sendToSocketVideo = () => {
     if (socket) {
       const selectedVideoGallery = videoGallery.find((videoGallery) => videoGallery._id === videoGallerySelectFilter)
       const message =
@@ -159,9 +133,20 @@ export default function AdminPushUps() {
               videos.slice(-1)[0].day_count + 1
             }!`
           : `New video posted from ${selectedVideoGallery.title}! On day count: 1!`;
-      socket.emit("videoCreated", { message, createdAt: new Date() });
+
+      const videoGalleryImage = selectedVideoGallery.image
+      socket.emit("videoCreated", { message, videoGalleryImage , createdAt: new Date() });
     }
   };
+  
+
+  const sendToSocketVideoGallery = (videoGalleryImage) => {
+    if (socket) {
+      const message = `New video gallery created: ${galleryName}!`
+      socket.emit("videoCreated", { message, videoGalleryImage ,createdAt: new Date() });
+    }
+  }
+
 
   const handleCreateVideo = async (e) => {
     e.preventDefault();
@@ -181,9 +166,43 @@ export default function AdminPushUps() {
       setVideoGallerySelectFilter(null);
       setIsCreateVideo(false);
 
-      sendToSocket();
+      sendToSocketVideo();
     } catch (error) {
       console.error("Cannot create a video:", error);
+    }
+  };
+
+  const handleCreateVideoGallery = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formData = new FormData();
+
+      formData.append("title", galleryName);
+      formData.append("image", image);
+      formData.append("goal", goal);
+
+      if (galleryName && goal && image) {
+        const response = await axios.post(
+          "http://localhost:4000/admin/videoGalleries/createVideoGallery",
+          formData
+        );
+  
+        const data = response.data; 
+        const videoGalleryImageFileName = data.image
+        sendToSocketVideoGallery(videoGalleryImageFileName)
+
+  
+      }
+
+      fetchVideoGalleries();
+      setGalleryName("");
+      setGoal("");
+      setImage();
+      document.getElementById("videoGalleryPhoto").value = "";
+
+    } catch (error) {
+      console.error("Cannot create video gallery:", error);
     }
   };
 
@@ -385,7 +404,7 @@ export default function AdminPushUps() {
 
           <Slider
             {...slideSettingsVideoGalleries}
-            className="w-[75%]  border-4 p-2  rounded-xl mt-6"
+            className="max-w-[65%]  border-4 p-2  rounded-xl mt-6"
           >
             {videoGallery &&
               videoGallery.map((videoGallery) => (
@@ -415,7 +434,7 @@ export default function AdminPushUps() {
 
                   <div className="">
                     <img
-                      className="w-[50px] h-460px] rounded-[45%]"
+                      className="w-[50px] max-h-[50px] h-460px] rounded-[45%]"
                       src={`http://localhost:4000/public/videoGallery/${videoGallery.image}`}
                     />
                   </div>
@@ -467,8 +486,8 @@ export default function AdminPushUps() {
               <label className="my-auto">video gallery name:</label>
               <input
                 className="outline outline-2 p-1 rounded-md"
-                value={galleryUrlLink}
-                onChange={(e) => setGalleryUrlLink(e.target.value)}
+                value={galleryName}
+                onChange={(e) => setGalleryName(e.target.value)}
               />
             </div>
 
@@ -485,6 +504,7 @@ export default function AdminPushUps() {
             <div className="flex space-x-4">
               <label className="my-auto">image:</label>
               <input
+                id="videoGalleryPhoto"
                 className="outline outline-2 p-1 rounded-md"
                 type="file"
                 accept=".jpg, .jpeg, .png, .svg"
@@ -498,7 +518,11 @@ export default function AdminPushUps() {
                 className="p-2 rounded-xl bg-gray-300 hover:bg-gray-400 ease-in-out duration-300"
                 onClick={() => {
                   setIsCreateVideoGallery(false);
-                  setGalleryUrlLink("");
+                  setGalleryName("");
+                  setGoal("")
+                  setImage()
+                  document.getElementById("videoGalleryPhoto").value = "";
+
                 }}
               >
                 cancel
@@ -540,7 +564,7 @@ export default function AdminPushUps() {
 
           <Slider
             {...slideSettingsVideos}
-            className="w-[60%]  border-4 p-2  rounded-xl mt-6"
+            className="max-w-[65%]  border-4 p-2  rounded-xl mt-6"
           >
             {videos &&
               videos.map((video) => (

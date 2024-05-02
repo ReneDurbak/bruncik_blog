@@ -22,12 +22,13 @@ import axios from "axios";
 import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 import { io } from "socket.io-client";
 import DOMPurify from "dompurify";
+import { useSelector } from "react-redux";
 
 function Pushups() {
   const [PushUpsGallery, setPushUpsGallery] = useState([]);
-  const [selectedGallery, setSelectedGallery] = useState(null)
-  const [goal, setGoal] = useState('')
-  const [image, setImage] = useState('')
+  const [selectedGallery, setSelectedGallery] = useState(null);
+  const [goal, setGoal] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     const fetchPushUpsGalleries = async () => {
@@ -36,11 +37,12 @@ function Pushups() {
           "http://localhost:4000/admin/videoGalleries/getAllVideoGalleries"
         );
         const fetchedVideoGalleries = response.data;
-        setPushUpsGallery(fetchedVideoGalleries)
-        setSelectedGallery(fetchedVideoGalleries && fetchedVideoGalleries[0]._id)
-        setGoal(fetchedVideoGalleries[0].goal)
-        setImage(fetchedVideoGalleries[0].image)
-
+        setPushUpsGallery(fetchedVideoGalleries);
+        setSelectedGallery(
+          fetchedVideoGalleries && fetchedVideoGalleries[0]._id
+        );
+        setGoal(fetchedVideoGalleries[0].goal);
+        setImage(fetchedVideoGalleries[0].image);
       } catch (error) {
         console.error(`Cannot fetch push ups galleries: ${error.message}`);
       }
@@ -256,13 +258,19 @@ function Pushups() {
       );
       const fetchedVideos = response.data;
 
-      const filteredGallery =  PushUpsGallery.filter((gallery) => gallery._id === selectedGallery)
-      
-      setImage(filteredGallery[0].image)
-      setVideos(selectedGallery.length === 0 ? fetchedVideos : fetchedVideos.filter((video) => video.video_gallery._id === selectedGallery));
-      setGoal( filteredGallery[0].goal)
+      const filteredGallery = PushUpsGallery.filter(
+        (gallery) => gallery._id === selectedGallery
+      );
 
-
+      setImage(filteredGallery[0].image);
+      setVideos(
+        selectedGallery.length === 0
+          ? fetchedVideos
+          : fetchedVideos.filter(
+              (video) => video.video_gallery._id === selectedGallery
+            )
+      );
+      setGoal(filteredGallery[0].goal);
     } catch (error) {
       console.error(error);
     }
@@ -311,22 +319,49 @@ function Pushups() {
 
   const [socket, setSocket] = useState(null);
   const [notifications, setNotifications] = useState([]);
+  const [notificationCount, setNotificationCount] = useState(0);
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const fetchNotifications = async () => {
+    const fetchUserNotifications = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/notifications/getAllNotifications"
+          "http://localhost:4000/users/getAllUsers"
         );
-        const notifications = response.data;
-        setNotifications(notifications);
-      } catch (error) {
-        console.error("Error fetching notifications:", error);
-      }
+        const users = response.data;
+        const currentUser = users.find((user) => user.name === userInfo.name);
+
+        setNotifications(currentUser.notifications);
+        setNotificationCount(currentUser.notificationsCount);
+      } catch (error) {}
     };
 
-    fetchNotifications();
+    fetchUserNotifications();
   }, []);
+
+  const resetUserNotificationsCount = async () => {
+    try {
+      const response = await axios.patch(
+        "http://localhost:4000/users/resetNotificationsCount",
+        { userId: userInfo._id }
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const resetUserNotifications = async () => {
+    try {
+      const response = await axios.patch(
+        "http://localhost:4000/users/resetNotifications",
+        { userId: userInfo._id }
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   useEffect(() => {
     const newSocket = io("http://localhost:4000");
@@ -343,6 +378,7 @@ function Pushups() {
     if (!socket) return;
     socket.on("receiveNotification", (data) => {
       setNotifications((prevNotifications) => [data, ...prevNotifications]);
+      setNotificationCount((prevNotificationsCount) => prevNotificationsCount += 1)
     });
   }, [socket]);
 
@@ -450,17 +486,12 @@ function Pushups() {
               </h1>
             </div>
             <div className="md:block hidden font-bold xl:text-5xl lg:text-3xl md:text-2xl text-sm rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">
-             
-             {
-              videos.length === Number(goal)
-              ?
-              <div>👏Goal completed!👏</div>
-              :
-              <div> Goal: {goal}</div>
-
-             }
-              
-              </div>
+              {videos.length === Number(goal) ? (
+                <div>👏Goal completed!👏</div>
+              ) : (
+                <div> Goal: {goal}</div>
+              )}
+            </div>
             <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-6 space-x-4">
               {/*Notifications button*/}
               <div className="relative my-auto">
@@ -469,13 +500,15 @@ function Pushups() {
                   className="xl:w-[48px] lg:w-[40px] md:w-[36px] w-[28px] hover:scale-105 duration-300 ease-in-out cursor-pointer"
                   onClick={() => {
                     setNotificationIsVisible(true);
+                    setNotificationCount(0);
+                    resetUserNotificationsCount();
                   }}
                   id="notificationsTrigger"
                 />
 
                 <div className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[18px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[18px]">
                   <div className="xl:text-base md:text-xs text-[10px] text-white">
-                    {notifications.length}
+                    {notifications && notificationCount}
                   </div>
                 </div>
                 {/*Notification window*/}
@@ -503,7 +536,7 @@ function Pushups() {
                             Notifications
                           </h1>
 
-                          <div className="flex space-x-3 mt-2 2xl:text-sm md:text-xs text-[10px] ">
+                          <div className="flex justify-between space-x-3 mt-2 2xl:text-sm md:text-xs text-[10px] ">
                             <div
                               className={`${
                                 notificationSwitch
@@ -513,6 +546,22 @@ function Pushups() {
                               onClick={() => setNotificationSwitch(false)}
                             >
                               View all
+                            </div>
+
+                            <div
+                              className="text-red-400 font-bold rounded-xl pr-10 underline underline-offset-8 ease-in-out duration-300 hover:cursor-pointer"
+                              onClick={() => {
+                                resetUserNotifications();
+                                setNotifications([])
+                              }}
+                            >
+                             {
+                              notifications && notifications.length === 0 ?
+                              null
+                              :
+                              'clear'
+                             }
+                              
                             </div>
                             {/*<div
                               className={`${
@@ -630,7 +679,6 @@ function Pushups() {
                 )}
               </div>
 
-   
               {/*Push-ups gallery button*/}
               <div className="relative my-auto">
                 <img
@@ -656,28 +704,28 @@ function Pushups() {
                               : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"
                           }`}
                         >
-                          {PushUpsGallery && PushUpsGallery.slice(0, 2).map((gallery) => (
-                            <div
-                              key={gallery._id}
-                              onClick={() => {
-                                setPushupsGalleryVisible(false);
-                                setSwitchGallery(false);
-                                setSelectedGallery(gallery._id)
-                 
-                              }}
-                              className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-700 ease-in-out last:rounded-b-[30px]"
-                            >
-                              <div className="absolute sm:left-7 left-4">
-                                <img
-                                  src={`http://localhost:4000/public/videoGallery/${gallery.image}`}
-                                  className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px] rounded-[45%]"
-                                />
+                          {PushUpsGallery &&
+                            PushUpsGallery.slice(0, 2).map((gallery) => (
+                              <div
+                                key={gallery._id}
+                                onClick={() => {
+                                  setPushupsGalleryVisible(false);
+                                  setSwitchGallery(false);
+                                  setSelectedGallery(gallery._id);
+                                }}
+                                className=" relative bg-white  hover:bg-[#696969] flex flex-row items-center xl:py-12 lg:py-9 sm:py-8 py-6 w-full first:md:rounded-t-[30px] first:rounded-t-xl duration-700 ease-in-out last:rounded-b-[30px]"
+                              >
+                                <div className="absolute sm:left-7 left-4">
+                                  <img
+                                    src={`http://localhost:4000/public/videoGallery/${gallery.image}`}
+                                    className="xl:w-[64px] lg:w-[50px] sm:w-[42px] w-[25px] rounded-[45%]"
+                                  />
+                                </div>
+                                <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">
+                                  {gallery.title}
+                                </div>
                               </div>
-                              <div className="absolute lg:left-[130px] sm:left-[90px] left-[55px] font-regular">
-                                {gallery.title}
-                              </div>
-                            </div>
-                          ))}
+                            ))}
                           {PushUpsGallery.length > 2 ? (
                             <div
                               className=" bg-white  hover:bg-[#696969] w-full flex justify-center items-center md:rounded-b-[30px] rounded-b-[15px] xl:py-12 lg:py-10 sm:py-9 py-6 space-x-10 duration-700 ease-in-out"
@@ -697,8 +745,6 @@ function Pushups() {
                           ) : null}
                         </div>
 
-
-
                         <div
                           className={`${
                             switchGallery
@@ -715,28 +761,30 @@ function Pushups() {
                                 }
                               }}
                             />
-                            {PushUpsGallery && PushUpsGallery.slice(2).map((gallery) => (
-                              <div
-                                key={gallery._id}
-                                className=" cursor-pointer"
-                              >
+                            {PushUpsGallery &&
+                              PushUpsGallery.slice(2).map((gallery) => (
                                 <div
-                                  className="flex md:space-x-2 space-x-1"
-                                  onClick={() => {
-                                    setPushupsGalleryVisible(false);
-                                    setSwitchGallery(false);
-                                    setSelectedGallery(gallery._id)
-                                  }}
+                                  key={gallery._id}
+                                  className=" cursor-pointer"
                                 >
-                         
-                                  <img 
-                                    src={`http://localhost:4000/public/videoGallery/${gallery.image}`} 
-                                    className="xl:w-[40px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[45%] " 
-                                  />
-                                  <div className="my-auto">{gallery.title}</div>
+                                  <div
+                                    className="flex md:space-x-2 space-x-1"
+                                    onClick={() => {
+                                      setPushupsGalleryVisible(false);
+                                      setSwitchGallery(false);
+                                      setSelectedGallery(gallery._id);
+                                    }}
+                                  >
+                                    <img
+                                      src={`http://localhost:4000/public/videoGallery/${gallery.image}`}
+                                      className="xl:w-[40px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[45%] "
+                                    />
+                                    <div className="my-auto">
+                                      {gallery.title}
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
                           </div>
                         </div>
                       </div>
@@ -750,17 +798,13 @@ function Pushups() {
           </div>
 
           {/*Goal on mobile*/}
-          <div className="md:hidden block text-sm mt-2"> 
-            {
-            
-            videos.length === Number(goal) ?
+          <div className="md:hidden block text-sm mt-2">
+            {videos.length === Number(goal) ? (
               <div>Goal completed! 👏</div>
-              :
+            ) : (
               <div>Goal: {goal}</div>
-            }
-</div>
-
-
+            )}
+          </div>
 
           <div className="md:pt-10 pt-6 pb-2 flex justify-between relative font-poppins">
             <div className="underline underline-offset-[3px] font-spectral xl:text-[18px] lg:text-[15px] sm:text-[13px] text-[10px] font-regular 2xl:tracking-normal md:tracking-wider my-auto">

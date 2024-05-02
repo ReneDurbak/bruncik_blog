@@ -53,17 +53,14 @@ export default function AdminPushUps() {
     }
   };
 
-
-  const [videoGallerySelectFilter, setVideoGallerySelectFilter] = useState(null);
+  const [videoGallerySelectFilter, setVideoGallerySelectFilter] =
+    useState(null);
 
   const handleGallerySelectFilterChange = (event) => {
     setVideoGallerySelectFilter(event.target.value);
   };
 
   const [videoGallerySelect, setVideoGallerySelect] = useState(null);
-
-
-
 
   const deleteVideo = async (id) => {
     try {
@@ -104,10 +101,6 @@ export default function AdminPushUps() {
     fetchVideoGalleries();
   }, []);
 
-
-
-
-  
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
@@ -121,33 +114,40 @@ export default function AdminPushUps() {
     };
   }, []);
 
-
-
-
   const sendToSocketVideo = () => {
     if (socket) {
-      const selectedVideoGallery = videoGallery.find((videoGallery) => videoGallery._id === videoGallerySelectFilter)
-      const videos = allVideos.filter((video) => video.video_gallery._id === selectedVideoGallery._id)
+      const selectedVideoGallery = videoGallery.find(
+        (videoGallery) => videoGallery._id === videoGallerySelectFilter
+      );
+      const videos = allVideos.filter(
+        (video) => video.video_gallery._id === selectedVideoGallery._id
+      );
       const message =
         videos.length > 0
-          ? `New video posted from ${selectedVideoGallery.title}! On day count: ${
-              videos.slice(-1)[0].day_count + 1
-            }!`
+          ? `New video posted from ${
+              selectedVideoGallery.title
+            }! On day count: ${videos.slice(-1)[0].day_count + 1}!`
           : `New video posted from ${selectedVideoGallery.title}! On day count: 1!`;
 
-      const videoGalleryImage = selectedVideoGallery.image
-      socket.emit("videoCreated", { message, videoGalleryImage , createdAt: new Date() });
+      const videoGalleryImage = selectedVideoGallery.image;
+      socket.emit("videoCreated", {
+        message,
+        videoGalleryImage,
+        createdAt: new Date(),
+      });
     }
   };
-  
 
   const sendToSocketVideoGallery = (videoGalleryImage) => {
     if (socket) {
-      const message = `New video gallery created: ${galleryName}!`
-      socket.emit("videoCreated", { message, videoGalleryImage ,createdAt: new Date() });
+      const message = `New video gallery created: ${galleryName}!`;
+      socket.emit("videoCreated", {
+        message,
+        videoGalleryImage,
+        createdAt: new Date(),
+      });
     }
-  }
-
+  };
 
   const handleCreateVideo = async (e) => {
     e.preventDefault();
@@ -188,12 +188,10 @@ export default function AdminPushUps() {
           "http://localhost:4000/admin/videoGalleries/createVideoGallery",
           formData
         );
-  
-        const data = response.data; 
-        const videoGalleryImageFileName = data.image
-        sendToSocketVideoGallery(videoGalleryImageFileName)
 
-  
+        const data = response.data;
+        const videoGalleryImageFileName = data.image;
+        sendToSocketVideoGallery(videoGalleryImageFileName);
       }
 
       fetchVideoGalleries();
@@ -201,7 +199,6 @@ export default function AdminPushUps() {
       setGoal("");
       setImage();
       document.getElementById("videoGalleryPhoto").value = "";
-
     } catch (error) {
       console.error("Cannot create video gallery:", error);
     }
@@ -244,8 +241,6 @@ export default function AdminPushUps() {
     const slidesToShow = slideSettingsVideoGalleries.slidesToShow;
     const isLastSlide =
       currentSlideVideoGalleries >= totalSlides - slidesToShow;
-
-
 
     return (
       <div>
@@ -315,6 +310,7 @@ export default function AdminPushUps() {
 
   const [currentSlideVideoGalleries, setCurrentSlideVideoGalleries] =
     useState(0);
+  const sliderVideoGalleryRef = useRef(null);
 
   var slideSettingsVideoGalleries = {
     dots: true,
@@ -355,22 +351,26 @@ export default function AdminPushUps() {
   };
 
   const [currentSlideVideos, setCurrentSlideVideos] = useState(0);
-  const sliderRef = useRef(0); 
+  const sliderVideosRef = useRef(0);
+  const [hasSetPosition, setHasSetPosition] = useState(false);
 
+  useEffect(() => {
+    if (sliderVideosRef.current && !hasSetPosition) {
+      sliderVideosRef.current?.slickGoTo(0);
+      setHasSetPosition(true);
+    }
+  }, [hasSetPosition, sliderVideosRef]);
 
   const handleGallerySelectChange = (event) => {
     setVideoGallerySelect(event.target.value);
-    setCurrentSlideVideos(0)
-    if (sliderRef.current) {
-      sliderRef.current.slickGoTo(0); 
+    if(currentSlideVideos !== 0){ 
+    if (sliderVideosRef.current) {
+      sliderVideosRef.current.slickGoTo(0);
     }
+  }
   };
 
-  
-
-  
-
-  var slideSettingsVideos = {
+  const slideSettingsVideos = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -381,31 +381,31 @@ export default function AdminPushUps() {
     nextArrow: <NextArrowVideos />,
     prevArrow: <PrevArrowVideos />,
     afterChange: (current) => setCurrentSlideVideos(current),
-    responsive: [
-      {
-        breakpoint: 1024,
-        slideSettingsVideos: {
-          slidesToShow: 2,
-          slidesToScroll: 3,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        slideSettingsVideos: {
-          slidesToShow: 1,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        slideSettingsVideos: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 1024,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 2,
+    //       dots: true,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 600,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //       initialSlide: 2,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 480,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    // ],
   };
 
   return (
@@ -419,12 +419,13 @@ export default function AdminPushUps() {
 
           <Slider
             {...slideSettingsVideoGalleries}
-            className="min-w-[65%] max-w-[65%]  border-4 p-2  rounded-xl mt-6"
+            className="w-[65%]  border-4 p-2  rounded-xl mt-6"
+            ref={sliderVideoGalleryRef}
           >
             {videoGallery &&
               videoGallery.map((videoGallery) => (
                 <div
-                  className="bg-gray-200 rounded-md p-2  min-h-[165px]"
+                  className="bg-gray-200 rounded-md p-2  h-[165px]"
                   key={videoGallery._id}
                   onMouseEnter={() =>
                     handleVideoGalleryMouseEnter(videoGallery._id)
@@ -534,10 +535,9 @@ export default function AdminPushUps() {
                 onClick={() => {
                   setIsCreateVideoGallery(false);
                   setGalleryName("");
-                  setGoal("")
-                  setImage()
+                  setGoal("");
+                  setImage();
                   document.getElementById("videoGalleryPhoto").value = "";
-
                 }}
               >
                 cancel
@@ -580,12 +580,12 @@ export default function AdminPushUps() {
           <Slider
             {...slideSettingsVideos}
             className="w-[50%] border-4 p-2  rounded-xl mt-6"
-            ref={sliderRef}
+            ref={sliderVideosRef}
           >
             {videos &&
               videos.map((video) => (
                 <div
-                  className="relative rounded-lg bg-gray-200 p-4 max-w-[700px] min-h-[160px]"
+                  className="relative rounded-lg bg-gray-200 p-4 h-[160px]"
                   key={video._id}
                   onMouseEnter={() => handleVideoMouseEnter(video._id)}
                   onMouseLeave={() => handleVideoMouseLeave(video._id)}

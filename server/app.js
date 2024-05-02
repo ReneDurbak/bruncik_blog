@@ -47,25 +47,40 @@ const io = new Server(server, {
   },
 });
 
+
+
 io.on("connection", (socket) => {
-  socket.on("videoCreated", (data) => {
+  socket.on("videoCreated", async (data) => {
     socket.broadcast.emit("receiveNotification", data);
-    Notification.create({ message: data.message });
+
+    try {
+      const users = await User.find();
+      
+      users.forEach(async (user) => {
+        user.notifications.push({ message: data.message, createdAt: new Date() });
+        
+        user.notificationsCount += 1;
+        
+        await user.save();
+      });
+    } catch (error) {
+      console.error("Error updating notifications:", error);
+    }
   });
 });
 
-app.get("/notifications/getAllNotifications", async (req, res) => {
-  try {
-    const getAllNotifications = await Notification.find({}).sort({
-      createdAt: -1,
-    });
-    res.status(200).json(getAllNotifications);
-  } catch (error) {
-    res
-      .status(400)
-      .json({ error: `Cannot fetch all notifications ${error.message}` });
-  }
-});
+// app.get("/notifications/getAllNotifications", async (req, res) => {
+//   try {
+//     const getAllNotifications = await Notification.find({}).sort({
+//       createdAt: -1,
+//     });
+//     res.status(200).json(getAllNotifications);
+//   } catch (error) {
+//     res
+//       .status(400)
+//       .json({ error: `Cannot fetch all notifications ${error.message}` });
+//   }
+// });
 
 app.use("/admins", adminRoutes);
 app.use("/users", userRoutes);

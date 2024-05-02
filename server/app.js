@@ -20,7 +20,6 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware.js");
 const cookieParser = require("cookie-parser");
 const http = require("http");
 const { Server } = require("socket.io");
-const Notification = require("./models/notificationsModel.js");
 const User = require("./models/userModel");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
@@ -51,13 +50,15 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   socket.on("videoCreated", async (data) => {
+    const {message, videoGalleryImage} = data
+
     socket.broadcast.emit("receiveNotification", data);
 
     try {
       const users = await User.find();
       
       users.forEach(async (user) => {
-        user.notifications.push({ message: data.message, createdAt: new Date() });
+        user.notifications.push({ message, videoGalleryImage, createdAt: new Date() });
         
         user.notificationsCount += 1;
         

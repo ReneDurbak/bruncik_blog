@@ -9,6 +9,7 @@ const videoGallerySchema = mongoose.Schema({
     },
     image:{
         type: String,
+        required: true
     },
     goal:{
         type: String,

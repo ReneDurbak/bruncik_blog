@@ -122,10 +122,53 @@ const getUserProfile = asyncHandler(async (req, res) => {
     _id: req.user._id,
     name: req.user.name,
     email: req.user.email,
+    notifications: req.user.notifications,
+    notificationsCount: req.user.notificationsCount
   };
 
   res.status(200).json(user);
 });
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find()
+    res.status(200).json(users)
+  } catch (error) {
+    res.status(400).json({message: error.message})
+  }
+}
+
+const resetUserNotificationsCount = async(req,res) => {
+  const {userId} = req.body
+
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: userId },
+      { $set: { notificationsCount: 0 } },
+      { new: true } 
+    );
+
+    res.status(200).json({ message: "Notifications reset successful", user });
+  } catch (error) {
+    res.status(400).json({message: error.message})
+  }
+}
+
+const resetUserNotifications = async(req,res) => {
+  const {userId} = req.body
+
+  try {
+    const user = await User.findOneAndUpdate(
+      { _id: userId },
+      { $set: { notifications: [] } },
+      { new: true } 
+    );
+
+    res.status(200).json({ message: "Notifications count reset successfully", user });
+  } catch (error) {
+    res.status(400).json({message: error.message})
+  }
+}
 
 //route     PUT users/profile
 const updateUserProfile = asyncHandler(async (req, res) => {
@@ -157,4 +200,7 @@ module.exports = {
   logoutUser,
   getUserProfile,
   updateUserProfile,
+  getAllUsers,
+  resetUserNotificationsCount,
+  resetUserNotifications
 };

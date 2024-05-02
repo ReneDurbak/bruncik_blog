@@ -262,6 +262,7 @@ function Pushups() {
         (gallery) => gallery._id === selectedGallery
       );
 
+
       setImage(filteredGallery[0].image);
       setVideos(
         selectedGallery.length === 0
@@ -584,8 +585,8 @@ function Pushups() {
                                 >
                                   <div>
                                     <img
-                                      src={profilepicture2}
-                                      className="2xl:w-[48px] md:w-[40px] w-[32px] "
+                                      src={`http://localhost:4000/public/videoGallery/${notification.videoGalleryImage}`}
+                                      className="2xl:w-[48px] 2xl:h-[40px] md:w-[40px] md:h-[40px] w-[32px] h-[32px] rounded-3xl"
                                     />
                                   </div>
 
@@ -777,7 +778,7 @@ function Pushups() {
                                   >
                                     <img
                                       src={`http://localhost:4000/public/videoGallery/${gallery.image}`}
-                                      className="xl:w-[40px] lg:w-[20px] sm:w-[18px] w-[16px]  rounded-[45%] "
+                                      className="xl:min-w-[40px] xl:max-h-[40px] lg:w-[20px] lg:max-h-[20px] sm:w-[18px] sm:max-h-[18px] w-[16px] max-h-[16px]  rounded-[45%] "
                                     />
                                     <div className="my-auto">
                                       {gallery.title}

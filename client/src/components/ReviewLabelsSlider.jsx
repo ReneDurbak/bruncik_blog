@@ -9,10 +9,10 @@ export default function ReviewLabelsSlider({ review }) {
     const slidesToShow = slideSettings.slidesToShow;
     const isLastSlide = currentSlide >= totalSlides - slidesToShow;
 
-    console.log(`total slides: ${totalSlides}`);
-    console.log(`slides to show: ${slidesToShow}`);
-    console.log(`current slide: ${currentSlide}`);
-    console.log(isLastSlide);
+    // console.log(`total slides: ${totalSlides}`);
+    // console.log(`slides to show: ${slidesToShow}`);
+    // console.log(`current slide: ${currentSlide}`);
+    // console.log(isLastSlide);
 
     return (
       <div>

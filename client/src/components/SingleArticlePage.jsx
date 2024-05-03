@@ -88,6 +88,9 @@ export default function SingleArticlePage() {
   const [comment, setComment] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [isUpdateReview, setIsUpdateReview] = useState(false);
+  const [updateReviewRating, setUpdateReviewRating] = useState(0);
+  const [updateReviewId, setUpdateReviewId] = useState("");
 
   const handleLabelClick = (labelID) => {
     if (selectedLabels.includes(labelID)) {
@@ -128,6 +131,12 @@ export default function SingleArticlePage() {
     }*/
   };
 
+  const [updateRating, setUpdateRating] = useState(0)
+
+  const handleUpdateRatingChange = (event, newRating) => {
+    setUpdateRating(newRating);
+  };
+
   const fetchRatings = async () => {
     try {
       const response = await axios.get(
@@ -157,6 +166,8 @@ export default function SingleArticlePage() {
             .map((label) => label.labelTitle),
           comment,
           articleId: id,
+          userId,
+          userName: userInfo.name,
         }
       );
 
@@ -164,6 +175,39 @@ export default function SingleArticlePage() {
       fetchRatings();
     } catch (error) {
       console.error("Cannot post rating: ", error.message);
+    }
+  };
+
+  const deleteReview = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:4000/reviews/deleteReview/${id}`
+      );
+
+      fetchRatings();
+    } catch (error) {
+      console.error("Cannot delete review", error.message);
+    }
+  };
+
+  const handleUpdateReview = async (e, reviewId) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch(
+        `http://localhost:4000/reviews/updateReview/${reviewId}`,
+        {
+          rating: updateRating,
+          comment,
+        }
+      );
+
+      fetchRatings()
+      setRating(0)
+      setComment('')
+      setIsUpdateReview(false)
+
+    } catch (error) {
+      console.error("Error updating review", error.message);
     }
   };
 
@@ -1089,31 +1133,138 @@ export default function SingleArticlePage() {
 
                 {reviews &&
                   reviews.map((review) => (
-                    <div className="xl:px-8 px-4 border border-gray-200 my-4 xl:w-[70%] w-full">
-                      <div className="my-8" key={review._id}>
-                        <Rating
-                          value={review.rating}
-                          readOnly
-                          precision={0.5}
-                          style={{
-                            fontSize: isDesktop
-                              ? 62
-                              : isLaptopXl
-                              ? 55
-                              : isTablet
-                              ? 45
-                              : 45,
-                          }}
-                        />
-                        <div className="xl:text-base md:text-sm text-xs mt-4">
-                          {review.comment}
-                        </div>
-                      </div>
+                    <div
+                      className="relative xl:px-8 px-4 border border-gray-200 my-4 xl:w-[70%] w-full"
+                      key={review._id}
+                    >
+                      {review.userId === userId &&
+                      isUpdateReview &&
+                      review._id === updateReviewId ? (
+                        <>
+                          <form
+                            onSubmit={(e) => handleUpdateReview(e, review._id)}
+                          >
+                            <MdOutlineCancel
+                              size={18}
+                              className="absolute top-2 right-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+                              onClick={() => setIsUpdateReview(false)}
+                            />
 
-                      {review.labels.length === 0 ? (
-                        ""
+                            <div className="flex flex-col space-y-10 my-8">
+                              {/* <div className="mb-6">
+                            <h1 className="font-bold xl:text-lg text-sm">
+                              {review.userName}
+                            </h1>
+                            <div className="xl:text-sm text-[11px] text-[#757575] mt-2">
+                              {new Date(review.createdAt).toLocaleString(
+                                "en-US",
+                                {
+                                  month: "long",
+                                  day: "numeric",
+                                  year: "numeric",
+                                  hour: "numeric",
+                                  minute: "numeric",
+                                  hour12: true,
+                                }
+                              )}
+                            </div>
+                          </div> */}
+                              <Rating
+                                value={updateRating}
+                                onChange={handleUpdateRatingChange}
+                                precision={0.5}
+                                style={{
+                                  fontSize: isDesktop
+                                    ? 62
+                                    : isLaptopXl
+                                    ? 55
+                                    : isTablet
+                                    ? 45
+                                    : 45,
+                                }}
+                              />
+                              {/* <div className="xl:text-base md:text-sm text-xs mt-4">
+                            {review.comment}
+                          </div> */}
+
+                              <textarea
+                                defaultValue={review.comment}
+                                placeholder="update a comment..."
+                                className="w-[80%] min-h-[100px] max-h-[220px] overflow-hidden rounded-lg placeholder:font-normal"
+                                onChange={(e) => setComment(e.target.value)}
+                              />
+                            </div>
+
+    
+
+                            <button
+                              type="submit"
+                              className="self-start my-2 rounded-xl bg-green-300 p-2 duration-300 ease-in-out hover:bg-green-500"
+                            >
+                              Update
+                            </button>
+                          </form>
+                        </>
                       ) : (
-                        <ReviewLabelsSlider review={review} />
+                        <>
+                          <div className="flex  space-x-2 absolute top-2 right-2">
+                            <FaPen
+                              className="hover:scale-125 ease-in-out duration-300"
+                              onClick={() => {
+                                setUpdateReviewId(review._id);
+                                setIsUpdateReview(true);
+                                setUpdateRating(review.rating)
+                              }}
+                            />
+                            <RiDeleteBin5Line
+                              className="hover:scale-125 ease-in-out duration-300"
+                              onClick={() => deleteReview(review._id)}
+                            />
+
+                          </div>
+
+                          <div className="my-8">
+                            <div className="mb-6">
+                              <h1 className="font-bold xl:text-lg text-sm">
+                                {review.userName}
+                              </h1>
+                              <div className="xl:text-sm text-[11px] text-[#757575] mt-2">
+                                {new Date(review.createdAt).toLocaleString(
+                                  "en-US",
+                                  {
+                                    month: "long",
+                                    day: "numeric",
+                                    year: "numeric",
+                                    hour: "numeric",
+                                    minute: "numeric",
+                                    hour12: true,
+                                  }
+                                )}
+                              </div>
+                            </div>
+                            <Rating
+                              value={review.rating}
+                              readOnly
+                              precision={0.5}
+                              style={{
+                                fontSize: isDesktop
+                                  ? 62
+                                  : isLaptopXl
+                                  ? 55
+                                  : isTablet
+                                  ? 45
+                                  : 45,
+                              }}
+                            />
+                            <div className="xl:text-base md:text-sm text-xs mt-4">
+                              {review.comment}
+                            </div>
+                          </div>
+
+                          {review.labels.length > 0 && (
+                            <ReviewLabelsSlider review={review} />
+                          )}
+                        </>
                       )}
                     </div>
                   ))}

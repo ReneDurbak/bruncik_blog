@@ -25,8 +25,35 @@ const postReview = async(req, res) => {
     }
 }
 
+const updateReview = async(req, res) => {
+  const {id} = req.params
+
+  try {
+    const updatedReview = await Review.findByIdAndUpdate({_id: id}, {
+      ...req.body
+    })
+
+    res.status(200).json(updatedReview)
+  } catch (error) {
+    res.status(400).json({message: `Cannot update review ${error.message}`})
+  }
+}
+
+const deleteReview = async(req, res) => {
+  const {id} = req.params
+
+  try {
+    const deletedReview = await Review.findByIdAndDelete({_id: id})
+
+    res.status(200).json(deletedReview)
+  } catch (error) {
+    res.status(400).json({message: `Cannot delete review ${error.message}`})
+  }
+}
 
 module.exports = {
     getAllReviews,
-    postReview
+    postReview,
+    updateReview,
+    deleteReview
 }

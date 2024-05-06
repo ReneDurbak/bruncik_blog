@@ -356,7 +356,7 @@ export default function AdminPushUps() {
 
   useEffect(() => {
     if (sliderVideosRef.current && !hasSetPosition) {
-      sliderVideosRef.current?.slickGoTo(0);
+      // sliderVideosRef.current?.slickGoTo(0);
       setHasSetPosition(true);
     }
   }, [hasSetPosition, sliderVideosRef]);

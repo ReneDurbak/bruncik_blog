@@ -34,6 +34,9 @@ export default function AdminPushUps() {
   };
 
   const [allVideos, setAllVideos] = useState([]);
+  const [isGalleryEmpty, setIsGalleryEmpty] = useState(false);
+
+  console.log(isGalleryEmpty);
 
   const fetchVideos = async () => {
     try {
@@ -48,6 +51,16 @@ export default function AdminPushUps() {
           (video) => video.video_gallery._id === videoGallerySelect
         )
       );
+
+      const filteredVideos = fetchedVideos.filter(
+        (video) => video.video_gallery._id === videoGallerySelect
+      );
+
+      if (filteredVideos.length === 0) {
+        setIsGalleryEmpty(true);
+      } else {
+        setIsGalleryEmpty(false);
+      }
     } catch (error) {
       console.error("Cannot fetch videos:", error);
     }
@@ -354,20 +367,24 @@ export default function AdminPushUps() {
   const sliderVideosRef = useRef(0);
   const [hasSetPosition, setHasSetPosition] = useState(false);
 
-  useEffect(() => {
-    if (sliderVideosRef.current && !hasSetPosition) {
-      // sliderVideosRef.current?.slickGoTo(0);
-      setHasSetPosition(true);
-    }
-  }, [hasSetPosition, sliderVideosRef]);
+  // console.log(currentSlideVideos)
+
+  // useEffect(() => {
+  //   if (sliderVideosRef.current && !hasSetPosition) {
+
+  //     sliderVideosRef.current?.slickGoTo(0);
+  //     setHasSetPosition(true);
+
+  //   }
+  // }, [hasSetPosition, sliderVideosRef]);
 
   const handleGallerySelectChange = (event) => {
     setVideoGallerySelect(event.target.value);
-    if(currentSlideVideos !== 0){ 
-    if (sliderVideosRef.current) {
-      sliderVideosRef.current.slickGoTo(0);
+    if (currentSlideVideos !== 0) {
+      if (sliderVideosRef.current) {
+        sliderVideosRef.current.slickGoTo(0);
+      }
     }
-  }
   };
 
   const slideSettingsVideos = {
@@ -381,32 +398,33 @@ export default function AdminPushUps() {
     nextArrow: <NextArrowVideos />,
     prevArrow: <PrevArrowVideos />,
     afterChange: (current) => setCurrentSlideVideos(current),
-    // responsive: [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 2,
-    //       dots: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //       initialSlide: 2,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
   };
+
+  // responsive: [
+  //   {
+  //     breakpoint: 1024,
+  //     settings: {
+  //       slidesToShow: 2,
+  //       slidesToScroll: 2,
+  //       dots: true,
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 600,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1,
+  //       initialSlide: 2,
+  //     },
+  //   },
+  //   {
+  //     breakpoint: 480,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1,
+  //     },
+  //   },
+  // ],
 
   return (
     <div className="flex space-x-[300px]">
@@ -577,61 +595,65 @@ export default function AdminPushUps() {
             </Select>
           </div>
 
-          <Slider
-            {...slideSettingsVideos}
-            className="w-[50%] border-4 p-2  rounded-xl mt-6"
-            ref={sliderVideosRef}
-          >
-            {videos &&
-              videos.map((video) => (
-                <div
-                  className="relative rounded-lg bg-gray-200 p-4 h-[160px]"
-                  key={video._id}
-                  onMouseEnter={() => handleVideoMouseEnter(video._id)}
-                  onMouseLeave={() => handleVideoMouseLeave(video._id)}
-                >
-                  <p>
-                    <strong>day count:</strong> {video.day_count}
-                  </p>
+          {!isGalleryEmpty ? (
+            <Slider
+              {...slideSettingsVideos}
+              className="w-[50%] border-4 p-2  rounded-xl mt-6"
+              ref={sliderVideosRef}
+            >
+              {videos &&
+                videos.map((video) => (
                   <div
-                    className={`${
-                      video.video_gallery ? "text-black" : "text-red-400"
-                    }`}
+                    className="relative rounded-lg bg-gray-200 p-4 h-[160px]"
+                    key={video._id}
+                    onMouseEnter={() => handleVideoMouseEnter(video._id)}
+                    onMouseLeave={() => handleVideoMouseLeave(video._id)}
                   >
-                    <strong>Video Gallery: </strong>
-                    {video.video_gallery &&
-                      videoGallery &&
-                      videoGallery.find(
-                        (gallery) => gallery._id === video.video_gallery._id
-                      )?.title}
+                    <p>
+                      <strong>day count:</strong> {video.day_count}
+                    </p>
+                    <div
+                      className={`${
+                        video.video_gallery ? "text-black" : "text-red-400"
+                      }`}
+                    >
+                      <strong>Video Gallery: </strong>
+                      {video.video_gallery &&
+                        videoGallery &&
+                        videoGallery.find(
+                          (gallery) => gallery._id === video.video_gallery._id
+                        )?.title}
 
-                    {video.video_gallery ? null : (
-                      <div className="text-red-400">Missing video gallery!</div>
-                    )}
-                  </div>
-
-                  <div className="flex space-x-4 mt-2">
-                    {videoHoverStates[video._id] && (
-                      <Link to={`/admin/updateVideo/${video._id}`}>
-                        <button className="p-2 cursor-pointer rounded-xl bg-green-400  hover:bg-green-600 duration-300 ease-in-out ">
-                          Update
-                        </button>
-                      </Link>
-                    )}
-
-                    {videos.slice(-1)[0]._id === video._id &&
-                      videoHoverStates[video._id] && (
-                        <div
-                          onClick={() => deleteVideo(video._id)}
-                          className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out "
-                        >
-                          Delete
+                      {video.video_gallery ? null : (
+                        <div className="text-red-400">
+                          Missing video gallery!
                         </div>
                       )}
+                    </div>
+
+                    <div className="flex space-x-4 mt-2">
+                      {videoHoverStates[video._id] && (
+                        <Link to={`/admin/updateVideo/${video._id}`}>
+                          <button className="p-2 cursor-pointer rounded-xl bg-green-400  hover:bg-green-600 duration-300 ease-in-out ">
+                            Update
+                          </button>
+                        </Link>
+                      )}
+
+                      {videos.slice(-1)[0]._id === video._id &&
+                        videoHoverStates[video._id] && (
+                          <div
+                            onClick={() => deleteVideo(video._id)}
+                            className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out "
+                          >
+                            Delete
+                          </div>
+                        )}
+                    </div>
                   </div>
-                </div>
-              ))}
-          </Slider>
+                ))}
+            </Slider>
+          ) : null}
 
           <button
             className={`${

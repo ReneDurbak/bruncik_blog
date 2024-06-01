@@ -331,7 +331,8 @@ function Pushups() {
           "http://localhost:4000/users/getAllUsers"
         );
         const users = response.data;
-        const currentUser = users.find((user) => user.name === userInfo.name);
+        const currentUser = users.find((user) => user.email === userInfo.email);
+        
 
         setNotifications(currentUser.notifications);
         setNotificationCount(currentUser.notificationsCount);
@@ -340,6 +341,7 @@ function Pushups() {
 
     fetchUserNotifications();
   }, []);
+
 
   const resetUserNotificationsCount = async () => {
     try {
@@ -684,7 +686,7 @@ function Pushups() {
               <div className="relative my-auto">
                 <img
                   src={`http://localhost:4000/public/videoGallery/${image}`}
-                  className="xl:w-[55px]  lg:w-[54px] md:w-[40px] w-[34px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
+                  className="xl:w-[55px] xl:h-[55px]  lg:w-[54px] md:w-[40px] w-[34px] rounded-[50%] hover:scale-105 duration-300 ease-in-out cursor-pointer"
                   onClick={() => setPushupsGalleryVisible(true)}
                   id="triggerpushupsgallery"
                 />

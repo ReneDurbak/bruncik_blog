@@ -64,7 +64,7 @@ Multifunctional personal blog with admin mode for managing articles, article sec
 
 
 
- <br><br><br> 
+ <br><br><br><br><br><br> 
 # About me
 * Summary of Peter's values and his story
 

@@ -113,7 +113,7 @@ return(
   </div>
 
   <div className="bottom-0 align-bottom text-white text-center sm:mt-12 sm:text-sm text-xs mb-[-55px] ">
-    <p>Made by ©René Durbák and @Peter Brunčík</p>
+    <p>Made by <a href='https://www.linkedin.com/in/ren%C3%A9-durb%C3%A1k-47421626a/' target='_blank'>René Durbák </a> & designed by <a href='https://www.instagram.com/peterbruncik/' target='_blank'>Peter Brunčík</a></p>
   </div>
 </footer>
 

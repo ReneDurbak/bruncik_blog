@@ -17,10 +17,10 @@ Multifunctional personal blog with admin mode for managing articles, article sec
  <br><br><br><br><br><br>
 # Push-ups page
 
-* A galleries of videos with the purpose of motivating people to workout
+* Galleries of videos with the purpose of motivating people to workout
 * Each gallery has a goal, which is a certain number of days. You need to complete 100 push-ups for the number of days selected by the fan/reader
 * Includes notifications for creating videos or video galleries with the ability to delete them
-* Note: the videos are supposed to be people doing push ups but for now are just random videos from youtube
+* Note: The videos are supposed to be people doing push-ups, but for now, they are just random videos from YouTube
   
 &nbsp;
 ![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/8a921f9b-a6cd-4e4a-802b-554d17bcb92c)

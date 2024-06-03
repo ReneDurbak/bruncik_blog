@@ -1482,12 +1482,13 @@ export default function SingleArticlePage() {
               </div>
             </div>
 
+       
             {/*Add banner*/}
-            <div className="flex justify-center mt-[300px]">
+                {/* <div className="flex justify-center mt-[300px]">
               <div className="w-[300px] h-[400px] bg-[#D9D9D9] text-[#6F6F6F] rounded-lg p-4 flex justify-center items-center text-xl">
                 <span className="rotate-[-45deg]">Miesto pre reklamu</span>
               </div>
-            </div>
+            </div>*/}
 
             {/*Share container*/}
             <div className="absolute bottom-[50%] grid justify-center text-center mt-[180px] mb-20">

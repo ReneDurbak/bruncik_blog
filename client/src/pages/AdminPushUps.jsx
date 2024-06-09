@@ -137,10 +137,10 @@ export default function AdminPushUps() {
       );
       const message =
         videos.length > 0
-          ? `New video posted from ${
+          ? `New video posted from <strong>${
               selectedVideoGallery.title
-            }! On day count: ${videos.slice(-1)[0].day_count + 1}!`
-          : `New video posted from ${selectedVideoGallery.title}! On day count: 1!`;
+            }</strong>! On day count: <strong>${videos.slice(-1)[0].day_count + 1}</strong>!`
+          : `New video posted from <strong>${selectedVideoGallery.title}</strong>! On day count: <strong>1</strong>!`;
 
       const videoGalleryImage = selectedVideoGallery.image;
       socket.emit("videoCreated", {

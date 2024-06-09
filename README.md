@@ -1,6 +1,6 @@
 # bruncik blog
 Multifunctional personal blog with admin mode for managing articles, article sections, videos and video galleries.
-* technologies and tools used: React, TailwindCSS, Node.js, Express.js, MongoDB, socket.io, multer, email.js
+* technologies and tools used: React, TailwindCSS, Node.js, Express.js, MongoDB, PostmanAPI, socket.io, multer, email.js
  <br><br><br>
  # Home Page
 * An overview of what you can see on the site

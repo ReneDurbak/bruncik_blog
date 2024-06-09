@@ -593,7 +593,7 @@ function Pushups() {
                                   </div>
 
                                   <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
-                                    <div>{notification.message}</div>
+                                  <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(notification.message) }} />
                                     <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
                                       <div>
                                         {formatTime(notification.createdAt)}

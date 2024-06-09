@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { SHA256 } from "crypto-js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -47,6 +48,11 @@ export default function AdminLogin({ articles }) {
 
   return (
     <>
+    
+    <Helmet>
+      <title>Bruncik Blog</title>  
+      <link rel="icon" type="image/svg+xml" href="/icon.png"/>
+    </Helmet>
       {isAdminRoute && (
         <>
           <ToastContainer />

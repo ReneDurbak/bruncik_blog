@@ -262,7 +262,6 @@ function Pushups() {
         (gallery) => gallery._id === selectedGallery
       );
 
-
       setImage(filteredGallery[0].image);
       setVideos(
         selectedGallery.length === 0
@@ -332,7 +331,6 @@ function Pushups() {
         );
         const users = response.data;
         const currentUser = users.find((user) => user.email === userInfo.email);
-        
 
         setNotifications(currentUser.notifications);
         setNotificationCount(currentUser.notificationsCount);
@@ -341,7 +339,6 @@ function Pushups() {
 
     fetchUserNotifications();
   }, []);
-
 
   const resetUserNotificationsCount = async () => {
     try {
@@ -365,7 +362,6 @@ function Pushups() {
     }
   };
 
-
   useEffect(() => {
     const newSocket = io("http://localhost:4000");
     setSocket(newSocket);
@@ -381,7 +377,9 @@ function Pushups() {
     if (!socket) return;
     socket.on("receiveNotification", (data) => {
       setNotifications((prevNotifications) => [data, ...prevNotifications]);
-      setNotificationCount((prevNotificationsCount) => prevNotificationsCount += 1)
+      setNotificationCount(
+        (prevNotificationsCount) => (prevNotificationsCount += 1)
+      );
     });
   }, [socket]);
 
@@ -497,6 +495,7 @@ function Pushups() {
             </div>
             <div className="flex xl:space-x-12 lg:space-x-10 md:space-x-6 space-x-4">
               {/*Notifications button*/}
+
               <div className="relative my-auto">
                 <img
                   src={ringbell}
@@ -509,11 +508,13 @@ function Pushups() {
                   id="notificationsTrigger"
                 />
 
-                <div className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[18px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[18px]">
-                  <div className="xl:text-base md:text-xs text-[10px] text-white">
-                    {notifications && notificationCount}
+                {notificationCount !== 0 ? (
+                  <div className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[18px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[18px]">
+                    <div className="xl:text-base md:text-xs text-[10px] text-white">
+                      {notifications && notificationCount}
+                    </div>
                   </div>
-                </div>
+                ) : null}
                 {/*Notification window*/}
                 {notificationsTransition((style, item) =>
                   item ? (
@@ -555,16 +556,12 @@ function Pushups() {
                               className="text-red-400 font-bold rounded-xl pr-10 underline underline-offset-8 ease-in-out duration-300 hover:cursor-pointer"
                               onClick={() => {
                                 resetUserNotifications();
-                                setNotifications([])
+                                setNotifications([]);
                               }}
                             >
-                             {
-                              notifications && notifications.length === 0 ?
-                              null
-                              :
-                              'clear'
-                             }
-                              
+                              {notifications && notifications.length === 0
+                                ? null
+                                : "clear"}
                             </div>
                             {/*<div
                               className={`${
@@ -593,7 +590,13 @@ function Pushups() {
                                   </div>
 
                                   <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
-                                  <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(notification.message) }} />
+                                    <div
+                                      dangerouslySetInnerHTML={{
+                                        __html: DOMPurify.sanitize(
+                                          notification.message
+                                        ),
+                                      }}
+                                    />
                                     <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
                                       <div>
                                         {formatTime(notification.createdAt)}

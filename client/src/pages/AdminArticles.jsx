@@ -9,6 +9,8 @@ import Slider from "react-slick";
 import "../slick.css";
 import "../slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { FaPencil } from "react-icons/fa6";
+import { BsTrash3 } from "react-icons/bs";
 
 export default function AdminArticles() {
   const [articles, setArticles] = useState([]);
@@ -178,14 +180,6 @@ export default function AdminArticles() {
     }
   };
 
-
-
-
-
-
-
-
-
   function NextArrowArticles(props) {
     const { className, style, onClick } = props;
     const totalSlides = articles.length;
@@ -223,13 +217,12 @@ export default function AdminArticles() {
     );
   }
 
-
-
   function NextArrowArticlesSection(props) {
     const { className, style, onClick } = props;
     const totalSlides = articleSections.length;
     const slidesToShow = slideSettingsArticleSections.slidesToShow;
-    const isLastSlide = currentSlideArticleSections >= totalSlides - slidesToShow;
+    const isLastSlide =
+      currentSlideArticleSections >= totalSlides - slidesToShow;
 
     return (
       <div>
@@ -244,8 +237,6 @@ export default function AdminArticles() {
       </div>
     );
   }
-
-
 
   function PrevArrowArticlesSection(props) {
     const { className, style, onClick } = props;
@@ -263,7 +254,6 @@ export default function AdminArticles() {
       </div>
     );
   }
-
 
   const [currentSlideArticles, setCurrentSlideArticles] = useState(0);
 
@@ -306,10 +296,8 @@ export default function AdminArticles() {
     ],
   };
 
-
-
-
-  const [currentSlideArticleSections, setCurrentSlideArticleSections] = useState(0);
+  const [currentSlideArticleSections, setCurrentSlideArticleSections] =
+    useState(0);
 
   var slideSettingsArticleSections = {
     dots: true,
@@ -459,7 +447,10 @@ export default function AdminArticles() {
               List of articles:
             </h2>
 
-            <Slider {...slideSettingsArticles} className="w-[75%]  border-4 p-2  rounded-xl">
+            <Slider
+              {...slideSettingsArticles}
+              className="w-[75%]  border-4 p-2  rounded-xl"
+            >
               {articles &&
                 articles.map((article, index) => (
                   <div
@@ -483,11 +474,11 @@ export default function AdminArticles() {
                     <br />
                     <div>{article.section && article.section.title}</div>
 
-                    <div className="flex space-x-4 mt-2">
+                    <div className="flex space-x-2 mt-4">
                       {articleHoverStates[article._id] && (
                         <Link to={`/admin/updateArticle/${article._id}`}>
                           <button className="rounded-xl bg-green-400 hover:bg-green-600 ease-in-out duration-300 cursor-pointer p-2">
-                            update
+                            <FaPencil size={20} />
                           </button>
                         </Link>
                       )}
@@ -498,7 +489,7 @@ export default function AdminArticles() {
                           }}
                           className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2"
                         >
-                          delete
+                          <BsTrash3 size={20} />
                         </button>
                       )}
                     </div>
@@ -590,7 +581,7 @@ export default function AdminArticles() {
               {articleSections.map((articleSection) => (
                 <div
                   key={articleSection._id}
-                  className="relative p-2 bg-gray-200 rounded-xl min-h-[150px]"
+                  className="relative p-2 bg-gray-200 rounded-xl h-[145px]"
                   onMouseEnter={() =>
                     handleArticleSectionMouseEnter(articleSection._id)
                   }
@@ -629,7 +620,7 @@ export default function AdminArticles() {
                         to={`/admin/updateArticleSection/${articleSection._id}`}
                       >
                         <div className="p-2 rounded-xl bg-green-400 hover:bg-green-600 duration-300 ease-in-out">
-                          Update
+                          <FaPencil size={20} />
                         </div>
                       </Link>
                     )}
@@ -638,7 +629,7 @@ export default function AdminArticles() {
                         onClick={() => deleteArticleSection(articleSection._id)}
                         className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
                       >
-                        Delete
+                        <BsTrash3 size={20} />
                       </div>
                     )}
                   </div>

@@ -8,6 +8,8 @@ import Slider from "react-slick";
 import "../slick.css";
 import "../slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { FaPencil } from "react-icons/fa6";
+import { BsTrash3 } from "react-icons/bs";
 
 export default function AdminPushUps() {
   const [videos, setVideos] = useState([]);
@@ -139,7 +141,9 @@ export default function AdminPushUps() {
         videos.length > 0
           ? `New video posted from <strong>${
               selectedVideoGallery.title
-            }</strong>! On day count: <strong>${videos.slice(-1)[0].day_count + 1}</strong>!`
+            }</strong>! On day count: <strong>${
+              videos.slice(-1)[0].day_count + 1
+            }</strong>!`
           : `New video posted from <strong>${selectedVideoGallery.title}</strong>! On day count: <strong>1</strong>!`;
 
       const videoGalleryImage = selectedVideoGallery.image;
@@ -443,7 +447,7 @@ export default function AdminPushUps() {
             {videoGallery &&
               videoGallery.map((videoGallery) => (
                 <div
-                  className="bg-gray-200 rounded-md p-2  h-[165px]"
+                  className="bg-gray-200 rounded-md p-2  h-[170px]"
                   key={videoGallery._id}
                   onMouseEnter={() =>
                     handleVideoGalleryMouseEnter(videoGallery._id)
@@ -473,13 +477,13 @@ export default function AdminPushUps() {
                     />
                   </div>
 
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-2">
                     {videoGalleryHoverStates[videoGallery._id] && (
                       <Link
                         to={`/admin/updateVideoGallery/${videoGallery._id}`}
                       >
-                        <button className="p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-2">
-                          update
+                        <button className="p-2 bg-green-400 hover:bg-green-600 ease-in-out duration-300 rounded-xl mt-4">
+                          <FaPencil size={20} />
                         </button>
                       </Link>
                     )}
@@ -490,9 +494,9 @@ export default function AdminPushUps() {
                           onClick={() => {
                             deleteVideoGallery(videoGallery._id);
                           }}
-                          className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-2"
+                          className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-4"
                         >
-                          delete
+                          <BsTrash3 size={20} />
                         </button>
                       </div>
                     )}
@@ -604,13 +608,13 @@ export default function AdminPushUps() {
               {videos &&
                 videos.map((video) => (
                   <div
-                    className="relative rounded-lg bg-gray-200 p-4 h-[160px]"
+                    className="relative rounded-lg bg-gray-200 p-2 h-[145px]"
                     key={video._id}
                     onMouseEnter={() => handleVideoMouseEnter(video._id)}
                     onMouseLeave={() => handleVideoMouseLeave(video._id)}
                   >
                     <p>
-                      <strong>day count:</strong> {video.day_count}
+                      <strong>Day count:</strong> {video.day_count}
                     </p>
                     <div
                       className={`${
@@ -631,11 +635,11 @@ export default function AdminPushUps() {
                       )}
                     </div>
 
-                    <div className="flex space-x-4 mt-2">
+                    <div className="flex space-x-2 mt-4">
                       {videoHoverStates[video._id] && (
                         <Link to={`/admin/updateVideo/${video._id}`}>
                           <button className="p-2 cursor-pointer rounded-xl bg-green-400  hover:bg-green-600 duration-300 ease-in-out ">
-                            Update
+                            <FaPencil size={20} />
                           </button>
                         </Link>
                       )}
@@ -646,7 +650,7 @@ export default function AdminPushUps() {
                             onClick={() => deleteVideo(video._id)}
                             className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out "
                           >
-                            Delete
+                            <BsTrash3 size={20} />
                           </div>
                         )}
                     </div>

@@ -10,6 +10,9 @@ import "../slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { BsTrash3 } from "react-icons/bs";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import DOMPurify from "dompurify";
 
 export default function AdminPushUps() {
   const [videos, setVideos] = useState([]);
@@ -37,8 +40,6 @@ export default function AdminPushUps() {
 
   const [allVideos, setAllVideos] = useState([]);
   const [isGalleryEmpty, setIsGalleryEmpty] = useState(false);
-
-  console.log(isGalleryEmpty);
 
   const fetchVideos = async () => {
     try {
@@ -73,6 +74,27 @@ export default function AdminPushUps() {
 
   const handleGallerySelectFilterChange = (event) => {
     setVideoGallerySelectFilter(event.target.value);
+  };
+
+  const [isDeleteVideoModal, setIsDeleteVideoModal] = useState(false);
+  const [videoDeleteModalText, setVideoDeleteModalText] = useState("");
+  const [deleteVideoId, setDeleteVideoId] = useState();
+
+  const handleOpenVideoDeleteModal = (videoDayCount) => {
+    setIsDeleteVideoModal(true);
+    setVideoDeleteModalText(
+      `Do you really want to delete video <strong>${videoDayCount}</strong>?`
+    );
+
+    const deleteVideo = videos.filter(
+      (video) => videoDayCount === video.day_count
+    );
+    
+    setDeleteVideoId(deleteVideo[0]._id);
+  };
+
+  const handleCloseVideoDeleteModal = () => {
+    setIsDeleteVideoModal(false);
   };
 
   const [videoGallerySelect, setVideoGallerySelect] = useState(null);
@@ -430,6 +452,19 @@ export default function AdminPushUps() {
   //   },
   // ],
 
+  const modalBoxStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 6,
+    p: 4,
+    borderRadius: "25px",
+  };
+
   return (
     <div className="flex space-x-[300px]">
       <AdminSidePanel />
@@ -647,12 +682,44 @@ export default function AdminPushUps() {
                       {videos.slice(-1)[0]._id === video._id &&
                         videoHoverStates[video._id] && (
                           <div
-                            onClick={() => deleteVideo(video._id)}
+                            onClick={() =>
+                              handleOpenVideoDeleteModal(video.day_count)
+                            }
                             className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out "
                           >
                             <BsTrash3 size={20} />
                           </div>
                         )}
+
+                      <Modal
+                        open={isDeleteVideoModal}
+                        onClose={handleCloseVideoDeleteModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        BackdropProps={{
+                          sx: {
+                            backgroundColor: "rgba(70, 70, 70, 0.2)", // Light gray background with opacity
+                          },
+                        }}
+                      >
+                        <Box sx={modalBoxStyle}>
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: DOMPurify.sanitize(videoDeleteModalText),
+                            }}
+                          />
+
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                            onClick={() => {
+                              setIsDeleteVideoModal(false);
+                              deleteVideo(deleteVideoId);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </Box>
+                      </Modal>
                     </div>
                   </div>
                 ))}

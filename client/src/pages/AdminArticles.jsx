@@ -227,7 +227,6 @@ export default function AdminArticles() {
     }
   };
 
-  // Modal window style
 
   const modalBoxStyle = {
     position: "absolute",

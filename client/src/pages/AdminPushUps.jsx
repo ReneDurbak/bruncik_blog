@@ -89,7 +89,7 @@ export default function AdminPushUps() {
     const deleteVideo = videos.filter(
       (video) => videoDayCount === video.day_count
     );
-    
+
     setDeleteVideoId(deleteVideo[0]._id);
   };
 
@@ -255,6 +255,29 @@ export default function AdminPushUps() {
     setVideoGalleryHoverStates(() => ({
       [id]: false,
     }));
+  };
+
+  const [isDeleteVideoGalleryModal, setIsDeleteVideoGalleryModal] =
+    useState(false);
+  const [videoGalleryDeleteModalText, setVideoGalleryDeleteModalText] =
+    useState("");
+  const [deleteVideoGalleryId, setDeleteVideoGalleryId] = useState();
+
+  const handleOpenVideoGalleryDeleteModal = (videoGalleryTitle) => {
+    setIsDeleteVideoGalleryModal(true);
+    setVideoGalleryDeleteModalText(
+      `Do you really want to delete video gallery <strong>${videoGalleryTitle}</strong>?`
+    );
+
+    const deleteVideoGallery = videoGallery.filter(
+      (videoGallery) => videoGalleryTitle === videoGallery.title
+    );
+
+    setDeleteVideoGalleryId(deleteVideoGallery[0]._id);
+  };
+
+  const handleCloseVideoGalleryDeleteModal = () => {
+    setIsDeleteVideoGalleryModal(false);
   };
 
   const deleteVideoGallery = async (id) => {
@@ -527,7 +550,9 @@ export default function AdminPushUps() {
                       <div>
                         <button
                           onClick={() => {
-                            deleteVideoGallery(videoGallery._id);
+                            handleOpenVideoGalleryDeleteModal(
+                              videoGallery.title
+                            );
                           }}
                           className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-4"
                         >
@@ -535,6 +560,38 @@ export default function AdminPushUps() {
                         </button>
                       </div>
                     )}
+
+                    <Modal
+                      open={isDeleteVideoGalleryModal}
+                      onClose={handleCloseVideoGalleryDeleteModal}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                      BackdropProps={{
+                        sx: {
+                          backgroundColor: "rgba(70, 70, 70, 0.2)", // Light gray background with opacity
+                        },
+                      }}
+                    >
+                      <Box sx={modalBoxStyle}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: DOMPurify.sanitize(
+                              videoGalleryDeleteModalText
+                            ),
+                          }}
+                        />
+
+                        <button
+                          className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                          onClick={() => {
+                            setIsDeleteVideoGalleryModal(false);
+                            deleteVideoGallery(deleteVideoGalleryId);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </Box>
+                    </Modal>
                   </div>
                 </div>
               ))}

@@ -11,6 +11,12 @@ import "../slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { BsTrash3 } from "react-icons/bs";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import BasicModal from "../components/BasicModal";
+import DOMPurify from "dompurify";
 
 export default function AdminArticles() {
   const [articles, setArticles] = useState([]);
@@ -49,6 +55,27 @@ export default function AdminArticles() {
 
   const handleArticleSectionChange = (event) => {
     setSection(event.target.value);
+  };
+
+  const [isDeleteArticleModal, setIsDeleteArticleModal] = useState(false);
+  const [articleDeleteModalText, setArticleDeleteModalText] = useState("");
+  const [deleteArticleId, setDeleteArticleId] = useState();
+
+  const handleOpenArticleDeleteModal = (articleTitle) => {
+    setIsDeleteArticleModal(true);
+    setArticleDeleteModalText(
+      `Do you really want to delete article <strong>${articleTitle}</strong>?`
+    );
+
+    const deleteArticle = articles.filter(
+      (article) => articleTitle === article.title
+    );
+    console.log(deleteArticle);
+    setDeleteArticleId(deleteArticle[0]._id);
+  };
+
+  const handleCloseArticleDeleteModal = () => {
+    setIsDeleteArticleModal(false);
   };
 
   const deleteArticle = async (id) => {
@@ -169,6 +196,29 @@ export default function AdminArticles() {
     }
   };
 
+  const [isDeleteArticleSectionModal, setIsDeleteArticleSectionModal] =
+    useState(false);
+  const [articleSectionDeleteModalText, setArticleSectionDeleteModalText] =
+    useState("");
+  const [deleteArticleSectionId, setDeleteArticleSectionId] = useState();
+
+  const handleOpenArticleSectionDeleteModal = (articleSectionTitle) => {
+    setIsDeleteArticleSectionModal(true);
+    setArticleSectionDeleteModalText(
+      `Do you really want to delete article section <strong>${articleSectionTitle}</strong>?`
+    );
+
+    const deleteArticleSection = articleSections.filter(
+      (articleSection) => articleSectionTitle === articleSection.title
+    );
+
+    setDeleteArticleSectionId(deleteArticleSection[0]._id);
+  };
+
+  const handleCloseArticleSectionDeleteModal = () => {
+    setIsDeleteArticleSectionModal(false);
+  };
+
   const deleteArticleSection = async (id) => {
     try {
       await axios.delete(
@@ -178,6 +228,21 @@ export default function AdminArticles() {
     } catch (error) {
       console.error("Error deleting an article section", error.message);
     }
+  };
+
+  // Modal window style
+
+  const modalBoxStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 6,
+    p: 4,
+    borderRadius: "25px",
   };
 
   function NextArrowArticles(props) {
@@ -485,13 +550,47 @@ export default function AdminArticles() {
                       {articleHoverStates[article._id] && (
                         <button
                           onClick={() => {
-                            deleteArticle(article._id);
+                            handleOpenArticleDeleteModal(article.title);
                           }}
                           className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2"
                         >
                           <BsTrash3 size={20} />
                         </button>
                       )}
+
+                      <BasicModal deleteFunction={deleteArticle()}/>
+
+                      <Modal
+                        open={isDeleteArticleModal}
+                        onClose={handleCloseArticleDeleteModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        BackdropProps={{
+                          sx: {
+                            backgroundColor: "rgba(70, 70, 70, 0.2)", // Light gray background with opacity
+                          },
+                        }}
+                      >
+                        <Box sx={modalBoxStyle}>
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: DOMPurify.sanitize(
+                                articleDeleteModalText
+                              ),
+                            }}
+                          />
+
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                            onClick={() => {
+                              setIsDeleteArticleModal(false);
+                              deleteArticle(deleteArticleId);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </Box>
+                      </Modal>
                     </div>
                   </div>
                 ))}
@@ -626,12 +725,48 @@ export default function AdminArticles() {
                     )}
                     {articleSectionHoverStates[articleSection._id] && (
                       <div
-                        onClick={() => deleteArticleSection(articleSection._id)}
+                        onClick={() => {
+                          handleOpenArticleSectionDeleteModal(
+                            articleSection.title
+                          );
+                        }}
                         className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
                       >
                         <BsTrash3 size={20} />
                       </div>
                     )}
+
+                    <Modal
+                      open={isDeleteArticleSectionModal}
+                      onClose={handleCloseArticleSectionDeleteModal}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                      BackdropProps={{
+                        sx: {
+                          backgroundColor: "rgba(70, 70, 70, 0.2)", // Light gray background with opacity
+                        },
+                      }}
+                    >
+                      <Box sx={modalBoxStyle}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: DOMPurify.sanitize(
+                              articleSectionDeleteModalText
+                            ),
+                          }}
+                        />
+
+                        <button
+                          className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                          onClick={() => {
+                            setIsDeleteArticleSectionModal(false);
+                            deleteArticleSection(deleteArticleSectionId);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </Box>
+                    </Modal>
                   </div>
                 </div>
               ))}

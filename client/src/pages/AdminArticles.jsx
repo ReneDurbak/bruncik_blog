@@ -11,11 +11,8 @@ import "../slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { BsTrash3 } from "react-icons/bs";
-import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import Typography from "@mui/material/Typography";
-import BasicModal from "../components/BasicModal";
 import DOMPurify from "dompurify";
 
 export default function AdminArticles() {
@@ -558,7 +555,6 @@ export default function AdminArticles() {
                         </button>
                       )}
 
-                      <BasicModal deleteFunction={deleteArticle()}/>
 
                       <Modal
                         open={isDeleteArticleModal}

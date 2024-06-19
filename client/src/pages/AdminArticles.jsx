@@ -227,7 +227,6 @@ export default function AdminArticles() {
     }
   };
 
-
   const modalBoxStyle = {
     position: "absolute",
     top: "50%",
@@ -554,7 +553,6 @@ export default function AdminArticles() {
                         </button>
                       )}
 
-
                       <Modal
                         open={isDeleteArticleModal}
                         onClose={handleCloseArticleDeleteModal}
@@ -574,16 +572,23 @@ export default function AdminArticles() {
                               ),
                             }}
                           />
-
-                          <button
-                            className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
-                            onClick={() => {
-                              setIsDeleteArticleModal(false);
-                              deleteArticle(deleteArticleId);
-                            }}
-                          >
-                            Delete
-                          </button>
+                          <div className="flex justify-start items-center space-x-4">
+                            <button
+                              className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
+                              onClick={() => setIsDeleteArticleModal(false)}
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                              onClick={() => {
+                                setIsDeleteArticleModal(false);
+                                deleteArticle(deleteArticleId);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </Box>
                       </Modal>
                     </div>
@@ -751,15 +756,23 @@ export default function AdminArticles() {
                           }}
                         />
 
-                        <button
-                          className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
-                          onClick={() => {
-                            setIsDeleteArticleSectionModal(false);
-                            deleteArticleSection(deleteArticleSectionId);
-                          }}
-                        >
-                          Delete
-                        </button>
+                        <div className="flex justify-start items-center space-x-4">
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
+                            onClick={() => setIsDeleteArticleSectionModal(false)}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                            onClick={() => {
+                              setIsDeleteArticleSectionModal(false);
+                              deleteArticleSection(deleteArticleSectionId);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </Box>
                     </Modal>
                   </div>

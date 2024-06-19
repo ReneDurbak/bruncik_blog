@@ -580,16 +580,23 @@ export default function AdminPushUps() {
                             ),
                           }}
                         />
-
-                        <button
-                          className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
-                          onClick={() => {
-                            setIsDeleteVideoGalleryModal(false);
-                            deleteVideoGallery(deleteVideoGalleryId);
-                          }}
-                        >
-                          Delete
-                        </button>
+                        <div className="flex justify-start items-center space-x-4">
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
+                            onClick={() => setIsDeleteVideoGalleryModal(false)}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                            onClick={() => {
+                              setIsDeleteVideoGalleryModal(false);
+                              deleteVideoGallery(deleteVideoGalleryId);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </Box>
                     </Modal>
                   </div>
@@ -764,17 +771,25 @@ export default function AdminPushUps() {
                             dangerouslySetInnerHTML={{
                               __html: DOMPurify.sanitize(videoDeleteModalText),
                             }}
-                          />
+                          />{" "}
+                          <div className="flex justify-start items-center space-x-4">
+                            <button
+                              className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
+                              onClick={() => setIsDeleteVideoModal(false)}
+                            >
+                              Cancel
+                            </button>
 
-                          <button
-                            className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
-                            onClick={() => {
-                              setIsDeleteVideoModal(false);
-                              deleteVideo(deleteVideoId);
-                            }}
-                          >
-                            Delete
-                          </button>
+                            <button
+                              className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                              onClick={() => {
+                                setIsDeleteVideoModal(false);
+                                deleteVideo(deleteVideoId);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </Box>
                       </Modal>
                     </div>

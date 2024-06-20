@@ -280,16 +280,76 @@ export default function AdminPushUps() {
     setIsDeleteVideoGalleryModal(false);
   };
 
+  const [
+    isDeleteVideoGalleryConfirmModal,
+    setIsDeleteVideoGalleryConfirmModal,
+  ] = useState(false);
+  const [videoGalleryConfirmText, setIsVideoGalleryConfirmText] = useState("");
+  const [deleteVideoGalleryConfirm, setDeleteVideoGalleryConfirm] =
+    useState(false);
+  const [numberOfAssociatedVideos, setNumberOfAssociatedVideos] = useState(false)
+  const [videoGalleryConfirmError, setVideoGalleryConfirmError] =
+    useState(false);
+
+  // console.log(videoGalleryConfirmError)
+
+  const handleOpenVideoGalleryConfirmDeleteModal = () => {
+    setIsDeleteVideoGalleryConfirmModal(true);
+    setIsVideoGalleryConfirmText("");
+  };
+  const handleCloseVideoGalleryConfirmDeleteModal = () => {
+    setIsDeleteVideoGalleryConfirmModal(false);
+    setIsVideoGalleryConfirmText("");
+    setVideoGalleryConfirmError(false);
+  };
+
   const deleteVideoGallery = async (id) => {
+    console.log('spustilo sa')
     const numberOfAssociatedVideos = allVideos.some(
       (video) => video.video_gallery._id === id
     );
+
+    numberOfAssociatedVideos ? setNumberOfAssociatedVideos(true) : setNumberOfAssociatedVideos(false)
+
+    const galleryTextConfirmation = allVideos.some(
+      (video) => video.video_gallery.title === videoGalleryConfirmText
+    );
+
+numberOfAssociatedVideos ?
+(
+    galleryTextConfirmation 
+    ? (setDeleteVideoGalleryConfirm(true), setVideoGalleryConfirmError(false))
+    :(setDeleteVideoGalleryConfirm(false),setVideoGalleryConfirmError(true))
+)
+: null
+    
+
 
     if (numberOfAssociatedVideos === false) {
       try {
         const response = await axios.delete(
           `http://localhost:4000/admin/videoGalleries/deleteVideoGallery/${id}`
         );
+
+        fetchVideoGalleries();
+      } catch (error) {
+        console.error(`error deleting video gallery: ${error.message}`);
+      }
+    } else if (galleryTextConfirmation && numberOfAssociatedVideos) {
+      try {
+        console.log("daco sa deje");
+        const deleteAllVideos = await axios.delete(
+          "http://localhost:4000/admin/videos/deleteAllVideos",
+          {
+            data: { videoGalleryId: id },
+          }
+        );
+
+        const response = await axios.delete(
+          `http://localhost:4000/admin/videoGalleries/deleteVideoGallery/${id}`
+        );
+
+        handleCloseVideoGalleryConfirmDeleteModal();
         fetchVideoGalleries();
       } catch (error) {
         console.error(`error deleting video gallery: ${error.message}`);
@@ -488,6 +548,19 @@ export default function AdminPushUps() {
     borderRadius: "25px",
   };
 
+  const modalBoxStyle2 = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 800,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 6,
+    p: 4,
+    borderRadius: "25px",
+  };
+
   return (
     <div className="flex space-x-[300px]">
       <AdminSidePanel />
@@ -553,6 +626,10 @@ export default function AdminPushUps() {
                             handleOpenVideoGalleryDeleteModal(
                               videoGallery.title
                             );
+
+                            setNumberOfAssociatedVideos(allVideos.some(
+                              (video) => video.video_gallery._id === videoGallery._id
+                            ))
                           }}
                           className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-4"
                         >
@@ -591,6 +668,57 @@ export default function AdminPushUps() {
                             className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
                             onClick={() => {
                               setIsDeleteVideoGalleryModal(false);
+
+                              numberOfAssociatedVideos ? handleOpenVideoGalleryConfirmDeleteModal() : deleteVideoGallery(deleteVideoGalleryId);
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </Box>
+                    </Modal>
+
+                    {/*Delete video gallery confirm modal*/}
+                    <Modal
+                      open={isDeleteVideoGalleryConfirmModal}
+                      onClose={handleCloseVideoGalleryConfirmDeleteModal}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                      BackdropProps={{
+                        sx: {
+                          backgroundColor: "rgba(70, 70, 70, 0.2)", // Light gray background with opacity
+                        },
+                      }}
+                    >
+                      <Box sx={modalBoxStyle2}>
+                        <div className="flex justify-start items-center space-x-4">
+                          <div>
+                            Please type the name of the gallery you want to{" "}
+                            <strong className="text-red-400">delete:</strong>
+                          </div>
+                          <input
+                            className={`rounded-xl outline outline-1 outline-black p-2 ${
+                              videoGalleryConfirmError
+                                ? "outline-red-400 animate-shake"
+                                : null
+                            }`}
+                            onChange={(e) =>
+                              setIsVideoGalleryConfirmText(e.target.value)
+                            }
+                          />
+                        </div>
+                        <div className="flex justify-start items-center space-x-4">
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
+                            onClick={() =>
+                              handleCloseVideoGalleryConfirmDeleteModal()
+                            }
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                            onClick={() => {
                               deleteVideoGallery(deleteVideoGalleryId);
                             }}
                           >

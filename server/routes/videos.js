@@ -3,6 +3,7 @@ const {
     getAllVideos,
     updateVideo,
     deleteVideo,
+    deleteAllVideos,
     createVideo,
     getVideo
 } = require('../controllers/videoController')
@@ -15,5 +16,6 @@ router.get('/getVideo/:id', getVideo)
 router.post('/postVideo', createVideo)
 router.patch('/patchVideo/:id', updateVideo)
 router.delete('/deleteVideo/:id', deleteVideo)
+router.delete('/deleteAllVideos', deleteAllVideos)
 
 module.exports = router

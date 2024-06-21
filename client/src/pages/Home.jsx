@@ -271,7 +271,7 @@ On this page, you'll find videos of different people, including myself ;), who h
         <div className=" max-w-full sm:mt-[-230px] mt-[-50px]">
           <img src={question} className="mx-auto w-[200px] sm:w-[250px] lg:w-[275px] xl:w-[325px] 2xl:w-[425px]" />
         </div>
-      <div className="align-middle mx-auto text-center 2xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[-190px] xl:mt-[-200px] 2xl:mt-[-260px] mt-[-110px]">Coming soon!</div>
+      <div className="align-middle mx-auto text-center 2xl:text-8xl md:text-7xl sm:text-5xl text-3xl sm:font-normal font-bold sm:mt-[-150px] lg:mt-[-190px] xl:mt-[-200px] 2xl:mt-[-260px] mt-[-110px] tracking-wide">Coming soon!</div>
       
       
       <div className="sm:mt-[150px] mt-[100px]" >

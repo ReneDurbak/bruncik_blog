@@ -127,7 +127,7 @@ function Home() {
    
         <div className="">
         <div className="mb-[75px] mt-[-360px]">
-        <h1 className="2xl:text-7xl xl:text-7xl  md:text-6xl sm:text-5xl text-2xl  lg:text-start text-center underline decoration-1 underline-offset-[15px]" >Articles</h1>
+        <h1 className="2xl:text-7xl xl:text-7xl  md:text-6xl sm:text-5xl text-2xl  lg:text-start text-center underline decoration-1 underline-offset-[15px] tracking-wider" >Articles</h1>
         </div>
 
         <div>
@@ -183,7 +183,7 @@ function Home() {
         <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-10 sm:px-10 px-6">
  
         <div className="mb-[75px] mt-[-360px] 2xl:max-w-[1680px] mx-auto">
-        <h1 className="2xl:text-7xl xl:text-7xl md:text-6xl sm:text-5xl text-2xl text-center lg:text-left   underline decoration-1 underline-offset-[15px]" >Push Ups Gallery</h1>
+        <h1 className="2xl:text-7xl xl:text-7xl md:text-6xl sm:text-5xl text-2xl text-center lg:text-left   underline decoration-1 underline-offset-[15px] tracking-wider" >Push Ups Gallery</h1>
         </div> 
         {/*background for mobile res*/}
         <div className="sm:hidden">
@@ -263,7 +263,7 @@ On this page, you'll find videos of different people, including myself ;), who h
      <div id="mycourse" className="sm:mt-[-350px] lg:mt-[-350px] 2xl:mt-[-50px] mt-[-450px] 2xl:bg-[url('/src/assets/mycourse/coursebg.png')] xl:bg-[url('/src/assets/mycourse/coursebgnotebookxl.png')] lg:bg-[url('/src/assets/mycourse/coursebgnotebook.png')]   bg-cover py-[325px] sm:py-[250px] lg:py-[250px]	 xl:py-[200px] 2xl:py-[150px] xl:mb-[225px] font-spectral">
       <div className="2xl:max-w-[1680px] max-w-[1380px]  mx-auto 2xl:px-20 xl:px-10 lg:px-10 sm:px-10 px-6">
     
-      <h1 className="  2xl:text-7xl xl:text-6xl sm:text-5xl text-2xl  lg:text-left text-center underline decoration-1 underline-offset-[25px] " >My Course - Work with me</h1>
+      <h1 className="  2xl:text-7xl xl:text-6xl sm:text-5xl text-2xl  lg:text-left text-center underline decoration-1 underline-offset-[25px] tracking-wider" >My Course - Work with me</h1>
    
 
 
@@ -304,7 +304,7 @@ On this page, you'll find videos of different people, including myself ;), who h
       <div className= "2xl:max-w-[1680px] max-w-[1380px] mx-auto  text-black 2xl:px-20 lg:px-10 sm:px-10 px-6">
 
       <div className="mb-[60px] mt-[-360px] 2xl:max-w-[1680px] mx-auto">
-      <h1 className="2xl:text-7xl xl:text-7xl md:text-6xl sm:text-4xl text-2xl text-center  lg:text-start underline decoration-1 underline-offset-[15px]" >About me</h1>
+      <h1 className="2xl:text-7xl xl:text-7xl md:text-6xl sm:text-4xl text-2xl text-center  lg:text-start underline decoration-1 underline-offset-[15px] tracking-wider" >About me</h1>
       </div>
 
       {/*background for mobile res*/}

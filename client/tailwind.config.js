@@ -15,6 +15,7 @@ export default {
       spectralsc: "'Spectral SC', serif",
       indieflower: ['Indie Flower', 'cursive'],
       cabin: ['Cabin', 'sans-serif'],
+      mplus: ['"M PLUS Rounded 1c"', 'sans-serif']
     },
     screens: {
       'sm': '640px',

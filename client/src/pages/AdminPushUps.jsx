@@ -562,7 +562,7 @@ numberOfAssociatedVideos ?
   };
 
   return (
-    <div className="flex space-x-[300px]">
+    <div className="font-poppins flex space-x-[300px]">
       <AdminSidePanel />
 
       <div className="w-full mt-10 mb-20">

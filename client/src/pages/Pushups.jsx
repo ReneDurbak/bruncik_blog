@@ -429,13 +429,14 @@ function Pushups() {
       <PushupsPopup trigger={timedPopup} setTrigger={setTimedPopup}>
         <div className="bg-white border-black xl:border-2 border-[1px] md:rounded-[35px] rounded-3xl xl:text-2xl lg:text-xl sm:text-[16px] text-[15px] flex justify-center items-center">
           <div className="max-w-full mx-auto lg:px-6 sm:px-6  px-4 lg:py-10 sm:py-6 pb-8  pt-8 text-center ">
-            <div className="xl:text-4xl lg:text-3xl sm:text-2xl text-[21px]">
-              {" "}
-              Do you want to be on my site?
+            <div className="font-poppins">
+              <div className="xl:text-4xl lg:text-3xl sm:text-2xl text-[21px]">
+                {" "}
+                Do you want to be on my site?
+              </div>
+              <div className="mt-2">& have your own gallery of push ups?</div>
             </div>
-            <div className="mt-2">& have your own gallery of push ups?</div>
-
-            <div className="md:mt-10 sm:mt-8 mt-6 font-indieflower">
+            <div className="lg:text-3xl md:text-xl text-lg md:mt-10 sm:mt-8 mt-6 font-shadows">
               Feel free to contact me on social media
             </div>
 
@@ -486,7 +487,7 @@ function Pushups() {
                 Explore
               </h1>
             </div>
-            <div className="md:block hidden font-bold xl:text-5xl lg:text-3xl md:text-2xl text-sm rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">
+            <div className="font-blackops md:block hidden font-normal xl:text-7xl lg:text-5xl md:text-4xl rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">
               {videos.length === Number(goal) ? (
                 <div>👏Goal completed!👏</div>
               ) : (
@@ -804,7 +805,7 @@ function Pushups() {
           </div>
 
           {/*Goal on mobile*/}
-          <div className="md:hidden block text-sm mt-2">
+          <div className="md:hidden block text-base mt-2">
             {videos.length === Number(goal) ? (
               <div>Goal completed! 👏</div>
             ) : (

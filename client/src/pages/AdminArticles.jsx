@@ -400,7 +400,7 @@ export default function AdminArticles() {
 
   return (
     <>
-      <div className="flex space-x-[280px]">
+      <div className="font-poppins flex space-x-[280px]">
         <AdminSidePanel />
 
         <div className="overflow-y-auto w-full text-left  mt-10 mb-20 p-8">

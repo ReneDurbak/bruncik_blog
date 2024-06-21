@@ -45,7 +45,7 @@ export default function Login() {
       {
         <>
           <ToastContainer />
-          <div className="flex justify-center items-center h-screen bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300 px-6">
+          <div className="font-poppins flex justify-center items-center h-screen bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300 px-6">
             <div className="flex flex-col  px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
               <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold mt-8">
                 Login into an account

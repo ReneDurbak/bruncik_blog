@@ -79,7 +79,7 @@ export default function AdminUpdateVideo() {
 
     return (
         <>
-            <div className='flex space-x-[300px]'>
+            <div className='font-poppins flex space-x-[300px]'>
                 <AdminSidePanel />
                 <div className='w-full mt-10'>
                 <Link to="/admin/push-ups"><button className='p-2 rounded-xl bg-gray-200 duration-300 ease-in-out hover:bg-gray-400'>Back</button></Link>

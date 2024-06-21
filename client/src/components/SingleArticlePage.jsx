@@ -587,7 +587,7 @@ export default function SingleArticlePage() {
         }`}
       >
         {/*Article container*/}
-        <div className="2xl:max-w-[1100px] col-span-2 xl:mt-0 sm:mt-[-40px] mt-[-120px]">
+        <div className="font-poppins 2xl:max-w-[1100px] col-span-2 xl:mt-0 sm:mt-[-40px] mt-[-120px]">
           <div className="col-span-2">
             <div className="flex justify-start items-center space-x-4 mt-16 font-regular  xl:text-[12px] md:text-[10px] sm:text-[9px] text-[8px]">
               <div>
@@ -842,7 +842,7 @@ export default function SingleArticlePage() {
           </div>
           {/*About the author - mobile res*/}
           {isTabletAboutMe || (isTablet && closeSideBar) ? (
-            <div className="mt-20 pr-10">
+            <div className="font-poppins mt-20 pr-10">
               <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">
                 ABOUT THE AUTHOR
               </h1>
@@ -902,7 +902,7 @@ export default function SingleArticlePage() {
                 </div>
               </div>
 
-              <div className="text-left text-[11px] pr-2">
+              <div className="font-poppins text-left text-[11px] pr-2">
                 <div className="divide-y-2 divide-gray-300">
                   <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">
                     Read next
@@ -1455,7 +1455,7 @@ export default function SingleArticlePage() {
             >
               <BiHorizontalRight size={20} className="mt-6" />
             </div>
-            <div className="lg:mt-[210px] md:mt-[150px] sm:mt-[180px] mt-[100px]">
+            <div className="font-poppins lg:mt-[210px] md:mt-[150px] sm:mt-[180px] mt-[100px]">
               <h1 className="underline xl:underline-offset-[25px] sm:underline-offset-[15px] underline-offset-[12px] font-bold text-[#6F6F6F] decoration-gray-300 xl:text-base lg:text-sm sm:text-xs text-[10px]">
                 ABOUT THE AUTHOR
               </h1>
@@ -1491,7 +1491,7 @@ export default function SingleArticlePage() {
             </div>*/}
 
             {/*Share container*/}
-            <div className="absolute bottom-[50%] grid justify-center text-center mt-[180px] mb-20">
+            <div className="font-poppins absolute bottom-[50%] grid justify-center text-center mt-[180px] mb-20">
               <h1 className="xl:text-xl sm:text-base text-xs font-bold">
                 Share this article
               </h1>
@@ -1533,7 +1533,7 @@ export default function SingleArticlePage() {
 
             {/*Read next container*/}
 
-            <div className="absolute bottom-0 text-left xl:text-base sm:text-xs text-xs  xl:mb-[100px] md:mb-2">
+            <div className="font-poppins absolute bottom-0 text-left xl:text-base sm:text-xs text-xs  xl:mb-[100px] md:mb-2">
               <div className="divide-y-2 divide-gray-300">
                 <h1 className="uppercase mb-4 text-[#6F6F6F] font-bold">
                   Read next

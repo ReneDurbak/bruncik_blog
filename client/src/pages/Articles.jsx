@@ -344,7 +344,7 @@ function Articles({ articles }) {
 
       {/*Topics*/}
       <div>
-        <h2 className="mx-auto text-center 2xl:text-6xl xl:text-7xl lg:text-6xl sm:text-5xl text-5xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
+        <h2 className="font-poppins mx-auto text-center 2xl:text-6xl xl:text-7xl lg:text-6xl sm:text-5xl text-5xl font-thin 2xl:py-[65px] sm:py-[50px] py-[35px]	" id="mainArticles">Topics</h2>
       </div>
 
 
@@ -416,7 +416,7 @@ function Articles({ articles }) {
           <div className="w-full">
             <div className="z-[-1] relative bg-slate-200 aspect-[16/10]"><div className=" absolute bottom-0 lg:px-4 px-1 py-1 bg-gray-950 text-white uppercase tracking-widest ">{article.label} </div> </div>
 
-            <div className="mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]">
+            <div className="font-normal mt-2 2xl:text-[24px]  xl:text-2xl lg:text-lg md:text-base sm:text-lg text-[10px]">
               {article.title}
             </div>
           </div>

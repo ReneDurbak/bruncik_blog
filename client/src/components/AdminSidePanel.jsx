@@ -32,7 +32,7 @@ export default function AdminSidePanel() {
 
   return (
     <>
-    <div className="fixed left-0 top-0 h-full flex flex-col justify-between h-screen bg-[#2A6CA5] px-6 text-white w-[16rem]">
+    <div className="font-poppins fixed left-0 top-0 h-full flex flex-col justify-between h-screen bg-[#2A6CA5] px-6 text-white w-[16rem]">
         <ul className="flex flex-col items-start mt-8 space-y-4">
         <li className="text-xl font-bold">Admin Mode</li>
         <li><Link to="/admin/articles">Articles</Link></li>

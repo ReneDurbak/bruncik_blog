@@ -60,7 +60,7 @@ export default function AdminUpdateVideoGallery() {
   };
 
   return (
-    <div className="flex space-x-[300px]">
+    <div className="font-poppins flex space-x-[300px]">
       <AdminSidePanel />
 
       <div className="mt-8">

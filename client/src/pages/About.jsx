@@ -116,9 +116,9 @@ function About() {
 
                             <div className="mt-0 flex">
                             <div className="2xl:mr-[150px] xl:mr-[120px] lg:mr-16 2xl:mt-[220px] xl:mt-[200px] lg:mt-[180px] ">
-                                <div className=" 2xl:text-[170px] text-8xl">Hi!</div>
+                                <div className=" 2xl:text-[170px] text-8xl font-abhaya">Hi!</div>
                                 <div className="2xl:text-[90px] xl:text-[50px] lg:text-5xl  font-light  2xl:mt-4 mt-2">I'm Peter Brunčík</div>
-                                <div className="2xl:text-[19px] xl:text-base lg:text-base font-normal font-spectral tracking-wide text-justify 2xl:mt-18 mt-10">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
+                                <div className="2xl:text-[19px] xl:text-base lg:text-base font-normal font-spectral text-justify 2xl:mt-18 mt-10">Oh, hello. So, you're genuinely curious about who I am. That truly warms my heart. So, without further ado, allow me to introduce myself. I'm Peter Brunčík, an 18-year-old with no major achievements, no prestigious competition wins, and absolutely no fame in the media spotlight. Surprising, isn't it? I'm just an ordinary individual who wholeheartedly embraces self-discovery and personal growth. I'm on a life journey striving to become the best version of myself. Will you join me?</div>
                                 <Link to="mystory"
                                     smooth={true}>
                                     <button className="p-2 text-white mt-8 bg-[#2A6CA5] custom-shadow lg:text-base rounded-[30px] font-poppins duration-300 ease-in-out underline-offset-[3px] hover:underline active:text-black">Learn more</button>
@@ -136,7 +136,7 @@ function About() {
                                 <img src={selfie}
                                     className="h-full aspect-auto mx-auto mt-4 md:hidden block"/>
                                 <div className="flex justify-end flex-col mb-[23px]">
-                                    <div className="md:text-[140px] text-8xl">Hi!</div>
+                                    <div className="md:text-[140px] text-8xl font-abhaya">Hi!</div>
                                     <div className="md:text-[42px] sm:text-5xl text-3xl  font-thin tracking-wider md:mr-[-100px]">I'm Peter Brunčík</div>
                                 </div>
                                 {/*Intro image for mobile*/}
@@ -325,7 +325,7 @@ function About() {
 
                     <div className="2xl:max-w-[1680px] max-w-[1380px] mx-auto 2xl:px-20 lg:px-20 sm:px-10 px-2 2xl:mt-0 lg:mt-[-350px]  2xl:pt-[300px] lg:pt-[200px] md:pt-20 pt-0">
 
-                        <h1 className="flex justify-center lg:text-6xl md:text-5xl text-4xl uppercase font-bold tracking-widest">My values</h1>
+                        <h1 className="font-mplus flex justify-center lg:text-6xl md:text-5xl text-4xl uppercase font-bold tracking-widest">My values</h1>
 
                         <div className="font-mplus grid grid-flow-col auto-cols-fr xl:mt-20 lg:mt-14 md:mt-14 mt-8 gap-x-2 sm:gap-x-8 md:gap-x-6 md:px-10 lg:gap-x-10 2xl:gap-x-20 2xl:px-[100px]">
 

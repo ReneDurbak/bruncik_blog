@@ -436,7 +436,7 @@ function Pushups() {
               </div>
               <div className="mt-2">& have your own gallery of push ups?</div>
             </div>
-            <div className="lg:text-3xl md:text-xl text-lg md:mt-10 sm:mt-8 mt-6 font-shadows">
+            <div className="lg:text-[40px] md:text-xl text-lg md:mt-10 sm:mt-8 mt-6 font-caveat">
               Feel free to contact me on social media
             </div>
 
@@ -483,11 +483,11 @@ function Pushups() {
           {/*Notification and Push ups gallery container*/}
           <div className="flex justify-between ">
             <div className="my-auto">
-              <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] text-[22px] font-semibold tracking-wider">
+              <h1 className="xl:text-[42px] lg:text-[38px] md:text-[34px] text-[22px] font-medium">
                 Explore
               </h1>
             </div>
-            <div className="font-blackops md:block hidden font-normal xl:text-7xl lg:text-5xl md:text-4xl rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">
+            <div className="font-fjalla md:block hidden font-normal xl:text-7xl lg:text-5xl md:text-4xl rotate-[-10deg] xl:mt-4 md:mt-0 mt-2">
               {videos.length === Number(goal) ? (
                 <div>👏Goal completed!👏</div>
               ) : (

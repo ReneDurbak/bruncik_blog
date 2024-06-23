@@ -11,12 +11,13 @@ export default {
       hurricane:"'Hurricane', cursive",
       poppins: "'Poppins', sans-serif",
       spectral: "'Spectral', serif",
-      shadows: "'Shadows Into Light', cursive",
       spectralsc: "'Spectral SC', serif",
       indieflower: ['Indie Flower', 'cursive'],
       cabin: ['Cabin', 'sans-serif'],
       mplus: ['"M PLUS Rounded 1c"', 'sans-serif'],
-      blackops: ['"Black Ops One"', 'system-ui']
+      fjalla: ['"Fjalla One"', 'sans-serif'],
+      caveat: ['"Caveat"', 'cursive'],
+      abhaya: ['"Abhaya Libre"', 'serif']
     },
     screens: {
       'sm': '640px',

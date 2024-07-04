@@ -84,7 +84,7 @@ function Navbar() {
             </div>
           </div>
           {/* ----desktop version------ */}
-          <ul className="md:flex md:flex-row flex-col md:items-center hidden md:ml-10">
+          <ul className="md:flex md:flex-row flex-col md:items-center hidden lg:ml-10">
             <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm xl:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/">Home</NavLink></li>
             <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm xl:text-base 2xl:text-lg  hover:text-neutral-400 duration-300"><NavLink to="/push-ups">Push-ups</NavLink></li>
             <li className="sm:mx-0 md:mx-3 lg:mx-4 xl:mx-5  md:text-sm xl:text-base 2xl:text-lg hover:text-neutral-400 duration-300"><NavLink to="/articles">Articles</NavLink></li>

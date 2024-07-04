@@ -248,6 +248,7 @@ function Pushups() {
   ];
 
   const [selected, setSelected] = useState(1);
+  const [focused, setFocused] = useState(false);
   const [prevSelected, setPrevSelected] = useState(1);
   const [videos, setVideos] = useState([]);
 
@@ -708,7 +709,7 @@ function Pushups() {
                           className={`${
                             switchGallery
                               ? "hidden"
-                              : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base sm:text-[12px] text-[9px]"
+                              : "h-full flex flex-col justify-center items-center  divide-y-[1px] divide-black xl:text-base  text-[12px]"
                           }`}
                         >
                           {PushUpsGallery &&
@@ -823,21 +824,107 @@ function Pushups() {
               <div className="2xl:text-md lg:text-sm md:text-[13px] text-[11px] my-auto text-[#545454] md:block hidden ">
                 Filter
               </div>
+
               <Select
                 MenuProps={{
                   disableScrollLock: true,
+                  PaperProps: {
+                    sx: {
+                      marginTop: "1px",
+                      borderTopLeftRadius: "0px",
+                      borderTopRightRadius: "0px",
+                      borderBottomLeftRadius: "20px",
+                      borderBottomRightRadius: "20px",
+                      backgroundColor: "white",
+
+                      "& .MuiMenu-list": {
+                        padding: 0,
+                      },
+
+                      "& .MuiMenuItem-root": {
+                        "&:hover": {
+                          backgroundColor: "#d3d3d3",
+                        },
+
+                        paddingTop: isLaptop
+                          ? "12px"
+                          : isTablet
+                          ? "10px"
+                          : isBigMobile
+                          ? "10px"
+                          : "6px",
+
+                        paddingBottom: isLaptop
+                          ? "12px"
+                          : isTablet
+                          ? "10px"
+                          : isBigMobile
+                          ? "10px"
+                          : "6px",
+
+                          minHeight: '10px',
+
+                        fontSize: isBigLaptop ? "18px" : "14px",
+                        display: "flex",
+                        alignItems: "center",
+                      },
+                    },
+                  },
                 }}
                 id="pushUpsSelect"
                 value={selected}
-                className="lg:scale-100 md:scale-75 scale-[0.7]"
+                sx={{
+                  fontWeight: "bold",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "transparent",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "transparent",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "transparent",
+                  },
+
+                  "& .MuiSelect-select": {
+                    paddingTop: isLaptop
+                      ? "10px"
+                      : isTablet
+                      ? "8px"
+                      : isBigMobile
+                      ? "6px"
+                      : "4px",
+                    paddingBottom: isLaptop
+                      ? "10px"
+                      : isTablet
+                      ? "8px"
+                      : isBigMobile
+                      ? "6px"
+                      : "4px",
+
+                    borderTopLeftRadius: "18px",
+                    borderTopRightRadius: "18px",
+                    borderBottomLeftRadius: focused ? "0px" : "18px",
+                    borderBottomRightRadius: focused ? "0px" : "18px",
+                    backgroundColor: "white",
+                    fontSize: isBigLaptop ? "18px" : "14px",
+                    display: "flex",
+                    alignItems: "center",
+                  },
+                }}
                 onChange={(e) => {
                   {
                     setSelected(e.target.value);
+                    setFocused(false);
                   }
                 }}
+                onFocus={() => setFocused(false)}
               >
                 {filterOptions.map((filter) => (
-                  <MenuItem key={filter.id} value={filter.id}>
+                  <MenuItem
+                    key={filter.id}
+                    value={filter.id}
+                    onFocus={() => setFocused(true)}
+                  >
                     {filter.name}
                   </MenuItem>
                 ))}

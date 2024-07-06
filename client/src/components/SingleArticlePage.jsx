@@ -156,32 +156,43 @@ export default function SingleArticlePage() {
     e.preventDefault();
     // console.log(rating)
     // console.log(id)
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/reviews/postReview",
-        {
-          rating,
-          labels: labelsForArticleReview
-            .filter((label) => selectedLabels.includes(label.id))
-            .map((label) => label.labelTitle),
-          comment,
-          articleId: id,
-          userId,
-          userName: userInfo.name,
-        }
-      );
 
-      handleSaveRating();
-      fetchRatings();
-    } catch (error) {
-      console.error("Cannot post rating: ", error.message);
+    if (comment === "" && selectedLabels.length === 0) {
+      document.getElementById("singleArticleTextArea").value =
+        "Please write some text!";
+      setCommentError(true);
+    } else {
+      setCommentError(false);
+      handleCloseReviewWindow();
+
+      try {
+        const response = await axios.post(
+          "http://localhost:4000/reviews/postReview",
+          {
+            rating,
+            labels: labelsForArticleReview
+              .filter((label) => selectedLabels.includes(label.id))
+              .map((label) => label.labelTitle),
+            comment,
+            articleId: id,
+            userId,
+            userName: userInfo.name,
+          },
+          { withCredentials: true }
+        );
+
+        fetchRatings();
+      } catch (error) {
+        console.error("Cannot post rating: ", error.message);
+      }
     }
   };
 
   const deleteReview = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/reviews/deleteReview/${id}`
+        `http://localhost:4000/reviews/deleteReview/${id}`,
+        { withCredentials: true }
       );
 
       fetchRatings();
@@ -198,7 +209,8 @@ export default function SingleArticlePage() {
         {
           rating: updateRating,
           comment,
-        }
+        },
+        { withCredentials: true }
       );
 
       fetchRatings();

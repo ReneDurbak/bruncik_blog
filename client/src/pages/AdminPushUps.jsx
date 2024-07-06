@@ -650,7 +650,7 @@ export default function AdminPushUps() {
                         },
                       }}
                     >
-                      <Box sx={modalBoxStyle}>
+                      <Box sx={modalBoxStyle} className="font-poppins ">
                         <div
                           dangerouslySetInnerHTML={{
                             __html: DOMPurify.sanitize(
@@ -693,7 +693,7 @@ export default function AdminPushUps() {
                         },
                       }}
                     >
-                      <Box sx={modalBoxStyle2}>
+                      <Box sx={modalBoxStyle2} className="font-poppins">
                         <div className="flex justify-start items-center space-x-4">
                           <div>
                             Please type the name of the gallery you want to{" "}
@@ -897,8 +897,9 @@ export default function AdminPushUps() {
                           },
                         }}
                       >
-                        <Box sx={modalBoxStyle}>
+                        <Box sx={modalBoxStyle} className="font-poppins ">
                           <div
+                          className="font-poppins "
                             dangerouslySetInnerHTML={{
                               __html: DOMPurify.sanitize(videoDeleteModalText),
                             }}
@@ -957,7 +958,7 @@ export default function AdminPushUps() {
 
                 
                 {/*Custom select for creating videos*/}
-                
+
                 {/*<div className="flex flex-col space-y-2">
                   <label className="">Video gallery:</label>
                   <Select

@@ -862,7 +862,7 @@ function Pushups() {
                           ? "10px"
                           : "6px",
 
-                          minHeight: '10px',
+                        minHeight: "10px",
 
                         fontSize: isBigLaptop ? "18px" : "14px",
                         display: "flex",
@@ -885,30 +885,30 @@ function Pushups() {
                     borderColor: "transparent",
                   },
 
-                  "& .MuiSelect-select": {
-                    paddingTop: isLaptop
-                      ? "10px"
-                      : isTablet
-                      ? "8px"
-                      : isBigMobile
-                      ? "6px"
-                      : "4px",
-                    paddingBottom: isLaptop
-                      ? "10px"
-                      : isTablet
-                      ? "8px"
-                      : isBigMobile
-                      ? "6px"
-                      : "4px",
+                  borderTopLeftRadius: "18px",
+                  borderTopRightRadius: "18px",
+                  borderBottomLeftRadius: focused ? "0px" : "18px",
+                  borderBottomRightRadius: focused ? "0px" : "18px",
+                  backgroundColor: "white",
+                  fontSize: isBigLaptop ? "18px" : "14px",
+                  display: "flex",
+                  alignItems: "center",
 
-                    borderTopLeftRadius: "18px",
-                    borderTopRightRadius: "18px",
-                    borderBottomLeftRadius: focused ? "0px" : "18px",
-                    borderBottomRightRadius: focused ? "0px" : "18px",
-                    backgroundColor: "white",
-                    fontSize: isBigLaptop ? "18px" : "14px",
-                    display: "flex",
-                    alignItems: "center",
+                  "& .MuiSelect-select": {
+                    paddingTop: isBigLaptop
+                      ? "10px"
+                      : isTablet
+                      ? "8px"
+                      : isBigMobile
+                      ? "6px"
+                      : "4px",
+                    paddingBottom: isBigLaptop
+                      ? "10px"
+                      : isTablet
+                      ? "8px"
+                      : isBigMobile
+                      ? "6px"
+                      : "4px",
                   },
                 }}
                 onChange={(e) => {

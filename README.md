@@ -122,5 +122,6 @@ Multifunctional personal blog with admin mode for managing articles, article sec
 
  <br><br><br>
 # Update profile page
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/952ffcae-cd6b-4a25-8001-67162f1fe9ac)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/717eb029-5ae3-4b33-9414-6eaa19c5b39e)
+
 

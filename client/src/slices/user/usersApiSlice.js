@@ -31,6 +31,6 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             })
         }),
     })
-}) //create own endpoints and it injects into apiSlice.js in endpoints property
+}) 
 
 export const { useLoginMutation, useLogoutMutation, useRegisterMutation, useUpdateUserMutation } = usersApiSlice

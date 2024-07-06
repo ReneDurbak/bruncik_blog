@@ -69,13 +69,6 @@ export default function AdminPushUps() {
     }
   };
 
-  const [videoGallerySelectFilter, setVideoGallerySelectFilter] =
-    useState(null);
-
-  const handleGallerySelectFilterChange = (event) => {
-    setVideoGallerySelectFilter(event.target.value);
-  };
-
   const [isDeleteVideoModal, setIsDeleteVideoModal] = useState(false);
   const [videoDeleteModalText, setVideoDeleteModalText] = useState("");
   const [deleteVideoId, setDeleteVideoId] = useState();
@@ -154,7 +147,7 @@ export default function AdminPushUps() {
   const sendToSocketVideo = () => {
     if (socket) {
       const selectedVideoGallery = videoGallery.find(
-        (videoGallery) => videoGallery._id === videoGallerySelectFilter
+        (videoGallery) => videoGallery._id === videoGallerySelect
       );
       const videos = allVideos.filter(
         (video) => video.video_gallery._id === selectedVideoGallery._id
@@ -191,12 +184,16 @@ export default function AdminPushUps() {
   const handleCreateVideo = async (e) => {
     e.preventDefault();
 
+    if (urlLink) {
+      setIsCreateVideo(false);
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:4000/admin/videos/postVideo",
         {
           url_link: urlLink,
-          video_gallery: videoGallerySelectFilter,
+          video_gallery: videoGallerySelect,
         }
       );
 
@@ -287,7 +284,8 @@ export default function AdminPushUps() {
   const [videoGalleryConfirmText, setIsVideoGalleryConfirmText] = useState("");
   const [deleteVideoGalleryConfirm, setDeleteVideoGalleryConfirm] =
     useState(false);
-  const [numberOfAssociatedVideos, setNumberOfAssociatedVideos] = useState(false)
+  const [numberOfAssociatedVideos, setNumberOfAssociatedVideos] =
+    useState(false);
   const [videoGalleryConfirmError, setVideoGalleryConfirmError] =
     useState(false);
 
@@ -304,26 +302,26 @@ export default function AdminPushUps() {
   };
 
   const deleteVideoGallery = async (id) => {
-    console.log('spustilo sa')
+    console.log("spustilo sa");
     const numberOfAssociatedVideos = allVideos.some(
       (video) => video.video_gallery._id === id
     );
 
-    numberOfAssociatedVideos ? setNumberOfAssociatedVideos(true) : setNumberOfAssociatedVideos(false)
+    numberOfAssociatedVideos
+      ? setNumberOfAssociatedVideos(true)
+      : setNumberOfAssociatedVideos(false);
 
     const galleryTextConfirmation = allVideos.some(
       (video) => video.video_gallery.title === videoGalleryConfirmText
     );
 
-numberOfAssociatedVideos ?
-(
-    galleryTextConfirmation 
-    ? (setDeleteVideoGalleryConfirm(true), setVideoGalleryConfirmError(false))
-    :(setDeleteVideoGalleryConfirm(false),setVideoGalleryConfirmError(true))
-)
-: null
-    
-
+    numberOfAssociatedVideos
+      ? galleryTextConfirmation
+        ? (setDeleteVideoGalleryConfirm(true),
+          setVideoGalleryConfirmError(false))
+        : (setDeleteVideoGalleryConfirm(false),
+          setVideoGalleryConfirmError(true))
+      : null;
 
     if (numberOfAssociatedVideos === false) {
       try {
@@ -627,9 +625,12 @@ numberOfAssociatedVideos ?
                               videoGallery.title
                             );
 
-                            setNumberOfAssociatedVideos(allVideos.some(
-                              (video) => video.video_gallery._id === videoGallery._id
-                            ))
+                            setNumberOfAssociatedVideos(
+                              allVideos.some(
+                                (video) =>
+                                  video.video_gallery._id === videoGallery._id
+                              )
+                            );
                           }}
                           className="p-2 bg-red-400 hover:bg-red-600 ease-in-out duration-300 rounded-xl mt-4"
                         >
@@ -669,7 +670,9 @@ numberOfAssociatedVideos ?
                             onClick={() => {
                               setIsDeleteVideoGalleryModal(false);
 
-                              numberOfAssociatedVideos ? handleOpenVideoGalleryConfirmDeleteModal() : deleteVideoGallery(deleteVideoGalleryId);
+                              numberOfAssociatedVideos
+                                ? handleOpenVideoGalleryConfirmDeleteModal()
+                                : deleteVideoGallery(deleteVideoGalleryId);
                             }}
                           >
                             Delete
@@ -952,7 +955,10 @@ numberOfAssociatedVideos ?
                   />
                 </div>
 
-                <div className="flex flex-col space-y-2">
+                
+                {/*Custom select for creating videos*/}
+                
+                {/*<div className="flex flex-col space-y-2">
                   <label className="">Video gallery:</label>
                   <Select
                     id="videoGallerySelect"
@@ -973,7 +979,7 @@ numberOfAssociatedVideos ?
                         </MenuItem>
                       ))}
                   </Select>
-                </div>
+                </div>*/}
 
                 <div className="flex space-x-2 mt-8">
                   <button

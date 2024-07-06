@@ -138,10 +138,9 @@ const getAllUsers = async (req, res) => {
   }
 }
 
-const resetUserNotificationsCount = async(req,res) => {
+const resetUserNotificationsCount = asyncHandler(async(req,res) => {
   const {userId} = req.body
 
-  try {
     const user = await User.findOneAndUpdate(
       { _id: userId },
       { $set: { notificationsCount: 0 } },
@@ -149,15 +148,13 @@ const resetUserNotificationsCount = async(req,res) => {
     );
 
     res.status(200).json({ message: "Notifications reset successful", user });
-  } catch (error) {
-    res.status(400).json({message: error.message})
-  }
-}
 
-const resetUserNotifications = async(req,res) => {
+
+})
+
+const resetUserNotifications = asyncHandler(async(req,res) => {
   const {userId} = req.body
 
-  try {
     const user = await User.findOneAndUpdate(
       { _id: userId },
       { $set: { notifications: [] } },
@@ -165,14 +162,13 @@ const resetUserNotifications = async(req,res) => {
     );
 
     res.status(200).json({ message: "Notifications count reset successfully", user });
-  } catch (error) {
-    res.status(400).json({message: error.message})
-  }
-}
+
+})
 
 //route     PUT users/profile
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;

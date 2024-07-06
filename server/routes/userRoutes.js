@@ -16,8 +16,8 @@ router.post('/auth', authUser)
 router.post('/logout', logoutUser)
 router.route('/profile').get(protect, getUserProfile).put(protect, updateUserProfile)
 router.get('/getAllUsers', getAllUsers)
-router.patch('/resetNotificationsCount', resetUserNotificationsCount)
-router.patch('/resetNotifications', resetUserNotifications)
+router.route('/resetNotificationsCount').patch(protect, resetUserNotificationsCount)
+router.route('/resetNotifications').patch(protect, resetUserNotifications)
 
 
 module.exports = router

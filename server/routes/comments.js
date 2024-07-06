@@ -1,17 +1,17 @@
 const {
-    getAllComments,
-    postComment,
-    deleteComment,
-    patchComment
-} = require('../controllers/commentsController')
+  getAllComments,
+  postComment,
+  deleteComment,
+  patchComment,
+} = require("../controllers/commentsController");
 
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const { protect } = require("../middleware/authMiddleware.js");
 
-router.get('/getAllComments', getAllComments)
-router.post('/postComment', postComment)
-router.delete('/deleteComment/:id', deleteComment)
-router.patch('/patchComment/:id', patchComment)
+router.get("/getAllComments", getAllComments);
+router.route("/postComment").post(protect, postComment);
+router.route("/deleteComment/:id").delete(protect, deleteComment);
+router.route("/patchComment/:id").patch(protect, patchComment);
 
-
-module.exports = router
+module.exports = router;

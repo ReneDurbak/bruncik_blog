@@ -564,7 +564,7 @@ export default function AdminArticles() {
                           },
                         }}
                       >
-                        <Box sx={modalBoxStyle}>
+                        <Box sx={modalBoxStyle} className="font-poppins ">
                           <div
                             dangerouslySetInnerHTML={{
                               __html: DOMPurify.sanitize(
@@ -747,7 +747,7 @@ export default function AdminArticles() {
                         },
                       }}
                     >
-                      <Box sx={modalBoxStyle}>
+                      <Box sx={modalBoxStyle} className="font-poppins ">
                         <div
                           dangerouslySetInnerHTML={{
                             __html: DOMPurify.sanitize(

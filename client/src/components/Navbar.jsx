@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
-import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import logo from "../assets/icon.png"
 import { IoIosLogIn } from "react-icons/io";
 import { useSelector, useDispatch } from 'react-redux'
@@ -12,12 +12,7 @@ import { Dropdown } from 'flowbite-react';
 
 function Navbar() {
 
-  const location = useLocation();
-  const isAdminRoute = location.pathname === '/admin';
 
-  if (isAdminRoute) {
-    return null
-  }
 
 
 
@@ -93,7 +88,7 @@ function Navbar() {
 
             {
               userInfo ? (
-                <div className="ml-6">
+                <li className="ml-6">
 
                   <Dropdown label={`${userInfo.name}`} style={{ backgroundColor: 'black' }}>
                     <Link to="/profile">
@@ -106,7 +101,7 @@ function Navbar() {
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={() => logoutHandler()}>Sign out</Dropdown.Item>
                   </Dropdown>
-                </div>
+                </li>
               )
                 : (
                   <>
@@ -127,6 +122,29 @@ function Navbar() {
           <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink onClick={() => setNav(false)} to="/articles">Articles</NavLink></li>
           <li className="p-4 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink onClick={() => setNav(false)} to="/mycourse">My Course</NavLink></li>
           <li className="p-4 pb-6 md:text-lg text-sm hover:text-neutral-400 duration-300 text-center"><NavLink onClick={() => setNav(false)} to="/about">About Me</NavLink></li>
+          {
+              userInfo ? (
+                <li className="text-sm hover:text-neutral-400 duration-300 flex justify-center w-full text-center bg-black">
+
+                  <Dropdown label={`${userInfo.name}`} className="w-min" style={{ backgroundColor: 'black'}}>
+                    <Link to="/profile">
+                      <Dropdown.Header className=' flex flex-col'>
+                        <span className="text-sm">{userInfo.name}</span>
+                        <span className="truncate text-sm font-medium">{userInfo.email}</span>
+                      </Dropdown.Header>
+                    </Link>
+
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={() => logoutHandler()}>Sign out</Dropdown.Item>
+                  </Dropdown>
+                </li>
+              )
+                : (
+                  <>
+                    <Link to="/login"><IoIosLogIn className='ml-8 duration-300 ease-in-out hover:scale-125' size={25} /></Link>
+                  </>
+                )
+            }
         </ul>
 
       </header>

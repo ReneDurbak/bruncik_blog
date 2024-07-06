@@ -200,7 +200,6 @@ export default function AdminPushUps() {
       fetchVideos();
 
       setUrlLink("");
-      setVideoGallerySelectFilter(null);
       setIsCreateVideo(false);
 
       sendToSocketVideo();
@@ -302,7 +301,6 @@ export default function AdminPushUps() {
   };
 
   const deleteVideoGallery = async (id) => {
-    console.log("spustilo sa");
     const numberOfAssociatedVideos = allVideos.some(
       (video) => video.video_gallery._id === id
     );
@@ -335,7 +333,6 @@ export default function AdminPushUps() {
       }
     } else if (galleryTextConfirmation && numberOfAssociatedVideos) {
       try {
-        console.log("daco sa deje");
         const deleteAllVideos = await axios.delete(
           "http://localhost:4000/admin/videos/deleteAllVideos",
           {
@@ -899,7 +896,7 @@ export default function AdminPushUps() {
                       >
                         <Box sx={modalBoxStyle} className="font-poppins ">
                           <div
-                          className="font-poppins "
+                            className="font-poppins "
                             dangerouslySetInnerHTML={{
                               __html: DOMPurify.sanitize(videoDeleteModalText),
                             }}
@@ -956,7 +953,6 @@ export default function AdminPushUps() {
                   />
                 </div>
 
-                
                 {/*Custom select for creating videos*/}
 
                 {/*<div className="flex flex-col space-y-2">

@@ -7,12 +7,12 @@ Multifunctional personal blog with admin mode for managing articles, article sec
   
 &nbsp;
 ![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/521a67d6-aa96-4f49-a205-6b0bca7f68b6)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/ae6cad48-7013-4bb6-9a58-594128f80da1)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/923c7fbe-65b1-47e1-bfde-f1ffc7147fc8)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/8abe3af6-0ed8-47b7-8b13-81d73e337139)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/21f1c24a-a36d-4a43-b240-64dd88ea7676)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/d046ab44-ff59-40b3-885a-7f57c61f1083)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/3ed7a3e1-ba4d-47f7-8070-d98e4d75fca3)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/c7f9b47b-532b-45ba-9ee6-5d23ba692c4d)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/aff00b34-5d15-462d-b782-20e16bd512d4)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/30e0b579-8c6b-4bf7-bcff-9d1f9e68d27f)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/0cb088e3-11bf-4128-8d31-1338f3b54418)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/66b59dda-834f-4e3f-8c6d-2b01a3da2b2a)
+
  
  <br><br><br><br><br><br>
 # Push-ups page
@@ -24,14 +24,14 @@ Multifunctional personal blog with admin mode for managing articles, article sec
   
 &nbsp;
 ![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/8a921f9b-a6cd-4e4a-802b-554d17bcb92c)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/9f9529f1-b183-4d04-a9c6-6e48abff8124)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/f5589bb4-a7bd-4477-bba6-c3c165720704)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/37483e90-8901-4469-9495-5fbe52b1dee3)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/47a5f2e7-549e-4c57-9197-7c1c351b2591)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/2a80fa22-27b3-46d5-b07f-2d032d57d89f)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/01d8d03f-027e-4e28-9725-5c785ea95c40)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/776fb3ad-5cd4-44b6-833c-17406162aeeb)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/31624a35-d089-47f6-a1c3-15f83924ddd4)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/cd02f2cb-0d99-44ad-9fd6-74fc218bf1df)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/45e3965a-13ea-4afa-aeab-2072b57984fe)
 
 
- 
+
  
  <br><br><br><br><br><br>
 # Articles page
@@ -64,25 +64,27 @@ Multifunctional personal blog with admin mode for managing articles, article sec
 
 
 
+
  <br><br><br><br><br><br> 
 # About me
 * Summary of Peter's values and his story
 
 &nbsp;
 
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/0e3f6dd5-2475-4d99-ad76-c244607c817f)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/b0829c9e-03ee-4ad3-b8d2-ff5ff797b616)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/3765e1b5-06f8-4c6c-b619-b440ef9a245a)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/7f328eae-02de-4004-9b98-adf4b4030693)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/d58a73e9-e1aa-4f3d-a43f-3d759666daf5)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/3b2edd0c-78ae-4fa3-b271-05d02c50bf2e)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/41771ddf-516e-4f97-b595-5ba29ef9a334)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/0f43bf65-17ce-43cd-9672-266c6f18d808)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/1a178329-518a-4e3d-9a37-a45e1172a166)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/679a5a0d-3a22-4275-981b-70b91c51124e)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/b4ccdea3-0e4d-43f1-9ef5-a9363d11b576)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/82de4a0a-4283-4b31-b899-073cdb80ab36)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/fe46196d-1587-4aaf-805d-3e705ecffc70)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/f84427ee-51b1-484b-acec-bfb24946537e)
+
 ![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/f7c8fb4e-7d34-45b3-b0d8-d9cf74397f2c)
 
 
  <br><br><br><br><br><br>
 # Admin - Articles
-* Admin page for managing articles and article sections
+* Admin page for managing articles and article sections (updating, deleting)
 * Includes Jodit Editor for creating articles
 
 &nbsp;
@@ -97,14 +99,14 @@ Multifunctional personal blog with admin mode for managing articles, article sec
 
  <br><br><br><br><br><br>
 # Admin - Push-ups
-* Admin page for managing videos and video galleries
+* Admin page for managing videos and video galleries (updating, deleting)
 
 &nbsp;
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/4b7cb235-a106-4fc7-b195-b546a8aad942)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/9ceb5a56-8a1e-415f-80f3-2d9a38d760f1)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/47c2ae3c-8a63-47f0-94e2-0ed638464ffa)
+![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/0834f7cb-3288-4edf-bfa0-44f0c711595c)
 
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/e70d4b04-960b-4dd7-84eb-31934e9a94da)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/e9b1db02-7d3e-49ce-b679-23b508fb1464)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/b1b76559-033d-40f6-823a-3b76bf75ca66)
-![image](https://github.com/ReneDurbak/bruncik_blog/assets/106143298/24769e32-4f73-4588-b04a-33483766c4f4)
 
 
 

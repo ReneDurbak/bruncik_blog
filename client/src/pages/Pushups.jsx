@@ -345,7 +345,8 @@ function Pushups() {
     try {
       const response = await axios.patch(
         "http://localhost:4000/users/resetNotificationsCount",
-        { userId: userInfo._id }
+        { userId: userInfo._id },
+        { withCredentials: true }
       );
     } catch (error) {
       console.error(error);
@@ -356,7 +357,8 @@ function Pushups() {
     try {
       const response = await axios.patch(
         "http://localhost:4000/users/resetNotifications",
-        { userId: userInfo._id }
+        { userId: userInfo._id },
+        { withCredentials: true }
       );
     } catch (error) {
       console.error(error);

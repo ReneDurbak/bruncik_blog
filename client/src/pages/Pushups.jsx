@@ -6,7 +6,7 @@ import React from "react";
 import ringbell from "../assets/Ringbelt.png";
 import profilepicture from "../assets/profilepicture.png";
 import profilepicture2 from "../assets/profilepicture2.png";
-import hearticon from "../assets/hearticon.png";
+import Heart from "@react-sandbox/heart";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 import PushupsPopup from "../components/PushupsPopup";
 import instagramIcon from "../assets/Instagram.png";
@@ -246,6 +246,15 @@ function Pushups() {
       id: 2,
     },
   ];
+
+  const [likedVideos, setLikedVideos] = useState([]);
+  
+  const toggleLike = (videoId) => {
+    setLikedVideos((prev) => ({
+      ...prev,
+      [videoId]: !prev[videoId],
+    }));
+  };
 
   const [selected, setSelected] = useState(1);
   const [focused, setFocused] = useState(false);
@@ -939,7 +948,7 @@ function Pushups() {
               {videos &&
                 videos.map((video) => (
                   <div
-                    className="relative aspect-[4/7] w-full rounded-t-[30px]"
+                    className="relative aspect-[4/7]  outline outline-1 w-full rounded-t-[30px]"
                     key={video._id}
                   >
                     <iframe
@@ -948,11 +957,21 @@ function Pushups() {
                       allowFullScreen
                     />
 
-                    <div className="absolute  w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#242424] rounded-b-[30px]">
+                    <div className="absolute  outline outline-1 w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#999999] rounded-b-[30px]">
                       <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
                         DAY {video.day_count}
                       </div>
-                      {/*<div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1"><img src={hearticon} className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"/><div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">56</div></div>*/}
+                      <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
+
+                        <Heart
+                          active={likedVideos[video._id] || false}
+                          onClick={() => toggleLike(video._id)}
+                          className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"
+                        />
+                        <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">
+                          56
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

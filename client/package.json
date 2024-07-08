@@ -15,6 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.13.7",
+    "@react-sandbox/heart": "^1.1.0",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.2",
     "blurhash": "^2.0.5",

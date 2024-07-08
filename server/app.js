@@ -13,9 +13,10 @@ const Admin = require("./models/adminModel");
 const userRoutes = require("./routes/userRoutes.js");
 const adminRoutes = require("./routes/adminRoutes.js");
 const videoRoutes = require("./routes/videos");
+const videoGalleryRoutes = require("./routes/videoGallery.js");
 const commentsRoutes = require("./routes/comments");
 const reviewRoutes = require("./routes/reviews.js");
-const videoGalleryRoutes = require("./routes/videoGallery.js");
+const likeRoutes = require("./routes/likes.js")
 const { notFound, errorHandler } = require("./middleware/errorMiddleware.js");
 const cookieParser = require("cookie-parser");
 const http = require("http");
@@ -79,6 +80,7 @@ app.use("/admin/videos", videoRoutes);
 app.use("/admin/videoGalleries", videoGalleryRoutes);
 app.use("/comments", commentsRoutes);
 app.use("/reviews", reviewRoutes);
+app.use("/likes", likeRoutes);
 
 app.get("/getAdminCredentials", async (req, res) => {
   try {

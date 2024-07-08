@@ -93,7 +93,7 @@ export default function AdminArticles() {
   const [label, setLabel] = useState("");
   const [createArticle, setCreateArticle] = useState(false);
 
-  const handleSubmitArticle = async (e) => {
+  const handleCreateArticle = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -158,7 +158,7 @@ export default function AdminArticles() {
     }));
   };
 
-  const handleSubmitArticleSection = async (e) => {
+  const handleCreateArticleSection = async (e) => {
     e.preventDefault();
 
     try {
@@ -425,7 +425,7 @@ export default function AdminArticles() {
               <div className="space-x-4 mt-10 flex flex-row items-end">
                 <form
                   className="flex flex-col space-y-4"
-                  onSubmit={handleSubmitArticle}
+                  onSubmit={handleCreateArticle}
                 >
                   <label>
                     Title:
@@ -617,7 +617,7 @@ export default function AdminArticles() {
 
               <form
                 className="flex flex-col space-y-6"
-                onSubmit={handleSubmitArticleSection}
+                onSubmit={handleCreateArticleSection}
               >
                 <div className="flex space-x-3">
                   <label className="my-auto">title:</label>

@@ -36,5 +36,5 @@ const deleteLike = async (req, res) => {
 module.exports = {
   getLikes,
   postLike,
-  deleteLike
+  deleteLike,
 };

@@ -4,10 +4,6 @@ import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import React from "react";
 import ringbell from "../assets/Ringbelt.png";
-import profilepicture from "../assets/profilepicture.png";
-import profilepicture2 from "../assets/profilepicture2.png";
-import Heart from "@react-sandbox/heart";
-import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 import PushupsPopup from "../components/PushupsPopup";
 import instagramIcon from "../assets/Instagram.png";
 import GmailIcon from "../assets/Gmail.png";
@@ -19,10 +15,11 @@ import { Helmet } from "react-helmet";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import axios from "axios";
-import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import { Select, MenuItem} from "@mui/material";
 import { io } from "socket.io-client";
 import DOMPurify from "dompurify";
 import { useSelector } from "react-redux";
+import VideoComponent from "../components/VideoComponent"
 
 function Pushups() {
   const [PushUpsGallery, setPushUpsGallery] = useState([]);
@@ -247,14 +244,23 @@ function Pushups() {
     },
   ];
 
-  const [likedVideos, setLikedVideos] = useState([]);
-  
-  const toggleLike = (videoId) => {
-    setLikedVideos((prev) => ({
-      ...prev,
-      [videoId]: !prev[videoId],
-    }));
-  };
+  const [likes, setLikes] = useState([]);
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/likes/likes");
+        const fetchedLikes = response.data;
+
+        setLikes(fetchedLikes);
+      } catch (error) {
+        console.error(`Cannot fetch likes: ${error}`);
+      }
+    };
+
+    fetchLikes();
+  }, []);
+
 
   const [selected, setSelected] = useState(1);
   const [focused, setFocused] = useState(false);
@@ -410,17 +416,7 @@ function Pushups() {
     });
   };
 
-  function extractVideoSrcFromIframe(iframeTag) {
-    const srcRegex = /src="([^"]*)"/;
 
-    const match = iframeTag.match(srcRegex);
-
-    if (match && match[1]) {
-      return match[1];
-    } else {
-      return null;
-    }
-  }
 
   if ((videos || notifications) === null) {
     return <p className="py-20">Loading...</p>;
@@ -947,33 +943,34 @@ function Pushups() {
             <div className="py-4 grid 2xl:grid-cols-4 xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 2xl:gap-y-20 2xl:gap-x-10 xl:gap-y-16 xl:gap-x-10 lg:gap-y-20 lg:gap-x-8 md:gap-y-16 md:gap-x-8 gap-y-[50px] gap-x-4 2xl:px-[120px] xl:px-20 lg:px-20 md:px-8 sm:px-4  px-0 pr-2 sm:pr-4  2xl:max-w-full lg:max-w-full mx-auto 2xl:min-h-[520px] 2xl:max-h-[800px] xl:max-h-[450px] lg:max-h-[440px] md:max-h-[375px] max-h-[450px]  overflow-y-scroll pushupsScroll">
               {videos &&
                 videos.map((video) => (
-                  <div
-                    className="relative aspect-[4/7]  outline outline-1 w-full rounded-t-[30px]"
-                    key={video._id}
-                  >
-                    <iframe
-                      className="aspect-[4/7] w-full rounded-t-[30px]"
-                      src={extractVideoSrcFromIframe(video.url_link)}
-                      allowFullScreen
-                    />
+                  <VideoComponent key={video._id} video={video} likes={likes}/>
 
-                    <div className="absolute  outline outline-1 w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#999999] rounded-b-[30px]">
-                      <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
-                        DAY {video.day_count}
-                      </div>
-                      <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
+                  // <div
+                  //   className="relative aspect-[4/7]  outline outline-1 w-full rounded-t-[30px]"
+                  //   key={video._id}
+                  // >
+                  //   <iframe
+                  //     className="aspect-[4/7] w-full rounded-t-[30px]"
+                  //     src={extractVideoSrcFromIframe(video.url_link)}
+                  //     allowFullScreen
+                  //   />
 
-                        <Heart
-                          active={likedVideos[video._id] || false}
-                          onClick={() => toggleLike(video._id)}
-                          className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"
-                        />
-                        <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">
-                          56
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  //   <div className="absolute  outline outline-1 w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#999999] rounded-b-[30px]">
+                  //     <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
+                  //       DAY {video.day_count}
+                  //     </div>
+                  //     <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
+                  //       <Heart
+                  //         active={likedVideos[video._id] || false}
+                  //         onClick={() => toggleLike(video._id)}
+                  //         className="lg:h-auto lg:w-[25px] md:w-[20px] sm:h-[22px] h-[18px] my-auto"
+                  //       />
+                  //       <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">
+                  //         {likes.filter((like) => like.videoId === video._id).length}
+                  //       </div>
+                  //     </div>
+                  //   </div>
+                  // </div>
                 ))}
             </div>
           </div>

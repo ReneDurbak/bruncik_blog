@@ -1,4 +1,5 @@
 const Like = require("../models/likeModel");
+const Video = require("../models/videoModel");
 
 const getLikes = async (req, res) => {
   try {
@@ -14,6 +15,7 @@ const postLike = async (req, res) => {
 
   try {
     const createdLike = await Like.create({ videoId, userId });
+    await Video.findByIdAndUpdate(videoId, { $inc: { likeCount: 1 } });
 
     res.status(200).json(createdLike);
   } catch (error) {
@@ -26,6 +28,8 @@ const deleteLike = async (req, res) => {
 
   try {
     const deletedLike = await Like.findOneAndDelete({ videoId, userId });
+    await Video.findByIdAndUpdate(videoId, { $inc: { likeCount: -1 } });
+
     res.status(200).json(deletedLike);
   } catch (error) {
     res.status(400).json({ error: "Cannot unlike a video" });

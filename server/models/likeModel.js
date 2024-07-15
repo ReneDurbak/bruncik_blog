@@ -12,12 +12,13 @@ const likeSchema = new mongoose.Schema(
     userId: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "Video",
+      ref: "User",
     },
   },
   { timestamps: true }
 );
 
 likeSchema.index({ videoId: 1, userId: 1 }, { unique: true });
+;
 
 module.exports = mongoose.model("like", likeSchema);

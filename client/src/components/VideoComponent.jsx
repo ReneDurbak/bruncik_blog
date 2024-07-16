@@ -3,11 +3,8 @@ import Heart from "@react-sandbox/heart";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-{
-  /*              {likes.filter((like) => like.videoId === video._id).length}
-   */
-}
-export default function VideoComponent({ video, likes }) {
+
+export default function VideoComponent({ video, likes, onLikesChange }) {
   const [likedVideos, setLikedVideos] = useState([]);
   const { userInfo } = useSelector((state) => state.auth);
   const [videoCount, setVideoCount] = useState(0);
@@ -35,6 +32,7 @@ export default function VideoComponent({ video, likes }) {
       });
 
       setVideoCount((prevCount) => prevCount + 1);
+      onLikesChange();
     } catch (error) {
       console.error(`Cannot post like: ${error}`);
     }
@@ -50,6 +48,7 @@ export default function VideoComponent({ video, likes }) {
       });
 
       setVideoCount((prevCount) => prevCount - 1);
+      onLikesChange();
     } catch (error) {
       console.error(error);
     }

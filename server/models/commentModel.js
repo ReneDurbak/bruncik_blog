@@ -8,7 +8,7 @@ const commentSchema = new Schema(
       type: String,
       required: true,
     },
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "User",
@@ -18,7 +18,7 @@ const commentSchema = new Schema(
       required: true,
       ref: "User",
     },
-    articleId: {
+    article: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "article",

@@ -21,12 +21,12 @@ const reviewSchema = new mongoose.Schema(
     comment: {
       type: String,
     },
-    articleId: {
+    article: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "article",
     },
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: "User",

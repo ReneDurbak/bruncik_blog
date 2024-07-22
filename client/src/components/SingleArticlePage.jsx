@@ -144,7 +144,7 @@ export default function SingleArticlePage() {
       );
       const fetchedReviews = response.data;
       const filteredReviews = fetchedReviews.filter((review) => {
-        return review.articleId === id;
+        return review.article._id === id;
       });
       setReviews(filteredReviews);
     } catch (error) {
@@ -174,8 +174,8 @@ export default function SingleArticlePage() {
               .filter((label) => selectedLabels.includes(label.id))
               .map((label) => label.labelTitle),
             comment,
-            articleId: id,
-            userId,
+            article: id,
+            user: userId,
             userName: userInfo.name,
           },
           { withCredentials: true }
@@ -365,7 +365,7 @@ export default function SingleArticlePage() {
       );
       const fetchedComments = response.data;
       const filteredComments = fetchedComments.filter((comment) => {
-        return comment.articleId === id;
+        return comment.article._id === id;
       });
       setComments(filteredComments);
     } catch (error) {
@@ -385,9 +385,9 @@ export default function SingleArticlePage() {
       const response = await axios.post(
         "http://localhost:4000/comments/postComment",
         {
-          userId,
+          user: userId,
           userName: userInfo.name,
-          articleId: article._id,
+          article: article._id,
           comment,
         },
         { withCredentials: true }
@@ -1021,7 +1021,7 @@ export default function SingleArticlePage() {
 
                         <div className="xl:pl-20 pl-8 pr-7">
                           <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] h-auto xl:mt-4 mt-2 xl:p-4 p-3">
-                            {comment.userId === userId ? (
+                            {comment.user._id === userId ? (
                               <>
                                 {isUpdateComment ? (
                                   <>
@@ -1217,7 +1217,7 @@ export default function SingleArticlePage() {
                         </>
                       ) : (
                         <>
-                          {userId === review.userId ? (
+                          {userId === review.user._id ? (
                             <>
                               <div className="flex  space-x-2 absolute top-2 right-2">
                                 <FaPen

@@ -85,7 +85,7 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
     <>
       {" "}
       <div
-        className="relative aspect-[4/7]  outline outline-1 w-full rounded-t-[30px]"
+        className="relative aspect-[4/7] w-full rounded-t-[30px]"
         key={video._id}
       >
         <iframe
@@ -94,17 +94,20 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
           allowFullScreen
         />
 
-        <div className="absolute  outline outline-1 w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#999999] rounded-b-[30px]">
+        <div className="absolute w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#999999] rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
             DAY {video.day_count}
           </div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
             <Heart
+              width={32}
+              height={32}
               active={likedVideos[video._id] || false}
               onClick={() => toggleLike(video._id)}
-              className="xl:h-auto lg:h-[28px] md:h-[26px] h-[22px] xl:w-[25px] md:w-[20px] w-[16px]  lg:mr-0 mr-1  my-auto"
+              className="xl:h-auto lg:mr-0 mr-1 my-auto"
+              
             />
-            <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs">
+            <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs w-[20px]">
               {videoCount}
             </div>
           </div>

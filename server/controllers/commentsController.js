@@ -2,7 +2,7 @@ const Comment = require("../models/commentModel");
 
 const getAllComments = async (req, res) => {
   try {
-    const comments = await Comment.find({}).sort({ createdAt: -1 }).populate("userId").populate("articleId");
+    const comments = await Comment.find({}).sort({ createdAt: -1 }).populate("user").populate("article");
     res.status(200).json(comments);
   } catch (error) {
     res
@@ -12,13 +12,13 @@ const getAllComments = async (req, res) => {
 };
 
 const postComment = async (req, res) => {
-  const { comment, userId, articleId, userName } = req.body;
+  const { comment, user, article, userName } = req.body;
 
   try {
     const postComment = await Comment.create({
       comment,
-      userId,
-      articleId,
+      user,
+      article,
       userName,
     });
     res.status(200).json(postComment);

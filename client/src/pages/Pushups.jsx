@@ -270,7 +270,6 @@ function Pushups() {
   const [prevSelected, setPrevSelected] = useState(1);
   const [videos, setVideos] = useState([]);
 
-
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
@@ -321,7 +320,6 @@ function Pushups() {
   useEffect(() => {
     fetchVideos();
   }, [selectedGallery, selected]);
-
 
   function formatTime(dateString) {
     const date = new Date(dateString);
@@ -867,8 +865,15 @@ function Pushups() {
                       },
 
                       "& .MuiMenuItem-root": {
+                        "&.Mui-selected": {
+                          backgroundColor: "#d3d3d3 !important",
+                        },
+
+                        "&.Mui-selected:hover": {
+                          backgroundColor: "#adadad !important",
+                        },
                         "&:hover": {
-                          backgroundColor: "#d3d3d3",
+                          backgroundColor: "#adadad",
                         },
 
                         paddingTop: isLaptop
@@ -898,7 +903,7 @@ function Pushups() {
                 }}
                 id="pushUpsSelect"
                 value={selected}
-                sx={{
+                sx={{          
                   fontWeight: "bold",
                   "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: "transparent",

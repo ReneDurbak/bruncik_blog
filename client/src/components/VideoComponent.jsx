@@ -3,7 +3,6 @@ import Heart from "@react-sandbox/heart";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-
 export default function VideoComponent({ video, likes, onLikesChange }) {
   const [likedVideos, setLikedVideos] = useState([]);
   const { userInfo } = useSelector((state) => state.auth);
@@ -100,12 +99,12 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
           </div>
           <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
             <Heart
+              inactiveColor="white"
               width={32}
               height={32}
               active={likedVideos[video._id] || false}
               onClick={() => toggleLike(video._id)}
               className="xl:h-auto lg:mr-0 mr-1 my-auto"
-              
             />
             <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs w-[20px]">
               {videoCount}

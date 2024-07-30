@@ -73,11 +73,12 @@ export default function Login() {
                       required
                     />
                   </div>
+                  <Link to="/forgot_password"><p className="text-right underline-offset-4 cursor-pointer mt-[-6px]">Forgot password?</p></Link>
                 </div>
 
                 <div className="flex justify-end mt-10">
-                  <div className="mr-4 my-auto duration-300 ease-in-out hover:text-gray-600 hover:cursor-pointer">
-                    <Link to="/register">Not registered yet?</Link>
+                  <div className="mr-4 my-auto duration-300 ease-in-out hover:text-gray-600 hover:cursor-pointer underline-offset-4">
+                    <Link to="/register"><u>Not registered yet?</u></Link>
                   </div>
                   {isLoading && (
                     <Spinner

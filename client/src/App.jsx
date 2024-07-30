@@ -22,6 +22,7 @@ import AdminPrivateRoutes from './components/AdminPrivateRoutes.jsx';
 import AdminUpdateVideo from './pages/AdminUpdateVideo.jsx';
 import PageNotFound from './pages/NotFound.jsx';
 import Verify from './components/Verify.jsx';
+import ForgotPassword from './components/ForgotPassword.jsx';
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
             
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot_password" element={<ForgotPassword/>}/>
             <Route path="/verify" element={<Verify/>}/>
             
             <Route path="" element={<PrivateRoute />}>

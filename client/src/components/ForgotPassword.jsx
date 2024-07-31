@@ -14,7 +14,7 @@ export default function ForgotPassword() {
           <form>
             <div className="flex justify-center flex-col space-y-4 mt-16">
               <div className="flex flex-col justify-center">
-                <p className="lg:text-base sm:text-sm text-xs">
+                <p className="lg:text-base sm:text-sm text-xs mb-1">
                   E-mail associated with your account
                 </p>
                 <input

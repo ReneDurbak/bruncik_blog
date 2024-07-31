@@ -46,7 +46,7 @@ export default function Login() {
         <>
           <ToastContainer />
           <div className="font-poppins flex justify-center items-center h-screen bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300 px-6">
-            <div className="flex flex-col  px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
+            <div className="flex flex-col  px-4 md:px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
               <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold mt-8">
                 Login into an account
               </h1>
@@ -73,11 +73,11 @@ export default function Login() {
                       required
                     />
                   </div>
-                  <Link to="/forgot_password"><p className="text-right underline-offset-4 cursor-pointer mt-[-6px]">Forgot password?</p></Link>
+                  <Link to="/forgot_password"><p className="lg:text-sm text-xs text-right underline-offset-4 cursor-pointer mt-[-6px]">Forgot password?</p></Link>
                 </div>
 
                 <div className="flex justify-end mt-10">
-                  <div className="mr-4 my-auto duration-300 ease-in-out hover:text-gray-600 hover:cursor-pointer underline-offset-4">
+                  <div className="lg:text-base text-sm mr-4 my-auto duration-300 ease-in-out hover:text-gray-600 hover:cursor-pointer underline-offset-4">
                     <Link to="/register"><u>Not registered yet?</u></Link>
                   </div>
                   {isLoading && (
@@ -90,7 +90,7 @@ export default function Login() {
                   )}
                   <button
                     type="submit"
-                    className="md:py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black hover:bg-white text-white hover:text-black shadow-lg hover:shadow-xl outline-0 outline duration-300 ease-out"
+                    className="py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black hover:bg-white text-white hover:text-black shadow-lg hover:shadow-xl outline-0 outline duration-300 ease-out"
                   >
                     login
                   </button>

@@ -73,7 +73,7 @@ export default function Login() {
                       required
                     />
                   </div>
-                  <Link to="/forgot_password"><p className="lg:text-sm text-xs text-right underline-offset-4 cursor-pointer mt-[-6px]">Forgot password?</p></Link>
+                  <Link to="/forgotPassword"><p className="lg:text-sm text-xs text-right underline-offset-4 cursor-pointer mt-[-6px]">Forgot password?</p></Link>
                 </div>
 
                 <div className="flex justify-end mt-10">

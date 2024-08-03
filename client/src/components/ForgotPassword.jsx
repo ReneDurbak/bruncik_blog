@@ -1,17 +1,53 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
+
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
 
+
+  const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
+
+
+  const handleSendResetPasswordLink = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/users/sendResetPasswordLink`,
+        {
+          email,
+        }
+      );
+
+      toast.success("Reset Password email successfully sent.");
+    } catch (error) {
+      toast.error('User not found');
+    }
+  };
+
+  useEffect(() => {
+    if(userInfo && userInfo.confirmed === true){
+      navigate('/')
+    }
+  }, [navigate, userInfo])
+
   return (
     <>
+      <ToastContainer />
       <div className="font-poppins flex justify-center items-center h-screen bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300 px-6">
-        <div className="flex flex-col  px-4 lg:px-10 pt-10 pb-8 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
+        <form
+          onSubmit={handleSendResetPasswordLink}
+          className="flex flex-col  px-4 lg:px-10 pt-10 pb-8 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl"
+        >
           <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold">
             Forgot password?
           </h1>
-          <form>
+          <div>
             <div className="flex justify-center flex-col space-y-4 mt-16">
               <div className="flex flex-col justify-center">
                 <p className="lg:text-base sm:text-sm text-xs mb-1">
@@ -41,8 +77,8 @@ export default function ForgotPassword() {
                 Reset password
               </button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </>
   );

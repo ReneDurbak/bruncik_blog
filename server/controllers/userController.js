@@ -4,6 +4,7 @@ const generateToken = require("../utils/generateToken");
 const User = require("../models/userModel");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -39,6 +40,29 @@ const sendVerificationEmail = (email, token) => {
         console.error("Error sending verification email:", error);
       } else {
         console.log("Verification email sent:", info.response);
+      }
+    }
+  );
+};
+
+const sendResetPasswordEmail = (user, token) => {
+  const emailLink = `http://localhost:5173/resetPassword?token=${token}&email=${user.email}`;
+
+  transporter.sendMail(
+    {
+      from: process.env.EMAIL_CONFIRM,
+      to: user.email,
+      subject: "Reset Password",
+      html: `
+          <p>Hello!</p>
+          <p> Click <a href="${emailLink}">here</a> to reset your password.</p>
+        `,
+    },
+    (error, info) => {
+      if (error) {
+        console.error("Error sending reset password email:", error);
+      } else {
+        console.log("Reset password email sent:", info.response);
       }
     }
   );
@@ -123,7 +147,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     name: req.user.name,
     email: req.user.email,
     notifications: req.user.notifications,
-    notificationsCount: req.user.notificationsCount
+    notificationsCount: req.user.notificationsCount,
   };
 
   res.status(200).json(user);
@@ -131,39 +155,38 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find()
-    res.status(200).json(users)
+    const users = await User.find();
+    res.status(200).json(users);
   } catch (error) {
-    res.status(400).json({message: error.message})
+    res.status(400).json({ message: error.message });
   }
-}
+};
 
-const resetUserNotificationsCount = asyncHandler(async(req,res) => {
-  const {userId} = req.body
+const resetUserNotificationsCount = asyncHandler(async (req, res) => {
+  const { userId } = req.body;
 
-    const user = await User.findOneAndUpdate(
-      { _id: userId },
-      { $set: { notificationsCount: 0 } },
-      { new: true } 
-    );
+  const user = await User.findOneAndUpdate(
+    { _id: userId },
+    { $set: { notificationsCount: 0 } },
+    { new: true }
+  );
 
-    res.status(200).json({ message: "Notifications reset successful", user });
+  res.status(200).json({ message: "Notifications reset successful", user });
+});
 
+const resetUserNotifications = asyncHandler(async (req, res) => {
+  const { userId } = req.body;
 
-})
+  const user = await User.findOneAndUpdate(
+    { _id: userId },
+    { $set: { notifications: [] } },
+    { new: true }
+  );
 
-const resetUserNotifications = asyncHandler(async(req,res) => {
-  const {userId} = req.body
-
-    const user = await User.findOneAndUpdate(
-      { _id: userId },
-      { $set: { notifications: [] } },
-      { new: true } 
-    );
-
-    res.status(200).json({ message: "Notifications count reset successfully", user });
-
-})
+  res
+    .status(200)
+    .json({ message: "Notifications count reset successfully", user });
+});
 
 //route     PUT users/profile
 const updateUserProfile = asyncHandler(async (req, res) => {
@@ -190,6 +213,57 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const sendResetPasswordLink = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(400).json({ message: "User not found" });
+  }
+
+  const token = generateVerificationToken(user._id);
+
+  sendResetPasswordEmail(user, token);
+  return res.status(200).json({ message: "Password email sent successfully." });
+});
+
+
+
+const resetPassword = asyncHandler(async (req, res) => {
+  const { token } = req.query;
+  const { password } = req.body;
+
+  if (!token) {
+    return res.status(400).json("Token is required");
+  }
+
+  const decoded = jwt.verify(token, process.env.EMAIL_SECRET);
+
+  const userId = decoded.userId;
+  const user = await User.findById(userId);
+
+  if (!user) {
+    res.status(404);
+    return res.status(400).json("User not found");
+  }
+
+  const isSamePassword = await bcrypt.compare(password, user.password);
+
+  if (isSamePassword) {
+    return res.status(400).json("Cannot reset the same password");
+  }
+
+  if (password) {
+    user.password = password;
+    await user.save();
+  } else {
+    return res.status(400).json("Password is required");
+  }
+
+  res.status(200).json({ message: "Password reset successful" });
+});
+
 module.exports = {
   authUser,
   registerUser,
@@ -198,5 +272,7 @@ module.exports = {
   updateUserProfile,
   getAllUsers,
   resetUserNotificationsCount,
-  resetUserNotifications
+  resetUserNotifications,
+  sendResetPasswordLink,
+  resetPassword,
 };

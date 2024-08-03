@@ -6,7 +6,10 @@ const {
     getAllUsers,
     resetUserNotificationsCount,
     resetUserNotifications,
-    updateUserProfile } = require('../controllers/userController.js')
+    updateUserProfile,
+    sendResetPasswordLink,
+    resetPassword
+} = require('../controllers/userController.js')
 const express = require('express')
 const router = express.Router()
 const { protect } = require('../middleware/authMiddleware.js')
@@ -18,6 +21,8 @@ router.route('/profile').get(protect, getUserProfile).put(protect, updateUserPro
 router.get('/getAllUsers', getAllUsers)
 router.route('/resetNotificationsCount').patch(protect, resetUserNotificationsCount)
 router.route('/resetNotifications').patch(protect, resetUserNotifications)
+router.post('/sendResetPasswordLink', sendResetPasswordLink)
+router.post('/resetPassword', resetPassword)
 
 
 module.exports = router

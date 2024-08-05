@@ -647,7 +647,7 @@ export default function SingleArticlePage() {
           </div>
           {/*Article content*/}
           <div
-            className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] text-justify leading-6 pr-2"
+            className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] lg:text-justify tracking-wide lg:tracking-normal leading-6 pr-2"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(article.content),
             }}

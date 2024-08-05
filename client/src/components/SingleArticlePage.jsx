@@ -595,7 +595,7 @@ export default function SingleArticlePage() {
       <div
         className={`${
           isTabletAboutMe
-            ? "max-w-[1380px] mx-auto grid-flow-col grid-cols-2 gap-x-3 mt-[120px] grid sm:px-10 px-4"
+            ? "max-w-[1380px] mx-auto grid-flow-col grid-cols-2 gap-x-3 md:mt-[120px] mt-28 grid sm:px-10 px-4"
             : closeSideBar
             ? "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-6 gap-x-3 mt-[120px] grid  px-7"
             : "2xl:max-w-[1680px] max-w-[1380px] mx-auto grid-flow-col grid-cols-2 xl:gap-x-20 md:gap-x-6 gap-x-3 mt-[120px] grid px-7"
@@ -604,7 +604,7 @@ export default function SingleArticlePage() {
         {/*Article container*/}
         <div className="font-poppins 2xl:max-w-[1100px] col-span-2 xl:mt-0 sm:mt-[-40px] mt-[-120px]">
           <div className="col-span-2">
-            <div className="flex justify-start items-center space-x-4 mt-16 font-regular  xl:text-[12px] md:text-[10px] sm:text-[9px] text-[8px]">
+            <div className="flex justify-start items-center space-x-4 mt-16 font-regular  xl:text-[12px] md:text-[10px] text-[10px]">
               <div>
                 {new Date(article.createdAt).toLocaleString("en-US", {
                   day: "numeric",
@@ -647,7 +647,7 @@ export default function SingleArticlePage() {
           </div>
           {/*Article content*/}
           <div
-            className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] lg:text-justify tracking-wide lg:tracking-normal leading-6 pr-2"
+            className="xl:mt-16 sm:mt-10 mt-7 xl:text-base sm:text-[13px] text-[14px] lg:text-justify tracking-wide lg:tracking-normal leading-6 lg:pr-2"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(article.content),
             }}

@@ -337,6 +337,9 @@ export default function SingleArticlePage() {
   const [updateCommentId, setUpdateCommentId] = useState("");
   const [isCommentsWindow, setIsCommentsWindow] = useState(true);
 
+  console.log(updateCommentText)
+  console.log(updateCommentId)
+  
   const handleSaveComment = () => {
     /*if (name === "") {
       document.getElementById("singleArticleInput").value =
@@ -1081,10 +1084,13 @@ export default function SingleArticlePage() {
                                             onClick={() => {
                                               setIsUpdateComment(true);
                                               setUpdateCommentId(comment._id);
+                                              setUpdateCommentText(comment.comment)
+
                                             }}
                                             size={14}
                                             className="hover:scale-125 ease-in-out duration-300"
                                           />
+
                                           <RiDeleteBin5Line
                                             onClick={() =>
                                               deleteComment(comment._id)
@@ -1103,6 +1109,7 @@ export default function SingleArticlePage() {
                                         onClick={() => {
                                           setIsUpdateComment(true);
                                           setUpdateCommentId(comment._id);
+                                          setUpdateCommentText(comment.comment)
                                         }}
                                         size={14}
                                         className="hover:scale-125 ease-in-out duration-300"

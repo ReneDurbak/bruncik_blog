@@ -16,7 +16,7 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
         return acc;
       }, {});
     setLikedVideos(userLikedVideos);
-  }, [likes, userInfo._id]);
+  }, [likes, userInfo && userInfo._id]);
 
   useEffect(() => {
     const count = likes.filter((like) => like.videoId === video._id).length;
@@ -97,19 +97,21 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
             DAY {video.day_count}
           </div>
-          <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
-            <Heart
-              inactiveColor="white"
-              width={32}
-              height={32}
-              active={likedVideos[video._id] || false}
-              onClick={() => toggleLike(video._id)}
-              className="xl:h-auto lg:mr-0 mr-1 my-auto"
-            />
-            <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs w-[20px]">
-              {videoCount}
+          {userInfo && (
+            <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
+              <Heart
+                inactiveColor="white"
+                width={32}
+                height={32}
+                active={likedVideos[video._id] || false}
+                onClick={() => toggleLike(video._id)}
+                className="xl:h-auto lg:mr-0 mr-1 my-auto"
+              />
+              <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs w-[20px]">
+                {videoCount}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

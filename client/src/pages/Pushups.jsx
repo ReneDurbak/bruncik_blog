@@ -541,54 +541,57 @@ function Pushups() {
                   </div>
                 ) : null}
                 {/*Notification window*/}
-                {notificationsTransition((style, item) =>
-                  item ? (
-                    <animated.div
-                      style={style}
-                      className="absolute xl:top-[-15px] top-[-10px] xl:left-[-490px] lg:left-[-510px] md:left-[-400px] bottom-0 right-[-55px] lg:w-[650px] md:w-[520px] w-[315px] px-0 z-[2]"
-                    >
-                      <div
-                        className="relative shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 md:py-3 py-3 lg:pl-6 pl-3 md:pl-4 lg:pr-10 pr-3 justify-center items-start   lg:rounded-[30px] rounded-[20px] z-[2]"
-                        id="notifications"
-                      >
-                        <div className=" h-full w-full">
-                          <div className="absolute lg:right-8 md:right-4 right-3 2xl:top-[35px] xl:top-6 md:top-4 top-3">
-                            <img
-                              src={CloseButtonv2}
-                              className="duration-300 ease-in-out hover:scale-110 cursor-pointer sm:w-auto 2xl:w-[26px] xl:w-[24px] w-[16px]"
-                              onClick={() => {
-                                setNotificationIsVisible(false);
-                              }}
-                            />
-                          </div>
-                          <h1 className="2xl:text-2xl xl:text-xl md:text-lg text-sm tracking-wider	 font-bold">
-                            Notifications
-                          </h1>
 
-                          <div className="flex justify-between space-x-3 mt-2 2xl:text-sm md:text-xs text-[10px] ">
-                            <div
-                              className={`${
-                                notificationSwitch
-                                  ? "no-underline text-gray-400 hover:text-[#696969]"
-                                  : "underline "
-                              } underline-offset-8 duration-300 ease-in-out cursor-pointer`}
-                              onClick={() => setNotificationSwitch(false)}
-                            >
-                              View all
-                            </div>
+                {userInfo ? (
+                  <>
+                    {notificationsTransition((style, item) =>
+                      item ? (
+                        <animated.div
+                          style={style}
+                          className="absolute xl:top-[-15px] top-[-10px] xl:left-[-490px] lg:left-[-510px] md:left-[-400px] bottom-0 right-[-55px] lg:w-[650px] md:w-[520px] w-[315px] px-0 z-[2]"
+                        >
+                          <div
+                            className="relative shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 md:py-3 py-3 lg:pl-6 pl-3 md:pl-4 lg:pr-10 pr-3 justify-center items-start   lg:rounded-[30px] rounded-[20px] z-[2]"
+                            id="notifications"
+                          >
+                            <div className=" h-full w-full">
+                              <div className="absolute lg:right-8 md:right-4 right-3 2xl:top-[35px] xl:top-6 md:top-4 top-3">
+                                <img
+                                  src={CloseButtonv2}
+                                  className="duration-300 ease-in-out hover:scale-110 cursor-pointer sm:w-auto 2xl:w-[26px] xl:w-[24px] w-[16px]"
+                                  onClick={() => {
+                                    setNotificationIsVisible(false);
+                                  }}
+                                />
+                              </div>
+                              <h1 className="2xl:text-2xl xl:text-xl md:text-lg text-sm tracking-wider	 font-bold">
+                                Notifications
+                              </h1>
 
-                            <div
-                              className="text-red-400 font-bold rounded-xl pr-10 underline underline-offset-8 ease-in-out duration-300 hover:cursor-pointer"
-                              onClick={() => {
-                                resetUserNotifications();
-                                setNotifications([]);
-                              }}
-                            >
-                              {notifications && notifications.length === 0
-                                ? null
-                                : "clear"}
-                            </div>
-                            {/*<div
+                              <div className="flex justify-between space-x-3 mt-2 2xl:text-sm md:text-xs text-[10px] ">
+                                <div
+                                  className={`${
+                                    notificationSwitch
+                                      ? "no-underline text-gray-400 hover:text-[#696969]"
+                                      : "underline "
+                                  } underline-offset-8 duration-300 ease-in-out cursor-pointer`}
+                                  onClick={() => setNotificationSwitch(false)}
+                                >
+                                  View all
+                                </div>
+
+                                <div
+                                  className="text-red-400 font-bold rounded-xl pr-10 underline underline-offset-8 ease-in-out duration-300 hover:cursor-pointer"
+                                  onClick={() => {
+                                    resetUserNotifications();
+                                    setNotifications([]);
+                                  }}
+                                >
+                                  {notifications && notifications.length === 0
+                                    ? null
+                                    : "clear"}
+                                </div>
+                                {/*<div
                               className={`${
                                 notificationSwitch
                                   ? "underline "
@@ -598,115 +601,85 @@ function Pushups() {
                             >
                               Mentions
                             </div>*/}
-                          </div>
+                              </div>
 
-                          <div className="flex flex-col mt-4 pr-8 max-h-[150px] overflow-y-scroll">
-                            {notifications &&
-                              notifications.map((notification, index) => (
-                                <div
-                                  key={index}
-                                  className="flex space-x-4 my-2"
-                                >
-                                  <div>
-                                    <img
-                                      src={`http://localhost:4000/public/videoGallery/${notification.videoGalleryImage}`}
-                                      className="2xl:w-[48px] 2xl:h-[40px] md:w-[40px] md:h-[40px] w-[32px] h-[32px] rounded-3xl"
-                                    />
-                                  </div>
-
-                                  <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
+                              <div className="flex flex-col mt-4 pr-8 max-h-[150px] overflow-y-scroll">
+                                {notifications &&
+                                  notifications.map((notification, index) => (
                                     <div
-                                      dangerouslySetInnerHTML={{
-                                        __html: DOMPurify.sanitize(
-                                          notification.message
-                                        ),
-                                      }}
-                                    />
-                                    <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
+                                      key={index}
+                                      className="flex space-x-4 my-2"
+                                    >
                                       <div>
-                                        {formatTime(notification.createdAt)}
+                                        <img
+                                          src={`http://localhost:4000/public/videoGallery/${notification.videoGalleryImage}`}
+                                          className="2xl:w-[48px] 2xl:h-[40px] md:w-[40px] md:h-[40px] w-[32px] h-[32px] rounded-3xl"
+                                        />
                                       </div>
-                                      <div>
-                                        {formatDate(notification.createdAt)}
+
+                                      <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
+                                        <div
+                                          dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(
+                                              notification.message
+                                            ),
+                                          }}
+                                        />
+                                        <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
+                                          <div>
+                                            {formatTime(notification.createdAt)}
+                                          </div>
+                                          <div>
+                                            {formatDate(notification.createdAt)}
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </div>
-                              ))}
-                            {/*<div className="flex space-x-4 my-2">
-                              <div>
-                                <img
-                                  src={profilepicture2}
-                                  className="2xl:w-[48px] md:w-[40px] w-[32px] "
-                                />
+                                  ))}
                               </div>
-
-                              <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
-                                <div>Peter Bruncik added new member YAKSHA</div>
-                                <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
-                                  <div>Friday 2:20 pm</div>
-
-                                  <div>Dec 24, 2023</div>
-                                </div>
-                              </div>
-
-                            
-                            </div>*/}
-                          </div>
-
-                          {/* {notificationSwitch ?
-                            
-        
-                            <div className="flex-col mt-6">
-
-                              <div className="flex space-x-4 my-2">
-                                <div>
-                                  <img src={profilepicture2} className="2xl:w-[48px] md:w-[40px] w-[32px]"/>
-                                </div>
-                                <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
-                                  <div>
-                                    @Peter Bruncik on DAY 41 ! Keep working!💪
-                                  </div>
-                                </div>
-                              </div>
-                              
                             </div>
-                          
-                          :
-                          
-                          
-
-                          <div className="flex flex-col mt-4">
-
-                              <div className="flex space-x-4 my-2">
-                                <div>
-                                <img src={profilepicture2} className="2xl:w-[48px] md:w-[40px] w-[32px] "/>
-                                </div>
-
-                                <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
-                                  <div>
-                                    Peter Bruncik added new member YAKSHA
-                                  </div>
-                                  <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
-                                    <div>
-                                      Friday 2:20 pm
-                                    </div>
-                                    
-                                    <div>
-                                      Dec 24, 2023
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
                           </div>
-                          }*/}
+                        </animated.div>
+                      ) : (
+                        ""
+                      )
+                    )}
+                  </>
+                ) : (
+                  <>
+                                      {notificationsTransition((style, item) =>
+                      item ? (
+                        <animated.div
+                          style={style}
+                          className="absolute xl:top-[-15px] top-[-10px] xl:left-[-490px] lg:left-[-510px] md:left-[-400px] bottom-0 right-[-55px] lg:w-[650px] md:w-[520px] w-[315px] px-0 z-[2]"
+                        >
+                          <div
+                            className="relative text-center shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 md:py-3 py-3 lg:pl-6 pl-3 md:pl-4 lg:pr-10 pr-3    lg:rounded-[30px] rounded-[20px] z-[2]"
+                            id="notifications"
+                          >
+                            
+                        <div className="text-center text-lg py-4">
+                          If you want to see notifications you have to{" "}
+                          <Link to="/login">
+                          <strong className="hover:underline underline-offset-4 cursor-pointer">
+                            login
+                          </strong>{" "}
+                          </Link>
+                          or{" "}
+
+                          <Link to="/register">
+                          <strong className="hover:underline underline-offset-4 cursor-pointer">
+                            register
+                          </strong>
+                          </Link>
                         </div>
-                      </div>
-                    </animated.div>
-                  ) : (
-                    ""
-                  )
+                          </div>
+                        </animated.div>
+                      ) : (
+                        ""
+                      )
+                    )}
+                  </>
                 )}
               </div>
 
@@ -903,7 +876,7 @@ function Pushups() {
                 }}
                 id="pushUpsSelect"
                 value={selected}
-                sx={{          
+                sx={{
                   fontWeight: "bold",
                   "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: "transparent",

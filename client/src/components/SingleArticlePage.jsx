@@ -1,8 +1,7 @@
-import { useParams, Link as RouteLink } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   FacebookShareButton,
   PinterestShareButton,
@@ -91,8 +90,6 @@ export default function SingleArticlePage() {
   const [isUpdateReview, setIsUpdateReview] = useState(false);
   const [updateReviewRating, setUpdateReviewRating] = useState(0);
   const [updateReviewId, setUpdateReviewId] = useState("");
-
-  console.log(comment)
 
   const handleLabelClick = (labelID) => {
     if (selectedLabels.includes(labelID)) {
@@ -328,7 +325,7 @@ export default function SingleArticlePage() {
 
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [userId, setUserId] = useState(userInfo._id);
+  const [userId, setUserId] = useState(userInfo && userInfo._id);
   /* const [name, setName] = useState("");*/
   // const [nameError, setNameError] = useState(false);
   const [commentError, setCommentError] = useState(false);
@@ -339,7 +336,6 @@ export default function SingleArticlePage() {
   const [updateCommentId, setUpdateCommentId] = useState("");
   const [isCommentsWindow, setIsCommentsWindow] = useState(true);
 
-  
   const handleSaveComment = () => {
     /*if (name === "") {
       document.getElementById("singleArticleInput").value =
@@ -566,9 +562,9 @@ export default function SingleArticlePage() {
         setReadNextArticles(
           sortedArticles.map((article) => (
             <div key={article._id}>
-              <RouteLink to={`/articles/${article._id}`}>
+              <Link to={`/articles/${article._id}`}>
                 <div className="xl:py-6 py-4">{article.title}</div>
-              </RouteLink>
+              </Link>
             </div>
           ))
         );
@@ -656,46 +652,47 @@ export default function SingleArticlePage() {
             }}
           ></div>
           {/*Review container*/}
-          <div className="md:mt-[125px] mt-20 flex justify-center">
-            <div className="text-center">
-              <h1 className="lg:text-2xl md:text-xl text-[18px] font-bold mb-2">
-                How do you rate this article?
-              </h1>
-              <Rating
-                id="reviewWindowTrigger"
-                name="article-rating"
-                value={rating}
-                precision={0.5}
-                onChange={handleRatingChange}
-                style={{
-                  fontSize: isDesktop
-                    ? 62
-                    : isLaptopXl
-                    ? 55
-                    : isTablet
-                    ? 55
-                    : 45,
-                }}
-              />
-              {/*Rate this article window*/}
-              {isModalOpen ? (
-                <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center">
-                  <form
-                    onSubmit={handleSubmitReview}
-                    id="reviewWindow"
-                    className="relative md:px-6 px-4 py-6 sm:w-[750px] w-[400px] lg:mx-0 md:mx-10 sm:mx-8 mx-4  bg-white rounded-[30px]"
-                  >
-                    <h1 className="text-left font-bold tracking-wider">
-                      Rate this article
-                    </h1>
-                    <div className="absolute top-4 right-4 w-[28px]">
-                      <img
-                        src={closeButton}
-                        className="duration-300 ease-out hover:scale-110"
-                        onClick={() => handleCloseReviewWindow()}
-                      />
-                    </div>
-                    {/*<div
+          {userInfo ? (
+            <div className="md:mt-[125px] mt-20 flex justify-center">
+              <div className="text-center">
+                <h1 className="lg:text-2xl md:text-xl text-[18px] font-bold mb-2">
+                  How do you rate this article?
+                </h1>
+                <Rating
+                  id="reviewWindowTrigger"
+                  name="article-rating"
+                  value={rating}
+                  precision={0.5}
+                  onChange={handleRatingChange}
+                  style={{
+                    fontSize: isDesktop
+                      ? 62
+                      : isLaptopXl
+                      ? 55
+                      : isTablet
+                      ? 55
+                      : 45,
+                  }}
+                />
+                {/*Rate this article window*/}
+                {isModalOpen ? (
+                  <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center">
+                    <form
+                      onSubmit={handleSubmitReview}
+                      id="reviewWindow"
+                      className="relative md:px-6 px-4 py-6 sm:w-[750px] w-[400px] lg:mx-0 md:mx-10 sm:mx-8 mx-4  bg-white rounded-[30px]"
+                    >
+                      <h1 className="text-left font-bold tracking-wider">
+                        Rate this article
+                      </h1>
+                      <div className="absolute top-4 right-4 w-[28px]">
+                        <img
+                          src={closeButton}
+                          className="duration-300 ease-out hover:scale-110"
+                          onClick={() => handleCloseReviewWindow()}
+                        />
+                      </div>
+                      {/*<div
                       className={`${
                         hideNameInput
                           ? "invisible"
@@ -744,120 +741,184 @@ export default function SingleArticlePage() {
                       </div>
                     </div>
                     */}
-                    <h1 className="text-left md:text-xs text-[10px] italic md:mt-3 mt-4 font-bold">
-                      Choose tags that fit this article:
-                    </h1>
-                    {/* Labels */}
-                    <div className="flex flex-row flex-wrap auto-rows-fr md:space-x-2 space-x-1 my-2 md:text-sm text-xs transition-transform transform duration-330 ease-in-out">
-                      {isMobile ? (
-                        labelsForArticleReview.map((label) => (
-                          <div
-                            key={label.id}
-                            onClick={() => handleLabelClick(label.id)}
-                            className={`cursor-pointer px-2 my-1 duration-300 ease-in-out rounded-2xl border ${
-                              selectedLabels.includes(label.id)
-                                ? "bg-black text-white border-black"
-                                : "border-black lg:hover:bg-black lg:hover:text-white active:bg-slate-600 active:border-slate-600"
-                            }`}
-                          >
-                            {label.labelTitle}
-                          </div>
-                        ))
-                      ) : (
-                        <>
-                          {labelsToShow.map((label) => (
+                      <h1 className="text-left md:text-xs text-[10px] italic md:mt-3 mt-4 font-bold">
+                        Choose tags that fit this article:
+                      </h1>
+                      {/* Labels */}
+                      <div className="flex flex-row flex-wrap auto-rows-fr md:space-x-2 space-x-1 my-2 md:text-sm text-xs transition-transform transform duration-330 ease-in-out">
+                        {isMobile ? (
+                          labelsForArticleReview.map((label) => (
                             <div
                               key={label.id}
                               onClick={() => handleLabelClick(label.id)}
                               className={`cursor-pointer px-2 my-1 duration-300 ease-in-out rounded-2xl border ${
                                 selectedLabels.includes(label.id)
-                                  ? " bg-black text-white border-black"
-                                  : " border-black lg:hover:bg-black lg:hover:text-white active:bg-slate-600 active:border-slate-600"
+                                  ? "bg-black text-white border-black"
+                                  : "border-black lg:hover:bg-black lg:hover:text-white active:bg-slate-600 active:border-slate-600"
                               }`}
                             >
                               {label.labelTitle}
                             </div>
-                          ))}
-                          {showMoreLabels ? (
-                            <div
-                              className="cursor-pointer px-2 py-[2px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl underline underline-offset-2"
-                              onClick={() => setShowMoreLabels(false)}
-                            >
-                              Less
-                            </div>
-                          ) : (
-                            <div
-                              className="cursor-pointer px-2 py-[2px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl underline underline-offset-2"
-                              onClick={() => setShowMoreLabels(true)}
-                            >
-                              More
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </div>
-                    <div className="mt-4">
-                      <textarea
-                        placeholder="Send me your feedback..."
-                        id="singleArticleTextArea"
-                        onClick={() => {
-                          setCommentError(false);
-                          handleClickOnTextArea();
+                          ))
+                        ) : (
+                          <>
+                            {labelsToShow.map((label) => (
+                              <div
+                                key={label.id}
+                                onClick={() => handleLabelClick(label.id)}
+                                className={`cursor-pointer px-2 my-1 duration-300 ease-in-out rounded-2xl border ${
+                                  selectedLabels.includes(label.id)
+                                    ? " bg-black text-white border-black"
+                                    : " border-black lg:hover:bg-black lg:hover:text-white active:bg-slate-600 active:border-slate-600"
+                                }`}
+                              >
+                                {label.labelTitle}
+                              </div>
+                            ))}
+                            {showMoreLabels ? (
+                              <div
+                                className="cursor-pointer px-2 py-[2px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl underline underline-offset-2"
+                                onClick={() => setShowMoreLabels(false)}
+                              >
+                                Less
+                              </div>
+                            ) : (
+                              <div
+                                className="cursor-pointer px-2 py-[2px] my-auto outline outline-1 outline-black outline-offset-[-1px] bg-black text-white rounded-2xl underline underline-offset-2"
+                                onClick={() => setShowMoreLabels(true)}
+                              >
+                                More
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                      <div className="mt-4">
+                        <textarea
+                          placeholder="Send me your feedback..."
+                          id="singleArticleTextArea"
+                          onClick={() => {
+                            setCommentError(false);
+                            handleClickOnTextArea();
+                          }}
+                          onChange={(e) => setComment(e.target.value)}
+                          className={`w-full min-h-[45px] md:rounded-[30px] rounded-[15px] md:mb-6 mb-3 xl:border-2 border-[1px] md:py-[10px] py-[6px] md:px-4 px-3 md:text-[13px] text-[10px]  overflow-hidden ${
+                            commentError
+                              ? "border-red-600 text-red-600 outline-0 animate-shake"
+                              : "border-gray-400 outline-0"
+                          }`}
+                        />
+                      </div>
+                      <Rating
+                        name="read-only"
+                        value={rating}
+                        readOnly
+                        style={{
+                          fontSize: isDesktop ? 70 : isTablet ? 50 : 48,
                         }}
-                        onChange={(e) => setComment(e.target.value)}
-                        className={`w-full min-h-[45px] md:rounded-[30px] rounded-[15px] md:mb-6 mb-3 xl:border-2 border-[1px] md:py-[10px] py-[6px] md:px-4 px-3 md:text-[13px] text-[10px]  overflow-hidden ${
-                          commentError
-                            ? "border-red-600 text-red-600 outline-0 animate-shake"
-                            : "border-gray-400 outline-0"
-                        }`}
-                      />
-                    </div>
-                    <Rating
-                      name="read-only"
-                      value={rating}
-                      readOnly
-                      style={{
-                        fontSize: isDesktop ? 70 : isTablet ? 50 : 48,
-                      }}
-                      precision={0.5}
-                    />{" "}
-                    {/*Send button rating*/}
-                    <div className="text-right md:mt-2 mt-3 mb-[-10px]">
-                      <button
-                        type="submit"
-                        variant="contained"
-                        onMouseEnter={() =>
-                          isLaptop
-                            ? setHoverOnPaperPlane(true)
-                            : setHoverOnPaperPlane(false)
-                        }
-                        onMouseLeave={() => setHoverOnPaperPlane(false)}
-                        className=" bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]"
-                      >
-                        <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] capitalize tracking-widest font-poppins">
-                          <div className="underline underline-offset-2  my-auto font-bold">
-                            send
+                        precision={0.5}
+                      />{" "}
+                      {/*Send button rating*/}
+                      <div className="text-right md:mt-2 mt-3 mb-[-10px]">
+                        <button
+                          type="submit"
+                          variant="contained"
+                          onMouseEnter={() =>
+                            isLaptop
+                              ? setHoverOnPaperPlane(true)
+                              : setHoverOnPaperPlane(false)
+                          }
+                          onMouseLeave={() => setHoverOnPaperPlane(false)}
+                          className=" bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]"
+                        >
+                          <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] capitalize tracking-widest font-poppins">
+                            <div className="underline underline-offset-2  my-auto font-bold">
+                              send
+                            </div>
+                            <div className="my-auto">
+                              <img
+                                src={
+                                  hoverOnPaperPlane || clickOnPaperPlane
+                                    ? paperPlaneBlack
+                                    : paperPlane
+                                }
+                                className="w-[11px]"
+                              />
+                            </div>
                           </div>
-                          <div className="my-auto">
-                            <img
-                              src={
-                                hoverOnPaperPlane || clickOnPaperPlane
-                                  ? paperPlaneBlack
-                                  : paperPlane
-                              }
-                              className="w-[11px]"
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              ) : (
-                ""
-              )}{" "}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                ) : (
+                  ""
+                )}{" "}
+              </div>
             </div>
-          </div>
+          ) : (
+            <>
+              {/*Not logged in Rating*/}
+
+              <div className="md:mt-[125px] mt-20 flex justify-center">
+                <div className="text-center">
+                  <h1 className="lg:text-2xl md:text-xl text-[18px] font-bold mb-2">
+                    How do you rate this article?
+                  </h1>
+                  <Rating
+                    id="reviewWindowTrigger"
+                    name="article-rating"
+                    value={rating}
+                    precision={0.5}
+                    onChange={handleRatingChange}
+                    style={{
+                      fontSize: isDesktop
+                        ? 62
+                        : isLaptopXl
+                        ? 55
+                        : isTablet
+                        ? 55
+                        : 45,
+                    }}
+                  />
+                  {/*Rate this article window*/}
+                  {isModalOpen ? (
+                    <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center">
+                      <form
+                        onSubmit={handleSubmitReview}
+                        id="reviewWindow"
+                        className="relative md:px-6 px-4 py-6 sm:w-[750px] w-[400px] lg:mx-0 md:mx-10 sm:mx-8 mx-4  bg-white rounded-[30px]"
+                      >
+                        <div className="absolute top-2 right-4 w-[28px]">
+                          <img
+                            src={closeButton}
+                            className="duration-300 ease-out hover:scale-110"
+                            onClick={() => handleCloseReviewWindow()}
+                          />
+                        </div>
+
+                        <div className="text-center text-xl py-4">
+                          If you want to review the article you have to{" "}
+                          <Link to="/login">
+                            <strong className="hover:underline underline-offset-4 cursor-pointer">
+                              login
+                            </strong>{" "}
+                          </Link>
+                          or{" "}
+                          <Link to="/register">
+                            <strong className="hover:underline underline-offset-4 cursor-pointer">
+                              register
+                            </strong>
+                          </Link>
+                        </div>
+                      </form>
+                    </div>
+                  ) : (
+                    ""
+                  )}{" "}
+                </div>
+              </div>
+            </>
+          )}
           {/*About the author - mobile res*/}
           {isTabletAboutMe || (isTablet && closeSideBar) ? (
             <div className="font-poppins mt-20 pr-10">
@@ -967,9 +1028,12 @@ export default function SingleArticlePage() {
                 Reviews
               </div>
 
-              <div className="flex space-x-2 duration-500 ease-in-out  2xl:border-2 border-[1px] border-white   py-1 px-3 rounded-3xl lg:hover:border-black active:border-black hover:cursor-pointer ">
+              <div className="flex lg:space-x-2 space-x-1 duration-500 ease-in-out  2xl:border-2 border-[1px] border-white   py-1 px-3 rounded-3xl lg:hover:border-black active:border-black hover:cursor-pointer ">
                 <div className="my-auto">
-                  <img src={commentIcon} />
+                  <img
+                    className="xl:w-[14px] md:w-[12px] w-[10px]"
+                    src={commentIcon}
+                  />
                 </div>
 
                 <div
@@ -1084,8 +1148,9 @@ export default function SingleArticlePage() {
                                             onClick={() => {
                                               setIsUpdateComment(true);
                                               setUpdateCommentId(comment._id);
-                                              setUpdateCommentText(comment.comment)
-
+                                              setUpdateCommentText(
+                                                comment.comment
+                                              );
                                             }}
                                             size={14}
                                             className="hover:scale-125 ease-in-out duration-300"
@@ -1109,7 +1174,7 @@ export default function SingleArticlePage() {
                                         onClick={() => {
                                           setIsUpdateComment(true);
                                           setUpdateCommentId(comment._id);
-                                          setUpdateCommentText(comment.comment)
+                                          setUpdateCommentText(comment.comment);
                                         }}
                                         size={14}
                                         className="hover:scale-125 ease-in-out duration-300"
@@ -1233,7 +1298,7 @@ export default function SingleArticlePage() {
                                     setUpdateReviewId(review._id);
                                     setIsUpdateReview(true);
                                     setUpdateRating(review.rating);
-                                    setComment(review.comment)
+                                    setComment(review.comment);
                                   }}
                                 />
                                 <RiDeleteBin5Line
@@ -1337,118 +1402,117 @@ export default function SingleArticlePage() {
             )}
           </div>
           {/*Write a comment window*/}
-          {openWriteCommentWindow ? (
-            <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center md:px-0 px-6">
-              <form
-                onSubmit={handleSubmitComment}
-                className="relative bg-white rounded-[30px] py-6 md:px-8 px-4 w-[500px]"
-                id="commentWindow"
-              >
-                <div className="text-bold md:text-2xl text-xl font-bold">
-                  Write a comment
-                </div>
 
-                {/*<div className={
-                            `${
-                                hideNameInput ? "invisible" : "mt-7 md:text-base text-sm"
-                            }`
-                        }>
-                            <p className="font-bold md:text-base text-xs">Name:</p>
-                            <input placeholder="Your name " id="singleArticleInput" name="nameInput"
-                                onChange={
-                                    (e) => setName(e.target.value)
-                                }
-                                onClick={
-                                    () => {
-                                        setNameError(false);
-                                        handleClickOnInput()
-                                    }
-                                }
-                                className={
-                                    `w-full md:rounded-[30px] rounded-[15px]  xl:border-2 border-[1px] mt-1 py-2 md:px-4 px-3 ${
-                                        nameError ? "border-red-600 text-red-600 outline-0 animate-shake" : "border-gray-400 outline-0"
-                                    }`
-                                }/>
-                        </div>
-
-                    <div className={
-                        `${
-                            hideNameInput ? "flex space-x-1 mt-[-52px]" : "flex space-x-1 mt-1"
-                        }`
-                    }>
-                        <Checkbox icon={<CheckboxIcon/>}
-                            checkedIcon={<CheckboxIconChecked/>}
-                            onClick={
-                                () => {
-                                    setHideNameInput(!hideNameInput),
-                                    hideNameInput ? setName("") : handleAnonymousCheckboxCLick()
-                                }
-                            }/>
-                        <div className="font-bold md:text-base text-xs mt-[14px] sm:mt-[10px]">Stay anonymous</div>
-                    </div>
-                        */}
-                <div className="mt-8 md:text-base text-sm">
-                  <p className="font-bold md:text-base text-xs">
-                    Your thoughts on this article:
-                  </p>
-                  <textarea
-                    type="text"
-                    id="singleArticleTextArea"
-                    name="feedbackInput"
-                    placeholder="Write a comment... "
-                    onClick={() => {
-                      setCommentError(false), handleClickOnTextArea();
-                    }}
-                    onChange={(e) => setComment(e.target.value)}
-                    className={`w-full md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3 mt-3  overflow-hidden ${
-                      commentError
-                        ? "border-red-600 text-red-600 outline-0 animate-shake"
-                        : " border-gray-400 outline-0"
-                    }`}
-                  />
-                </div>
-
-                <div className="px-4 mt-8 xl:mt-12">
-                  <button
-                    type="submit"
-                    onMouseEnter={() =>
-                      isLaptop
-                        ? setHoverOnPaperPlane(true)
-                        : setHoverOnPaperPlane(false)
-                    }
-                    onMouseLeave={() => setHoverOnPaperPlane(false)}
-                    className="w-full bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700 md:text-base text-sm p-2 rounded-[30px] flex space-x-2 justify-center"
+          {userInfo ? (
+            <>
+              {openWriteCommentWindow && (
+                <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center md:px-0 px-6">
+                  <form
+                    onSubmit={handleSubmitComment}
+                    className="relative bg-white rounded-[30px] py-6 md:px-8 px-4 w-[500px]"
+                    id="commentWindow"
                   >
-                    <div className="font-bold underline-offset-2 underline">
-                      Send
+                    <div className="text-bold md:text-2xl text-xl font-bold">
+                      Write a comment
                     </div>
-                    <div className="my-auto">
-                      <img
-                        src={
-                          hoverOnPaperPlane || clickOnPaperPlane
-                            ? paperPlaneBlack
-                            : paperPlane
-                        }
-                        className="w-[15px]"
+
+                    <div className="mt-8 md:text-base text-sm">
+                      <p className="font-bold md:text-base text-xs">
+                        Your thoughts on this article:
+                      </p>
+                      <textarea
+                        type="text"
+                        id="singleArticleTextArea"
+                        name="feedbackInput"
+                        placeholder="Write a comment... "
+                        onClick={() => {
+                          setCommentError(false);
+                          handleClickOnTextArea();
+                        }}
+                        onChange={(e) => setComment(e.target.value)}
+                        className={`w-full md:rounded-[30px] rounded-[15px] h-[150px] xl:border-2 border-[1px] py-2 md:px-5 px-3 mt-3 overflow-hidden ${
+                          commentError
+                            ? "border-red-600 text-red-600 outline-0 animate-shake"
+                            : "border-gray-400 outline-0"
+                        }`}
                       />
                     </div>
-                  </button>
-                </div>
 
-                <div
-                  className="absolute top-5 right-5"
-                  onClick={() => handleCloseCommentWindow()}
-                >
-                  <img
-                    className="md:w-[30px] w-[24px] duration-300 ease-out hover:scale-110"
-                    src={closeButton}
-                  />
+                    <div className="px-4 mt-8 xl:mt-12">
+                      <button
+                        type="submit"
+                        onMouseEnter={() =>
+                          isLaptop
+                            ? setHoverOnPaperPlane(true)
+                            : setHoverOnPaperPlane(false)
+                        }
+                        onMouseLeave={() => setHoverOnPaperPlane(false)}
+                        className="w-full bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700 md:text-base text-sm p-2 rounded-[30px] flex space-x-2 justify-center"
+                      >
+                        <div className="font-bold underline-offset-2 underline">
+                          Send
+                        </div>
+                        <div className="my-auto">
+                          <img
+                            src={
+                              hoverOnPaperPlane || clickOnPaperPlane
+                                ? paperPlaneBlack
+                                : paperPlane
+                            }
+                            className="w-[15px]"
+                          />
+                        </div>
+                      </button>
+                    </div>
+
+                    <div
+                      className="absolute top-5 right-5"
+                      onClick={() => handleCloseCommentWindow()}
+                    >
+                      <img
+                        className="md:w-[30px] w-[24px] duration-300 ease-out hover:scale-110"
+                        src={closeButton}
+                      />
+                    </div>
+                  </form>
                 </div>
-              </form>
-            </div>
+              )}
+            </>
           ) : (
-            ""
-          )}{" "}
+            openWriteCommentWindow && (
+              <div className="fixed top-0 left-0 bg-[#00000080] z-[10] h-[100vh] w-full flex justify-center items-center md:px-0 px-6">
+                <form
+                  onSubmit={handleSubmitComment}
+                  className="relative bg-white rounded-[30px] py-6 md:px-8 px-4 w-[800px]"
+                  id="commentWindow"
+                >
+                  <div
+                    className="absolute top-2 right-5"
+                    onClick={() => handleCloseCommentWindow()}
+                  >
+                    <img
+                      className="md:w-[30px] w-[24px] duration-300 ease-out hover:scale-110"
+                      src={closeButton}
+                    />
+                  </div>
+                  <div className="text-center text-xl py-4">
+                    If you want to comment on the article you have to{" "}
+                    <Link to="/login">
+                      <strong className="hover:underline underline-offset-4 cursor-pointer">
+                        login
+                      </strong>{" "}
+                    </Link>
+                    or{" "}
+                    <Link to="/register">
+                      <strong className="hover:underline underline-offset-4 cursor-pointer">
+                        register
+                      </strong>
+                    </Link>
+                  </div>
+                </form>
+              </div>
+            )
+          )}
         </div>
         {/*About the author side panel*/}
         {closeSideBar ? (

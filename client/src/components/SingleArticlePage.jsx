@@ -92,6 +92,8 @@ export default function SingleArticlePage() {
   const [updateReviewRating, setUpdateReviewRating] = useState(0);
   const [updateReviewId, setUpdateReviewId] = useState("");
 
+  console.log(comment)
+
   const handleLabelClick = (labelID) => {
     if (selectedLabels.includes(labelID)) {
       setSelectedLabels(selectedLabels.filter((id) => id !== labelID));
@@ -337,8 +339,6 @@ export default function SingleArticlePage() {
   const [updateCommentId, setUpdateCommentId] = useState("");
   const [isCommentsWindow, setIsCommentsWindow] = useState(true);
 
-  console.log(updateCommentText)
-  console.log(updateCommentId)
   
   const handleSaveComment = () => {
     /*if (name === "") {
@@ -1233,6 +1233,7 @@ export default function SingleArticlePage() {
                                     setUpdateReviewId(review._id);
                                     setIsUpdateReview(true);
                                     setUpdateRating(review.rating);
+                                    setComment(review.comment)
                                   }}
                                 />
                                 <RiDeleteBin5Line

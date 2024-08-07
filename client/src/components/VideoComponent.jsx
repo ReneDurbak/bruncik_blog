@@ -93,7 +93,7 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
           allowFullScreen
         />
 
-        <div className="absolute w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#999999] rounded-b-[30px]">
+        <div className="absolute w-full flex justify-between lg:px-6 md:px-3 px-2 py-1 mt-[-1px] bg-[#242424] rounded-b-[30px]">
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
             DAY {video.day_count}
           </div>

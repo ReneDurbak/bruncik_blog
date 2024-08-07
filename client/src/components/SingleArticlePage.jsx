@@ -1531,7 +1531,7 @@ export default function SingleArticlePage() {
             className={`${
               closeSideBar
                 ? "hidden"
-                : "relative xl:max-w-[400px] lg:max-w-[300px] sm:max-w-[250px] max-w-[150px] xl:pr-20 xl:pl-12 lg:px-8 md:px-6 px-4 mx-auto text-left xl:border-l-2 border-l-[1px] mr-0 sm:mt-[-100px] mt-[-125px]  max-h-auto z-[0] md:block hidden"
+                : "relative xl:max-w-[400px] lg:max-w-[300px] sm:max-w-[250px] max-w-[150px] xl:pr-14 xl:pl-12 lg:px-8 md:px-6 px-4 mx-auto text-left xl:border-l-2 border-l-[1px] mr-0 sm:mt-[-100px] mt-[-125px]  max-h-auto z-[0] md:block hidden"
             }`}
           >
             <div

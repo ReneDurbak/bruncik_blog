@@ -17,7 +17,6 @@ import AdminUpdateVideoGallery from "./pages/AdminUpdateVideoGallery.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Profile from "./components/Profile.jsx";
-import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminPrivateRoutes from "./components/AdminPrivateRoutes.jsx";
 import AdminUpdateVideo from "./pages/AdminUpdateVideo.jsx";
 import PageNotFound from "./pages/NotFound.jsx";

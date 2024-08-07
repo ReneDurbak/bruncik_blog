@@ -376,7 +376,7 @@ function Articles({ articles }) {
           {articleSections && articleSections.map((filter) => (
             <span
               key={filter._id}
-              className={`shadow-lg rounded-full sm:px-4 px-2 lg:py-3 sm:py-2 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl xl:text-lg lg:text-base sm:text-sm text-[11px] lg:hover:scale-110 lg:hover:bg-gray-950 lg:hover:text-white hover:duration-500 ${selectedFilter === filter._id
+              className={`shadow-lg rounded-full sm:px-4 px-2 lg:py-3 sm:py-2 py-2 my-auto cursor-pointer outline 2xl:outline-[2px] outline-[1px] 2xl:outline-offset-0 outline-offset-0 ease-in-out duration-500  tracking-widest  2xl:text-xl xl:text-lg lg:text-base sm:text-sm text-[12px] lg:hover:scale-110 lg:hover:bg-gray-950 lg:hover:text-white hover:duration-500 ${selectedFilter === filter._id
                   ? "bg-gray-950 text-white outline-black"
                   : `${checkClickFilter === true ? "hidden" : ""}`
                 }`}
@@ -392,7 +392,7 @@ function Articles({ articles }) {
                         ? isLaptop ? `http://localhost:4000/public/${filter.imageClicked}` : selectedFilter === filter._id ? `http://localhost:4000/public/${filter.imageClicked}` : `http://localhost:4000/public/${filter.image}`
                         : `http://localhost:4000/public/${filter.image}`
                     }
-                    className="2xl:w-[44px] h-[40px] xl:w-[38px] lg:w-[32px] sm:w-[26px] w-[24px] h-auto mr-2"
+                    className="2xl:w-[44px] h-[40px] xl:w-[38px] lg:w-[32px] sm:w-[26px] w-[24px] h-[24px] md:h-[26px] lg:h-[32px] xl:h-10 mr-2"
                   />
                 </div>
                 <div className="xl:mt-auto sm:my-auto my-auto mx-auto text-center">{filter.title}</div>

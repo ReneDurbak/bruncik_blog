@@ -202,12 +202,15 @@ function Navbar() {
             </li>
           ) : (
             <>
-              <Link to="/login">
-                <IoIosLogIn
-                  className="ml-8 duration-300 ease-in-out hover:scale-125"
-                  size={25}
-                />
-              </Link>
+                <Link to="/login">
+                  <div className="text-sm hover:text-neutral-400 duration-300 flex justify-center w-full text-center bg-black p-2">
+                    <div className="block font-medium">Login</div>
+                    <IoIosLogIn
+                      className="text-sm"
+                      size={22}
+                    />
+                  </div>
+                </Link>
             </>
           )}
         </ul>

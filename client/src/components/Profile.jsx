@@ -56,7 +56,7 @@ export default function Profile(){
             <Navbar/>
             <ToastContainer/>
             <div className="font-poppins flex justify-center items-center h-screen px-6 bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300">
-            <div className="flex flex-col  px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-[0px_1px_70px_35px_#f7fafc]">
+            <div className="flex flex-col  px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-[0px_0px_70px_10px_#f7fafc]">
               <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold mt-8">Update profile</h1>
               <form onSubmit={ handleUpdateProfile }>
                 <div className="flex justify-center flex-col space-y-4 mt-14">

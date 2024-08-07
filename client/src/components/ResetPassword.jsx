@@ -60,7 +60,7 @@ export default function ResetPassword() {
         onSubmit={handleResetPassword}
         className="font-poppins flex justify-center items-center h-screen bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300 px-6"
       >
-        <div className="px-4 lg:px-10 pt-10 pb-8 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
+        <div className="px-4 md:px-8 lg:px-10 pt-10 lg:pb-8 pb-5 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl">
           <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold">
             Reset password
           </h1>

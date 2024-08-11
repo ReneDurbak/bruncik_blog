@@ -132,8 +132,8 @@ function Navbar() {
             ) : (
               <>
                 <Link to="/login">
-                  <div className="flex items-center justify-center space-x-2  md:text-sm xl:text-base ml-10 bg-black py-2 px-3 rounded-xl ease-in-out duration-500 hover:bg-white hover:text-black">
-                    <div className="block font-medium">Login</div>
+                  <div className="flex items-center justify-center space-x-2  md:text-sm xl:text-base ml-10 bg-black py-2 px-3  rounded-xl ease-in-out duration-500 hover:bg-white hover:text-black ">
+                    <div className="block font-medium p-[4px] xl:p-[1px]">Login</div>
                     <IoIosLogIn
                       className="text-sm"
                       size={22}

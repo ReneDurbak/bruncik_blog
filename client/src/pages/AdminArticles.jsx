@@ -58,17 +58,13 @@ export default function AdminArticles() {
   const [articleDeleteModalText, setArticleDeleteModalText] = useState("");
   const [deleteArticleId, setDeleteArticleId] = useState();
 
-  const handleOpenArticleDeleteModal = (articleTitle) => {
+  const handleOpenArticleDeleteModal = (articleTitle, articleId) => {
     setIsDeleteArticleModal(true);
     setArticleDeleteModalText(
       `Do you really want to delete article <strong>${articleTitle}</strong>?`
     );
 
-    const deleteArticle = articles.filter(
-      (article) => articleTitle === article.title
-    );
-    console.log(deleteArticle);
-    setDeleteArticleId(deleteArticle[0]._id);
+    setDeleteArticleId(articleId);
   };
 
   const handleCloseArticleDeleteModal = () => {
@@ -199,17 +195,14 @@ export default function AdminArticles() {
     useState("");
   const [deleteArticleSectionId, setDeleteArticleSectionId] = useState();
 
-  const handleOpenArticleSectionDeleteModal = (articleSectionTitle) => {
+  const handleOpenArticleSectionDeleteModal = (articleSectionTitle, articleSectionId) => {
     setIsDeleteArticleSectionModal(true);
     setArticleSectionDeleteModalText(
       `Do you really want to delete article section <strong>${articleSectionTitle}</strong>?`
     );
 
-    const deleteArticleSection = articleSections.filter(
-      (articleSection) => articleSectionTitle === articleSection.title
-    );
 
-    setDeleteArticleSectionId(deleteArticleSection[0]._id);
+    setDeleteArticleSectionId(articleSectionId);
   };
 
   const handleCloseArticleSectionDeleteModal = () => {
@@ -545,7 +538,7 @@ export default function AdminArticles() {
                       {articleHoverStates[article._id] && (
                         <button
                           onClick={() => {
-                            handleOpenArticleDeleteModal(article.title);
+                            handleOpenArticleDeleteModal(article.title, article._id);
                           }}
                           className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2"
                         >
@@ -564,7 +557,7 @@ export default function AdminArticles() {
                           },
                         }}
                       >
-                        <Box sx={modalBoxStyle} className="font-poppins ">
+                        <Box sx={modalBoxStyle} className="font-poppins">
                           <div
                             dangerouslySetInnerHTML={{
                               __html: DOMPurify.sanitize(
@@ -727,7 +720,7 @@ export default function AdminArticles() {
                       <div
                         onClick={() => {
                           handleOpenArticleSectionDeleteModal(
-                            articleSection.title
+                            articleSection.title, articleSection._id
                           );
                         }}
                         className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"

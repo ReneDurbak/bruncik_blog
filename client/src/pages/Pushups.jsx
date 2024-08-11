@@ -647,7 +647,7 @@ function Pushups() {
                   </>
                 ) : (
                   <>
-                                      {notificationsTransition((style, item) =>
+                    {notificationsTransition((style, item) =>
                       item ? (
                         <animated.div
                           style={style}
@@ -657,22 +657,20 @@ function Pushups() {
                             className="relative text-center shadow-2xl bg-white flex flex-col 2xl:py-8 xl:py-6 lg:py-4 md:py-3 py-3 lg:pl-6 pl-3 md:pl-4 lg:pr-10 pr-3    lg:rounded-[30px] rounded-[20px] z-[2]"
                             id="notifications"
                           >
-                            
-                        <div className="text-center text-lg py-4">
-                          If you want to see notifications you have to{" "}
-                          <Link to="/login">
-                          <strong className="hover:underline underline-offset-4 cursor-pointer">
-                            login
-                          </strong>{" "}
-                          </Link>
-                          or{" "}
-
-                          <Link to="/register">
-                          <strong className="hover:underline underline-offset-4 cursor-pointer">
-                            register
-                          </strong>
-                          </Link>
-                        </div>
+                            <div className="text-center text-lg py-4">
+                              If you want to see notifications you have to{" "}
+                              <Link to="/login">
+                                <strong className="hover:underline underline-offset-4 cursor-pointer">
+                                  login
+                                </strong>{" "}
+                              </Link>
+                              or{" "}
+                              <Link to="/register">
+                                <strong className="hover:underline underline-offset-4 cursor-pointer">
+                                  register
+                                </strong>
+                              </Link>
+                            </div>
                           </div>
                         </animated.div>
                       ) : (
@@ -877,7 +875,6 @@ function Pushups() {
                 id="pushUpsSelect"
                 value={selected}
                 sx={{
-                  fontWeight: "bold",
                   "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: "transparent",
                   },
@@ -894,6 +891,7 @@ function Pushups() {
                   borderBottomRightRadius: focused ? "0px" : "25px",
                   backgroundColor: "white",
                   fontSize: isBigLaptop ? "18px" : "14px",
+                  fontWeight: 600,
                   display: "flex",
                   alignItems: "center",
 

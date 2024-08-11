@@ -392,7 +392,7 @@ function Articles({ articles }) {
                         ? isLaptop ? `http://localhost:4000/public/${filter.imageClicked}` : selectedFilter === filter._id ? `http://localhost:4000/public/${filter.imageClicked}` : `http://localhost:4000/public/${filter.image}`
                         : `http://localhost:4000/public/${filter.image}`
                     }
-                    className="2xl:w-[44px] h-[40px] xl:w-[38px] lg:w-[32px] sm:w-[26px] w-[24px] h-[24px] md:h-[26px] lg:h-[32px] xl:h-10 mr-2"
+                    className="2xl:w-[44px] h-[40px] xl:w-[38px] lg:w-[32px] sm:w-[26px] w-[24px] h-[25px] md:h-[26px] lg:h-[32px] xl:h-10 mr-2"
                   />
                 </div>
                 <div className="xl:mt-auto sm:my-auto my-auto mx-auto text-center">{filter.title}</div>

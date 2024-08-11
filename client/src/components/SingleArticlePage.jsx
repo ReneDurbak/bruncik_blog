@@ -31,6 +31,8 @@ import "../slick.css";
 import "../slick-theme.css";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import ReviewLabelsSlider from "./ReviewLabelsSlider";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 export default function SingleArticlePage() {
   const { id } = useParams();
@@ -88,8 +90,56 @@ export default function SingleArticlePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [isUpdateReview, setIsUpdateReview] = useState(false);
-  const [updateReviewRating, setUpdateReviewRating] = useState(0);
   const [updateReviewId, setUpdateReviewId] = useState("");
+
+  {
+    /*Review Delete Modal*/
+  }
+  const [isDeleteReviewModal, setIsDeleteReviewModal] = useState(false);
+  const [reviewDeleteModalText, setReviewDeleteModalText] = useState("");
+  const [deleteReviewId, setDeleteReviewId] = useState();
+
+  const handleOpenReviewDeleteModal = (reviewId) => {
+    setIsDeleteReviewModal(true);
+    setReviewDeleteModalText(`Do you really want to delete your review?`);
+
+    setDeleteReviewId(reviewId);
+  };
+
+  const handleCloseReviewDeleteModal = () => {
+    setIsDeleteReviewModal(false);
+  };
+
+  {
+    /*Comment Delete Modal*/
+  }
+  const [isDeleteCommentModal, setIsDeleteCommentModal] = useState(false);
+  const [commentDeleteModalText, setCommentDeleteModalText] = useState("");
+  const [deleteCommentId, setDeleteCommentId] = useState();
+
+  const handleOpenCommentDeleteModal = (commentId) => {
+    setIsDeleteCommentModal(true);
+    setCommentDeleteModalText(`Do you really want to delete your review?`);
+
+    setDeleteCommentId(commentId);
+  };
+
+  const handleCloseCommentDeleteModal = () => {
+    setIsDeleteCommentModal(false);
+  };
+
+  const modalBoxStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 20,
+    p: 4,
+    borderRadius: "25px",
+  };
 
   const handleLabelClick = (labelID) => {
     if (selectedLabels.includes(labelID)) {
@@ -1181,7 +1231,7 @@ export default function SingleArticlePage() {
                                       />
                                       <RiDeleteBin5Line
                                         onClick={() =>
-                                          deleteComment(comment._id)
+                                          handleOpenCommentDeleteModal(comment._id)
                                         }
                                         size={16}
                                         className="hover:scale-125 ease-in-out duration-300"
@@ -1303,7 +1353,9 @@ export default function SingleArticlePage() {
                                 />
                                 <RiDeleteBin5Line
                                   className="hover:scale-125 ease-in-out duration-300"
-                                  onClick={() => deleteReview(review._id)}
+                                  onClick={() =>
+                                    handleOpenReviewDeleteModal(review._id)
+                                  }
                                 />
                               </div>
 
@@ -1401,6 +1453,83 @@ export default function SingleArticlePage() {
               </div>
             )}
           </div>
+
+          {/*Delete Modal for reviews*/}
+          <Modal
+            open={isDeleteReviewModal}
+            onClose={handleCloseReviewDeleteModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            BackdropProps={{
+              sx: {
+                backgroundColor: "rgba(30, 30, 30, 0.78)", // Light gray background with opacity
+              },
+            }}
+          >
+            <Box sx={modalBoxStyle} className="font-poppins ">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(reviewDeleteModalText),
+                }}
+              />
+              <div className="flex justify-start items-center space-x-4">
+                <button
+                  className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
+                  onClick={() => setIsDeleteReviewModal(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                  onClick={() => {
+                    setIsDeleteReviewModal(false);
+                    deleteReview(deleteReviewId);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </Box>
+          </Modal>
+
+          {/*Delete Modal for comments*/}
+          <Modal
+            open={isDeleteCommentModal}
+            onClose={handleCloseCommentDeleteModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            BackdropProps={{
+              sx: {
+                backgroundColor: "rgba(30, 30, 30, 0.78)", // Light gray background with opacity
+              },
+            }}
+          >
+            <Box sx={modalBoxStyle} className="font-poppins ">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(commentDeleteModalText),
+                }}
+              />
+              <div className="flex justify-start items-center space-x-4">
+                <button
+                  className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
+                  onClick={() => setIsDeleteCommentModal(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="mt-4 p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
+                  onClick={() => {
+                    setIsDeleteCommentModal(false);
+                    deleteComment(deleteCommentId);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </Box>
+          </Modal>
+
           {/*Write a comment window*/}
 
           {userInfo ? (
@@ -1447,7 +1576,8 @@ export default function SingleArticlePage() {
                             : setHoverOnPaperPlane(false)
                         }
                         onMouseLeave={() => setHoverOnPaperPlane(false)}
-                        className="w-full bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700 md:text-base text-sm p-2 rounded-[30px] flex space-x-2 justify-center"
+                        onClick={() => setHoverOnPaperPlane(false)}
+                        className="w-full bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-300 md:text-base text-sm p-2 rounded-[30px] flex space-x-2 justify-center"
                       >
                         <div className="font-bold underline-offset-2 underline">
                           Send

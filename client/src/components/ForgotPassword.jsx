@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { showLogin } from "../slices/uiSlice";
 
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
 
 
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -64,7 +66,7 @@ export default function ForgotPassword() {
             </div>
 
             <div className="flex justify-between items-center">
-              <Link to="/login">
+              <Link to="/" onClick={() => dispatch(showLogin())}>
                 <button className="float-left mt-8 py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-white hover:bg-slate-200 text-black hover:shadow-xl shadow-lg hover:shadow-xl outline-0 outline duration-300 ease-out">
                   Back
                 </button>

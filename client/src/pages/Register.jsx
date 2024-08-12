@@ -5,6 +5,8 @@ import { Spinner } from "flowbite-react";
 import { toast, ToastContainer } from "react-toastify";
 import { useRegisterMutation } from "../slices/user/usersApiSlice";
 import { setCredentials } from "../slices/user/authSlice";
+import { showLogin } from "../slices/uiSlice";
+
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -94,7 +96,7 @@ export default function Register() {
 
             <div className="flex justify-end mt-10">
               <div className="lg:text-base text-sm mr-4 my-auto duration-300 ease-in-out hover:text-gray-600 hover:cursor-pointer">
-                <Link to="/login">Already have an account?</Link>
+                <Link to="/" onClick={() => dispatch(showLogin())}>Already have an account?</Link>
               </div>
               {isLoading && (
                 <Spinner

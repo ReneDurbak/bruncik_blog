@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../assets/icon.png";
@@ -7,6 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/user/usersApiSlice";
 import { logout } from "../slices/user/authSlice";
 import { Dropdown } from "flowbite-react";
+import { useLoginMutation } from "../slices/user/usersApiSlice";
+import { setCredentials } from "../slices/user/authSlice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import { Spinner } from "flowbite-react";
+import {showLogin, hideLogin} from "../slices/uiSlice"
+import closeButton from "../assets/closebutton.png";
+
 
 function Navbar() {
   const [nav, setNav] = useState(false);
@@ -62,12 +71,75 @@ function Navbar() {
     }
   };
 
+
+
+
+
+  {
+    /*Login variables*/
+  }
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { isLoginVisible } = useSelector((state) => state.ui);
+
+  const handleCloseLogin = () => {
+    dispatch(hideLogin());
+  };
+
+  const handleOpenLogin = () => {
+    dispatch(showLogin())
+  }
+
+  const loginFormRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (loginFormRef.current && !loginFormRef.current.contains(event.target)) {
+        dispatch(hideLogin());
+      }
+    };
+
+    if (isLoginVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isLoginVisible, dispatch]);
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await login({ email, password }).unwrap(); //unwraps the promise
+      dispatch(setCredentials({ ...res }));
+      setEmail("")
+      setPassword("")
+      navigate("/");
+      dispatch(hideLogin())
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
+    }
+  };
+
+  useEffect(() => {
+    if (userInfo && userInfo.confirmed === true) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
+
   return (
     <>
       <header
-        className={`w-full z-[5] font-poppins bg-[#2A6CA5] text-white sm:fixed sticky transition-all duration-500 ${
+        className={`w-full z-[5] font-poppins bg-[#2A6CA5] text-white transition-all duration-500  sm:fixed sticky ${
           scrollDirection === "down" ? "top-[-100px]" : "top-0"
-        }`}
+        } ${isLoginVisible ? "blur-[1px]" : ""}`}
       >
         <div className="relative 2xl:p-5 xl:p-6 sm:p-[18px] p-4 md:flex md:items-center md:justify-between 2xl:max-w-[1680px]  mx-auto 2xl:px-20 xl:px-[70px] lg:px-10 sm:px-10 px-6">
           <div className="flex items-center justify-between w-full md:w-auto">
@@ -131,15 +203,12 @@ function Navbar() {
               </li>
             ) : (
               <>
-                <Link to="/login">
-                  <div className="flex items-center justify-center space-x-2  md:text-sm xl:text-base ml-10 bg-black py-2 px-3  rounded-xl ease-in-out duration-500 hover:bg-white hover:text-black ">
-                    <div className="block font-medium p-[4px] xl:p-[1px]">Login</div>
-                    <IoIosLogIn
-                      className="text-sm"
-                      size={22}
-                    />
+                  <div onClick={() => handleOpenLogin()} className="flex items-center justify-center space-x-2  ml-[31.4px]  md:text-sm xl:text-base ml-10 bg-black py-2 px-3  rounded-xl ease-in-out duration-500 hover:bg-white hover:text-black w-[100px]">
+                    <div className="block font-medium p-[4px] xl:p-[1px] cursor-pointer text-[14px]">
+                      Login
+                    </div>
+                    <IoIosLogIn className="text-sm" size={22} />
                   </div>
-                </Link>
               </>
             )}
           </ul>
@@ -202,19 +271,90 @@ function Navbar() {
             </li>
           ) : (
             <>
-                <Link to="/login">
-                  <div className="text-sm hover:text-neutral-400 duration-300 flex justify-center w-full text-center bg-black p-2">
-                    <div className="block font-medium">Login</div>
-                    <IoIosLogIn
-                      className="text-sm"
-                      size={22}
-                    />
-                  </div>
-                </Link>
+                <div className="text-sm hover:text-neutral-400 duration-300 flex justify-center w-full text-center bg-black p-2" onClick={() => handleOpenLogin()}>
+                  <div className="block font-medium">Login</div>
+                  <IoIosLogIn className="text-sm" size={22} />
+                </div>
             </>
           )}
         </ul>
       </header>
+
+
+
+
+
+
+
+
+      <ToastContainer />
+      <div className={`${isLoginVisible ? "block" : "hidden"} fixed top-[0%]  w-full   backdrop-blur-sm z-[20]`}>
+      <div className="relative font-poppins flex justify-center items-center h-screen  px-6">
+        {" "}
+        {/*bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300*/}
+        <div ref={loginFormRef}  className="relative flex flex-col  px-4 md:px-10 py-6 rounded-[30px] w-[40rem] outline outline-[1px] shadow-2xl bg-gradient-to-br from-red-100 via-yellow-200 to-purple-300" >
+          <img src={closeButton} className="hover:scale-125 duration-300 ease-in-out w-min absolute right-6 top-4" onClick={handleCloseLogin}/>
+          
+          <h1 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold mt-12">
+            Login into an account
+          </h1>
+          <form onSubmit={handleSubmit}>
+            <div className="flex justify-center flex-col space-y-4 mt-14">
+              <div className="flex flex-col justify-center">
+                <p className="lg:text-base sm:text-sm text-xs">E-mail</p>
+                <input
+                  id="name"
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col justify-center">
+                <p className="lg:text-base sm:text-sm text-xs">Password</p>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
+                  required
+                />
+              </div>
+              <Link to="/forgotPassword">
+                <p className="lg:text-sm text-xs text-right underline-offset-4 cursor-pointer mt-[-6px]">
+                  Forgot password?
+                </p>
+              </Link>
+            </div>
+
+            <div className="flex justify-end mt-10">
+              <div className="lg:text-base text-sm mr-4 my-auto duration-300 ease-in-out hover:text-gray-600 hover:cursor-pointer underline-offset-4">
+                <Link to="/register">
+                  <u>Not registered yet?</u>
+                </Link>
+              </div>
+              {isLoading && (
+                <Spinner
+                  className="mr-4"
+                  color="pink"
+                  aria-label="Large Pink spinner example"
+                  size="lg"
+                />
+              )}
+              <button
+                type="submit"
+                className="py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black hover:bg-white text-white hover:text-black shadow-lg hover:shadow-xl outline-0 outline duration-300 ease-out"
+              >
+                login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
     </>
   );
 }

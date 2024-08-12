@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useSelector } from "react-redux";
 import {
   FacebookShareButton,
   PinterestShareButton,
@@ -33,6 +32,8 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import ReviewLabelsSlider from "./ReviewLabelsSlider";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { showLogin } from "../slices/uiSlice";
 
 export default function SingleArticlePage() {
   const { id } = useParams();
@@ -83,6 +84,12 @@ export default function SingleArticlePage() {
       labelTitle: "Complicated",
     },
   ];
+
+  const dispatch = useDispatch();
+
+  const handleLoginClick = () => {
+    dispatch(showLogin());
+  };
 
   const [selectedLabels, setSelectedLabels] = useState([]);
   const [rating, setRating] = useState(0);
@@ -508,7 +515,9 @@ export default function SingleArticlePage() {
     //setNameError(false);
     setCommentError(false);
     // document.getElementById("singleArticleInput").value = "";
-    document.getElementById("singleArticleTextArea").value = "";
+    userInfo
+      ? (document.getElementById("singleArticleTextArea").value = "")
+      : null;
   };
 
   const handleCloseCommentWindow = () => {
@@ -519,7 +528,9 @@ export default function SingleArticlePage() {
     //setNameError(false);
     setCommentError(false);
     //document.getElementById("singleArticleInput").value = "";
-    document.getElementById("singleArticleTextArea").value = "";
+    userInfo
+      ? (document.getElementById("singleArticleTextArea").value = "")
+      : null;
   };
 
   useEffect(() => {
@@ -948,16 +959,22 @@ export default function SingleArticlePage() {
 
                         <div className="text-center text-xl py-4">
                           If you want to review the article you have to{" "}
-                          <Link to="/login">
-                            <strong className="hover:underline underline-offset-4 cursor-pointer">
-                              login
-                            </strong>{" "}
-                          </Link>
+                          <strong
+                            onClick={() => {
+                              handleLoginClick();
+                              handleCloseReviewWindow();
+                            }}
+                            className="hover:underline underline-offset-4 cursor-pointer"
+                          >
+                            login
+                          </strong>{" "}
                           or{" "}
                           <Link to="/register">
-                            <strong className="hover:underline underline-offset-4 cursor-pointer">
-                              register
-                            </strong>
+                          <strong
+                            className="hover:underline underline-offset-4 cursor-pointer"
+                          >
+                            register
+                          </strong>
                           </Link>
                         </div>
                       </form>
@@ -1231,7 +1248,9 @@ export default function SingleArticlePage() {
                                       />
                                       <RiDeleteBin5Line
                                         onClick={() =>
-                                          handleOpenCommentDeleteModal(comment._id)
+                                          handleOpenCommentDeleteModal(
+                                            comment._id
+                                          )
                                         }
                                         size={16}
                                         className="hover:scale-125 ease-in-out duration-300"
@@ -1627,11 +1646,10 @@ export default function SingleArticlePage() {
                   </div>
                   <div className="text-center text-xl py-4">
                     If you want to comment on the article you have to{" "}
-                    <Link to="/login">
-                      <strong className="hover:underline underline-offset-4 cursor-pointer">
+                      <strong className="hover:underline underline-offset-4 cursor-pointer" onClick={() => {dispatch(showLogin()); handleCloseCommentWindow()}}>
                         login
                       </strong>{" "}
-                    </Link>
+                
                     or{" "}
                     <Link to="/register">
                       <strong className="hover:underline underline-offset-4 cursor-pointer">

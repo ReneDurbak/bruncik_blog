@@ -20,8 +20,13 @@ import { io } from "socket.io-client";
 import DOMPurify from "dompurify";
 import { useSelector } from "react-redux";
 import VideoComponent from "../components/VideoComponent";
+import { useDispatch } from "react-redux";
+import { showLogin } from "../slices/uiSlice";
 
 function Pushups() {
+
+  const dispatch = useDispatch();
+
   const [PushUpsGallery, setPushUpsGallery] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [goal, setGoal] = useState("");
@@ -659,11 +664,15 @@ function Pushups() {
                           >
                             <div className="text-center text-lg py-4">
                               If you want to see notifications you have to{" "}
-                              <Link to="/login">
-                                <strong className="hover:underline underline-offset-4 cursor-pointer">
-                                  login
-                                </strong>{" "}
-                              </Link>
+                              <strong
+                                className="hover:underline underline-offset-4 cursor-pointer"
+                                onClick={() => {
+                                  dispatch(showLogin());
+                                  setNotificationIsVisible(false);
+                                }}
+                              >
+                                login
+                              </strong>{" "}
                               or{" "}
                               <Link to="/register">
                                 <strong className="hover:underline underline-offset-4 cursor-pointer">

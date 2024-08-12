@@ -14,7 +14,6 @@ import AdminPushUps from "./pages/AdminPushUps.jsx";
 import AdminUpdateArticle from "./pages/AdminUpdateArticle.jsx";
 import AdminUpdateArticleSection from "./pages/AdminUpdateArticleSection.jsx";
 import AdminUpdateVideoGallery from "./pages/AdminUpdateVideoGallery.jsx";
-import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Profile from "./components/Profile.jsx";
 import AdminPrivateRoutes from "./components/AdminPrivateRoutes.jsx";
@@ -76,7 +75,6 @@ function App() {
               />
             </Route>
 
-            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/resetPassword" element={<ResetPassword />} />

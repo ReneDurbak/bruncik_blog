@@ -128,11 +128,6 @@ function Navbar() {
     }
   };
 
-  useEffect(() => {
-    if (userInfo && userInfo.confirmed === true) {
-      navigate("/");
-    }
-  }, [navigate, userInfo]);
 
   return (
     <>

@@ -80,7 +80,9 @@ function Navbar() {
   }
 
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false)
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false)
   const { isLoginVisible } = useSelector((state) => state.ui);
 
   const handleCloseLogin = () => {
@@ -113,8 +115,27 @@ function Navbar() {
 
   const [login, { isLoading }] = useLoginMutation();
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
+    let hasError = false;
+
+    if (email === "") {
+      setEmailError(true);
+      hasError = true;
+    }
+  
+    if (password === "") {
+      setPasswordError(true);
+      hasError = true;
+    }
+  
+    if (hasError) {
+      return;
+    }
 
     try {
       const res = await login({ email, password }).unwrap(); //unwraps the promise
@@ -126,6 +147,7 @@ function Navbar() {
     } catch (error) {
       toast.error(error?.data?.message || error.error);
     }
+  
   };
 
 
@@ -298,12 +320,13 @@ function Navbar() {
               <div className="flex flex-col justify-center">
                 <p className="lg:text-base sm:text-sm text-xs">E-mail</p>
                 <input
-                  id="name"
+                  id="email"
                   type="text"
                   value={email}
+                  placeholder={emailError ? "Please insert your e-mail!" : ""}
+                  onClick={() => {setEmailError(false)}}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                  required
+                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${emailError ? 'border-red-600 placeholder-red-600 animate-shake' : 'border-black'}`}
                 />
               </div>
 
@@ -313,9 +336,10 @@ function Navbar() {
                   id="password"
                   type="password"
                   value={password}
+                  placeholder={passwordError ? "Please insert your password!" : ""}
+                  onClick={() => {setPasswordError(false)}}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                  required
+                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${passwordError ? 'border-red-600 placeholder-red-600 animate-shake' : 'border-black'}`}
                 />
               </div>
               <Link to="/forgotPassword">

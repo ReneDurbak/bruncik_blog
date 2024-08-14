@@ -10,7 +10,11 @@ import { Spinner } from "flowbite-react";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
   const location = useLocation();
   const token = new URLSearchParams(location.search).get("token");
   const email = new URLSearchParams(location.search).get("email");
@@ -24,6 +28,24 @@ export default function ResetPassword() {
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
+
+    let hasError = false;
+
+    if(password === ""){
+      setPasswordError(true);
+      hasError = true;
+    }
+
+
+    if(confirmPassword === "") {
+      setConfirmPasswordError(true);
+      hasError = true;
+    }
+
+
+    if(hasError) {
+      return;
+    }
 
     try {
       if (password !== confirmPassword) {
@@ -70,22 +92,22 @@ export default function ResetPassword() {
                 New password
               </p>
               <input
-                id="name"
                 type="password"
+                placeholder={passwordError ? "Please enter your password!" : ''}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mb-4 rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                required
+                onClick={() => {setPasswordError(false); setConfirmPasswordError(false)}}
+                className={`mb-4 rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${passwordError ? 'border-red-600 placeholder-red-600 animate-shake' : 'border-black'}`}
               />
 
               <p className="lg:text-base sm:text-sm text-xs mb-1">
                 Confirm new password
               </p>
               <input
-                id="name"
                 type="password"
+                placeholder={passwordError && confirmPasswordError ? "Please enter your password!" : confirmPasswordError ? "Please confirm your password!" : ""}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                required
+                onClick={() => {setConfirmPasswordError(false)}}
+                className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${confirmPasswordError ? 'border-red-600 placeholder-red-600 animate-shake' : 'border-black'}`}
               />
             </div>
 
@@ -101,7 +123,7 @@ export default function ResetPassword() {
 
               <button
                 type="submit"
-                className="float-right py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black text-white shadow-lg hover:text-slate-400 hover:shadow-xl outline-0 outline duration-300 ease-out"
+                className="float-right py-2 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black text-white shadow-lg hover:text-slate-400 hover:shadow-xl outline-0 outline duration-300 ease-out"
               >
                 Reset password
               </button>

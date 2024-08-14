@@ -5,18 +5,27 @@ import { toast, ToastContainer } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { showLogin } from "../slices/uiSlice";
 
-
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
 
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
 
-
   const handleSendResetPasswordLink = async (e) => {
     e.preventDefault();
+
+    let hasError = false;
+
+    if (email === "") {
+      setEmailError(true);
+      hasError = true;
+    }
+
+    if (hasError) {
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -28,15 +37,15 @@ export default function ForgotPassword() {
 
       toast.success("Reset Password email successfully sent.");
     } catch (error) {
-      toast.error('User not found');
+      toast.error("User not found");
     }
   };
 
   useEffect(() => {
-    if(userInfo && userInfo.confirmed === true){
-      navigate('/')
+    if (userInfo && userInfo.confirmed === true) {
+      navigate("/");
     }
-  }, [navigate, userInfo])
+  }, [navigate, userInfo]);
 
   return (
     <>
@@ -56,25 +65,29 @@ export default function ForgotPassword() {
                   E-mail associated with your account
                 </p>
                 <input
-                  id="name"
                   type="text"
+                  placeholder={emailError ? "Please enter your e-mail!" : ""}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                  required
+                  onClick={() => setEmailError(false)}
+                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                    emailError
+                      ? " border-red-600 placeholder-red-600 animate-shake"
+                      : "border-black"
+                  }`}
                 />
               </div>
             </div>
 
             <div className="flex justify-between items-center">
               <Link to="/" onClick={() => dispatch(showLogin())}>
-                <button className="float-left mt-8 py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-white hover:bg-slate-200 text-black hover:shadow-xl shadow-lg hover:shadow-xl outline-0 outline duration-300 ease-out">
+                <button className="float-left mt-8 py-2 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-white hover:bg-slate-200 text-black hover:shadow-xl shadow-lg outline-0 outline duration-300 ease-out">
                   Back
                 </button>
               </Link>
 
               <button
                 type="submit"
-                className="float-right mt-8 py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black text-white shadow-lg hover:text-slate-400 hover:shadow-xl outline-0 outline duration-300 ease-out"
+                className="float-right mt-8 py-2 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black text-white shadow-lg hover:text-slate-400 hover:shadow-xl outline-0 outline duration-300 ease-out"
               >
                 Reset password
               </button>

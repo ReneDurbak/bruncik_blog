@@ -1,28 +1,53 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const articleSchema = new Schema({
+const articleSchema = new Schema(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    content:{
-        type: String,
-        required: true
+    content: {
+      type: String,
+      required: true,
     },
     readingTime: {
-        type: Number,
+      type: Number,
     },
-    section:{
-        type: Schema.Types.ObjectId,
-        ref: 'articleSection', 
-        required: true
+    section: {
+      type: Schema.Types.ObjectId,
+      ref: "articleSection",
+      required: true,
     },
-    label:{
-        type: String,
-        required:true
-    }
-}, { timestamps: true})
+    label: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('article', articleSchema)
+articleSchema.pre("save", function (next) {
+  if (this.content) {
+    const text = this.content.replace(/<[^>]*>/g, "");
+    const words = text.split(/\s+/).filter((word) => word.length > 0).length;
+
+    this.readingTime = Math.ceil(words / 200);
+  }
+  next();
+});
+
+articleSchema.pre(["findOneAndUpdate", "updateOne"], function (next) {
+  const update = this.getUpdate();
+
+  if (update.content) {
+    const text = update.content.replace(/<[^>]*>/g, "");
+    const words = text.split(/\s+/).filter((word) => word.length > 0).length;
+
+    update.readingTime = Math.ceil(words / 200);
+  }
+  next();
+});
+
+module.exports = mongoose.model("article", articleSchema);

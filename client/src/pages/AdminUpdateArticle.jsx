@@ -116,7 +116,7 @@ export default function AdminUpdateArticle() {
     <div className="font-poppins flex space-x-[300px]">
       <AdminSidePanel />
 
-      <div className="mt-8 w-full ">
+      <div className="my-8 w-full ">
         <Link to="/admin/articles"><button className="p-2 rounded-xl bg-gray-200 hover:bg-gray-400 ease-in-out duration-300 my-2 cursor-pointer">Back</button></Link>
         {article && (
           <>
@@ -181,7 +181,7 @@ export default function AdminUpdateArticle() {
                 Label:
                 <input
                   type="text"
-                  className="ml-2 rounded-md"
+                  className="ml-2 rounded-md mb-8"
                   placeholder={article.label}
                   value={label}
                   onChange={(e) => setLabel(e.target.value)}

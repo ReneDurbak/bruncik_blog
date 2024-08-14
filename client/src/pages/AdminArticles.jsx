@@ -400,7 +400,7 @@ export default function AdminArticles() {
           <h1 className="mt-10 mb-2 text-3xl font-bold">Articles</h1>
           <div className="border-t-2 w-[16%] border-black" />
           {createArticle ? (
-            <div className="mt-6">
+            <div className="my-6">
               <button
                 className="p-2 bg-gray-200 hover:bg-gray-400 duration-300 ease-in-out rounded-xl cursor-pointer"
                 onClick={() => {
@@ -512,6 +512,7 @@ export default function AdminArticles() {
                     onMouseLeave={() => handleArticleMouseLeave(article._id)}
                     className={`p-2 bg-gray-200 rounded-lg cursor-pointer min-h-[120px]`}
                   >
+                    <span>
                     <strong
                       className={`${
                         article.section ? "text-black" : "text-red-400"
@@ -519,6 +520,7 @@ export default function AdminArticles() {
                     >
                       {article.title}{" "}
                     </strong>
+                    </span>
                     {article.section ? null : (
                       <div className="text-red-400">
                         Missing article section!

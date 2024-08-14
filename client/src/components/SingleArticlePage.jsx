@@ -675,7 +675,7 @@ export default function SingleArticlePage() {
                   hour12: false,
                 })}
               </div>
-              {/*<div className="text-gray-400">{article.readingTime} minutes</div>*/}
+              <div className="text-gray-400">{article.readingTime} {article.readingTime !== 1 ? "minutes" : "minute"}</div>
               {/*npm modul na zobrazovanie casu -> date-fns*/}{" "}
             </div>
 

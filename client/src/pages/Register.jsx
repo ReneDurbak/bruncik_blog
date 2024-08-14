@@ -7,12 +7,18 @@ import { useRegisterMutation } from "../slices/user/usersApiSlice";
 import { setCredentials } from "../slices/user/authSlice";
 import { showLogin } from "../slices/uiSlice";
 
-
 export default function Register() {
   const [name, setName] = useState("");
+  const [nameError, setNameError] = useState(false);
+
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -22,6 +28,33 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    let hasError = false;
+
+    if (name === "") {
+      setNameError(true);
+      hasError = true;
+    }
+
+    if (email === "") {
+      setEmailError(true);
+      hasError = true;
+    }
+
+    if (password === "") {
+      setPasswordError(true);
+      hasError = true;
+    }
+
+    if (confirmPassword === "") {
+      setConfirmPasswordError(true);
+      hasError = true;
+    }
+
+    if (hasError) {
+      return;
+    }
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
     } else {
@@ -52,9 +85,16 @@ export default function Register() {
                 <input
                   id="name"
                   type="text"
+                  placeholder={nameError ? "Please enter your name!" : ""}
+                  onClick={() => {
+                    setNameError(false);
+                  }}
                   onChange={(e) => setName(e.target.value)}
-                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                  required
+                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                    nameError
+                      ? "border-red-600 placeholder-red-600 animate-shake"
+                      : "border-black"
+                  }`}
                 />
               </div>
 
@@ -63,9 +103,16 @@ export default function Register() {
                 <input
                   id="email"
                   type="text"
+                  placeholder={emailError ? "Please enter your e-mail!" : ""}
+                  onClick={() => {
+                    setEmailError(false);
+                  }}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                  required
+                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                    emailError
+                      ? "border-red-600 placeholder-red-600 animate-shake"
+                      : "border-black"
+                  }`}
                 />
               </div>
 
@@ -74,9 +121,19 @@ export default function Register() {
                 <input
                   id="password"
                   type="password"
+                  placeholder={
+                    passwordError ? "Please enter your password!" : ""
+                  }
+                  onClick={() => {
+                    setPasswordError(false);
+                    setConfirmPasswordError(false);
+                  }}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                  required
+                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                    passwordError
+                      ? "border-red-600 placeholder-red-600 animate-shake"
+                      : "border-black"
+                  }`}
                 />
               </div>
 
@@ -87,16 +144,31 @@ export default function Register() {
                 <input
                   id="confirmPassword"
                   type="password"
+                  placeholder={
+                    passwordError && confirmPasswordError
+                      ? "Please enter your password!"
+                      : confirmPasswordError
+                      ? "Please confirm your password"
+                      : ""
+                  }
+                  onClick={() => {
+                    setConfirmPasswordError(false);
+                  }}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out"
-                  required
+                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                    confirmPasswordError
+                      ? "border-red-600 placeholder-red-600 animate-shake"
+                      : "border-black"
+                  }`}
                 />
               </div>
             </div>
 
             <div className="flex justify-end mt-10">
               <div className="lg:text-base text-sm mr-4 my-auto duration-300 ease-in-out hover:text-gray-600 hover:cursor-pointer">
-                <Link to="/" onClick={() => dispatch(showLogin())}>Already have an account?</Link>
+                <Link to="/" onClick={() => dispatch(showLogin())}>
+                  Already have an account?
+                </Link>
               </div>
               {isLoading && (
                 <Spinner
@@ -108,7 +180,7 @@ export default function Register() {
               )}
               <button
                 type="submit"
-                className="py-2 py-1 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black hover:bg-white text-white hover:text-black shadow-lg hover:shadow-xl outline-0 outline duration-300 ease-out"
+                className="py-2 md:px-4 px-3 text-sm lg:text-base rounded-[16px] bg-black hover:bg-white text-white hover:text-black shadow-lg hover:shadow-xl outline-0 outline duration-300 ease-out"
               >
                 register
               </button>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Heart from "@react-sandbox/heart";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -7,6 +7,9 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
   const [likedVideos, setLikedVideos] = useState([]);
   const { userInfo } = useSelector((state) => state.auth);
   const [videoCount, setVideoCount] = useState(0);
+  const [likeLoginPopup, setLikeLoginPopup] = useState(false)
+
+  const loginLikePopupRef = useRef(null)
 
   useEffect(() => {
     const userLikedVideos = likes
@@ -87,6 +90,10 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
         className="relative aspect-[4/7] w-full rounded-t-[30px]"
         key={video._id}
       >
+        <div ref={loginLikePopupRef} className={`w-full px-2 bg-[#242424] text-white h-full absolute left-0 top-0 rounded-t-[30px] flex text-center justify-center items-center ${likeLoginPopup ? 'block' : 'hidden'}`}>
+          <p> <strong className="hover:underline underlne-offset-4">Login</strong> or <strong className="hover:underline underlne-offset-4">Register</strong> to like videos </p>
+        </div>
+
         <iframe
           className="aspect-[4/7] w-full rounded-t-[30px]"
           src={extractVideoSrcFromIframe(video.url_link)}
@@ -97,7 +104,8 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
           <div className="text-white left-0 2xl:text-2xl xl:text-xl lg:text-lg sm:text-base text-sm font-bold pl-3 ">
             DAY {video.day_count}
           </div>
-          {userInfo && (
+
+          {userInfo ? (
             <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
               <Heart
                 inactiveColor="white"
@@ -111,6 +119,22 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
                 {videoCount}
               </div>
             </div>
+          ) : (
+            <>
+              <div className="text-white 2xl:right-0 2xl:mr-0 mr-2 flex 2xl:w-auto md:space-x-0 space-x-1">
+                <Heart
+                  inactiveColor="white"
+                  width={32}
+                  height={32}
+                  active={likedVideos[video._id] || false}
+                  onClick={() => setLikeLoginPopup(true)}
+                  className="xl:h-auto lg:mr-0 mr-1 my-auto"
+                />
+                <div className="my-auto lg:pl-2 md:pl-1 2xl:text-lg lg:text-sm sm:text-sm text-xs w-[20px]">
+                  {videoCount}
+                </div>
+              </div>
+            </>
           )}
         </div>
       </div>

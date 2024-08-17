@@ -538,7 +538,7 @@ function Pushups() {
                   id="notificationsTrigger"
                 />
 
-                {notificationCount !== 0 ? (
+                {userInfo && notificationCount !== 0 ? (
                   <div className="absolute flex justify-center items-center bg-blue-500   xl:h-[35px] lg:h-[25px] md:h-[20px] h-[18px] rounded-[30px] xl:bottom-7 md:bottom-6 bottom-4  xl:left-7 md:left-5 left-4 xl:w-[35px] lg:w-[24px] md:w-[20px] w-[18px]">
                     <div className="xl:text-base md:text-xs text-[10px] text-white">
                       {notifications && notificationCount}

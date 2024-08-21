@@ -33,7 +33,7 @@ articleSchema.pre("save", function (next) {
     const text = this.content.replace(/<[^>]*>/g, "");
     const words = text.split(/\s+/).filter((word) => word.length > 0).length;
 
-    this.readingTime = Math.ceil(words / 200);
+    this.readingTime = Math.floor(words / 238);
   }
   next();
 });
@@ -45,7 +45,7 @@ articleSchema.pre(["findOneAndUpdate", "updateOne"], function (next) {
     const text = update.content.replace(/<[^>]*>/g, "");
     const words = text.split(/\s+/).filter((word) => word.length > 0).length;
 
-    update.readingTime = Math.ceil(words / 200);
+    update.readingTime = Math.floor(words / 238);
   }
   next();
 });

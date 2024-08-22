@@ -1,23 +1,21 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const articleSectionSchema = new Schema({
-    title: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    image:{
-        type: String,
-        required: true,
-    },
-    imageClicked:{
-        type: String,
-        required: true,
-    },
-})
+  title: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  imageClicked: {
+    type: String,
+    required: true,
+  },
+});
 
-
-
-module.exports = mongoose.model('articleSection', articleSectionSchema)
+module.exports = mongoose.model("articleSection", articleSectionSchema);

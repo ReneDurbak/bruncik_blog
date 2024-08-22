@@ -125,7 +125,7 @@ export default function Register() {
                 <div className="relative">
                   <input
                     id="password"
-                    type={isShowPassword ? "text": "password"}
+                    type={isShowPassword ? "text" : "password"}
                     placeholder={
                       passwordError ? "Please enter your password!" : ""
                     }
@@ -163,7 +163,7 @@ export default function Register() {
                 <div className="relative">
                   <input
                     id="confirmPassword"
-                    type={isShowConfirmPassword ? "text": "password"}
+                    type={isShowConfirmPassword ? "text" : "password"}
                     placeholder={
                       passwordError && confirmPasswordError
                         ? "Please enter your password!"

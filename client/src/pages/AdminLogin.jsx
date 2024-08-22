@@ -17,42 +17,36 @@ export default function AdminLogin({ articles }) {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
 
-  const {adminInfo} = useSelector((state) => state.adminAuth)
+  const { adminInfo } = useSelector((state) => state.adminAuth);
 
-  const verification = async(e) => {
+  const verification = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await login({username, password}).unwrap()
-      dispatch(setAdminCredentials({...res}))
-      navigate('/admin/articles')
-
+      const res = await login({ username, password }).unwrap();
+      dispatch(setAdminCredentials({ ...res }));
+      navigate("/admin/articles");
     } catch (error) {
-      toast.error(error?.data?.message || error.error)
+      toast.error(error?.data?.message || error.error);
     }
-
-
   };
 
- 
   useEffect(() => {
-    if(adminInfo){
-      navigate('/admin/articles')
+    if (adminInfo) {
+      navigate("/admin/articles");
     }
-  }, [navigate, adminInfo])
-
+  }, [navigate, adminInfo]);
 
   return (
     <>
-    
-    <Helmet>
-      <title>Bruncik Blog</title>  
-      <link rel="icon" type="image/svg+xml" href="/icon.png"/>
-    </Helmet>
+      <Helmet>
+        <title>Bruncik Blog</title>
+        <link rel="icon" type="image/svg+xml" href="/icon.png" />
+      </Helmet>
       {isAdminRoute && (
         <>
           <ToastContainer />

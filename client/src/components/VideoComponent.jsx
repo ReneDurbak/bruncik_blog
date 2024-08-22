@@ -96,9 +96,7 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
   };
 
   const isTablet = useMediaQuery({ query: "(min-width: 768px )" });
-  const isBigMobile = useMediaQuery({ query: "(min-width: 640px )" });
   const isLaptop = useMediaQuery({ query: "(min-width: 1024px )" });
-
 
   return (
     <div

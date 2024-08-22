@@ -2,7 +2,10 @@ const Review = require("../models/reviewModel");
 
 const getAllReviews = async (req, res) => {
   try {
-    const Reviews = await Review.find({}).sort({ createdAt: -1 }).populate("user").populate("article");
+    const Reviews = await Review.find({})
+      .sort({ createdAt: -1 })
+      .populate("user")
+      .populate("article");
     res.status(200).json(Reviews);
   } catch (error) {
     res
@@ -20,7 +23,7 @@ const postReview = async (req, res) => {
       comment,
       article,
       user,
-      userName
+      userName,
     });
 
     res.status(200).json(postReview);

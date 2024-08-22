@@ -8,10 +8,9 @@ export default function AdminUpdateArticleSection() {
   const { id } = useParams();
   const [articleSectionTitle, setArticleSectionTitle] = useState("");
   const [articleSectionImage, setArticleSectionImage] = useState();
-  const [articleSectionImageClicked, setArticleSectionImageClicked] = useState();
+  const [articleSectionImageClicked, setArticleSectionImageClicked] =
+    useState();
   const [articleSection, setArticleSection] = useState([]);
-
-
 
   const fetchArticleSection = async () => {
     try {
@@ -20,10 +19,7 @@ export default function AdminUpdateArticleSection() {
       );
       const singleArticleSection = response.data;
       setArticleSection(singleArticleSection);
-      setArticleSectionTitle(singleArticleSection.title)
-
-
-
+      setArticleSectionTitle(singleArticleSection.title);
     } catch (error) {
       console.error("Error fetching article section", error.message);
     }
@@ -39,13 +35,15 @@ export default function AdminUpdateArticleSection() {
     e.preventDefault();
 
     try {
-  
-      const formData = new FormData()
-      formData.append('image', articleSectionImage)
-      formData.append('imageClicked', articleSectionImageClicked)
-      formData.append('title', articleSectionTitle);
+      const formData = new FormData();
+      formData.append("image", articleSectionImage);
+      formData.append("imageClicked", articleSectionImageClicked);
+      formData.append("title", articleSectionTitle);
 
-      await axios.patch(`http://localhost:4000/admin/articleSections/updateArticleSection/${id}`, formData);
+      await axios.patch(
+        `http://localhost:4000/admin/articleSections/updateArticleSection/${id}`,
+        formData
+      );
 
       setArticleSectionTitle("");
       setArticleSectionImage();
@@ -103,27 +101,38 @@ export default function AdminUpdateArticleSection() {
             />
           </div>
 
-          
-   
-              <div key={articleSection._id}
-                   className="p-2 bg-gray-200 rounded-xl w-[20%]"
-              >
-
-                    <div className="flex justify-center items-center space-x-3">
-                      <div className="flex items-center">
-                        <p>Image:</p>
-                        {<img className="w-[50px]" src={articleSection.image && `http://localhost:4000/public/${articleSection.image}`}/>}
-                      </div>
-                      
-                      <div className="flex items-center">
-                        <p>Image clicked:</p>
-                        {<img className="w-[50px]" src={articleSection.imageClicked && `http://localhost:4000/public/${articleSection.imageClicked}`}/>}
-                      </div>
-                    </div>
-
+          <div
+            key={articleSection._id}
+            className="p-2 bg-gray-200 rounded-xl w-[20%]"
+          >
+            <div className="flex justify-center items-center space-x-3">
+              <div className="flex items-center">
+                <p>Image:</p>
+                {
+                  <img
+                    className="w-[50px]"
+                    src={
+                      articleSection.image &&
+                      `http://localhost:4000/public/${articleSection.image}`
+                    }
+                  />
+                }
               </div>
-            
-      
+
+              <div className="flex items-center">
+                <p>Image clicked:</p>
+                {
+                  <img
+                    className="w-[50px]"
+                    src={
+                      articleSection.imageClicked &&
+                      `http://localhost:4000/public/${articleSection.imageClicked}`
+                    }
+                  />
+                }
+              </div>
+            </div>
+          </div>
 
           <button
             type="submit"

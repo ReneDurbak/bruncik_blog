@@ -16,7 +16,6 @@ export const adminsApiSlice = apiAdminSlice.injectEndpoints({
         url: `${ADMINS_URL}/logout`,
         method: "POST",
       }),
-
     }),
   }),
 });

@@ -14,6 +14,5 @@ const popupSlice = createSlice({
   },
 });
 
-export const { setActivePopupVideoId } =
-  popupSlice.actions;
+export const { setActivePopupVideoId } = popupSlice.actions;
 export default popupSlice.reducer;

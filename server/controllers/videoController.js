@@ -41,17 +41,21 @@ const deleteVideo = async (req, res) => {
 };
 
 const deleteAllVideos = async (req, res) => {
-    const { videoGalleryId } = req.body;
-  
-    try {
-      const result = await Video.deleteMany({ video_gallery: videoGalleryId });
-      
-      res.status(200).json({ message: "All videos in the gallery have been deleted", result });
-    } catch (error) {
-      res.status(400).json({ error: `Cannot delete all videos: ${error.message}` });
-    }
-  };
-  
+  const { videoGalleryId } = req.body;
+
+  try {
+    const result = await Video.deleteMany({ video_gallery: videoGalleryId });
+
+    res
+      .status(200)
+      .json({ message: "All videos in the gallery have been deleted", result });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ error: `Cannot delete all videos: ${error.message}` });
+  }
+};
+
 const updateVideo = async (req, res) => {
   const { id } = req.params;
   try {

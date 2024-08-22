@@ -675,7 +675,10 @@ export default function SingleArticlePage() {
                   hour12: false,
                 })}
               </div>
-              <div className="text-gray-400">{article.readingTime} {article.readingTime !== 1 ? "minutes" : "minute"}</div>
+              <div className="text-gray-400">
+                {article.readingTime}{" "}
+                {article.readingTime !== 1 ? "minutes" : "minute"}
+              </div>
               {/*npm modul na zobrazovanie casu -> date-fns*/}{" "}
             </div>
 
@@ -970,11 +973,9 @@ export default function SingleArticlePage() {
                           </strong>{" "}
                           or{" "}
                           <Link to="/register">
-                          <strong
-                            className="hover:underline underline-offset-4 cursor-pointer"
-                          >
-                            register
-                          </strong>
+                            <strong className="hover:underline underline-offset-4 cursor-pointer">
+                              register
+                            </strong>
                           </Link>
                         </div>
                       </form>
@@ -1646,10 +1647,15 @@ export default function SingleArticlePage() {
                   </div>
                   <div className="text-center text-xl py-4">
                     If you want to comment on the article you have to{" "}
-                      <strong className="hover:underline underline-offset-4 cursor-pointer" onClick={() => {dispatch(showLogin()); handleCloseCommentWindow()}}>
-                        login
-                      </strong>{" "}
-                
+                    <strong
+                      className="hover:underline underline-offset-4 cursor-pointer"
+                      onClick={() => {
+                        dispatch(showLogin());
+                        handleCloseCommentWindow();
+                      }}
+                    >
+                      login
+                    </strong>{" "}
                     or{" "}
                     <Link to="/register">
                       <strong className="hover:underline underline-offset-4 cursor-pointer">

@@ -363,7 +363,7 @@ function Navbar() {
                       }`}
                     />
 
-                    <FaEyeSlash 
+                    <FaEyeSlash
                       onClick={() => setIsShowPassword(false)}
                       className={`${
                         isShowPassword ? "block" : "hidden"

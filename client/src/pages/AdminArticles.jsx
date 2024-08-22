@@ -195,12 +195,14 @@ export default function AdminArticles() {
     useState("");
   const [deleteArticleSectionId, setDeleteArticleSectionId] = useState();
 
-  const handleOpenArticleSectionDeleteModal = (articleSectionTitle, articleSectionId) => {
+  const handleOpenArticleSectionDeleteModal = (
+    articleSectionTitle,
+    articleSectionId
+  ) => {
     setIsDeleteArticleSectionModal(true);
     setArticleSectionDeleteModalText(
       `Do you really want to delete article section <strong>${articleSectionTitle}</strong>?`
     );
-
 
     setDeleteArticleSectionId(articleSectionId);
   };
@@ -513,13 +515,13 @@ export default function AdminArticles() {
                     className={`p-2 bg-gray-200 rounded-lg cursor-pointer min-h-[120px]`}
                   >
                     <span>
-                    <strong
-                      className={`${
-                        article.section ? "text-black" : "text-red-400"
-                      }`}
-                    >
-                      {article.title}{" "}
-                    </strong>
+                      <strong
+                        className={`${
+                          article.section ? "text-black" : "text-red-400"
+                        }`}
+                      >
+                        {article.title}{" "}
+                      </strong>
                     </span>
                     {article.section ? null : (
                       <div className="text-red-400">
@@ -540,7 +542,10 @@ export default function AdminArticles() {
                       {articleHoverStates[article._id] && (
                         <button
                           onClick={() => {
-                            handleOpenArticleDeleteModal(article.title, article._id);
+                            handleOpenArticleDeleteModal(
+                              article.title,
+                              article._id
+                            );
                           }}
                           className="rounded-xl bg-red-400 hover:bg-red-600 ease-in-out duration-300 cursor-pointer p-2"
                         >
@@ -722,7 +727,8 @@ export default function AdminArticles() {
                       <div
                         onClick={() => {
                           handleOpenArticleSectionDeleteModal(
-                            articleSection.title, articleSection._id
+                            articleSection.title,
+                            articleSection._id
                           );
                         }}
                         className="p-2 cursor-pointer rounded-xl bg-red-400 hover:bg-red-600 duration-300 ease-in-out"
@@ -754,7 +760,9 @@ export default function AdminArticles() {
                         <div className="flex justify-start items-center space-x-4">
                           <button
                             className="mt-4 p-2 cursor-pointer rounded-xl bg-gray-300 hover:bg-gray-500 duration-300 ease-in-out"
-                            onClick={() => setIsDeleteArticleSectionModal(false)}
+                            onClick={() =>
+                              setIsDeleteArticleSectionModal(false)
+                            }
                           >
                             Cancel
                           </button>

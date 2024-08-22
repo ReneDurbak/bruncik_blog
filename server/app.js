@@ -16,7 +16,7 @@ const videoRoutes = require("./routes/videos");
 const videoGalleryRoutes = require("./routes/videoGallery.js");
 const commentsRoutes = require("./routes/comments");
 const reviewRoutes = require("./routes/reviews.js");
-const likeRoutes = require("./routes/likes.js")
+const likeRoutes = require("./routes/likes.js");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware.js");
 const cookieParser = require("cookie-parser");
 const http = require("http");
@@ -47,22 +47,24 @@ const io = new Server(server, {
   },
 });
 
-
-
 io.on("connection", (socket) => {
   socket.on("videoCreated", async (data) => {
-    const {message, videoGalleryImage} = data
+    const { message, videoGalleryImage } = data;
 
     socket.broadcast.emit("receiveNotification", data);
 
     try {
       const users = await User.find();
-      
+
       users.forEach(async (user) => {
-        user.notifications.push({ message, videoGalleryImage, createdAt: new Date() });
-        
+        user.notifications.push({
+          message,
+          videoGalleryImage,
+          createdAt: new Date(),
+        });
+
         user.notificationsCount += 1;
-        
+
         await user.save();
       });
     } catch (error) {
@@ -70,7 +72,6 @@ io.on("connection", (socket) => {
     }
   });
 });
-
 
 app.use("/admins", adminRoutes);
 app.use("/users", userRoutes);

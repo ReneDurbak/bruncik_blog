@@ -22,10 +22,7 @@ export default function AdminUpdateVideoGallery() {
       setVideoGallery(fetchedVideoGallery);
       setGalleryTitle(fetchedVideoGallery.title);
       setGoal(parseInt(fetchedVideoGallery.goal));
-      setImage(fetchedVideoGallery.image)
-
-
-
+      setImage(fetchedVideoGallery.image);
     } catch (error) {
       console.error(`Error fetching video gallery: ${error.message}`);
     }
@@ -81,7 +78,6 @@ export default function AdminUpdateVideoGallery() {
               value={galleryTitle}
               onChange={(e) => setGalleryTitle(e.target.value)}
               className="outline outline-1 rounded-md p-2"
- 
             />
           </div>
 

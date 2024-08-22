@@ -24,7 +24,6 @@ import { useDispatch } from "react-redux";
 import { showLogin } from "../slices/uiSlice";
 
 function Pushups() {
-
   const dispatch = useDispatch();
 
   const [PushUpsGallery, setPushUpsGallery] = useState([]);

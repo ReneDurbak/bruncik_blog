@@ -18,12 +18,10 @@ const authAdmin = asyncHandler(async (req, res) => {
       _id: admin._id,
       username: admin.username,
     });
-  }else{
-
-  res.status(401);
-  throw new Error('Invalid username or password')
+  } else {
+    res.status(401);
+    throw new Error("Invalid username or password");
   }
-
 });
 
 const logoutAdmin = asyncHandler(async (req, res) => {

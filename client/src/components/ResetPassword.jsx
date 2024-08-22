@@ -31,19 +31,17 @@ export default function ResetPassword() {
 
     let hasError = false;
 
-    if(password === ""){
+    if (password === "") {
       setPasswordError(true);
       hasError = true;
     }
 
-
-    if(confirmPassword === "") {
+    if (confirmPassword === "") {
       setConfirmPasswordError(true);
       hasError = true;
     }
 
-
-    if(hasError) {
+    if (hasError) {
       return;
     }
 
@@ -60,12 +58,12 @@ export default function ResetPassword() {
 
         const res = await login({ email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
-        toast.success('Password reset successful')
+        toast.success("Password reset successful");
         navigate("/");
       }
     } catch (error) {
-      toast.error('Please enter new password');
-      console.error(error)
+      toast.error("Please enter new password");
+      console.error(error);
     }
   };
 
@@ -93,10 +91,17 @@ export default function ResetPassword() {
               </p>
               <input
                 type="password"
-                placeholder={passwordError ? "Please enter your password!" : ''}
+                placeholder={passwordError ? "Please enter your password!" : ""}
                 onChange={(e) => setPassword(e.target.value)}
-                onClick={() => {setPasswordError(false); setConfirmPasswordError(false)}}
-                className={`mb-4 rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${passwordError ? 'border-red-600 placeholder-red-600 animate-shake' : 'border-black'}`}
+                onClick={() => {
+                  setPasswordError(false);
+                  setConfirmPasswordError(false);
+                }}
+                className={`mb-4 rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                  passwordError
+                    ? "border-red-600 placeholder-red-600 animate-shake"
+                    : "border-black"
+                }`}
               />
 
               <p className="lg:text-base sm:text-sm text-xs mb-1">
@@ -104,10 +109,22 @@ export default function ResetPassword() {
               </p>
               <input
                 type="password"
-                placeholder={passwordError && confirmPasswordError ? "Please enter your password!" : confirmPasswordError ? "Please confirm your password!" : ""}
+                placeholder={
+                  passwordError && confirmPasswordError
+                    ? "Please enter your password!"
+                    : confirmPasswordError
+                    ? "Please confirm your password!"
+                    : ""
+                }
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                onClick={() => {setConfirmPasswordError(false)}}
-                className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${confirmPasswordError ? 'border-red-600 placeholder-red-600 animate-shake' : 'border-black'}`}
+                onClick={() => {
+                  setConfirmPasswordError(false);
+                }}
+                className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                  confirmPasswordError
+                    ? "border-red-600 placeholder-red-600 animate-shake"
+                    : "border-black"
+                }`}
               />
             </div>
 

@@ -228,8 +228,6 @@ const sendResetPasswordLink = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Password email sent successfully." });
 });
 
-
-
 const resetPassword = asyncHandler(async (req, res) => {
   const { token } = req.query;
   const { password } = req.body;

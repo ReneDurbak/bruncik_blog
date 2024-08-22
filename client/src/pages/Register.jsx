@@ -8,8 +8,11 @@ import { setCredentials } from "../slices/user/authSlice";
 import { showLogin } from "../slices/uiSlice";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
 
 export default function Register() {
+  const isBigMobile = useMediaQuery({ query: "(min-width: 640px )" });
+
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState(false);
 
@@ -142,6 +145,7 @@ export default function Register() {
                   />
                   <FaEyeSlash
                     onClick={() => setIsShowPassword(false)}
+                    size={isBigMobile ? 18 : 16}
                     className={`${
                       isShowPassword ? "block" : "hidden"
                     } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
@@ -149,6 +153,7 @@ export default function Register() {
 
                   <FaEye
                     onClick={() => setIsShowPassword(true)}
+                    size={isBigMobile ? 18 : 16}
                     className={`${
                       isShowPassword ? "hidden" : "block"
                     } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
@@ -184,6 +189,7 @@ export default function Register() {
 
                   <FaEyeSlash
                     onClick={() => setIsShowConfirmPassword(false)}
+                    size={isBigMobile ? 18 : 16}
                     className={`${
                       isShowConfirmPassword ? "block" : "hidden"
                     } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
@@ -191,6 +197,7 @@ export default function Register() {
 
                   <FaEye
                     onClick={() => setIsShowConfirmPassword(true)}
+                    size={isBigMobile ? 18 : 16}
                     className={`${
                       isShowConfirmPassword ? "hidden" : "block"
                     } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}

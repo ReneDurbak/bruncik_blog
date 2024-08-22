@@ -17,6 +17,8 @@ import { showLogin, hideLogin } from "../slices/uiSlice";
 import closeButton from "../assets/closebutton.png";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa";
+import { useMediaQuery } from "react-responsive";
+
 
 function Navbar() {
   const [nav, setNav] = useState(false);
@@ -54,6 +56,10 @@ function Navbar() {
 
     return scrollDirection;
   }
+
+
+  const isBigMobile = useMediaQuery({ query: "(min-width: 640px )" });
+
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -365,6 +371,7 @@ function Navbar() {
 
                     <FaEyeSlash
                       onClick={() => setIsShowPassword(false)}
+                      size={isBigMobile ? 18 : 14}
                       className={`${
                         isShowPassword ? "block" : "hidden"
                       } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
@@ -372,6 +379,7 @@ function Navbar() {
 
                     <FaEye
                       onClick={() => setIsShowPassword(true)}
+                      size={isBigMobile ? 18 : 14}
                       className={`${
                         isShowPassword ? "hidden" : "block"
                       } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}

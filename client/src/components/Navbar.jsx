@@ -15,6 +15,8 @@ import { toast } from "react-toastify";
 import { Spinner } from "flowbite-react";
 import { showLogin, hideLogin } from "../slices/uiSlice";
 import closeButton from "../assets/closebutton.png";
+import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye } from "react-icons/fa";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
@@ -79,6 +81,7 @@ function Navbar() {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const { isLoginVisible } = useSelector((state) => state.ui);
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const handleCloseLogin = () => {
     dispatch(hideLogin());
@@ -331,7 +334,7 @@ function Navbar() {
                       setEmailError(false);
                     }}
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                    className={`w-full rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
                       emailError
                         ? "border-red-600 placeholder-red-600 animate-shake"
                         : "border-black"
@@ -341,29 +344,47 @@ function Navbar() {
 
                 <div className="flex flex-col justify-center">
                   <p className="lg:text-base sm:text-sm text-xs">Password</p>
-                  <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    placeholder={
-                      passwordError ? "Please insert your password!" : ""
-                    }
-                    onClick={() => {
-                      setPasswordError(false);
-                    }}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
-                      passwordError
-                        ? "border-red-600 placeholder-red-600 animate-shake"
-                        : "border-black"
-                    }`}
-                  />
+                  <div className="relative">
+                    <input
+                      id="password"
+                      type={isShowPassword ? "text" : "password"}
+                      value={password}
+                      placeholder={
+                        passwordError ? "Please insert your password!" : ""
+                      }
+                      onClick={() => {
+                        setPasswordError(false);
+                      }}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`w-full rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                        passwordError
+                          ? "border-red-600 placeholder-red-600 animate-shake"
+                          : "border-black"
+                      }`}
+                    />
+
+                    <FaEyeSlash 
+                      onClick={() => setIsShowPassword(false)}
+                      className={`${
+                        isShowPassword ? "block" : "hidden"
+                      } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
+                    />
+
+                    <FaEye
+                      onClick={() => setIsShowPassword(true)}
+                      className={`${
+                        isShowPassword ? "hidden" : "block"
+                      } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
+                    />
+                  </div>
                 </div>
-                <Link to="/forgotPassword">
-                  <p className="lg:text-sm text-xs text-right underline-offset-4 cursor-pointer mt-[-6px]">
-                    Forgot password?
-                  </p>
-                </Link>
+                <div className="flex justify-between items-center mt-2">
+                  <Link to="/forgotPassword" className="ml-auto">
+                    <p className="lg:text-sm text-xs underline-offset-4 cursor-pointer">
+                      Forgot password?
+                    </p>
+                  </Link>
+                </div>
               </div>
 
               <div className="flex justify-end mt-10">

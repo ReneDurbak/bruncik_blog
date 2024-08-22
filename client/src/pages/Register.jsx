@@ -6,6 +6,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRegisterMutation } from "../slices/user/usersApiSlice";
 import { setCredentials } from "../slices/user/authSlice";
 import { showLogin } from "../slices/uiSlice";
+import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye } from "react-icons/fa";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -16,6 +18,8 @@ export default function Register() {
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -118,49 +122,80 @@ export default function Register() {
 
               <div className="flex flex-col justify-center">
                 <p className="lg:text-base sm:text-sm text-xs">Password</p>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder={
-                    passwordError ? "Please enter your password!" : ""
-                  }
-                  onClick={() => {
-                    setPasswordError(false);
-                    setConfirmPasswordError(false);
-                  }}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
-                    passwordError
-                      ? "border-red-600 placeholder-red-600 animate-shake"
-                      : "border-black"
-                  }`}
-                />
+                <div className="relative">
+                  <input
+                    id="password"
+                    type={isShowPassword ? "text": "password"}
+                    placeholder={
+                      passwordError ? "Please enter your password!" : ""
+                    }
+                    onClick={() => {
+                      setPasswordError(false);
+                      setConfirmPasswordError(false);
+                    }}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={`w-full rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                      passwordError
+                        ? "border-red-600 placeholder-red-600 animate-shake"
+                        : "border-black"
+                    }`}
+                  />
+                  <FaEyeSlash
+                    onClick={() => setIsShowPassword(false)}
+                    className={`${
+                      isShowPassword ? "block" : "hidden"
+                    } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
+                  />
+
+                  <FaEye
+                    onClick={() => setIsShowPassword(true)}
+                    className={`${
+                      isShowPassword ? "hidden" : "block"
+                    } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
+                  />
+                </div>
               </div>
 
               <div className="flex flex-col justify-center">
                 <p className="lg:text-base sm:text-sm text-xs">
                   Confirm password
                 </p>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder={
-                    passwordError && confirmPasswordError
-                      ? "Please enter your password!"
-                      : confirmPasswordError
-                      ? "Please confirm your password"
-                      : ""
-                  }
-                  onClick={() => {
-                    setConfirmPasswordError(false);
-                  }}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className={`rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
-                    confirmPasswordError
-                      ? "border-red-600 placeholder-red-600 animate-shake"
-                      : "border-black"
-                  }`}
-                />
+                <div className="relative">
+                  <input
+                    id="confirmPassword"
+                    type={isShowConfirmPassword ? "text": "password"}
+                    placeholder={
+                      passwordError && confirmPasswordError
+                        ? "Please enter your password!"
+                        : confirmPasswordError
+                        ? "Please confirm your password"
+                        : ""
+                    }
+                    onClick={() => {
+                      setConfirmPasswordError(false);
+                    }}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className={`w-full rounded-xl outline outline-0 shadow-md px-2 py-[6px] focus:outline-0 focus:shadow-lg duration-300 ease-in-out ${
+                      confirmPasswordError
+                        ? "border-red-600 placeholder-red-600 animate-shake"
+                        : "border-black"
+                    }`}
+                  />
+
+                  <FaEyeSlash
+                    onClick={() => setIsShowConfirmPassword(false)}
+                    className={`${
+                      isShowConfirmPassword ? "block" : "hidden"
+                    } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
+                  />
+
+                  <FaEye
+                    onClick={() => setIsShowConfirmPassword(true)}
+                    className={`${
+                      isShowConfirmPassword ? "hidden" : "block"
+                    } absolute right-2 top-1/2 -translate-y-1/2  cursor-pointer`}
+                  />
+                </div>
               </div>
             </div>
 

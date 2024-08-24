@@ -131,7 +131,12 @@ app.get(
       await user.save();
     }
 
-    res.status(200).send("Verification successful");
+    const { password, ...userData } = user._doc;
+
+    res.status(200).json({
+      message: "Verification successful",
+      user: userData,
+    });
   })
 );
 

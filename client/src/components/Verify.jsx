@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import { setCredentials } from "../slices/user/authSlice";
+import { useDispatch } from "react-redux";
+
 
 const Verify = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const token = new URLSearchParams(location.search).get("token");
@@ -15,12 +19,17 @@ const Verify = () => {
         const response = await axios.get(
           `http://localhost:4000/verify?token=${token}`
         );
+
+        const { user: userInfo } = response.data;
+
         setMessage(response.data.message);
-        const userInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
         localStorage.setItem(
           "userInfo",
           JSON.stringify({ ...userInfo, confirmed: true })
         );
+
+        dispatch(setCredentials(userInfo));
+        
         navigate("/");
         setIsLoading(false);
       } catch (error) {

@@ -266,6 +266,14 @@ function Navbar() {
     }
   };
 
+
+
+  useEffect(() => {
+    if (scrollDirection === "down") {
+      setNav(false);
+    }
+  }, [scrollDirection]);
+
   return (
     <>
       <header

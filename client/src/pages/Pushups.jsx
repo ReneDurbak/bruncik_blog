@@ -390,6 +390,9 @@ function Pushups() {
     }
   };
 
+  const [notificationGalleryDeleted, setNotificationGalleryDeleted] =
+    useState(false);
+
   const resetUserNotifications = async () => {
     try {
       const response = await axios.patch(
@@ -609,6 +612,7 @@ function Pushups() {
                               <div className="flex flex-col mt-4 pr-8 max-h-[150px] overflow-y-scroll">
                                 {notifications &&
                                   notifications.map((notification, index) => (
+                                    notificationGalleryDeleted ? (
                                     <div
                                       key={index}
                                       className="flex space-x-4 my-2"
@@ -617,7 +621,9 @@ function Pushups() {
                                         <img
                                           src={`http://localhost:4000/public/videoGallery/${notification.videoGalleryImage}`}
                                           className="2xl:w-[48px] 2xl:h-[40px] md:w-[40px] md:h-[40px] w-[32px] h-[32px] rounded-3xl"
-                                          onError={(e) => e.currentTarget.closest('.flex').remove()}
+                                          onError={() =>
+                                            setNotificationGalleryDeleted(true)
+                                          }
                                         />
                                       </div>
 
@@ -639,6 +645,34 @@ function Pushups() {
                                         </div>
                                       </div>
                                     </div>
+                                    ) : (
+                                      <div
+                                      key={index}
+                                      className="flex space-x-4 my-2"
+                                    >
+                                      <div className="text-red-400 text-center 2xl:text-base md:text-xs text-[10px]">
+                                        Deleted gallery
+                                      </div>
+
+                                      <div className="my-auto w-full 2xl:text-base md:text-[14px] text-[11px]">
+                                        <div
+                                          dangerouslySetInnerHTML={{
+                                            __html: DOMPurify.sanitize(
+                                              notification.message
+                                            ),
+                                          }}
+                                        />
+                                        <div className="2xl:text-xs lg:text-[11px] text-[9px] text-[#777777] mt-[1px] flex justify-between">
+                                          <div>
+                                            {formatTime(notification.createdAt)}
+                                          </div>
+                                          <div>
+                                            {formatDate(notification.createdAt)}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    )
                                   ))}
                               </div>
                             </div>

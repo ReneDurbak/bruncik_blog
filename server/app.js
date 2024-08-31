@@ -57,7 +57,7 @@ io.on("connection", (socket) => {
       const users = await User.find();
 
       users.forEach(async (user) => {
-        user.notifications.push({
+        user.notifications.unshift({
           message,
           videoGalleryImage,
           createdAt: new Date(),

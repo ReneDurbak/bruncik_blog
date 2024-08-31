@@ -606,7 +606,6 @@ function Pushups() {
                               Mentions
                             </div>*/}
                               </div>
-
                               <div className="flex flex-col mt-4 pr-8 max-h-[150px] overflow-y-scroll">
                                 {notifications &&
                                   notifications.map((notification, index) => (
@@ -618,6 +617,7 @@ function Pushups() {
                                         <img
                                           src={`http://localhost:4000/public/videoGallery/${notification.videoGalleryImage}`}
                                           className="2xl:w-[48px] 2xl:h-[40px] md:w-[40px] md:h-[40px] w-[32px] h-[32px] rounded-3xl"
+                                          onError={(e) => e.currentTarget.closest('.flex').remove()}
                                         />
                                       </div>
 

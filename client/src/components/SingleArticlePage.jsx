@@ -893,7 +893,8 @@ export default function SingleArticlePage() {
                               : setHoverOnPaperPlane(false)
                           }
                           onMouseLeave={() => setHoverOnPaperPlane(false)}
-                          className=" bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]"
+                          onClick={() => setHoverOnPaperPlane(false)}
+                          className=" bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-300  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]"
                         >
                           <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] tracking-widest font-poppins">
                             <div className="underline underline-offset-2  my-auto font-bold">

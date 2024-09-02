@@ -200,7 +200,7 @@ export default function SingleArticlePage() {
       );
       const fetchedReviews = response.data;
       const filteredReviews = fetchedReviews.filter((review) => {
-        return review.article._id === id;
+        return review.article && review.article._id === id;
       });
       setReviews(filteredReviews);
     } catch (error) {
@@ -895,9 +895,9 @@ export default function SingleArticlePage() {
                           onMouseLeave={() => setHoverOnPaperPlane(false)}
                           className=" bg-black lg:hover:bg-white lg:hover:text-black outline outline-black outline-1 outline-offset-[-2px] lg:hover:outline-2 active:bg-white active:text-black active:shadow-xl text-white ease-in-out duration-700  md:text-base text-sm md:mt-2 md:p-2 py-1 px-2 md:rounded-[30px] rounded-[20px]"
                         >
-                          <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] capitalize tracking-widest font-poppins">
+                          <div className="flex md:space-x-1 space-x-2 md:text-xs text-[11px] tracking-widest font-poppins">
                             <div className="underline underline-offset-2  my-auto font-bold">
-                              send
+                              Send
                             </div>
                             <div className="my-auto">
                               <img
@@ -1136,9 +1136,16 @@ export default function SingleArticlePage() {
                     >
                       <div className="my-12">
                         <div>
-                          <h1 className="font-bold xl:text-lg text-sm">
-                            {comment.userName}
-                          </h1>
+                          {comment.user ? (
+                            <h1 className="font-bold xl:text-lg text-sm">
+                              {comment.userName}
+                            </h1>
+                          ) : (
+                            <h1 className="font-bold xl:text-lg text-sm text-red-400">
+                              Deleted user
+                            </h1>
+                          )}
+
                           <div className="xl:text-sm text-[11px] text-[#757575] mt-2">
                             {new Date(comment.createdAt).toLocaleString(
                               "en-US",
@@ -1156,7 +1163,7 @@ export default function SingleArticlePage() {
 
                         <div className="xl:pl-20 pl-8 pr-7">
                           <div className="relative border-2 border-gray-300 rounded-[10px] max-w-[480px] h-auto xl:mt-4 mt-2 xl:p-4 p-3">
-                            {comment.user._id === userId ? (
+                            {comment.user && comment.user._id === userId ? (
                               <>
                                 {isUpdateComment ? (
                                   <>
@@ -1359,7 +1366,7 @@ export default function SingleArticlePage() {
                         </>
                       ) : (
                         <>
-                          {userId === review.user._id ? (
+                          {review.user && userId === review.user._id ? (
                             <>
                               <div className="flex  space-x-2 absolute top-2 right-2">
                                 <FaPen
@@ -1381,9 +1388,15 @@ export default function SingleArticlePage() {
 
                               <div className="my-8">
                                 <div className="mb-6">
-                                  <h1 className="font-bold xl:text-lg text-sm">
-                                    {review.userName}
-                                  </h1>
+                                  {review.user ? (
+                                    <h1 className="font-bold xl:text-lg text-sm">
+                                      {review.userName}
+                                    </h1>
+                                  ) : (
+                                    <h1 className="font-bold xl:text-lg text-sm text-red-400">
+                                      Deleted user
+                                    </h1>
+                                  )}
                                   <div className="xl:text-sm text-[11px] text-[#757575] mt-2">
                                     {new Date(review.createdAt).toLocaleString(
                                       "en-US",
@@ -1425,9 +1438,15 @@ export default function SingleArticlePage() {
                             <>
                               <div className="my-8">
                                 <div className="mb-6">
-                                  <h1 className="font-bold xl:text-lg text-sm">
-                                    {review.userName}
-                                  </h1>
+                                  {review.user ? (
+                                    <h1 className="font-bold xl:text-lg text-sm">
+                                      {review.userName}
+                                    </h1>
+                                  ) : (
+                                    <h1 className="font-bold xl:text-lg text-sm text-red-400">
+                                      Deleted user
+                                    </h1>
+                                  )}
                                   <div className="xl:text-sm text-[11px] text-[#757575] mt-2">
                                     {new Date(review.createdAt).toLocaleString(
                                       "en-US",

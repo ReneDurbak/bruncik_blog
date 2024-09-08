@@ -706,12 +706,7 @@ function Pushups() {
                               >
                                 login
                               </strong>{" "}
-                              or{" "}
-                              <Link to="/register">
-                                <strong className="hover:underline underline-offset-4 cursor-pointer">
-                                  register
-                                </strong>
-                              </Link>
+       
                             </div>
                           </div>
                         </animated.div>

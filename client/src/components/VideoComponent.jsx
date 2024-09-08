@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Heart from "@react-sandbox/heart";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,8 +16,14 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
   );
   const dispatch = useDispatch();
 
+  const videoRef = useRef(null); // Step 1: Add a ref for video component
+
+  const isTablet = useMediaQuery({ query: "(min-width: 768px )" });
+  const isLaptop = useMediaQuery({ query: "(min-width: 1024px )" });
+
   const handleLoginClick = () => {
     dispatch(showLogin());
+    dispatch(setActivePopupVideoId(null));
   };
 
   useEffect(() => {
@@ -95,8 +101,24 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
     }
   };
 
-  const isTablet = useMediaQuery({ query: "(min-width: 768px )" });
-  const isLaptop = useMediaQuery({ query: "(min-width: 1024px )" });
+  // Corrected handleClickOutside function
+  const handleClickOutside = (event) => {
+    if (videoRef.current && activePopupVideoId === video._id) {
+      if (!videoRef.current.contains(event.target)) {
+        dispatch(setActivePopupVideoId(null)); // Close the popup
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (activePopupVideoId === video._id) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [activePopupVideoId]);
 
   return (
     <div
@@ -104,24 +126,19 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
       key={video._id}
     >
       <div
+        ref={videoRef}
         className={`w-full px-2 bg-[#242424] text-white h-full absolute left-0 top-0 rounded-t-[30px] flex text-center justify-center items-center ${
           activePopupVideoId === video._id ? "block" : "hidden"
         }`}
       >
         <p className="xl:text-base text-sm">
+          If you want to like my videos you have to{" "}
           <strong
             onClick={() => handleLoginClick()}
             className="hover:underline underline-offset-4 cursor-pointer"
           >
             Login
-          </strong>{" "}
-          or{" "}
-          <Link to="/register">
-            <strong className="hover:underline underline-offset-4 cursor-pointer">
-              Register
-            </strong>{" "}
-          </Link>
-          to like videos
+          </strong>
         </p>
       </div>
 

@@ -16,7 +16,7 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
   );
   const dispatch = useDispatch();
 
-  const videoRef = useRef(null); // Step 1: Add a ref for video component
+  const videoLoginRegisterPopupRef = useRef(null);
 
   const isTablet = useMediaQuery({ query: "(min-width: 768px )" });
   const isLaptop = useMediaQuery({ query: "(min-width: 1024px )" });
@@ -101,11 +101,10 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
     }
   };
 
-  // Corrected handleClickOutside function
   const handleClickOutside = (event) => {
-    if (videoRef.current && activePopupVideoId === video._id) {
-      if (!videoRef.current.contains(event.target)) {
-        dispatch(setActivePopupVideoId(null)); // Close the popup
+    if (videoLoginRegisterPopupRef.current && activePopupVideoId === video._id) {
+      if (!videoLoginRegisterPopupRef.current.contains(event.target)) {
+        dispatch(setActivePopupVideoId(null));
       }
     }
   };
@@ -126,7 +125,7 @@ export default function VideoComponent({ video, likes, onLikesChange }) {
       key={video._id}
     >
       <div
-        ref={videoRef}
+        ref={videoLoginRegisterPopupRef}
         className={`w-full px-2 bg-[#242424] text-white h-full absolute left-0 top-0 rounded-t-[30px] flex text-center justify-center items-center ${
           activePopupVideoId === video._id ? "block" : "hidden"
         }`}

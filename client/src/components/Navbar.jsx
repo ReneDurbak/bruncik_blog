@@ -107,6 +107,9 @@ function Navbar() {
         !loginFormRef.current.contains(event.target)
       ) {
         dispatch(hideLogin());
+        setIsForgotPasswordFormVisible(false);
+        setIsRegisterFormVisible(false);
+        setIsLoginFormVisible(true);
       }
     };
 
@@ -265,8 +268,6 @@ function Navbar() {
       toast.error("User not found");
     }
   };
-
-
 
   useEffect(() => {
     if (scrollDirection === "down") {

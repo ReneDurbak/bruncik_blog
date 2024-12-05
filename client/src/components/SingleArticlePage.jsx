@@ -1378,12 +1378,14 @@ export default function SingleArticlePage() {
                                     setUpdateRating(review.rating);
                                     setComment(review.comment);
                                   }}
+                                  size={14}RiDeleteBin5Line
                                 />
                                 <RiDeleteBin5Line
                                   className="hover:scale-125 ease-in-out duration-300"
                                   onClick={() =>
                                     handleOpenReviewDeleteModal(review._id)
                                   }
+                                  size={16}
                                 />
                               </div>
 

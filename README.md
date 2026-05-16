@@ -1,5 +1,5 @@
 # bruncik blog
-Multifunctional personal blog with admin mode for managing articles, article sections, videos and video galleries.
+Multifunctional personal blog with admin mode for managing articles, article sections, videos and video galleries including integrated User Authentication (Login/Register).
 * technologies and tools used: React, TailwindCSS, Node.js, Express.js, MongoDB, Postman, Redux.js, Socket.io, Multer, Email.js
  <br><br><br>
  # Home Page

@@ -1,5 +1,5 @@
 # bruncik blog
-Designed by Peter Brunčík.
+Designed by Peter Brunčík.<br>
 Multifunctional personal blog with admin mode for managing articles, article sections, videos and video galleries including integrated User Authentication (Login/Register).
 * technologies and tools used: React, TailwindCSS, Node.js, Express.js, MongoDB, Postman, Redux.js, Socket.io, Multer, Email.js
  <br><br><br>
